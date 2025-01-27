@@ -24,6 +24,10 @@ export const hero: Field = {
           value: 'none',
         },
         {
+          label: 'Super High Impact',
+          value: 'superHighImpact',
+        },
+        {
           label: 'High Impact',
           value: 'highImpact',
         },
@@ -66,6 +70,11 @@ export const hero: Field = {
       },
       relationTo: 'media',
       required: true,
+    },
+    {
+      name: 'bottomRichText',
+      type: 'richText',
+      label: 'Bottom Content',
     },
   ],
   label: false,

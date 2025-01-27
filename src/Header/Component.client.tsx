@@ -1,41 +1,40 @@
 'use client'
-import { useHeaderTheme } from '@/providers/HeaderTheme'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
-
-import type { Header } from '@/payload-types'
-
-import { Logo } from '@/components/Logo/Logo'
+import React, { useEffect } from 'react'
+import Link from 'next/link'
 import { HeaderNav } from './Nav'
+import type { Header } from '@/payload-types'
+import { Button } from '@/components/ui/button'
+import { Logo } from '@/components/Logo/Logo'
 
 interface HeaderClientProps {
   data: Header
 }
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
-  /* Storing the value in a useState to avoid hydration errors */
-  const [theme, setTheme] = useState<string | null>(null)
-  const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
 
-  useEffect(() => {
-    setHeaderTheme(null)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname])
-
-  useEffect(() => {
-    if (headerTheme && headerTheme !== theme) setTheme(headerTheme)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [headerTheme])
+  useEffect(() => {}, [pathname])
 
   return (
-    <header className="container relative z-20   " {...(theme ? { 'data-theme': theme } : {})}>
-      <div className="py-8 flex justify-between">
-        <Link href="/">
-          <Logo loading="eager" priority="high" className="invert dark:invert-0" />
+    <header className="relative z-20 bg-white">
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        <Link href="/" className="flex-shrink-0">
+          <Logo priority />
         </Link>
-        <HeaderNav data={data} />
+        <div className="flex items-center space-x-8">
+          <HeaderNav data={data} />
+          <div className="flex-shrink-0">
+            <Link href="/contact">
+              <Button
+                variant="outline"
+                className="bg-purple-800 hover:bg-purple-900 hover:text-white text-white px-4 py-2 rounded-3xl transition-colors"
+              >
+                Schedule Counseling
+              </Button>
+            </Link>
+          </div>
+        </div>
       </div>
     </header>
   )
