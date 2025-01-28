@@ -58,13 +58,19 @@ export const AppointmentBlock: React.FC<Props> = (props) => {
           </div>
 
           {/* Right Section */}
-          <div className="flex flex-row items-center space-y-8 justify-evenly">
+          <div className="flex flex-row items-center justify-evenly">
             {/* Schedule Card */}
-            <div className="bg-lime-300 rounded-xl p-12 shadow-sm max-w-md text-center">
+            <div className="bg-lime-300 rounded-xl p-10 shadow-sm max-w-md text-center">
               <h1 className="text-4xl font-bold">{day}</h1>
-              <h4 className="text-lg">{month}, {year}</h4>
-              <p>{rightContent.schedule.day}</p>
-              <p>{rightContent.schedule.time}</p>
+              <h4 className="text-lg mb-1">{month}, {year}</h4>
+              <hr className='border-black py-1' />
+              <div className="flex justify-between pt-2">
+                <p className="w-1/2 text-xs flex items-center ">{rightContent.schedule.day}</p>
+                <div className="w-1/2">
+                  <p className='text-xs'>{rightContent.schedule.timeSlot1}</p>
+                  <p className='text-xs'>{rightContent.schedule.timeSlot2}</p>
+                </div>
+              </div>
             </div>
 
             {/* Info Card */}
@@ -72,7 +78,7 @@ export const AppointmentBlock: React.FC<Props> = (props) => {
               <p>{rightContent.info.text}</p>
               <div className="flex flex-col">
                 {rightContent.info.imgs?.map((item, index) => (
-                  <div key={index} className="relative rounded-lg p-4 overflow-hidden">
+                  <div key={index} className="relative rounded-lg p-3 overflow-hidden">
                     {typeof item.img !== 'number' && item.img && (
                       <Image
                         src={item.img.url || ''}

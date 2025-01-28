@@ -74,7 +74,12 @@ export const AppointmentBlock: Block = {
                             required: true,
                         },
                         {
-                            name: 'time',
+                            name: 'timeSlot1',
+                            type: 'text',
+                            required: true,
+                        },
+                        {
+                            name: 'timeSlot2',
                             type: 'text',
                             required: true,
                         },

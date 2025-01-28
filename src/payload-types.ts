@@ -718,7 +718,8 @@ export interface AppointmentBlock {
     schedule: {
       date: string;
       day: string;
-      time: string;
+      timeSlot1: string;
+      timeSlot2: string;
     };
     info: {
       text: string;
@@ -1154,7 +1155,8 @@ export interface AppointmentBlockSelect<T extends boolean = true> {
           | {
               date?: T;
               day?: T;
-              time?: T;
+              timeSlot1?: T;
+              timeSlot2?: T;
             };
         info?:
           | T
