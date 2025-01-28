@@ -60,15 +60,15 @@ export const AppointmentBlock: React.FC<Props> = (props) => {
           {/* Right Section */}
           <div className="flex flex-row items-center justify-evenly">
             {/* Schedule Card */}
-            <div className="bg-lime-300 rounded-xl p-10 shadow-sm max-w-md text-center">
+            <div className="bg-lime-300 rounded-xl p-14 shadow-sm max-w-md text-center">
               <h1 className="text-4xl font-bold">{day}</h1>
               <h4 className="text-lg mb-1">{month}, {year}</h4>
               <hr className='border-black py-1' />
               <div className="flex justify-between pt-2">
-                <p className="w-1/2 text-xs flex items-center ">{rightContent.schedule.day}</p>
+                <p className="w-1/2 text-xs flex items-center mr-2">{rightContent.schedule.day}</p>
                 <div className="w-1/2">
-                  <p className='text-xs'>{rightContent.schedule.timeSlot1}</p>
-                  <p className='text-xs'>{rightContent.schedule.timeSlot2}</p>
+                  <p className='text-[10px]'>{rightContent.schedule.timeSlot1}</p>
+                  <p className='text-[10px]'>{rightContent.schedule.timeSlot2}</p>
                 </div>
               </div>
             </div>
