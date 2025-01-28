@@ -4,12 +4,15 @@ import { CallToActionBlock } from './CallToAction/Component'
 import { FormBlock } from './Form/Component'
 import { MediaBlock } from './MediaBlock/Component'
 import { AppointmentBlock } from './AppointmentBlock/Component'
+import TestimonialsBlock from './TestimonialsBlock/Component'
+
 
 type BlockComponentsType = {
   cta: typeof CallToActionBlock
   formBlock: typeof FormBlock
   mediaBlock: typeof MediaBlock
   appointmentBlock: typeof AppointmentBlock
+  testimonialsBlock: typeof TestimonialsBlock
 }
 
 const blockComponents: BlockComponentsType = {
@@ -17,6 +20,7 @@ const blockComponents: BlockComponentsType = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   appointmentBlock: AppointmentBlock,
+  testimonialsBlock: TestimonialsBlock,
 }
 
 export const RenderBlocks: React.FC<{

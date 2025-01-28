@@ -150,7 +150,15 @@ export interface Page {
       [k: string]: unknown;
     } | null;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | AppointmentBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | AppointmentBlock
+    | TestimonialsBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -739,6 +747,41 @@ export interface AppointmentBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock".
+ */
+export interface TestimonialsBlock {
+  heading: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  testimonials?:
+    | {
+        image: number | Media;
+        review: string;
+        name: string;
+        course: string;
+        universityImage: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonialsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1029,6 +1072,7 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         appointmentBlock?: T | AppointmentBlockSelect<T>;
+        testimonialsBlock?: T | TestimonialsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1172,6 +1216,26 @@ export interface AppointmentBlockSelect<T extends boolean = true> {
             };
       };
   bottomText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock_select".
+ */
+export interface TestimonialsBlockSelect<T extends boolean = true> {
+  heading?: T;
+  description?: T;
+  testimonials?:
+    | T
+    | {
+        image?: T;
+        review?: T;
+        name?: T;
+        course?: T;
+        universityImage?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
