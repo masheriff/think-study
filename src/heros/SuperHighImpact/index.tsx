@@ -12,7 +12,7 @@ export const SuperHighImpactHero: React.FC<Page['hero']> = ({
   return (
     <div className="relative flex items-center justify-center">
       {/* Content Container */}
-      <div className="container relative z-10 py-4">
+      <div className="container relative z-10 pt-4">
         <div className="max-w-[750px] mx-auto text-center">
           {richText && <RichText className="mb-8" data={richText} enableGutter={false} />}
           {Array.isArray(links) && links.length > 0 && (
