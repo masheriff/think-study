@@ -3,17 +3,20 @@ import type { Page } from '@/payload-types'
 import { CallToActionBlock } from './CallToAction/Component'
 import { FormBlock } from './Form/Component'
 import { MediaBlock } from './MediaBlock/Component'
+import { AppointmentBlock } from './AppointmentBlock/Component'
 
 type BlockComponentsType = {
   cta: typeof CallToActionBlock
   formBlock: typeof FormBlock
   mediaBlock: typeof MediaBlock
+  appointmentBlock: typeof AppointmentBlock
 }
 
 const blockComponents: BlockComponentsType = {
   cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
+  appointmentBlock: AppointmentBlock,
 }
 
 export const RenderBlocks: React.FC<{

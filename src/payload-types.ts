@@ -150,7 +150,7 @@ export interface Page {
       [k: string]: unknown;
     } | null;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | AppointmentBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -687,6 +687,57 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AppointmentBlock".
+ */
+export interface AppointmentBlock {
+  leftContent: {
+    richText: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    paragraph1: string;
+    paragraph2: string;
+    paragraph3: string;
+    button: {
+      text: string;
+      url: string;
+    };
+  };
+  rightContent: {
+    schedule: {
+      date: string;
+      day: string;
+      time: string;
+    };
+    info: {
+      text: string;
+      imgs?:
+        | {
+            img: number | Media;
+            alt?: string | null;
+            id?: string | null;
+          }[]
+        | null;
+    };
+  };
+  bottomText: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'appointmentBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -976,6 +1027,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        appointmentBlock?: T | AppointmentBlockSelect<T>;
       };
   meta?:
     | T
@@ -1072,6 +1124,52 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AppointmentBlock_select".
+ */
+export interface AppointmentBlockSelect<T extends boolean = true> {
+  leftContent?:
+    | T
+    | {
+        richText?: T;
+        paragraph1?: T;
+        paragraph2?: T;
+        paragraph3?: T;
+        button?:
+          | T
+          | {
+              text?: T;
+              url?: T;
+            };
+      };
+  rightContent?:
+    | T
+    | {
+        schedule?:
+          | T
+          | {
+              date?: T;
+              day?: T;
+              time?: T;
+            };
+        info?:
+          | T
+          | {
+              text?: T;
+              imgs?:
+                | T
+                | {
+                    img?: T;
+                    alt?: T;
+                    id?: T;
+                  };
+            };
+      };
+  bottomText?: T;
   id?: T;
   blockName?: T;
 }
