@@ -158,6 +158,7 @@ export interface Page {
     | FormBlock
     | AppointmentBlock
     | TestimonialsBlock
+    | CounselingBlock
   )[];
   meta?: {
     title?: string | null;
@@ -782,6 +783,34 @@ export interface TestimonialsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CounselingBlock".
+ */
+export interface CounselingBlock {
+  heading: string;
+  description: string;
+  button: {
+    text: string;
+    url: string;
+  };
+  backgroundImage: number | Media;
+  card: {
+    title: string;
+    courseName: string;
+    cardImage: number | Media;
+    icon: number | Media;
+    countries?:
+      | {
+          name: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'counselingBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1073,6 +1102,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         appointmentBlock?: T | AppointmentBlockSelect<T>;
         testimonialsBlock?: T | TestimonialsBlockSelect<T>;
+        counselingBlock?: T | CounselingBlockSelect<T>;
       };
   meta?:
     | T
@@ -1235,6 +1265,37 @@ export interface TestimonialsBlockSelect<T extends boolean = true> {
         course?: T;
         universityImage?: T;
         id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CounselingBlock_select".
+ */
+export interface CounselingBlockSelect<T extends boolean = true> {
+  heading?: T;
+  description?: T;
+  button?:
+    | T
+    | {
+        text?: T;
+        url?: T;
+      };
+  backgroundImage?: T;
+  card?:
+    | T
+    | {
+        title?: T;
+        courseName?: T;
+        cardImage?: T;
+        icon?: T;
+        countries?:
+          | T
+          | {
+              name?: T;
+              id?: T;
+            };
       };
   id?: T;
   blockName?: T;

@@ -5,6 +5,7 @@ import { FormBlock } from './Form/Component'
 import { MediaBlock } from './MediaBlock/Component'
 import { AppointmentBlock } from './AppointmentBlock/Component'
 import TestimonialsBlock from './TestimonialsBlock/Component'
+import CounselingBlock from './CounselingBlock/Component'
 
 
 type BlockComponentsType = {
@@ -13,6 +14,7 @@ type BlockComponentsType = {
   mediaBlock: typeof MediaBlock
   appointmentBlock: typeof AppointmentBlock
   testimonialsBlock: typeof TestimonialsBlock
+  counselingBlock: typeof CounselingBlock
 }
 
 const blockComponents: BlockComponentsType = {
@@ -21,6 +23,7 @@ const blockComponents: BlockComponentsType = {
   mediaBlock: MediaBlock,
   appointmentBlock: AppointmentBlock,
   testimonialsBlock: TestimonialsBlock,
+  counselingBlock: CounselingBlock,
 }
 
 export const RenderBlocks: React.FC<{
