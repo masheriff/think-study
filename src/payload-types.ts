@@ -793,18 +793,21 @@ export interface CounselingBlock {
     url: string;
   };
   backgroundImage: number | Media;
-  card: {
-    title: string;
-    courseName: string;
-    cardImage: number | Media;
-    icon: number | Media;
-    countries?:
-      | {
-          name: string;
-          id?: string | null;
-        }[]
-      | null;
-  };
+  cards?:
+    | {
+        title: string;
+        courseName: string;
+        cardImage: number | Media;
+        icon: number | Media;
+        countries?:
+          | {
+              name: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'counselingBlock';
@@ -1283,7 +1286,7 @@ export interface CounselingBlockSelect<T extends boolean = true> {
         url?: T;
       };
   backgroundImage?: T;
-  card?:
+  cards?:
     | T
     | {
         title?: T;
@@ -1296,6 +1299,7 @@ export interface CounselingBlockSelect<T extends boolean = true> {
               name?: T;
               id?: T;
             };
+        id?: T;
       };
   id?: T;
   blockName?: T;

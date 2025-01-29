@@ -37,8 +37,8 @@ export const CounselingBlock: Block = {
             required: true,
         },
         {
-            name: 'card',
-            type: 'group',
+            name: 'cards',
+            type: 'array',
             fields: [
                 {
                     name: 'title',
@@ -74,6 +74,6 @@ export const CounselingBlock: Block = {
                     ],
                 },
             ],
-        }
+        },
     ],
 }
