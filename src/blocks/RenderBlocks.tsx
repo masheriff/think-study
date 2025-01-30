@@ -6,6 +6,11 @@ import { MediaBlock } from './MediaBlock/Component'
 import { AppointmentBlock } from './AppointmentBlock/Component'
 import TestimonialsBlock from './TestimonialsBlock/Component'
 import CounselingBlock from './CounselingBlock/Component'
+import UniversitiesBlock from './UniversitiesBlock/Component'
+import { StudyAbroadBlock } from './StudyAbroadBlock/Component'
+import IELTSBlock from './IELTSBlock/Component'
+
+
 
 
 type BlockComponentsType = {
@@ -15,6 +20,9 @@ type BlockComponentsType = {
   appointmentBlock: typeof AppointmentBlock
   testimonialsBlock: typeof TestimonialsBlock
   counselingBlock: typeof CounselingBlock
+  universitiesBlock: typeof UniversitiesBlock
+  studyAbroadBlock: typeof StudyAbroadBlock
+  ieltsBlock: typeof IELTSBlock
 }
 
 const blockComponents: BlockComponentsType = {
@@ -24,6 +32,10 @@ const blockComponents: BlockComponentsType = {
   appointmentBlock: AppointmentBlock,
   testimonialsBlock: TestimonialsBlock,
   counselingBlock: CounselingBlock,
+  universitiesBlock: UniversitiesBlock,
+  studyAbroadBlock: StudyAbroadBlock,
+  ieltsBlock: IELTSBlock
+
 }
 
 export const RenderBlocks: React.FC<{

@@ -159,6 +159,9 @@ export interface Page {
     | AppointmentBlock
     | TestimonialsBlock
     | CounselingBlock
+    | UniversitiesBlock
+    | StudyAbroadBlock
+    | IELTSBlock
   )[];
   meta?: {
     title?: string | null;
@@ -814,6 +817,85 @@ export interface CounselingBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "UniversitiesBlock".
+ */
+export interface UniversitiesBlock {
+  mainHeading: string;
+  subHeading: string;
+  description: string;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  universitiesImage: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'universitiesBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyAbroadBlock".
+ */
+export interface StudyAbroadBlock {
+  heading: string;
+  subheading: string;
+  description: string;
+  title: string;
+  titleDescription: string;
+  cards?:
+    | {
+        courseDescription: string;
+        description: string;
+        buttonText: string;
+        buttonLink: string;
+        image: number | Media;
+        imagePosition: 'left' | 'right';
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studyAbroadBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSBlock".
+ */
+export interface IELTSBlock {
+  title: string;
+  subtitle: string;
+  description: string;
+  learningType: {
+    title: string;
+    subtitle: string;
+  };
+  studyModes?:
+    | {
+        label: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  features?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  ctaButton: {
+    text: string;
+    href: string;
+  };
+  image: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ieltsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1106,6 +1188,9 @@ export interface PagesSelect<T extends boolean = true> {
         appointmentBlock?: T | AppointmentBlockSelect<T>;
         testimonialsBlock?: T | TestimonialsBlockSelect<T>;
         counselingBlock?: T | CounselingBlockSelect<T>;
+        universitiesBlock?: T | UniversitiesBlockSelect<T>;
+        studyAbroadBlock?: T | StudyAbroadBlockSelect<T>;
+        ieltsBlock?: T | IELTSBlockSelect<T>;
       };
   meta?:
     | T
@@ -1301,6 +1386,86 @@ export interface CounselingBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "UniversitiesBlock_select".
+ */
+export interface UniversitiesBlockSelect<T extends boolean = true> {
+  mainHeading?: T;
+  subHeading?: T;
+  description?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  universitiesImage?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyAbroadBlock_select".
+ */
+export interface StudyAbroadBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  description?: T;
+  title?: T;
+  titleDescription?: T;
+  cards?:
+    | T
+    | {
+        courseDescription?: T;
+        description?: T;
+        buttonText?: T;
+        buttonLink?: T;
+        image?: T;
+        imagePosition?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSBlock_select".
+ */
+export interface IELTSBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  description?: T;
+  learningType?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+      };
+  studyModes?:
+    | T
+    | {
+        label?: T;
+        value?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  ctaButton?:
+    | T
+    | {
+        text?: T;
+        href?: T;
+      };
+  image?: T;
   id?: T;
   blockName?: T;
 }
