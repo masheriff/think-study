@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { cn } from '@/utilities/ui';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { CheckCircle } from "lucide-react";
 import type { IELTSBlock as IELTSBlockType } from '@/payload-types';
 
 type Props = IELTSBlockType & {
@@ -48,9 +47,7 @@ export const IELTSBlock: React.FC<Props> = (props) => {
                             <div className="flex items-center gap-2 mb-4">
                                 <div className="font-bold text-2xl">IELTS</div>
                                 {learningType && (
-                                    <Badge variant="secondary" className="text-lg">
-                                        {learningType.title}
-                                    </Badge>
+                                    <span className="text-lg">{learningType.title}</span>
                                 )}
                             </div>
 
@@ -65,7 +62,7 @@ export const IELTSBlock: React.FC<Props> = (props) => {
                                         <Badge
                                             key={index}
                                             variant="outline"
-                                            className="bg-white px-4 py-2"
+                                            className="bg-white px-4 py-2 rounded-xl"
                                         >
                                             {mode.label}
                                         </Badge>
@@ -75,11 +72,10 @@ export const IELTSBlock: React.FC<Props> = (props) => {
 
                             {/* Features List */}
                             {features && features.length > 0 && (
-                                <ul className="space-y-3">
+                                <ul className="space-y-3 list-disc pl-5">
                                     {features.map((feature, index) => (
-                                        <li key={index} className="flex items-start gap-2">
-                                            <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                                            <span className="text-gray-700">{feature.text}</span>
+                                        <li key={index} className="text-gray-700">
+                                            {feature.text}
                                         </li>
                                     ))}
                                 </ul>
@@ -89,7 +85,7 @@ export const IELTSBlock: React.FC<Props> = (props) => {
                             {ctaButton && (
                                 <Button
                                     size="lg"
-                                    className="bg-purple-600 hover:bg-purple-700 text-white px-8"
+                                    className="bg-purple-600 hover:bg-purple-700 text-white px-8 rounded-3xl"
                                     asChild
                                 >
                                     <a href={ctaButton.href}>{ctaButton.text}</a>
@@ -104,8 +100,8 @@ export const IELTSBlock: React.FC<Props> = (props) => {
                                     <Image
                                         src={image.url || ''}
                                         alt="IELTS Training"
-                                        layout="fill"
-                                        objectFit="cover"
+                                        fill
+                                        style={{ objectFit: "cover" }}
                                         className="rounded-lg"
                                     />
                                 </div>

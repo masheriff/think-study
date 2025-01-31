@@ -12,6 +12,10 @@ import { TestimonialsBlock } from '@/blocks/TestimonialsBlock/config'
 import { CounselingBlock } from '@/blocks/CounselingBlock/config'
 import { UniversitiesBlock } from '@/blocks/UniversitiesBlock/config'
 import { StudyAbroadBlock } from '@/blocks/StudyAbroadBlock/config'
+import { IELTSBlock } from '@/blocks/IELTSBlock/config'
+import { GetStartedBlock } from '@/blocks/GetStartedBlock/config'
+import { MapBlock } from '@/blocks/MapBlock/config'
+import { CTABlock } from '@/blocks/CTABlock/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -25,7 +29,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
-import { IELTSBlock } from '@/blocks/IELTSBlock/config'
+
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -82,7 +86,7 @@ export const Pages: CollectionConfig<'pages'> = {
               name: 'layout',
               type: 'blocks',
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, AppointmentBlock, TestimonialsBlock, CounselingBlock,
-                UniversitiesBlock, StudyAbroadBlock, IELTSBlock],
+                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, CTABlock],
               required: true,
               admin: {
                 initCollapsed: true,

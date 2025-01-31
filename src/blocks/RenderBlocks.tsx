@@ -9,8 +9,9 @@ import CounselingBlock from './CounselingBlock/Component'
 import UniversitiesBlock from './UniversitiesBlock/Component'
 import { StudyAbroadBlock } from './StudyAbroadBlock/Component'
 import IELTSBlock from './IELTSBlock/Component'
-
-
+import GetStartedBlock from './GetStartedBlock/Component'
+import MapBlock from './MapBlock/Component'
+import CTABlock from './CTABlock/Component'
 
 
 type BlockComponentsType = {
@@ -23,6 +24,9 @@ type BlockComponentsType = {
   universitiesBlock: typeof UniversitiesBlock
   studyAbroadBlock: typeof StudyAbroadBlock
   ieltsBlock: typeof IELTSBlock
+  getStartedBlock: typeof GetStartedBlock
+  mapBlock: typeof MapBlock
+  ctaBlock: typeof CTABlock
 }
 
 const blockComponents: BlockComponentsType = {
@@ -34,7 +38,10 @@ const blockComponents: BlockComponentsType = {
   counselingBlock: CounselingBlock,
   universitiesBlock: UniversitiesBlock,
   studyAbroadBlock: StudyAbroadBlock,
-  ieltsBlock: IELTSBlock
+  ieltsBlock: IELTSBlock,
+  getStartedBlock: GetStartedBlock,
+  mapBlock: MapBlock,
+  ctaBlock: CTABlock
 
 }
 

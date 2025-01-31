@@ -54,8 +54,8 @@ export const UniversitiesBlock: React.FC<Props> = (props) => {
                             <Image
                                 src={universitiesImage.url || ''}
                                 alt="University Logo"
-                                layout="fill"
-                                objectFit="contain"
+                                fill
+                                style={{ objectFit: "contain" }}
                             />
                         </div>
                     </div>

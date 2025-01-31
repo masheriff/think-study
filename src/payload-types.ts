@@ -162,6 +162,9 @@ export interface Page {
     | UniversitiesBlock
     | StudyAbroadBlock
     | IELTSBlock
+    | GetStartedBlock
+    | MapBlock
+    | CTABlock
   )[];
   meta?: {
     title?: string | null;
@@ -896,6 +899,75 @@ export interface IELTSBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GetStartedBlock".
+ */
+export interface GetStartedBlock {
+  heading: string;
+  title: string;
+  /**
+   * Add features that will be displayed with bullet points
+   */
+  features: {
+    text: string;
+    id?: string | null;
+  }[];
+  footerText: string;
+  /**
+   * Upload an image of a graduate student (recommended size: 600x800)
+   */
+  image: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'getStartedBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MapBlock".
+ */
+export interface MapBlock {
+  heading: string;
+  /**
+   * Add office locations that will be displayed on the map
+   */
+  offices: {
+    name: string;
+    address: string;
+    /**
+     * Paste the iframe embed code for the map of this office
+     */
+    mapIframe: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'mapBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTABlock".
+ */
+export interface CTABlock {
+  phoneNumbers?:
+    | {
+        number?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  offices?:
+    | {
+        location?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  tagline?: string | null;
+  image?: (number | null) | Media;
+  brandLogo?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ctaBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1191,6 +1263,9 @@ export interface PagesSelect<T extends boolean = true> {
         universitiesBlock?: T | UniversitiesBlockSelect<T>;
         studyAbroadBlock?: T | StudyAbroadBlockSelect<T>;
         ieltsBlock?: T | IELTSBlockSelect<T>;
+        getStartedBlock?: T | GetStartedBlockSelect<T>;
+        mapBlock?: T | MapBlockSelect<T>;
+        ctaBlock?: T | CTABlockSelect<T>;
       };
   meta?:
     | T
@@ -1466,6 +1541,64 @@ export interface IELTSBlockSelect<T extends boolean = true> {
         href?: T;
       };
   image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GetStartedBlock_select".
+ */
+export interface GetStartedBlockSelect<T extends boolean = true> {
+  heading?: T;
+  title?: T;
+  features?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  footerText?: T;
+  image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MapBlock_select".
+ */
+export interface MapBlockSelect<T extends boolean = true> {
+  heading?: T;
+  offices?:
+    | T
+    | {
+        name?: T;
+        address?: T;
+        mapIframe?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTABlock_select".
+ */
+export interface CTABlockSelect<T extends boolean = true> {
+  phoneNumbers?:
+    | T
+    | {
+        number?: T;
+        id?: T;
+      };
+  offices?:
+    | T
+    | {
+        location?: T;
+        id?: T;
+      };
+  tagline?: T;
+  image?: T;
+  brandLogo?: T;
   id?: T;
   blockName?: T;
 }
