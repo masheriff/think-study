@@ -48,11 +48,19 @@ export const UniversitiesBlock: Block = {
             ],
         },
         {
-            name: 'universitiesImage',
-            type: 'upload',
-            relationTo: 'media',
-            required: true,
-            label: 'University Image',
+            name: 'universitiesImages', // Updated field name to plural
+            type: 'array',
+            label: 'University Images',
+            minRows: 1,
+            fields: [
+                {
+                    name: 'image',
+                    type: 'upload',
+                    relationTo: 'media',
+                    required: true,
+                    label: 'Image',
+                },
+            ],
         },
     ],
 };

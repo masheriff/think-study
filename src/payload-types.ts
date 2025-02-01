@@ -165,6 +165,7 @@ export interface Page {
     | GetStartedBlock
     | MapBlock
     | CTABlock
+    | GlobalUnivBlock
   )[];
   meta?: {
     title?: string | null;
@@ -833,7 +834,12 @@ export interface UniversitiesBlock {
         id?: string | null;
       }[]
     | null;
-  universitiesImage: number | Media;
+  universitiesImages?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'universitiesBlock';
@@ -965,6 +971,27 @@ export interface CTABlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'ctaBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GlobalUnivBlock".
+ */
+export interface GlobalUnivBlock {
+  /**
+   * Add universities with their images
+   */
+  universities: {
+    name: string;
+    image: number | Media;
+    id?: string | null;
+  }[];
+  /**
+   * Upload an image of the world map (recommended size: 1200x800)
+   */
+  mapImage: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'globalUnivBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1266,6 +1293,7 @@ export interface PagesSelect<T extends boolean = true> {
         getStartedBlock?: T | GetStartedBlockSelect<T>;
         mapBlock?: T | MapBlockSelect<T>;
         ctaBlock?: T | CTABlockSelect<T>;
+        globalUnivBlock?: T | GlobalUnivBlockSelect<T>;
       };
   meta?:
     | T
@@ -1479,7 +1507,12 @@ export interface UniversitiesBlockSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
-  universitiesImage?: T;
+  universitiesImages?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1599,6 +1632,22 @@ export interface CTABlockSelect<T extends boolean = true> {
   tagline?: T;
   image?: T;
   brandLogo?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GlobalUnivBlock_select".
+ */
+export interface GlobalUnivBlockSelect<T extends boolean = true> {
+  universities?:
+    | T
+    | {
+        name?: T;
+        image?: T;
+        id?: T;
+      };
+  mapImage?: T;
   id?: T;
   blockName?: T;
 }
@@ -2050,7 +2099,89 @@ export interface Header {
  */
 export interface Footer {
   id: number;
-  navItems?:
+  description?: string | null;
+  copyright: string;
+  services?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  about?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  help?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  legal?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  social?:
     | {
         link: {
           type?: ('reference' | 'custom') | null;
@@ -2101,7 +2232,65 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  description?: T;
+  copyright?: T;
+  services?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  about?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  help?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  legal?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  social?:
     | T
     | {
         link?:

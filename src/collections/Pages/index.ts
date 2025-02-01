@@ -29,6 +29,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { GlobalUnivBlock } from '@/blocks/GlobalUnivBlock/config'
 
 
 export const Pages: CollectionConfig<'pages'> = {
@@ -86,7 +87,7 @@ export const Pages: CollectionConfig<'pages'> = {
               name: 'layout',
               type: 'blocks',
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, AppointmentBlock, TestimonialsBlock, CounselingBlock,
-                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, CTABlock],
+                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, CTABlock, GlobalUnivBlock],
               required: true,
               admin: {
                 initCollapsed: true,

@@ -16,7 +16,7 @@ export const UniversitiesBlock: React.FC<Props> = (props) => {
         subHeading,
         description,
         stats,
-        universitiesImage,
+        universitiesImages,
     } = props;
 
     return (
@@ -46,24 +46,29 @@ export const UniversitiesBlock: React.FC<Props> = (props) => {
                 </div>
             </div>
 
-            {/* University Image */}
-            {universitiesImage && typeof universitiesImage !== 'number' && 'url' in universitiesImage && (
+            {/* University Images */}
+            {universitiesImages && universitiesImages.length > 0 && (
                 <div className="container mx-auto px-4">
-                    <div className="flex justify-center items-center">
-                        <div className="w-full h-[300px] relative">
-                            <Image
-                                src={universitiesImage.url || ''}
-                                alt="University Logo"
-                                fill
-                                style={{ objectFit: "contain" }}
-                            />
-                        </div>
+                    <div className="grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-12 gap-4"> {/* 12 columns with small gap */}
+                        {universitiesImages.map((universityImage, index) => (
+                            typeof universityImage.image !== 'number' && 'url' in universityImage.image && (
+                                <div key={index} className="flex justify-center items-center">
+                                    <div className="w-full h-[50px] relative p-2 bg-gray-100 rounded-xl">
+                                        <Image
+                                            src={universityImage.image.url || ''}
+                                            alt="University Logo"
+                                            fill
+                                            style={{ objectFit: "contain" }}
+                                        />
+                                    </div>
+                                </div>
+                            )
+                        ))}
                     </div>
                 </div>
             )}
             <hr className="mt-32 w-96 mx-auto" />
         </section>
-
     );
 };
 
