@@ -93,22 +93,59 @@ export interface Page {
   id: number;
   title: string;
   hero: {
-    type: 'none' | 'superHighImpact' | 'highImpact' | 'mediumImpact' | 'lowImpact';
-    richText?: {
-      root: {
-        type: string;
-        children: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    heading?: {
+      content?: {
+        root: {
           type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
           version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
+        };
+        [k: string]: unknown;
+      } | null;
+      fontFamily?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
+      /**
+       * Enter value with unit (e.g., 2rem, 24px)
+       */
+      fontSize?: string | null;
+      /**
+       * Hex color code (e.g., #FFFFFF)
+       */
+      textColor?: string | null;
+    };
+    description?: {
+      content?: {
+        root: {
+          type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
+        [k: string]: unknown;
+      } | null;
+      fontFamily?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
+      /**
+       * Enter value with unit (e.g., 2rem, 24px)
+       */
+      fontSize?: string | null;
+      /**
+       * Hex color code (e.g., #FFFFFF)
+       */
+      textColor?: string | null;
+    };
     links?:
       | {
           link: {
@@ -134,21 +171,32 @@ export interface Page {
         }[]
       | null;
     media?: (number | null) | Media;
-    bottomRichText?: {
-      root: {
-        type: string;
-        children: {
+    bottomText?: {
+      content?: {
+        root: {
           type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
           version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
+        };
+        [k: string]: unknown;
+      } | null;
+      fontFamily?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
+      /**
+       * Enter value with unit (e.g., 2rem, 24px)
+       */
+      fontSize?: string | null;
+      /**
+       * Hex color code (e.g., #FFFFFF)
+       */
+      textColor?: string | null;
+    };
   };
   layout: (
     | CallToActionBlock
@@ -1257,7 +1305,22 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         type?: T;
-        richText?: T;
+        heading?:
+          | T
+          | {
+              content?: T;
+              fontFamily?: T;
+              fontSize?: T;
+              textColor?: T;
+            };
+        description?:
+          | T
+          | {
+              content?: T;
+              fontFamily?: T;
+              fontSize?: T;
+              textColor?: T;
+            };
         links?:
           | T
           | {
@@ -1274,7 +1337,14 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
             };
         media?: T;
-        bottomRichText?: T;
+        bottomText?:
+          | T
+          | {
+              content?: T;
+              fontFamily?: T;
+              fontSize?: T;
+              textColor?: T;
+            };
       };
   layout?:
     | T

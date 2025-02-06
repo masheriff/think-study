@@ -29,6 +29,7 @@
     "@payloadcms/plugin-search": "latest",
     "@payloadcms/plugin-seo": "latest",
     "@payloadcms/richtext-lexical": "latest",
+    "@payloadcms/richtext-slate": "^3.21.0",
     "@payloadcms/ui": "latest",
     "@radix-ui/react-avatar": "^1.1.2",
     "@radix-ui/react-checkbox": "^1.0.4",

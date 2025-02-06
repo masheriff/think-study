@@ -1,8 +1,5 @@
 import type { Metadata } from 'next'
-
-import { cn } from '@/utilities/ui'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
+import { Inter, Roboto, Open_Sans, Montserrat } from 'next/font/google'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
@@ -16,11 +13,26 @@ import { draftMode } from 'next/headers'
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 
+const inter = Inter({ subsets: ['latin'] })
+const roboto = Roboto({
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+  variable: '--font-roboto',
+})
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  variable: '--font-open-sans',
+})
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+})
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
+    <html className={`${inter.className} ${roboto.variable} ${openSans.variable} ${montserrat.variable}`} lang="en" suppressHydrationWarning>
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
