@@ -171,32 +171,6 @@ export interface Page {
         }[]
       | null;
     media?: (number | null) | Media;
-    bottomText?: {
-      content?: {
-        root: {
-          type: string;
-          children: {
-            type: string;
-            version: number;
-            [k: string]: unknown;
-          }[];
-          direction: ('ltr' | 'rtl') | null;
-          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-          indent: number;
-          version: number;
-        };
-        [k: string]: unknown;
-      } | null;
-      fontFamily?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-      /**
-       * Enter value with unit (e.g., 2rem, 24px)
-       */
-      fontSize?: string | null;
-      /**
-       * Hex color code (e.g., #FFFFFF)
-       */
-      textColor?: string | null;
-    };
   };
   layout: (
     | CallToActionBlock
@@ -214,6 +188,7 @@ export interface Page {
     | MapBlock
     | CTABlock
     | GlobalUnivBlock
+    | WorldStudentBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1043,6 +1018,41 @@ export interface GlobalUnivBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WorldStudentBlock".
+ */
+export interface WorldStudentBlock {
+  backgroundImage: number | Media;
+  title: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  items: {
+    image: number | Media;
+    title: string;
+    'z-index': number;
+    top?: number | null;
+    bottom?: number | null;
+    right?: number | null;
+    left?: number | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'worldStudentBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1337,14 +1347,6 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
             };
         media?: T;
-        bottomText?:
-          | T
-          | {
-              content?: T;
-              fontFamily?: T;
-              fontSize?: T;
-              textColor?: T;
-            };
       };
   layout?:
     | T
@@ -1364,6 +1366,7 @@ export interface PagesSelect<T extends boolean = true> {
         mapBlock?: T | MapBlockSelect<T>;
         ctaBlock?: T | CTABlockSelect<T>;
         globalUnivBlock?: T | GlobalUnivBlockSelect<T>;
+        worldStudentBlock?: T | WorldStudentBlockSelect<T>;
       };
   meta?:
     | T
@@ -1718,6 +1721,28 @@ export interface GlobalUnivBlockSelect<T extends boolean = true> {
         id?: T;
       };
   mapImage?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WorldStudentBlock_select".
+ */
+export interface WorldStudentBlockSelect<T extends boolean = true> {
+  backgroundImage?: T;
+  title?: T;
+  items?:
+    | T
+    | {
+        image?: T;
+        title?: T;
+        'z-index'?: T;
+        top?: T;
+        bottom?: T;
+        right?: T;
+        left?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

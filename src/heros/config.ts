@@ -103,23 +103,5 @@ export const hero: Field = {
         condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
       },
     },
-    {
-      name: 'bottomText',
-      type: 'group',
-      fields: [
-        {
-          name: 'content',
-          type: 'richText',
-          editor: lexicalEditor({
-            features: ({ rootFeatures }) => [
-              ...rootFeatures,
-              FixedToolbarFeature(),
-              InlineToolbarFeature(),
-            ],
-          }),
-        },
-        ...textStyleFields,
-      ],
-    },
   ],
 }

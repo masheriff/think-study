@@ -13,6 +13,7 @@ import GetStartedBlock from './GetStartedBlock/Component'
 import MapBlock from './MapBlock/Component'
 import CTABlock from './CTABlock/Component'
 import GlobalUnivBlock from './GlobalUnivBlock/Component'
+import { WorldStudentBlock } from './WorldStudentBlock/Component'
 
 
 type BlockComponentsType = {
@@ -29,6 +30,7 @@ type BlockComponentsType = {
   mapBlock: typeof MapBlock
   ctaBlock: typeof CTABlock
   globalUnivBlock: typeof GlobalUnivBlock
+  worldStudentBlock: typeof WorldStudentBlock
 }
 
 const blockComponents: BlockComponentsType = {
@@ -44,7 +46,8 @@ const blockComponents: BlockComponentsType = {
   getStartedBlock: GetStartedBlock,
   mapBlock: MapBlock,
   ctaBlock: CTABlock,
-  globalUnivBlock: GlobalUnivBlock
+  globalUnivBlock: GlobalUnivBlock,
+  worldStudentBlock: WorldStudentBlock
 }
 
 export const RenderBlocks: React.FC<{
