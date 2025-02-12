@@ -1,7 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
 import { cn } from '@/utilities/ui'
-import RichText from '@/components/RichText'
 import type { TestimonialsBlock as TestimonialsBlockType } from '@/payload-types'
 
 type Props = TestimonialsBlockType & {
@@ -13,10 +12,10 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
 
     return (
         <section className={cn('py-8 md:py-16 bg-white', className)}>
-            <div className="container mx-auto">
-                <div className="text-center mb-8 md:mb-12">
+            <div className="container">
+                <div className="mb-8 md:mb-12 text-left">
                     <h2 className="text-xl md:text-2xl font-semibold text-gray-800">{heading}</h2>
-                    <RichText data={description} />
+                    <p className='text-left'>{description}</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 p-1">
                     {testimonials && testimonials.length > 0 ? (
