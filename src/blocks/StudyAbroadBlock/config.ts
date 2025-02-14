@@ -1,4 +1,26 @@
-import type { Block } from "payload"
+import type { Block, Field } from "payload"
+
+const textStyleFields: Field[] = [
+    {
+        name: 'font',
+        type: 'select',
+        options: [
+            { label: 'Inter', value: 'Inter' },
+            { label: 'Roboto', value: 'Roboto' },
+            { label: 'Open Sans', value: 'Open Sans' },
+            { label: 'Montserrat', value: 'Montserrat' },
+        ],
+        defaultValue: 'Inter',
+    },
+    {
+        name: 'size',
+        type: 'text',
+        defaultValue: '1rem',
+        admin: {
+            description: 'Enter value with unit (e.g., 2rem, 24px)',
+        },
+    },
+]
 
 export const StudyAbroadBlock: Block = {
     slug: "studyAbroadBlock",
@@ -25,8 +47,15 @@ export const StudyAbroadBlock: Block = {
         },
         {
             name: "title",
-            type: "text",
-            required: true,
+            type: "group",
+            fields: [
+                {
+                    name: "content",
+                    type: "text",
+                    required: true,
+                },
+                ...textStyleFields,
+            ],
         },
         {
             name: "titleDescription",

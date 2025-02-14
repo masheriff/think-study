@@ -95,56 +95,23 @@ export interface Page {
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     heading?: {
-      content?: {
-        root: {
-          type: string;
-          children: {
-            type: string;
-            version: number;
-            [k: string]: unknown;
-          }[];
-          direction: ('ltr' | 'rtl') | null;
-          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-          indent: number;
-          version: number;
-        };
-        [k: string]: unknown;
-      } | null;
+      /**
+       * Enter the text inside "|" symbols to highlight text in red. Example: "Regular text |highlighted text| regular text"
+       */
+      content?: string | null;
       fontFamily?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
       /**
        * Enter value with unit (e.g., 2rem, 24px)
        */
       fontSize?: string | null;
-      /**
-       * Hex color code (e.g., #FFFFFF)
-       */
-      textColor?: string | null;
     };
     description?: {
-      content?: {
-        root: {
-          type: string;
-          children: {
-            type: string;
-            version: number;
-            [k: string]: unknown;
-          }[];
-          direction: ('ltr' | 'rtl') | null;
-          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-          indent: number;
-          version: number;
-        };
-        [k: string]: unknown;
-      } | null;
+      content?: string | null;
       fontFamily?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
       /**
        * Enter value with unit (e.g., 2rem, 24px)
        */
       fontSize?: string | null;
-      /**
-       * Hex color code (e.g., #FFFFFF)
-       */
-      textColor?: string | null;
     };
     links?:
       | {
@@ -178,7 +145,6 @@ export interface Page {
     | MediaBlock
     | ArchiveBlock
     | FormBlock
-    | AppointmentBlock
     | TestimonialsBlock
     | CounselingBlock
     | UniversitiesBlock
@@ -187,8 +153,8 @@ export interface Page {
     | GetStartedBlock
     | MapBlock
     | CTABlock
-    | GlobalUnivBlock
     | WorldStudentBlock
+    | AppointmentBlock
   )[];
   meta?: {
     title?: string | null;
@@ -726,58 +692,6 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AppointmentBlock".
- */
-export interface AppointmentBlock {
-  leftContent: {
-    richText: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    };
-    paragraph1: string;
-    paragraph2: string;
-    paragraph3: string;
-    button: {
-      text: string;
-      url: string;
-    };
-  };
-  rightContent: {
-    schedule: {
-      date: string;
-      day: string;
-      timeSlot1: string;
-      timeSlot2: string;
-    };
-    info: {
-      text: string;
-      imgs?:
-        | {
-            img: number | Media;
-            alt?: string | null;
-            id?: string | null;
-          }[]
-        | null;
-    };
-  };
-  bottomText: string;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'appointmentBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TestimonialsBlock".
  */
 export interface TestimonialsBlock {
@@ -861,7 +775,14 @@ export interface StudyAbroadBlock {
   heading: string;
   subheading: string;
   description: string;
-  title: string;
+  title: {
+    content: string;
+    font?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
+    /**
+     * Enter value with unit (e.g., 2rem, 24px)
+     */
+    size?: string | null;
+  };
   titleDescription: string;
   cards?:
     | {
@@ -886,6 +807,8 @@ export interface IELTSBlock {
   title: string;
   subtitle: string;
   description: string;
+  ieltsText: string;
+  ieltsImage: number | Media;
   learningType: {
     title: string;
     subtitle: string;
@@ -983,27 +906,6 @@ export interface CTABlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "GlobalUnivBlock".
- */
-export interface GlobalUnivBlock {
-  /**
-   * Add universities with their images
-   */
-  universities: {
-    name: string;
-    image: number | Media;
-    id?: string | null;
-  }[];
-  /**
-   * Upload an image of the world map (recommended size: 1200x800)
-   */
-  mapImage: number | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'globalUnivBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "WorldStudentBlock".
  */
 export interface WorldStudentBlock {
@@ -1036,6 +938,51 @@ export interface WorldStudentBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'worldStudentBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AppointmentBlock".
+ */
+export interface AppointmentBlock {
+  leftContent: {
+    title: string;
+    subTitle: string;
+    highlightText: string;
+    extraText: string;
+    paragraphs?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    button: {
+      text: string;
+      url: string;
+    };
+  };
+  right: {
+    schedule: {
+      date: string;
+      day: string;
+      slots?:
+        | {
+            time: string;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    universities?:
+      | {
+          img: number | Media;
+          alt?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  bottomText: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'appointmentBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1307,7 +1254,6 @@ export interface PagesSelect<T extends boolean = true> {
               content?: T;
               fontFamily?: T;
               fontSize?: T;
-              textColor?: T;
             };
         description?:
           | T
@@ -1315,7 +1261,6 @@ export interface PagesSelect<T extends boolean = true> {
               content?: T;
               fontFamily?: T;
               fontSize?: T;
-              textColor?: T;
             };
         links?:
           | T
@@ -1342,7 +1287,6 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
-        appointmentBlock?: T | AppointmentBlockSelect<T>;
         testimonialsBlock?: T | TestimonialsBlockSelect<T>;
         counselingBlock?: T | CounselingBlockSelect<T>;
         universitiesBlock?: T | UniversitiesBlockSelect<T>;
@@ -1351,8 +1295,8 @@ export interface PagesSelect<T extends boolean = true> {
         getStartedBlock?: T | GetStartedBlockSelect<T>;
         mapBlock?: T | MapBlockSelect<T>;
         ctaBlock?: T | CTABlockSelect<T>;
-        globalUnivBlock?: T | GlobalUnivBlockSelect<T>;
         worldStudentBlock?: T | WorldStudentBlockSelect<T>;
+        appointmentBlock?: T | AppointmentBlockSelect<T>;
       };
   meta?:
     | T
@@ -1454,53 +1398,6 @@ export interface FormBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AppointmentBlock_select".
- */
-export interface AppointmentBlockSelect<T extends boolean = true> {
-  leftContent?:
-    | T
-    | {
-        richText?: T;
-        paragraph1?: T;
-        paragraph2?: T;
-        paragraph3?: T;
-        button?:
-          | T
-          | {
-              text?: T;
-              url?: T;
-            };
-      };
-  rightContent?:
-    | T
-    | {
-        schedule?:
-          | T
-          | {
-              date?: T;
-              day?: T;
-              timeSlot1?: T;
-              timeSlot2?: T;
-            };
-        info?:
-          | T
-          | {
-              text?: T;
-              imgs?:
-                | T
-                | {
-                    img?: T;
-                    alt?: T;
-                    id?: T;
-                  };
-            };
-      };
-  bottomText?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TestimonialsBlock_select".
  */
 export interface TestimonialsBlockSelect<T extends boolean = true> {
@@ -1583,7 +1480,13 @@ export interface StudyAbroadBlockSelect<T extends boolean = true> {
   heading?: T;
   subheading?: T;
   description?: T;
-  title?: T;
+  title?:
+    | T
+    | {
+        content?: T;
+        font?: T;
+        size?: T;
+      };
   titleDescription?: T;
   cards?:
     | T
@@ -1607,6 +1510,8 @@ export interface IELTSBlockSelect<T extends boolean = true> {
   title?: T;
   subtitle?: T;
   description?: T;
+  ieltsText?: T;
+  ieltsImage?: T;
   learningType?:
     | T
     | {
@@ -1696,22 +1601,6 @@ export interface CTABlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "GlobalUnivBlock_select".
- */
-export interface GlobalUnivBlockSelect<T extends boolean = true> {
-  universities?:
-    | T
-    | {
-        name?: T;
-        image?: T;
-        id?: T;
-      };
-  mapImage?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "WorldStudentBlock_select".
  */
 export interface WorldStudentBlockSelect<T extends boolean = true> {
@@ -1729,6 +1618,58 @@ export interface WorldStudentBlockSelect<T extends boolean = true> {
         left?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AppointmentBlock_select".
+ */
+export interface AppointmentBlockSelect<T extends boolean = true> {
+  leftContent?:
+    | T
+    | {
+        title?: T;
+        subTitle?: T;
+        highlightText?: T;
+        extraText?: T;
+        paragraphs?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        button?:
+          | T
+          | {
+              text?: T;
+              url?: T;
+            };
+      };
+  right?:
+    | T
+    | {
+        schedule?:
+          | T
+          | {
+              date?: T;
+              day?: T;
+              slots?:
+                | T
+                | {
+                    time?: T;
+                    id?: T;
+                  };
+            };
+        universities?:
+          | T
+          | {
+              img?: T;
+              alt?: T;
+              id?: T;
+            };
+      };
+  bottomText?: T;
   id?: T;
   blockName?: T;
 }

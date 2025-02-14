@@ -18,8 +18,6 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
         items
     } = props;
 
-    console.log('title', title);
-
     // Helper function to create curved path between two points
     const _createCurvedPath = (startX: number, startY: number, endX: number, endY: number) => {
         const midX = (startX + endX) / 2;
@@ -61,7 +59,7 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
                     return (
                         <div
                             key={index}
-                            className="absolute bg-white p-3 flex flex-row items-center justify-evenly rounded-full max-w-fit shadow-lg"
+                            className="absolute bg-white p-2 flex flex-row items-center justify-around rounded-full w-44 shadow-lg"
                             style={{
                                 left: item.left || pos.left,
                                 right: item.right || 'auto',

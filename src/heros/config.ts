@@ -1,10 +1,4 @@
 import type { Field } from 'payload'
-import {
-  FixedToolbarFeature,
-  HeadingFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
 import { linkGroup } from '@/fields/linkGroup'
 
 const textStyleFields: Field[] = [
@@ -25,14 +19,6 @@ const textStyleFields: Field[] = [
     defaultValue: '1rem',
     admin: {
       description: 'Enter value with unit (e.g., 2rem, 24px)',
-    },
-  },
-  {
-    name: 'textColor',
-    type: 'text',
-    defaultValue: '#000000',
-    admin: {
-      description: 'Hex color code (e.g., #FFFFFF)',
     },
   },
 ]
@@ -59,15 +45,10 @@ export const hero: Field = {
       fields: [
         {
           name: 'content',
-          type: 'richText',
-          editor: lexicalEditor({
-            features: ({ defaultFeatures }) => [
-              ...defaultFeatures,
-              HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-              FixedToolbarFeature(),
-              InlineToolbarFeature(),
-            ],
-          }),
+          type: 'textarea',
+          admin: {
+            description: 'Enter the text inside "|" symbols to highlight text in red. Example: "Regular text |highlighted text| regular text"',
+          },
         },
         ...textStyleFields,
       ],
@@ -78,14 +59,7 @@ export const hero: Field = {
       fields: [
         {
           name: 'content',
-          type: 'richText',
-          editor: lexicalEditor({
-            features: ({ rootFeatures }) => [
-              ...rootFeatures,
-              FixedToolbarFeature(),
-              InlineToolbarFeature(),
-            ],
-          }),
+          type: 'text',
         },
         ...textStyleFields,
       ],

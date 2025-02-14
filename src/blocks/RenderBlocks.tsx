@@ -3,7 +3,6 @@ import type { Page } from '@/payload-types'
 import { CallToActionBlock } from './CallToAction/Component'
 import { FormBlock } from './Form/Component'
 import { MediaBlock } from './MediaBlock/Component'
-import { AppointmentBlock } from './AppointmentBlock/Component'
 import TestimonialsBlock from './TestimonialsBlock/Component'
 import CounselingBlock from './CounselingBlock/Component'
 import UniversitiesBlock from './UniversitiesBlock/Component'
@@ -12,15 +11,16 @@ import IELTSBlock from './IELTSBlock/Component'
 import GetStartedBlock from './GetStartedBlock/Component'
 import MapBlock from './MapBlock/Component'
 import CTABlock from './CTABlock/Component'
-import GlobalUnivBlock from './GlobalUnivBlock/Component'
 import { WorldStudentBlock } from './WorldStudentBlock/Component'
+import AppointmentBlock from './AppointmentBlock/Component'
+
+
 
 
 type BlockComponentsType = {
   cta: typeof CallToActionBlock
   formBlock: typeof FormBlock
   mediaBlock: typeof MediaBlock
-  appointmentBlock: typeof AppointmentBlock
   testimonialsBlock: typeof TestimonialsBlock
   counselingBlock: typeof CounselingBlock
   universitiesBlock: typeof UniversitiesBlock
@@ -29,15 +29,14 @@ type BlockComponentsType = {
   getStartedBlock: typeof GetStartedBlock
   mapBlock: typeof MapBlock
   ctaBlock: typeof CTABlock
-  globalUnivBlock: typeof GlobalUnivBlock
   worldStudentBlock: typeof WorldStudentBlock
+  appointmentBlock: typeof AppointmentBlock
 }
 
 const blockComponents: BlockComponentsType = {
   cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
-  appointmentBlock: AppointmentBlock,
   testimonialsBlock: TestimonialsBlock,
   counselingBlock: CounselingBlock,
   universitiesBlock: UniversitiesBlock,
@@ -46,8 +45,8 @@ const blockComponents: BlockComponentsType = {
   getStartedBlock: GetStartedBlock,
   mapBlock: MapBlock,
   ctaBlock: CTABlock,
-  globalUnivBlock: GlobalUnivBlock,
-  worldStudentBlock: WorldStudentBlock
+  worldStudentBlock: WorldStudentBlock,
+  appointmentBlock: AppointmentBlock
 }
 
 export const RenderBlocks: React.FC<{
