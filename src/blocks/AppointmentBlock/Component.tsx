@@ -24,20 +24,20 @@ const AppointmentBlock: React.FC<Props> = (props) => {
 
     return (
         <section className={cn("my-8", className)}>
-            <div className="container bg-cyan-100 p-6 mx-auto rounded-2xl">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="container bg-[#EBF4FF] p-6 mx-auto rounded-2xl">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 p-2">
                     {/* Left Section */}
-                    <div className="space-y-8">
+                    <div className="space-y-6 pt-4">
                         <div className="ml-4">
-                            <h6 className="text-2xl mb-1 text-gray-800">{leftContent?.title}</h6>
-                            <h2 className="text-4xl font-bold text-gray-900 mb-2">{leftContent?.subTitle}</h2>
-                            <p className="text-xl font-bold italic text-red-600">{leftContent?.highlightText}</p>
+                            <h6 className="text-xl font-medium text-[#2B3674]">{leftContent?.title}</h6>
+                            <h2 className="text-4xl font-semibold text-[#19245A]">{leftContent?.subTitle}</h2>
+                            <p className="text-2xl font-bold italic text-[#E33428] font-caveat">{leftContent?.highlightText}</p>
                             {/* New extraText field */}
-                            <p className="text-lg text-gray-700 mt-2">{leftContent?.extraText}</p>
+                            <p className="text-base text-[#5C638A] mt-2">{leftContent?.extraText}</p>
                         </div>
                         <div className="ml-4">
                             {leftContent?.paragraphs?.map((para, index) => (
-                                <p key={index} className="text-gray-700 text-lg flex items-center ml-8">
+                                <p key={index} className="text-[#5C638A] text-base flex items-center ml-8">
                                     <Image src="/media/icons/square.png" alt="checkbox" width={20} height={20} className="mr-2" />
                                     {para.text}
                                 </p>
@@ -46,7 +46,7 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                         {leftContent?.button && (
                             <Link
                                 href={leftContent.button.url}
-                                className="inline-block bg-purple-800 hover:bg-purple-900 text-white p-3 rounded-full text-base font-semibold mt-6 ml-8"
+                                className="inline-block bg-[#6B5BA9] hover:bg-[#574A8C] text-white p-3 rounded-full text-base font-semibold mt-6 ml-8"
                             >
                                 {leftContent.button.text}
                             </Link>
@@ -54,14 +54,14 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                     </div>
 
                     {/* Right Section */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full py-20">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
                         {/* Schedule Card */}
                         {right?.schedule && (
-                            <div className="bg-lime-300 rounded-2xl p-6 shadow-lg flex flex-col justify-between aspect-square">
+                            <div className="bg-[#D3FAC6] rounded-2xl p-6 shadow-lg flex flex-col justify-between aspect-square">
                                 <div className="text-center my-auto">
-                                    <div className="text-9xl font-semibold mb-2">{day}</div>
-                                    <div className="text-lg font-medium mb-2">{month} {year}</div>
-                                    <hr className="border-gray-800 mb-2" />
+                                    <div className="text-[7rem] leading-[1] font-semibold">{day}</div>
+                                    <div className="text-lg font-medium">{month} {year}</div>
+                                    <hr className="border-gray-800 my-2" />
                                 </div>
                                 <div className="flex justify-between items-center px-2">
                                     <span className="text-sm font-semibold">{right.schedule.day}</span>
