@@ -96,6 +96,10 @@ const config = {
       fontFamily: {
         mono: ['var(--font-geist-mono)'],
         sans: ['var(--font-geist-sans)'],
+        serif: ['var(--font-geist-serif)'],
+        allura: ['var(--font-allura)', 'serif'],
+        Delius: ['var(--font-delius)', 'serif'],
+        Poppins: ['var(--font-poppins)'],
       },
       keyframes: {
         'accordion-down': {

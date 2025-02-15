@@ -14,6 +14,13 @@ import MapBlock from './MapBlock/Component'
 import CTABlock from './CTABlock/Component'
 import GlobalUnivBlock from './GlobalUnivBlock/Component'
 import { WorldStudentBlock } from './WorldStudentBlock/Component'
+import ServiceBlock from './ServiceBlock/Component'
+import FAQBlock from './FAQBlock/Component'
+import FutureBlock from './FutureBlock/Component'
+import AdminssionBlock from './AdmissionBlock/Component'
+import careerBlock from './CareerBlock/Component'
+
+
 
 
 type BlockComponentsType = {
@@ -31,6 +38,13 @@ type BlockComponentsType = {
   ctaBlock: typeof CTABlock
   globalUnivBlock: typeof GlobalUnivBlock
   worldStudentBlock: typeof WorldStudentBlock
+  serviceBlock: typeof ServiceBlock
+  faqBlock: typeof FAQBlock
+  futureBlock: typeof FutureBlock
+  adminssionBlock: typeof AdminssionBlock
+  careerBlock: typeof careerBlock
+
+
 }
 
 const blockComponents: BlockComponentsType = {
@@ -47,7 +61,13 @@ const blockComponents: BlockComponentsType = {
   mapBlock: MapBlock,
   ctaBlock: CTABlock,
   globalUnivBlock: GlobalUnivBlock,
-  worldStudentBlock: WorldStudentBlock
+  worldStudentBlock: WorldStudentBlock,
+  serviceBlock: ServiceBlock,
+  faqBlock: FAQBlock,
+  futureBlock: FutureBlock,
+  adminssionBlock: AdminssionBlock,
+  careerBlock: careerBlock
+
 }
 
 export const RenderBlocks: React.FC<{
@@ -65,7 +85,7 @@ export const RenderBlocks: React.FC<{
         if (blockType && blockType in blockComponents) {
           const Block = blockComponents[blockType as keyof BlockComponentsType]
           return (
-            <div className="my-16" key={index}>
+            <div className="my-0" key={index}>
               <Block {...(block as any)} disableInnerContainer />
             </div>
           )

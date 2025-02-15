@@ -18,7 +18,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
   return (
     <header className="relative z-20 bg-white">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div className="container max-w-6xl  mx-auto px-2 py-4 flex justify-between items-center">
         <Link href="/" className="flex-shrink-0">
           <Logo priority />
         </Link>

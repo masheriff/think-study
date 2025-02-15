@@ -31,6 +31,12 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import { GlobalUnivBlock } from '@/blocks/GlobalUnivBlock/config'
 import { WorldStudentBlock } from '@/blocks/WorldStudentBlock/config'
+import { ServiceBlock } from '@/blocks/ServiceBlock/config'
+import { FAQBlock } from '@/blocks/FAQBlock/config'
+import { FutureBlock } from '@/blocks/FutureBlock/config'
+import { AdminssionBlock } from '@/blocks/AdmissionBlock/config'
+import { CareerBlock } from '@/blocks/CareerBlock/config'
+
 
 
 export const Pages: CollectionConfig<'pages'> = {
@@ -88,7 +94,7 @@ export const Pages: CollectionConfig<'pages'> = {
               name: 'layout',
               type: 'blocks',
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, AppointmentBlock, TestimonialsBlock, CounselingBlock,
-                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, CTABlock, GlobalUnivBlock, WorldStudentBlock],
+                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, CTABlock, GlobalUnivBlock, WorldStudentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock],
               required: true,
               admin: {
                 initCollapsed: true,
