@@ -28,9 +28,9 @@ export const StudyAbroadBlock: React.FC<Props> = (props) => {
     } = props;
 
     return (
-        <section className={cn("py-16 px-4 md:px-8 max-w-7xl mx-auto", className)}>
+        <section className={cn("container", className)}>
             {/* Header Section */}
-            <div className="text-center mb-16 space-y-6">
+            <div className="text-center w-3/4 mx-auto space-y-6">
                 <h2 className="text-2xl md:text-3xl">{heading}</h2>
                 <h1 className="text-4xl md:text-5xl font-semibold">{subheading}</h1>
                 <p className="text-gray-600 max-w-3xl mx-auto"><TextHighlighter text={description} /></p>
@@ -38,61 +38,57 @@ export const StudyAbroadBlock: React.FC<Props> = (props) => {
 
             {/* "Our Pathway" Section */}
             {title && (
-                <div className="text-center mt-12">
+                <div className="text-center my-16">
                     <h3 className="text-4xl text-[#E63E30] font-bold mb-4">{title.content}</h3>
-                    <p className="text-gray-600 max-w-2xl mx-auto">{titleDescription}</p>
+                    <p className="text-gray-600 max-w-2xl mx-auto italic">{titleDescription}</p>
                 </div>
             )}
 
             {/* Cards Section */}
-            <div className="space-y-24">
-                {cards?.map((card, index) => {
-                    // Type guard to check if image is Media type
-                    const imageData = card.image && typeof card.image === 'object'
-                        ? card.image as Media
-                        : null;
+            {cards?.map((card, index) => {
+                // Type guard to check if image is Media type
+                const imageData = card.image && typeof card.image === 'object'
+                    ? card.image as Media
+                    : null;
 
-                    return (
-                        <div
-                            key={index}
-                            className={`flex flex-col gap-8 items-center ${card.imagePosition === "left" ? "md:flex-row" : "md:flex-row-reverse"
-                                }`}
-                        >
-                            {/* Content Side */}
-                            <div className="w-full md:w-1/2 space-y-6">
-                                <div className="flex items-start space-x-4">
-                                    {/* Number Placeholder */}
-                                    <div className="text-9xl font-bold text-gray-800 leading-none">
-                                        {index + 1}
-                                    </div>
-                                    <div className="space-y-4">
-                                        <p className="text-gray-600 text-lg"><TextHighlighter text={card.courseDescription} /></p>
-                                        <p className="text-gray-600 text-sm">{card.description}</p>
-                                        <Button
-                                            className="bg-[#6B5BA9] hover:bg-[#574A8C] text-white px-6 py-2 rounded-3xl"
-                                            asChild
-                                        >
-                                            <a href={card.buttonLink}>{card.buttonText}</a>
-                                        </Button>
-                                    </div>
-                                </div>
+                return (
+                    <div
+                        key={index}
+                        className={`max-w-6xl mx-auto flex flex-col gap-8 items-center ${card.imagePosition === "left" ? "md:flex-row" : "md:flex-row-reverse"
+                            }`}
+                    >
+                        {/* Content Side */}
+                        <div className={`w-full md:w-3/4 space-y-6 space-x-4 flex items-start ${card.imagePosition === "left" ? "justify-start" : "justify-end"
+                            }`}>
+                            {/* Number Placeholder */}
+                            <div className="text-9xl font-bold text-black mt-4">
+                                {index + 1}
                             </div>
-
-                            {/* Image Side */}
-                            <div className="w-full md:w-1/2 rounded-3xl overflow-hidden">
-                                <Image
-                                    src={imageData?.url || '/placeholder.svg'}
-                                    alt={imageData?.alt || ''}
-                                    width={500}
-                                    height={500}
-                                    style={{ width: '100%', height: 'auto' }}  // Make image responsive
-                                    className="rounded-3xl"
-                                />
+                            <div className="space-y-4">
+                                <h2 className="text-2xl md:text-3xl"><TextHighlighter text={card.courseDescription} /></h2>
+                                <p className="text-gray-600 text-sm">{card.description}</p>
+                                <Button
+                                    className="bg-[#6B5BA9] hover:bg-[#574A8C] text-white px-6 py-2 rounded-3xl"
+                                    asChild
+                                >
+                                    <a href={card.buttonLink}>{card.buttonText}</a>
+                                </Button>
                             </div>
                         </div>
-                    );
-                })}
-            </div>
+
+                        {/* Image Side */}
+                        <div className="w-full md:w-1/4 rounded-3xl overflow-hidden">
+                            <Image
+                                src={imageData?.url || '/placeholder.svg'}
+                                alt={imageData?.alt || ''}
+                                width={300}
+                                height={300}
+                                className="rounded-3xl"
+                            />
+                        </div>
+                    </div>
+                );
+            })}
         </section>
     );
 };

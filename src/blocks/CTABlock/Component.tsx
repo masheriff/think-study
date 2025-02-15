@@ -21,7 +21,7 @@ export const CTABlock: React.FC<Props> = (props) => {
     } = props;
 
     return (
-        <section className={cn('bg-[#f8f9fa] py-12 relative mx-auto rounded-xl overflow-hidden w-3/4', className)}>
+        <section className={cn('bg-[#f8f9fa] py-12 relative mx-auto rounded-xl overflow-hidden container', className)}>
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row items-start justify-between gap-8">
                     {/* Left Side: Contact Information */}
@@ -47,7 +47,7 @@ export const CTABlock: React.FC<Props> = (props) => {
                                                             href={`tel:${phone.number}`}
                                                             className="flex items-center text-gray-900 hover:text-red-500 transition-colors text-lg font-medium"
                                                         >
-                                                            <Phone className="w-4 h-4 mr-2" />
+                                                            {/* <Phone className="w-4 h-4 mr-2" /> */}
                                                             {phone.number}
                                                         </a>
                                                     ))}
@@ -56,8 +56,8 @@ export const CTABlock: React.FC<Props> = (props) => {
                                         </div>
 
                                         {/* Curly Brace and Location */}
-                                        <div className="flex items-center py-4 gap-2">
-                                            <span className="text-2xl">{`}`}</span>
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-6xl">{`}`}</span>
                                             <span className="text-red-500 font-medium">
                                                 {office.location}
                                             </span>
@@ -72,7 +72,7 @@ export const CTABlock: React.FC<Props> = (props) => {
                     <div className="relative flex-1">
                         {/* Main Image - Positioned absolutely */}
                         {image && typeof image === "object" && (
-                            <div className="absolute right-0 top-[-40px] h-full z-20">
+                            <div className="absolute right-[2px] top-[-40px] h-full z-20">
                                 <Image
                                     src={image.url || ""}
                                     alt={image.alt || ""}

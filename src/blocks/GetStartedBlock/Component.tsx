@@ -20,11 +20,11 @@ export const GetStartedBlock: React.FC<Props> = (props) => {
     } = props;
 
     return (
-        <section className={cn('py-16', className)}>
-            <div className="container mx-auto px-4">
-                <div className="bg-blue-50 flex flex-col md:flex-row items-center justify-between p-8 rounded-lg">
+        <section className={cn('', className)}>
+            <div className="container">
+                <div className="bg-blue-50 flex flex-col md:flex-row items-center justify-between p-10 rounded-3xl">
                     {/* Left Content */}
-                    <div className="flex-1 pl-8 md:pl-16 pr-8 mb-8 md:mb-0">
+                    <div className="flex-1 mb-8 md:mb-0">
                         {heading && (
                             <h3 className="text-lg font-medium text-gray-800 mb-2">
                                 {heading}
@@ -60,11 +60,11 @@ export const GetStartedBlock: React.FC<Props> = (props) => {
                         )}
 
                         {/* Footer Text */}
-                        {footerText && (
+                        {/* {footerText && (
                             <p className="mt-6 text-gray-600">
                                 {footerText}
                             </p>
-                        )}
+                        )} */}
                     </div>
 
                     {/* Right Image */}

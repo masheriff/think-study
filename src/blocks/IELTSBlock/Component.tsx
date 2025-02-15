@@ -34,7 +34,7 @@ export const IELTSBlock: React.FC<Props> = (props) => {
     return (
         <section className={cn('py-12', className)}>
             {/* Header Section */}
-            <div className="container mx-auto px-4 mb-8">
+            <div className="container mb-8">
                 <div className="max-w-3xl mx-auto text-center">
                     <h1 className="text-4xl font-bold mb-2">{title}</h1>
                     <h2 className="text-2xl text-red-500 italic mb-4">
@@ -47,11 +47,11 @@ export const IELTSBlock: React.FC<Props> = (props) => {
             </div>
 
             {/* Main Content */}
-            <div className="container mx-auto px-4">
-                <div className="bg-[#D3F584] rounded-3xl overflow-hidden">
+            <div className="container">
+                <div className="bg-[#D3F584] rounded-3xl overflow-hidden p-10">
                     <div className="grid md:grid-cols-2 gap-8">
                         {/* Left Column */}
-                        <div className="p-8 space-y-6">
+                        <div className="space-y-6">
                             {/* IELTS Logo and Hybrid Learning */}
                             <div className="flex items-center gap-4">
                                 <div className="flex items-center">
@@ -125,7 +125,7 @@ export const IELTSBlock: React.FC<Props> = (props) => {
                                     alt="IELTS Training"
                                     fill
                                     style={{ objectFit: "cover" }}
-                                    className="object-cover rounded-l-3xl"
+                                    className="object-cover rounded-3xl"
                                 />
                             </div>
                         )}
