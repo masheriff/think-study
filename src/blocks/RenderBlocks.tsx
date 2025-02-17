@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import type { Page } from '@/payload-types'
-import { CallToActionBlock } from './CallToAction/Component'
 import { FormBlock } from './Form/Component'
 import { MediaBlock } from './MediaBlock/Component'
 import { AppointmentBlock } from './AppointmentBlock/Component'
@@ -11,7 +10,6 @@ import { StudyAbroadBlock } from './StudyAbroadBlock/Component'
 import IELTSBlock from './IELTSBlock/Component'
 import GetStartedBlock from './GetStartedBlock/Component'
 import MapBlock from './MapBlock/Component'
-import CTABlock from './CTABlock/Component'
 import GlobalUnivBlock from './GlobalUnivBlock/Component'
 import { WorldStudentBlock } from './WorldStudentBlock/Component'
 import ServiceBlock from './ServiceBlock/Component'
@@ -19,12 +17,12 @@ import FAQBlock from './FAQBlock/Component'
 import FutureBlock from './FutureBlock/Component'
 import AdminssionBlock from './AdmissionBlock/Component'
 import careerBlock from './CareerBlock/Component'
-
-
+import ConnectBlock from './ConnectBlock/Component'
+import CallActionBlock from './CallActionBlock/Component'
+import WhyusMediaBlock from './WhyusMedia/Component'
 
 
 type BlockComponentsType = {
-  cta: typeof CallToActionBlock
   formBlock: typeof FormBlock
   mediaBlock: typeof MediaBlock
   appointmentBlock: typeof AppointmentBlock
@@ -35,7 +33,6 @@ type BlockComponentsType = {
   ieltsBlock: typeof IELTSBlock
   getStartedBlock: typeof GetStartedBlock
   mapBlock: typeof MapBlock
-  ctaBlock: typeof CTABlock
   globalUnivBlock: typeof GlobalUnivBlock
   worldStudentBlock: typeof WorldStudentBlock
   serviceBlock: typeof ServiceBlock
@@ -43,12 +40,12 @@ type BlockComponentsType = {
   futureBlock: typeof FutureBlock
   adminssionBlock: typeof AdminssionBlock
   careerBlock: typeof careerBlock
-
-
+  connectBlock: typeof ConnectBlock
+  callActionBlock: typeof CallActionBlock
+  whyusMediaBlock: typeof WhyusMediaBlock
 }
 
 const blockComponents: BlockComponentsType = {
-  cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   appointmentBlock: AppointmentBlock,
@@ -59,15 +56,16 @@ const blockComponents: BlockComponentsType = {
   ieltsBlock: IELTSBlock,
   getStartedBlock: GetStartedBlock,
   mapBlock: MapBlock,
-  ctaBlock: CTABlock,
   globalUnivBlock: GlobalUnivBlock,
   worldStudentBlock: WorldStudentBlock,
   serviceBlock: ServiceBlock,
   faqBlock: FAQBlock,
   futureBlock: FutureBlock,
   adminssionBlock: AdminssionBlock,
-  careerBlock: careerBlock
-
+  careerBlock: careerBlock,
+  connectBlock: ConnectBlock,
+  callActionBlock: CallActionBlock,
+  whyusMediaBlock: WhyusMediaBlock
 }
 
 export const RenderBlocks: React.FC<{

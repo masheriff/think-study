@@ -3,7 +3,6 @@ import type { CollectionConfig } from 'payload'
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { Archive } from '../../blocks/ArchiveBlock/config'
-import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
@@ -15,7 +14,6 @@ import { StudyAbroadBlock } from '@/blocks/StudyAbroadBlock/config'
 import { IELTSBlock } from '@/blocks/IELTSBlock/config'
 import { GetStartedBlock } from '@/blocks/GetStartedBlock/config'
 import { MapBlock } from '@/blocks/MapBlock/config'
-import { CTABlock } from '@/blocks/CTABlock/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -36,7 +34,9 @@ import { FAQBlock } from '@/blocks/FAQBlock/config'
 import { FutureBlock } from '@/blocks/FutureBlock/config'
 import { AdminssionBlock } from '@/blocks/AdmissionBlock/config'
 import { CareerBlock } from '@/blocks/CareerBlock/config'
-
+import { ConnectBlock } from '@/blocks/ConnectBlock/config'
+import { CallActionBlock } from '@/blocks/CallActionBlock/config'
+import { WhyusMediaBlock } from '@/blocks/WhyusMedia/conig'
 
 
 export const Pages: CollectionConfig<'pages'> = {
@@ -93,8 +93,8 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, AppointmentBlock, TestimonialsBlock, CounselingBlock,
-                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, CTABlock, GlobalUnivBlock, WorldStudentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock],
+              blocks: [Content, MediaBlock, Archive, FormBlock, AppointmentBlock, TestimonialsBlock, CounselingBlock,
+                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, GlobalUnivBlock, WorldStudentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock, ConnectBlock, CallActionBlock, WhyusMediaBlock],
               required: true,
               admin: {
                 initCollapsed: true,
@@ -149,7 +149,7 @@ export const Pages: CollectionConfig<'pages'> = {
   versions: {
     drafts: {
       autosave: {
-        interval: 100, // We set this interval for optimal live preview
+        interval: 2000, // We set this interval for optimal live preview
       },
       schedulePublish: true,
     },
