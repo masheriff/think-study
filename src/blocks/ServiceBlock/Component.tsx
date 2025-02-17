@@ -1,10 +1,13 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { cn } from '@/utilities/ui'
 import type { ServiceBlock as ServiceBlockType } from '@/payload-types'
 import Image from 'next/image'
 import downImage from '../../../public/down-arrow.png'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 type Props = ServiceBlockType & {
     className?: string
@@ -52,13 +55,19 @@ export const ServiceBlock: React.FC<Props> = (props) => {
         serviceStyles,
     } = props
 
+    useEffect(() => {
 
-    console.log(serviceStyles, "serviceStyles")
-
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: false,
+            mirror: true
+        })
+    }, [])
 
     return (
-        <section
-            className={cn(' max-w-6xl mx-auto mb-12 rounded-3xl py-8 px-4 md:px-8', className)}
+        <div className='md:px-12' data-aos="fade-right"> <section
+            className={cn(' max-w-6xl  mx-auto mb-12 rounded-3xl py-8 px-4 md:px-8', className)}
             style={{
                 backgroundColor: backgroundColor || 'transparent',
                 backgroundImage: typeof backgroundimage === 'object' && backgroundimage?.url ? `url(${backgroundimage.url})` : 'none'
@@ -70,7 +79,8 @@ export const ServiceBlock: React.FC<Props> = (props) => {
 
 
             <div className="max-w-7xl mx-auto">
-                <div className="header-block max-w-2xl bg-white/5 backdrop-blur-2xl  rounded-3xl p-8">
+                <div className="header-block max-w-2xl bg-white/20 backdrop-blur-lg border  border-[#FFFFFF] rounded-3xl p-8">
+
 
                     {/* Header Section */}
                     <div className="max-w-4xl mx-auto text-start mb-2">
@@ -129,24 +139,25 @@ export const ServiceBlock: React.FC<Props> = (props) => {
 
 
                 {/* Services Grid */}
-                <div className="grid grid-cols-1 mt-8 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 mt-8 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {services?.map((service, index) => (
                         <div
                             key={index}
-                            className=" p-6  py-16 rounded-3xl h-full flex flex-col"
+
+                            className=" p-4  py-[100px] rounded-3xl h-full flex flex-col align-center justify-center"
                             style={{
                                 backgroundColor: serviceStyles?.backgroundColor,
                             }}
                         >
 
-                            <h4 className="text-sm font-semibold mb-3"
+                            <h4 className="text-[18px] text-center font-medium mb-1"
                                 style={{
-                                    fontFamily: serviceStyles?.family,
-                                    fontSize: serviceStyles?.size,
+                                    // fontFamily: serviceStyles?.family,
+                                    // fontSize: serviceStyles?.size,
                                     // color: serviceStyles?.color,
                                 }}
                             >{service.title}</h4>
-                            <p className="text-sm flex-grow"
+                            <p className="text-sm flex-grow text-center"
                                 style={{
                                     fontFamily: serviceStyles?.family,
                                     fontSize: serviceStyles?.size,
@@ -157,8 +168,10 @@ export const ServiceBlock: React.FC<Props> = (props) => {
                         </div>
                     ))}
                 </div>
+
             </div>
-        </section>
+        </section></div>
+
     )
 }
 

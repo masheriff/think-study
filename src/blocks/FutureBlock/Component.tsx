@@ -4,6 +4,8 @@ import React from 'react'
 import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import type { FutureBlock as FutureBlockType } from '@/payload-types'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 type Props = FutureBlockType & {
     className?: string
@@ -46,7 +48,7 @@ export const FutureBlock: React.FC<Props> = (props) => {
 
     return (
         <section className={cn('py-16 px-6 md:px-12', className)}>
-            <div className="max-w-6xl mx-auto space-y-12">
+            <div data-aos="fade-right" className="max-w-6xl mx-auto space-y-12">
                 {/* Top Section */}
                 <div className="text-center space-y-6">
                     <h1

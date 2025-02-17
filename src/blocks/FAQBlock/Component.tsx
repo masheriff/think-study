@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import { cn } from '@/utilities/ui'
 import type { FAQBlock as FAQBlockType } from '@/payload-types'
 import { Plus, Minus } from 'lucide-react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 type Props = FAQBlockType & {
     className?: string
@@ -36,7 +38,7 @@ export const FAQBlock: React.FC<Props> = (props) => {
                 {title}
             </h2>
 
-            <div className="space-y-4">
+            <div data-aos="fade-right" className="space-y-4 scroll-smooth snap-start scroll-ml-6 overflow-y-auto h-[400px]">
                 {faqs?.map((faq: FAQItem, index: number) => (
                     <div
                         key={faq.id || index}
@@ -72,6 +74,7 @@ export const FAQBlock: React.FC<Props> = (props) => {
                     </div>
                 ))}
             </div>
+
         </section>
     )
 }
