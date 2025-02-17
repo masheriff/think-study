@@ -38,7 +38,7 @@ export const FAQBlock: React.FC<Props> = (props) => {
                 {title}
             </h2>
 
-            <div data-aos="fade-right" className="space-y-4 scroll-smooth snap-start scroll-ml-6 overflow-y-auto h-[400px]">
+            <div data-aos="fade-right" className="space-y-4 scroll-smooth snap-start scroll-ml-6 overflow-y-scroll h-[400px]">
                 {faqs?.map((faq: FAQItem, index: number) => (
                     <div
                         key={faq.id || index}
