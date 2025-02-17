@@ -139,7 +139,7 @@ export const CounselingBlock: React.FC<Props> = (props) => {
                                 key={index}
                                 className={cn(
                                     "w-2 h-2 rounded-full transition-all",
-                                    selectedIndex === index ? "bg-violet-600 w-4" : "bg-black"
+                                    selectedIndex === index ? "bg-violet-600 w-4" : "bg-slate-50"
                                 )}
                                 onClick={() => emblaApi?.scrollTo(index)}
                             />

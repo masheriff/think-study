@@ -155,6 +155,11 @@ export interface Page {
     | CTABlock
     | WorldStudentBlock
     | AppointmentBlock
+    | ServiceBlock
+    | FAQBlock
+    | FutureBlock
+    | AdminssionBlock
+    | CareerBlock
   )[];
   meta?: {
     title?: string | null;
@@ -986,6 +991,269 @@ export interface AppointmentBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServiceBlock".
+ */
+export interface ServiceBlock {
+  backgroundimage?: (number | null) | Media;
+  mainHeading: string;
+  mainHeadingStyles?: {
+    family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
+    size?: string | null;
+    color?: string | null;
+    backgroundColor?: string | null;
+  };
+  description: string;
+  subDescription: string;
+  descriptionStyle?: {
+    family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
+    size?: string | null;
+    color?: string | null;
+    backgroundColor?: string | null;
+  };
+  buttonText: string;
+  buttonStyle?: {
+    family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
+    size?: string | null;
+    color?: string | null;
+    backgroundColor?: string | null;
+  };
+  services: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  serviceStyles?: {
+    family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
+    size?: string | null;
+    color?: string | null;
+    backgroundColor?: string | null;
+  };
+  /**
+   * Background color for the service block
+   */
+  backgroundColor?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'serviceBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlock".
+ */
+export interface FAQBlock {
+  title: string;
+  /**
+   * Add FAQ items with questions and answers
+   */
+  faqs: {
+    question: string;
+    answer: string;
+    id?: string | null;
+  }[];
+  styles?: {
+    titleStyles?: {
+      fontSize?: string | null;
+      fontWeight?: ('normal' | 'medium' | 'bold') | null;
+      textAlign?: ('left' | 'center' | 'right') | null;
+    };
+    quesStyles?: {
+      fontSize?: string | null;
+      fontWeight?: ('normal' | 'medium' | 'bold') | null;
+    };
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faqBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FutureBlock".
+ */
+export interface FutureBlock {
+  mainHeading: string;
+  connectText: string;
+  buttonText: string;
+  callText: string;
+  studentImage: number | Media;
+  logoImage: number | Media;
+  offices: {
+    name: string;
+    phoneNumbers: {
+      number: string;
+      id?: string | null;
+    }[];
+    id?: string | null;
+  }[];
+  headingStyles?:
+    | {
+        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
+        size?: string | null;
+        color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  connectStyles?:
+    | {
+        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
+        size?: string | null;
+        color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  officeStyles?:
+    | {
+        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
+        size?: string | null;
+        color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'futureBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AdminssionBlock".
+ */
+export interface AdminssionBlock {
+  rightImage?: (number | null) | Media;
+  year: string;
+  yearStyles?:
+    | {
+        /**
+         * Select the font family
+         */
+        Family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat' | 'Delius' | 'Lato' | 'Poppins') | null;
+        /**
+         * Enter value with unit (e.g., 2rem, 24px)
+         */
+        Size?: string | null;
+        /**
+         * Hex color code (e.g., #FFFFFF)
+         */
+        Color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  day: string;
+  currentDescription: string;
+  currentStyles?:
+    | {
+        /**
+         * Select the font family
+         */
+        Family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat' | 'Delius' | 'Lato' | 'Poppins') | null;
+        /**
+         * Enter value with unit (e.g., 2rem, 24px)
+         */
+        Size?: string | null;
+        /**
+         * Hex color code (e.g., #FFFFFF)
+         */
+        Color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  currentYear: string;
+  ambitions: string;
+  description: string;
+  successRate: string;
+  /**
+   * Add statistics that will be displayed
+   */
+  statistics: {
+    value: string;
+    label: string;
+    id?: string | null;
+  }[];
+  /**
+   * Add courses that will be displayed
+   */
+  courses: {
+    name: string;
+    id?: string | null;
+  }[];
+  textStyles?:
+    | {
+        /**
+         * Select the font family
+         */
+        Family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat' | 'Delius' | 'Lato' | 'Poppins') | null;
+        /**
+         * Enter value with unit (e.g., 2rem, 24px)
+         */
+        Size?: string | null;
+        /**
+         * Hex color code (e.g., #FFFFFF)
+         */
+        Color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'adminssionBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "careerBlock".
+ */
+export interface CareerBlock {
+  worldMapImage: number | Media;
+  mainHeading: string;
+  mainSubheading: string;
+  secondaryHeading: string;
+  secondarySubheading: string;
+  statistics: {
+    value: string;
+    label: string;
+    id?: string | null;
+  }[];
+  bText?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  headStyles?:
+    | {
+        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
+        size?: string | null;
+        color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  subStyles?:
+    | {
+        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
+        size?: string | null;
+        color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  statStyles?:
+    | {
+        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
+        size?: string | null;
+        color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  Styles?:
+    | {
+        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
+        size?: string | null;
+        color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'careerBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1297,6 +1565,11 @@ export interface PagesSelect<T extends boolean = true> {
         ctaBlock?: T | CTABlockSelect<T>;
         worldStudentBlock?: T | WorldStudentBlockSelect<T>;
         appointmentBlock?: T | AppointmentBlockSelect<T>;
+        serviceBlock?: T | ServiceBlockSelect<T>;
+        faqBlock?: T | FAQBlockSelect<T>;
+        futureBlock?: T | FutureBlockSelect<T>;
+        adminssionBlock?: T | AdminssionBlockSelect<T>;
+        careerBlock?: T | CareerBlockSelect<T>;
       };
   meta?:
     | T
@@ -1670,6 +1943,253 @@ export interface AppointmentBlockSelect<T extends boolean = true> {
             };
       };
   bottomText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServiceBlock_select".
+ */
+export interface ServiceBlockSelect<T extends boolean = true> {
+  backgroundimage?: T;
+  mainHeading?: T;
+  mainHeadingStyles?:
+    | T
+    | {
+        family?: T;
+        size?: T;
+        color?: T;
+        backgroundColor?: T;
+      };
+  description?: T;
+  subDescription?: T;
+  descriptionStyle?:
+    | T
+    | {
+        family?: T;
+        size?: T;
+        color?: T;
+        backgroundColor?: T;
+      };
+  buttonText?: T;
+  buttonStyle?:
+    | T
+    | {
+        family?: T;
+        size?: T;
+        color?: T;
+        backgroundColor?: T;
+      };
+  services?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  serviceStyles?:
+    | T
+    | {
+        family?: T;
+        size?: T;
+        color?: T;
+        backgroundColor?: T;
+      };
+  backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlock_select".
+ */
+export interface FAQBlockSelect<T extends boolean = true> {
+  title?: T;
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  styles?:
+    | T
+    | {
+        titleStyles?:
+          | T
+          | {
+              fontSize?: T;
+              fontWeight?: T;
+              textAlign?: T;
+            };
+        quesStyles?:
+          | T
+          | {
+              fontSize?: T;
+              fontWeight?: T;
+            };
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FutureBlock_select".
+ */
+export interface FutureBlockSelect<T extends boolean = true> {
+  mainHeading?: T;
+  connectText?: T;
+  buttonText?: T;
+  callText?: T;
+  studentImage?: T;
+  logoImage?: T;
+  offices?:
+    | T
+    | {
+        name?: T;
+        phoneNumbers?:
+          | T
+          | {
+              number?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  headingStyles?:
+    | T
+    | {
+        family?: T;
+        size?: T;
+        color?: T;
+        id?: T;
+      };
+  connectStyles?:
+    | T
+    | {
+        family?: T;
+        size?: T;
+        color?: T;
+        id?: T;
+      };
+  officeStyles?:
+    | T
+    | {
+        family?: T;
+        size?: T;
+        color?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AdminssionBlock_select".
+ */
+export interface AdminssionBlockSelect<T extends boolean = true> {
+  rightImage?: T;
+  year?: T;
+  yearStyles?:
+    | T
+    | {
+        Family?: T;
+        Size?: T;
+        Color?: T;
+        id?: T;
+      };
+  day?: T;
+  currentDescription?: T;
+  currentStyles?:
+    | T
+    | {
+        Family?: T;
+        Size?: T;
+        Color?: T;
+        id?: T;
+      };
+  currentYear?: T;
+  ambitions?: T;
+  description?: T;
+  successRate?: T;
+  statistics?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  courses?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
+  textStyles?:
+    | T
+    | {
+        Family?: T;
+        Size?: T;
+        Color?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "careerBlock_select".
+ */
+export interface CareerBlockSelect<T extends boolean = true> {
+  worldMapImage?: T;
+  mainHeading?: T;
+  mainSubheading?: T;
+  secondaryHeading?: T;
+  secondarySubheading?: T;
+  statistics?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  bText?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  headStyles?:
+    | T
+    | {
+        family?: T;
+        size?: T;
+        color?: T;
+        id?: T;
+      };
+  subStyles?:
+    | T
+    | {
+        family?: T;
+        size?: T;
+        color?: T;
+        id?: T;
+      };
+  statStyles?:
+    | T
+    | {
+        family?: T;
+        size?: T;
+        color?: T;
+        id?: T;
+      };
+  Styles?:
+    | T
+    | {
+        family?: T;
+        size?: T;
+        color?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

@@ -7,6 +7,8 @@ import RichText from '@/components/RichText'
 import type { MediaBlock as MediaBlockProps } from '@/payload-types'
 
 import { Media } from '../../components/Media'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 type Props = MediaBlockProps & {
   breakout?: boolean
@@ -41,10 +43,11 @@ export const MediaBlock: React.FC<Props> = (props) => {
         },
         className,
       )}
+      data-aos="fade-left"
     >
       {(media || staticImage) && (
         <Media
-          imgClassName={cn('rounded-[0.8rem]', imgClassName)}
+          imgClassName={cn('rounded-[0.8rem] ', imgClassName)}
           resource={media}
           src={staticImage}
         />

@@ -29,6 +29,12 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { WorldStudentBlock } from '@/blocks/WorldStudentBlock/config'
+import { ServiceBlock } from '@/blocks/ServiceBlock/config'
+import { FAQBlock } from '@/blocks/FAQBlock/config'
+import { FutureBlock } from '@/blocks/FutureBlock/config'
+import { AdminssionBlock } from '@/blocks/AdmissionBlock/config'
+import { CareerBlock } from '@/blocks/CareerBlock/config'
+
 import { AppointmentBlock } from '@/blocks/AppointmentBlock/config'
 
 export const Pages: CollectionConfig<'pages'> = {
@@ -87,7 +93,7 @@ export const Pages: CollectionConfig<'pages'> = {
               type: 'blocks',
               blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, TestimonialsBlock, CounselingBlock,
                 UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, CTABlock, WorldStudentBlock,
-                AppointmentBlock],
+                AppointmentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock],
               required: true,
               admin: {
                 initCollapsed: true,
