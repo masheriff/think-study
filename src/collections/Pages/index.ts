@@ -1,9 +1,7 @@
 import type { CollectionConfig } from 'payload'
-
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { Archive } from '../../blocks/ArchiveBlock/config'
-import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
@@ -14,7 +12,13 @@ import { StudyAbroadBlock } from '@/blocks/StudyAbroadBlock/config'
 import { IELTSBlock } from '@/blocks/IELTSBlock/config'
 import { GetStartedBlock } from '@/blocks/GetStartedBlock/config'
 import { MapBlock } from '@/blocks/MapBlock/config'
-import { CTABlock } from '@/blocks/CTABlock/config'
+import { AppointmentBlock } from '@/blocks/AppointmentBlock/config'
+import { ServiceBlock } from '@/blocks/ServiceBlock/config'
+import { FAQBlock } from '@/blocks/FAQBlock/config'
+import { FutureBlock } from '@/blocks/FutureBlock/config'
+import { AdminssionBlock } from '@/blocks/AdmissionBlock/config'
+import { CareerBlock } from '@/blocks/CareerBlock/config'
+import { WorldStudentBlock } from '@/blocks/WorldStudentBlock/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -28,14 +32,11 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
-import { WorldStudentBlock } from '@/blocks/WorldStudentBlock/config'
-import { ServiceBlock } from '@/blocks/ServiceBlock/config'
-import { FAQBlock } from '@/blocks/FAQBlock/config'
-import { FutureBlock } from '@/blocks/FutureBlock/config'
-import { AdminssionBlock } from '@/blocks/AdmissionBlock/config'
-import { CareerBlock } from '@/blocks/CareerBlock/config'
+import { ConnectBlock } from '@/blocks/ConnectBlock/config'
+import { CallActionBlock } from '@/blocks/CallActionBlock/config'
+import { WhyusMediaBlock } from '@/blocks/WhyusMedia/conig'
 
-import { AppointmentBlock } from '@/blocks/AppointmentBlock/config'
+
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -91,9 +92,9 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, TestimonialsBlock, CounselingBlock,
-                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, CTABlock, WorldStudentBlock,
-                AppointmentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock],
+              blocks: [Content, MediaBlock, Archive, FormBlock, TestimonialsBlock, CounselingBlock,
+                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock,
+                AppointmentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock, WhyusMediaBlock, ConnectBlock, CallActionBlock],
               required: true,
               admin: {
                 initCollapsed: true,

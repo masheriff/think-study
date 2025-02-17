@@ -100,6 +100,10 @@ const config = {
         allura: ['var(--font-allura)', 'serif'],
         Delius: ['var(--font-delius)', 'serif'],
         Poppins: ['var(--font-poppins)'],
+        serif: ['var(--font-geist-serif)'],
+        allura: ['var(--font-allura)', 'serif'],
+        Delius: ['var(--font-delius)', 'serif'],
+        Poppins: ['var(--font-poppins)'],
         caveat: ['Caveat', 'serif'],
       },
       keyframes: {

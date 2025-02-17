@@ -140,7 +140,6 @@ export interface Page {
     media?: (number | null) | Media;
   };
   layout: (
-    | CallToActionBlock
     | ContentBlock
     | MediaBlock
     | ArchiveBlock
@@ -152,7 +151,6 @@ export interface Page {
     | IELTSBlock
     | GetStartedBlock
     | MapBlock
-    | CTABlock
     | WorldStudentBlock
     | AppointmentBlock
     | ServiceBlock
@@ -160,6 +158,9 @@ export interface Page {
     | FutureBlock
     | AdminssionBlock
     | CareerBlock
+    | WhyusMediaBlock
+    | ConnectBlock
+    | CallActionBlock
   )[];
   meta?: {
     title?: string | null;
@@ -353,54 +354,6 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallToActionBlock".
- */
-export interface CallToActionBlock {
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  links?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'cta';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -887,30 +840,6 @@ export interface MapBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CTABlock".
- */
-export interface CTABlock {
-  phoneNumbers?:
-    | {
-        number?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  offices?:
-    | {
-        location?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  tagline?: string | null;
-  image?: (number | null) | Media;
-  brandLogo?: (number | null) | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'ctaBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "WorldStudentBlock".
  */
 export interface WorldStudentBlock {
@@ -1254,6 +1183,72 @@ export interface CareerBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyusMediaBlock".
+ */
+export interface WhyusMediaBlock {
+  media: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'whyusMediaBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ConnectBlock".
+ */
+export interface ConnectBlock {
+  mainHeading: string;
+  connectText: string;
+  buttonText: string;
+  headingStyles?:
+    | {
+        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
+        size?: string | null;
+        color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  connectStyles?:
+    | {
+        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
+        size?: string | null;
+        color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'connectBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CallActionBlock".
+ */
+export interface CallActionBlock {
+  callText: string;
+  studentImage: number | Media;
+  logoImage: number | Media;
+  offices: {
+    name: string;
+    phoneNumbers: {
+      number: string;
+      id?: string | null;
+    }[];
+    id?: string | null;
+  }[];
+  officeStyles?:
+    | {
+        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
+        size?: string | null;
+        color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'callActionBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1550,7 +1545,6 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
-        cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
@@ -1562,7 +1556,6 @@ export interface PagesSelect<T extends boolean = true> {
         ieltsBlock?: T | IELTSBlockSelect<T>;
         getStartedBlock?: T | GetStartedBlockSelect<T>;
         mapBlock?: T | MapBlockSelect<T>;
-        ctaBlock?: T | CTABlockSelect<T>;
         worldStudentBlock?: T | WorldStudentBlockSelect<T>;
         appointmentBlock?: T | AppointmentBlockSelect<T>;
         serviceBlock?: T | ServiceBlockSelect<T>;
@@ -1570,6 +1563,9 @@ export interface PagesSelect<T extends boolean = true> {
         futureBlock?: T | FutureBlockSelect<T>;
         adminssionBlock?: T | AdminssionBlockSelect<T>;
         careerBlock?: T | CareerBlockSelect<T>;
+        whyusMediaBlock?: T | WhyusMediaBlockSelect<T>;
+        connectBlock?: T | ConnectBlockSelect<T>;
+        callActionBlock?: T | CallActionBlockSelect<T>;
       };
   meta?:
     | T
@@ -1584,30 +1580,6 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallToActionBlock_select".
- */
-export interface CallToActionBlockSelect<T extends boolean = true> {
-  richText?: T;
-  links?:
-    | T
-    | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-              appearance?: T;
-            };
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1846,29 +1818,6 @@ export interface MapBlockSelect<T extends boolean = true> {
         mapIframe?: T;
         id?: T;
       };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CTABlock_select".
- */
-export interface CTABlockSelect<T extends boolean = true> {
-  phoneNumbers?:
-    | T
-    | {
-        number?: T;
-        id?: T;
-      };
-  offices?:
-    | T
-    | {
-        location?: T;
-        id?: T;
-      };
-  tagline?: T;
-  image?: T;
-  brandLogo?: T;
   id?: T;
   blockName?: T;
 }
@@ -2183,6 +2132,73 @@ export interface CareerBlockSelect<T extends boolean = true> {
         id?: T;
       };
   Styles?:
+    | T
+    | {
+        family?: T;
+        size?: T;
+        color?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyusMediaBlock_select".
+ */
+export interface WhyusMediaBlockSelect<T extends boolean = true> {
+  media?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ConnectBlock_select".
+ */
+export interface ConnectBlockSelect<T extends boolean = true> {
+  mainHeading?: T;
+  connectText?: T;
+  buttonText?: T;
+  headingStyles?:
+    | T
+    | {
+        family?: T;
+        size?: T;
+        color?: T;
+        id?: T;
+      };
+  connectStyles?:
+    | T
+    | {
+        family?: T;
+        size?: T;
+        color?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CallActionBlock_select".
+ */
+export interface CallActionBlockSelect<T extends boolean = true> {
+  callText?: T;
+  studentImage?: T;
+  logoImage?: T;
+  offices?:
+    | T
+    | {
+        name?: T;
+        phoneNumbers?:
+          | T
+          | {
+              number?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  officeStyles?:
     | T
     | {
         family?: T;

@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import type { Page } from '@/payload-types'
-import { CallToActionBlock } from './CallToAction/Component'
 import { FormBlock } from './Form/Component'
 import { MediaBlock } from './MediaBlock/Component'
 import TestimonialsBlock from './TestimonialsBlock/Component'
@@ -10,22 +9,21 @@ import { StudyAbroadBlock } from './StudyAbroadBlock/Component'
 import IELTSBlock from './IELTSBlock/Component'
 import GetStartedBlock from './GetStartedBlock/Component'
 import MapBlock from './MapBlock/Component'
-import CTABlock from './CTABlock/Component'
 import { WorldStudentBlock } from './WorldStudentBlock/Component'
-import ServiceBlock from './ServiceBlock/Component'
 import FAQBlock from './FAQBlock/Component'
 import FutureBlock from './FutureBlock/Component'
 import AdminssionBlock from './AdmissionBlock/Component'
-import careerBlock from './CareerBlock/Component'
-
-
+import careerBlock, { CareerBlock } from './CareerBlock/Component'
+import ConnectBlock from './ConnectBlock/Component'
+import CallActionBlock from './CallActionBlock/Component'
+import WhyusMediaBlock from './WhyusMedia/Component'
+import ServiceBlock from './ServiceBlock/Component'
 import AppointmentBlock from './AppointmentBlock/Component'
 
 
 
 
 type BlockComponentsType = {
-  cta: typeof CallToActionBlock
   formBlock: typeof FormBlock
   mediaBlock: typeof MediaBlock
   testimonialsBlock: typeof TestimonialsBlock
@@ -35,20 +33,19 @@ type BlockComponentsType = {
   ieltsBlock: typeof IELTSBlock
   getStartedBlock: typeof GetStartedBlock
   mapBlock: typeof MapBlock
-  ctaBlock: typeof CTABlock
   worldStudentBlock: typeof WorldStudentBlock
   serviceBlock: typeof ServiceBlock
   faqBlock: typeof FAQBlock
   futureBlock: typeof FutureBlock
   adminssionBlock: typeof AdminssionBlock
-  careerBlock: typeof careerBlock
-
-
+  connectBlock: typeof ConnectBlock
+  callActionBlock: typeof CallActionBlock
+  whyusMediaBlock: typeof WhyusMediaBlock
   appointmentBlock: typeof AppointmentBlock
+  careerBlock: typeof CareerBlock
 }
 
 const blockComponents: BlockComponentsType = {
-  cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   testimonialsBlock: TestimonialsBlock,
@@ -58,15 +55,16 @@ const blockComponents: BlockComponentsType = {
   ieltsBlock: IELTSBlock,
   getStartedBlock: GetStartedBlock,
   mapBlock: MapBlock,
-  ctaBlock: CTABlock,
   worldStudentBlock: WorldStudentBlock,
-  appointmentBlock: AppointmentBlock,
   serviceBlock: ServiceBlock,
   faqBlock: FAQBlock,
   futureBlock: FutureBlock,
   adminssionBlock: AdminssionBlock,
-  careerBlock: careerBlock
-
+  careerBlock: CareerBlock,
+  connectBlock: ConnectBlock,
+  callActionBlock: CallActionBlock,
+  whyusMediaBlock: WhyusMediaBlock,
+  appointmentBlock: AppointmentBlock
 }
 
 export const RenderBlocks: React.FC<{
