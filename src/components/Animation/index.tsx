@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 const VerticalLineScroll = () => {
     const [lineStyle, setLineStyle] = useState({ backgroundImage: 'linear-gradient(to top, #C1F177, 0%, black 0%)' });
     const circleRef = useRef(null);
-    const lineHeight = 384;
+    const lineHeight = 400;
 
     useEffect(() => {
         let animationFrameId: number;
@@ -38,7 +38,7 @@ const VerticalLineScroll = () => {
 
     return (
         <div className="absolute left-[10px] mt-[21px]">
-            <div className="relative h-96 w- mx-auto">
+            <div className="relative h-96 w-2 mx-auto">
 
                 <div
                     className="absolute left-1/2 transform -translate-x-1/2 h-full w-2 "
@@ -48,7 +48,7 @@ const VerticalLineScroll = () => {
 
                 <div
                     ref={circleRef}
-                    className="absolute left-1/2 w-8 h-8 bg-lime-300 rounded-full animate-circle"
+                    className="absolute left-1/2 w-10 h-10 bg-lime-300 rounded-full animate-circle"
                     style={{
                         animationDuration: '2s',
                         animationFillMode: 'forwards',
