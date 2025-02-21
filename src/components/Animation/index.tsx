@@ -15,6 +15,7 @@ const VerticalLineScroll = () => {
 
             if (progress >= 0 && progress <= 1) {
                 const circlePosition = progress * lineHeight;
+                console.log('circlePosition', circlePosition);
                 let newBackground = '';
 
                 // Initially black, then transitioning to green based on progress
