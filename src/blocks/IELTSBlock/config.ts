@@ -29,6 +29,19 @@ export const IELTSBlock: Block = {
             label: 'Description',
         },
         {
+            name: 'ieltsText',
+            type: 'text',
+            required: true,
+            label: 'IELTS Text',
+            defaultValue: 'IELTS',
+        },
+        {
+            name: 'ieltsImage',
+            type: 'upload',
+            relationTo: 'media',
+            required: true,
+        },
+        {
             name: 'learningType',
             type: 'group',
             label: 'Learning Type',

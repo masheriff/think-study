@@ -22,38 +22,61 @@ export const IELTSBlock: React.FC<Props> = (props) => {
         features,
         ctaButton,
         image,
+        ieltsText,
+        ieltsImage,
     } = props;
 
+    // Early return if required data is missing
+    if (!title || !subtitle || !description) {
+        return null;
+    }
+
     return (
-        <section className={cn('py-16', className)}>
+        <section className={cn('py-12', className)}>
             {/* Header Section */}
-            <div className="container mx-auto px-4 mb-16">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
-                    <h2 className="text-2xl text-red-500 font-semibold mb-4">
+            <div className="container mb-8">
+                <div className="max-w-3xl mx-auto text-center">
+                    <h1 className="text-4xl font-bold mb-2">{title}</h1>
+                    <h2 className="text-2xl text-red-500 italic mb-4">
                         {subtitle}
                     </h2>
-                    <p className="text-gray-600 mb-12">{description}</p>
+                    <p className="text-gray-700 max-w-2xl mx-auto text-center">
+                        {description}
+                    </p>
                 </div>
             </div>
 
             {/* Main Content */}
-            <div className="container mx-auto px-4">
-                <div className="bg-[#D3F584] rounded-xl p-8">
+            <div className="container">
+                <div className="bg-[#D3F584] rounded-3xl overflow-hidden p-10">
                     <div className="grid md:grid-cols-2 gap-8">
                         {/* Left Column */}
                         <div className="space-y-6">
                             {/* IELTS Logo and Hybrid Learning */}
-                            <div className="flex items-center gap-2 mb-4">
-                                <div className="font-bold text-2xl">IELTS</div>
+                            <div className="flex items-center gap-4">
+                                <div className="flex items-center">
+                                    {ieltsText && (
+                                        <div className="text-2xl font-bold mr-2">{ieltsText}</div>
+                                    )}
+                                    <div className="border-l border-gray-400 h-6 mx-2" />
+                                    {ieltsImage && typeof ieltsImage !== 'number' && 'url' in ieltsImage && (
+                                        <div className="relative w-16 h-8">
+                                            <Image
+                                                src={ieltsImage.url || ''}
+                                                alt="IELTS Logo"
+                                                fill
+                                                style={{ objectFit: "contain" }}
+                                            />
+                                        </div>
+                                    )}
+                                </div>
                                 {learningType && (
-                                    <span className="text-lg">{learningType.title}</span>
+                                    <div>
+                                        <div className="text-xl font-semibold">{learningType.title}</div>
+                                        <div className="text-sm text-gray-700">{learningType.subtitle}</div>
+                                    </div>
                                 )}
                             </div>
-
-                            {learningType && (
-                                <p className="text-gray-600">{learningType.subtitle}</p>
-                            )}
 
                             {/* Study Modes */}
                             {studyModes && studyModes.length > 0 && (
@@ -62,7 +85,7 @@ export const IELTSBlock: React.FC<Props> = (props) => {
                                         <Badge
                                             key={index}
                                             variant="outline"
-                                            className="bg-white px-4 py-2 rounded-xl"
+                                            className="bg-white text-gray-700 hover:bg-gray-100 rounded-full px-4 py-1 text-sm"
                                         >
                                             {mode.label}
                                         </Badge>
@@ -72,10 +95,11 @@ export const IELTSBlock: React.FC<Props> = (props) => {
 
                             {/* Features List */}
                             {features && features.length > 0 && (
-                                <ul className="space-y-3 list-disc pl-5">
+                                <ul className="space-y-3 text-gray-800">
                                     {features.map((feature, index) => (
-                                        <li key={index} className="text-gray-700">
-                                            {feature.text}
+                                        <li key={index} className="flex items-start">
+                                            <span className="mr-2">•</span>
+                                            <span>{feature.text}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -85,7 +109,7 @@ export const IELTSBlock: React.FC<Props> = (props) => {
                             {ctaButton && (
                                 <Button
                                     size="lg"
-                                    className="bg-purple-600 hover:bg-purple-700 text-white px-8 rounded-3xl"
+                                    className="bg-purple-600 hover:bg-purple-700 text-white rounded-full px-8 py-2 mt-4"
                                     asChild
                                 >
                                     <a href={ctaButton.href}>{ctaButton.text}</a>
@@ -95,16 +119,14 @@ export const IELTSBlock: React.FC<Props> = (props) => {
 
                         {/* Right Column - Image */}
                         {image && typeof image !== 'number' && 'url' in image && (
-                            <div className="rounded-lg overflow-hidden bg-gray-100">
-                                <div className="relative w-full h-[400px]">
-                                    <Image
-                                        src={image.url || ''}
-                                        alt="IELTS Training"
-                                        fill
-                                        style={{ objectFit: "cover" }}
-                                        className="rounded-lg"
-                                    />
-                                </div>
+                            <div className="relative h-full min-h-[400px] w-full">
+                                <Image
+                                    src={image.url || ''}
+                                    alt="IELTS Training"
+                                    fill
+                                    style={{ objectFit: "cover" }}
+                                    className="object-cover rounded-3xl"
+                                />
                             </div>
                         )}
                     </div>

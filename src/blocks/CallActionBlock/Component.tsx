@@ -64,7 +64,7 @@ export const CallActionBlock: React.FC<Props> = (props) => {
 
     return (
         <section className={cn('pb-16 pt-2 px-6 md:px-12', className)}>
-            <div className="max-w-6xl mx-auto space-y-12">
+            <div className="max-w-7xl mx-auto space-y-12">
                 <div className="relative">
                     <div className="bg-gray-100 rounded-3xl px-8 md:px-12">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -128,24 +128,6 @@ export const CallActionBlock: React.FC<Props> = (props) => {
                             </div>
                         </div>
                     </div>
-
-                    {showButton && (
-                        <button
-                            className=" absolute bottom-[10px] right-[10px] bg-gray-200 rounded-full p-2 cursor-pointer shadow-lg"
-                            onClick={handleScroll}
-                            aria-label="Scroll to Top"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6 text-green-500"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                            </svg>
-                        </button>
-                    )}
 
                 </div>
 

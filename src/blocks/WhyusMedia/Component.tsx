@@ -27,6 +27,7 @@ export const WhyusMediaBlock: React.FC<Props> = ({ media, className }) => {
                 alt={media.alt || 'Media image'}
                 width={media.width || 800}
                 height={media.height || 600}
+                className='rounded-2xl'
 
             />
         </div>

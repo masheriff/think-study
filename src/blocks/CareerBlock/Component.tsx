@@ -34,7 +34,7 @@ type MediaType = {
     height?: number
 }
 
-export const careerBlock: React.FC<Props> = (props) => {
+export const CareerBlock: React.FC<Props> = (props) => {
     const {
         className,
         mainHeading,
@@ -154,4 +154,4 @@ export const careerBlock: React.FC<Props> = (props) => {
     )
 }
 
-export default careerBlock
+export default CareerBlock

@@ -1,5 +1,4 @@
 import { Block } from 'payload'
-import { FixedToolbarFeature, HeadingFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const TestimonialsBlock: Block = {
     slug: 'testimonialsBlock',
@@ -12,15 +11,7 @@ export const TestimonialsBlock: Block = {
         },
         {
             name: 'description',
-            type: 'richText',
-            editor: lexicalEditor({
-                features: ({ rootFeatures }) => [
-                    ...rootFeatures,
-                    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    FixedToolbarFeature(),
-                    InlineToolbarFeature(),
-                ],
-            }),
+            type: 'text',
             required: true,
         },
         {

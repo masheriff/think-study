@@ -18,10 +18,8 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
         items
     } = props;
 
-    console.log('title', title);
-
     // Helper function to create curved path between two points
-    const createCurvedPath = (startX: number, startY: number, endX: number, endY: number) => {
+    const _createCurvedPath = (startX: number, startY: number, endX: number, endY: number) => {
         const midX = (startX + endX) / 2;
         const curveHeight = Math.abs(endX - startX) * 0.3;
         return `M ${startX} ${startY} Q ${midX} ${Math.min(startY, endY) - curveHeight} ${endX} ${endY}`;
@@ -39,10 +37,10 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
     return (
         <section className="block">
             <hr className='w-1/2 mx-auto' />
-            <div className="block">
+            <div className="block mt-12">
                 <RichText className="text-center" data={title} />
             </div>
-            <div className={cn('relative w-full h-[500px] overflow-hidden', className)}>
+            <div className={cn('relative w-full h-[700px] overflow-hidden', className)}>
                 {backgroundImage && typeof backgroundImage === 'object' && 'url' in backgroundImage && (
                     <div className="absolute inset-0 z-0">
                         <Image
@@ -61,7 +59,7 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
                     return (
                         <div
                             key={index}
-                            className="absolute bg-white p-3 flex flex-row items-center justify-evenly rounded-full max-w-fit shadow-lg"
+                            className="absolute bg-white p-2 flex flex-row items-center justify-around rounded-full w-44 shadow-lg"
                             style={{
                                 left: item.left || pos.left,
                                 right: item.right || 'auto',

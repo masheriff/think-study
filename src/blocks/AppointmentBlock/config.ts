@@ -1,5 +1,4 @@
 import { Block } from 'payload'
-import { FixedToolbarFeature, HeadingFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const AppointmentBlock: Block = {
     slug: 'appointmentBlock',
@@ -10,32 +9,36 @@ export const AppointmentBlock: Block = {
             type: 'group',
             fields: [
                 {
-                    name: 'richText',
-                    type: 'richText',
-                    editor: lexicalEditor({
-                        features: ({ rootFeatures }) => [
-                            ...rootFeatures,
-                            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                            FixedToolbarFeature(),
-                            InlineToolbarFeature(),
-                        ],
-                    }),
-                    required: true,
-                },
-                {
-                    name: 'paragraph1',
+                    name: 'title',
                     type: 'text',
                     required: true,
                 },
                 {
-                    name: 'paragraph2',
+                    name: 'subTitle',
                     type: 'text',
                     required: true,
                 },
                 {
-                    name: 'paragraph3',
+                    name: 'highlightText',
                     type: 'text',
                     required: true,
+                },
+                // New field added below highlightText and above paragraphs:
+                {
+                    name: 'extraText',
+                    type: 'text',
+                    required: true,
+                },
+                {
+                    name: 'paragraphs',
+                    type: 'array',
+                    fields: [
+                        {
+                            name: 'text',
+                            type: 'text',
+                            required: true,
+                        },
+                    ],
                 },
                 {
                     name: 'button',
@@ -56,7 +59,8 @@ export const AppointmentBlock: Block = {
             ],
         },
         {
-            name: 'rightContent',
+            // Renamed "rightContent" to "right" for shorter generated identifiers.
+            name: 'right',
             type: 'group',
             fields: [
                 {
@@ -74,41 +78,32 @@ export const AppointmentBlock: Block = {
                             required: true,
                         },
                         {
-                            name: 'timeSlot1',
-                            type: 'text',
-                            required: true,
-                        },
-                        {
-                            name: 'timeSlot2',
-                            type: 'text',
-                            required: true,
+                            // Renamed "timeSlots" to "slots" to reduce identifier length.
+                            name: 'slots',
+                            type: 'array',
+                            fields: [
+                                {
+                                    name: 'time',
+                                    type: 'text',
+                                    required: true,
+                                },
+                            ],
                         },
                     ],
                 },
                 {
-                    name: 'info',
-                    type: 'group',
+                    name: 'universities',
+                    type: 'array',
                     fields: [
                         {
-                            name: 'text',
-                            type: 'text',
+                            name: 'img',
+                            type: 'upload',
+                            relationTo: 'media',
                             required: true,
                         },
                         {
-                            name: 'imgs',
-                            type: 'array',
-                            fields: [
-                                {
-                                    name: 'img',
-                                    type: 'upload',
-                                    relationTo: 'media',
-                                    required: true,
-                                },
-                                {
-                                    name: 'alt',
-                                    type: 'text',
-                                },
-                            ],
+                            name: 'alt',
+                            type: 'text',
                         },
                     ],
                 },
