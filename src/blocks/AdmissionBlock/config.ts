@@ -43,6 +43,7 @@ const textStyleFields: Field[] = [
 ];
 
 
+
 export const AdminssionBlock: Block = {
     slug: 'adminssionBlock',
     interfaceName: 'AdminssionBlock',
@@ -51,11 +52,7 @@ export const AdminssionBlock: Block = {
         plural: 'Adminssion Blocks',
     },
     fields: [
-        {
-            name: 'rightImage',
-            type: 'upload',
-            relationTo: 'media',
-        },
+
         {
             name: 'year',
             type: 'text',

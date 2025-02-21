@@ -1046,7 +1046,6 @@ export interface FutureBlock {
  * via the `definition` "AdminssionBlock".
  */
 export interface AdminssionBlock {
-  rightImage?: (number | null) | Media;
   year: string;
   yearStyles?:
     | {
@@ -2036,7 +2035,6 @@ export interface FutureBlockSelect<T extends boolean = true> {
  * via the `definition` "AdminssionBlock_select".
  */
 export interface AdminssionBlockSelect<T extends boolean = true> {
-  rightImage?: T;
   year?: T;
   yearStyles?:
     | T

@@ -116,6 +116,8 @@
   }
 }
 
+
+
 html {
   opacity: 0;
 }
@@ -139,3 +141,5 @@ html[data-theme='light'] {
   stroke-dashoffset: 1000;
   animation: draw 2s ease forwards;
 }
+
+

@@ -7,6 +7,7 @@ import type { AdminssionBlock as AdminssionBlockType } from '@/payload-types'
 import CurlBraces from '../../../public/CurlBraces.png'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import VerticalLineScroll from '@/components/Animation'
 
 type Props = AdminssionBlockType & {
     className?: string
@@ -14,6 +15,7 @@ type Props = AdminssionBlockType & {
     currentStyles: CurrentStyles[] | undefined;
     rightImage: RightImage;
     CurlBraces: string;
+    theme?: any;
 }
 
 type YearStyle = {
@@ -64,31 +66,9 @@ export const AdminssionBlock: React.FC<Props> = (props) => {
             <div className=" max-w-6xl p-6 py-4 mx-auto relative flex flex-col bg-[#D9F1FD] rounded-3xl md:flex-row items-start md:items-center">
                 {/* Left Timeline */}
                 <div className="relative md:w-1/3 my-8">
-
-                    {/* Image */}
-                    <div className='absolute left-[10px]'>
-                        {rightImage?.url && (
-                            <Image
-                                src={rightImage.url}
-                                alt={rightImage.alt || "Image description"}
-                                width={0}
-                                height={0}
-                                className="w-full  h-[405px]  object-cover rounded-3xl"
-                            />
-                        )}
+                    <div >
+                        <VerticalLineScroll />
                     </div>
-
-                    {/* <div className='absolute left-[10px]'>
-
-                        <div className="relative h-96 w-16 flex justify-center">
-                            <div className="absolute h-full w-1 bg-black"></div>
-
-                            <div
-                                className={`absolute w-6 h-6 bg-lime-300 rounded-full transition-all ${isVisible ? 'animate-slide-up' : ''
-                                    }`}
-                            ></div>
-                        </div>
-                    </div> */}
 
                     <div className="flex items-center flex-col justify-between h-[405px] w-full ms-[50px]">
                         <div className="w-full text-start ">
