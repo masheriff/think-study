@@ -3,7 +3,7 @@
 import React from 'react'
 import { cn } from '@/utilities/ui'
 import type { ConnectBlock as ConnectBlockType } from '@/payload-types'
-import 'aos/dist/aos.css';
+// import 'aos/dist/aos.css';
 
 type Props = ConnectBlockType & {
     className?: string
@@ -40,7 +40,7 @@ export const ConnectBlock: React.FC<Props> = (props) => {
 
     return (
         <section className={cn('py-10 px-6 md:px-12', className)}>
-            <div data-aos="fade-right" className="max-w-6xl mx-auto space-y-12">
+            <div className="max-w-6xl mx-auto space-y-12">
                 <div>   {/* Top Section */}
                     <div className="text-center space-y-6 mb-16">
                         <h1

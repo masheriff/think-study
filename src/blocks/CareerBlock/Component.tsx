@@ -4,7 +4,7 @@ import React from 'react'
 import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import type { CareerBlock as CareerBlockType } from '@/payload-types'
-import 'aos/dist/aos.css';
+// import 'aos/dist/aos.css';
 
 type Props = CareerBlockType & {
     className?: string
@@ -52,7 +52,7 @@ export const CareerBlock: React.FC<Props> = (props) => {
 
     return (
         <section className={cn('py-16 px-6 md:px-12    ', className)}>
-            <div className="max-w-5xl mx-auto relative" data-aos="fade-left">
+            <div className="max-w-5xl mx-auto relative" >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     {/* Left Content */}
                     <div className="space-y-4">
