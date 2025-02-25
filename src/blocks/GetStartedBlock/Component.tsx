@@ -15,7 +15,6 @@ export const GetStartedBlock: React.FC<Props> = (props) => {
         heading,
         title,
         features,
-        footerText,
         image,
     } = props;
 
@@ -59,12 +58,6 @@ export const GetStartedBlock: React.FC<Props> = (props) => {
                             </ul>
                         )}
 
-                        {/* Footer Text */}
-                        {/* {footerText && (
-                            <p className="mt-6 text-gray-600">
-                                {footerText}
-                            </p>
-                        )} */}
                     </div>
 
                     {/* Right Image */}

@@ -30,12 +30,10 @@ export const hero: Field = {
     {
       name: 'type',
       type: 'select',
-      defaultValue: 'lowImpact',
+      defaultValue: 'highImpact',
       options: [
         { label: 'None', value: 'none' },
         { label: 'High Impact', value: 'highImpact' },
-        { label: 'Medium Impact', value: 'mediumImpact' },
-        { label: 'Low Impact', value: 'lowImpact' },
       ],
       required: true,
     },
@@ -74,7 +72,7 @@ export const hero: Field = {
       type: 'upload',
       relationTo: 'media',
       admin: {
-        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
+        condition: (_, { type } = {}) => ['highImpact'].includes(type),
       },
     },
   ],

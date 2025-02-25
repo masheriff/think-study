@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import { cn } from '@/utilities/ui'
 import type { TestimonialsBlock as TestimonialsBlockType } from '@/payload-types'
@@ -11,7 +11,7 @@ type Props = TestimonialsBlockType & {
 }
 
 export const TestimonialsBlock: React.FC<Props> = (props) => {
-    const [emblaRef, emblaApi] = useEmblaCarousel({
+    const [emblaRef, _emblaApi] = useEmblaCarousel({
         align: "center",
         skipSnaps: false,
         dragFree: false,
@@ -24,42 +24,6 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
             }
         }
     });
-    // const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
-    // const [nextBtnEnabled, setNextBtnEnabled] = useState(true);
-    // const [selectedIndex, setSelectedIndex] = useState(0);
-    // const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
-
-    // const scrollPrev = useCallback(
-    //     () => emblaApi && emblaApi.scrollPrev(),
-    //     [emblaApi]
-    // );
-    // const scrollNext = useCallback(
-    //     () => emblaApi && emblaApi.scrollNext(),
-    //     [emblaApi]
-    // );
-    // const scrollTo = useCallback(
-    //     (index: number) => emblaApi && emblaApi.scrollTo(index),
-    //     [emblaApi]
-    // );
-
-    // const onSelect = useCallback(() => {
-    //     if (!emblaApi) return;
-    //     setSelectedIndex(emblaApi.selectedScrollSnap());
-    //     setPrevBtnEnabled(emblaApi.canScrollPrev());
-    //     setNextBtnEnabled(emblaApi.canScrollNext());
-    // }, [emblaApi]);
-
-    // useEffect(() => {
-    //     if (!emblaApi) return;
-    //     onSelect();
-    //     setScrollSnaps(emblaApi.scrollSnapList());
-    //     emblaApi.on("select", onSelect);
-    //     emblaApi.on("reInit", onSelect);
-    //     return () => {
-    //         emblaApi.off("select", onSelect);
-    //         emblaApi.off("reInit", onSelect);
-    //     };
-    // }, [emblaApi, onSelect]);
 
     const { className, heading, description, testimonials } = props
 

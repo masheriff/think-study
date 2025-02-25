@@ -93,7 +93,7 @@ export interface Page {
   id: number;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'highImpact';
     heading?: {
       /**
        * Enter the text inside "|" symbols to highlight text in red. Example: "Regular text |highlighted text| regular text"
