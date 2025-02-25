@@ -16,10 +16,11 @@ import FutureBlock from './FutureBlock/Component'
 import AdminssionBlock from './AdmissionBlock/Component'
 import { CareerBlock } from './CareerBlock/Component'
 import ConnectBlock from './ConnectBlock/Component'
-import CallActionBlock from './CallActionBlock/Component'
 import WhyusMediaBlock from './WhyusMedia/Component'
 import ServiceBlock from './ServiceBlock/Component'
 import AppointmentBlock from './AppointmentBlock/Component'
+import CallActionBlock from './CallActionBlock/Component'
+
 
 
 type BlockComponentsType = {
@@ -38,10 +39,10 @@ type BlockComponentsType = {
   futureBlock: typeof FutureBlock
   adminssionBlock: typeof AdminssionBlock
   connectBlock: typeof ConnectBlock
-  callActionBlock: typeof CallActionBlock
   whyusMediaBlock: typeof WhyusMediaBlock
   appointmentBlock: typeof AppointmentBlock
   careerBlock: typeof CareerBlock
+  callActionBlock: typeof CallActionBlock
 }
 
 const blockComponents: BlockComponentsType = {
@@ -61,9 +62,9 @@ const blockComponents: BlockComponentsType = {
   adminssionBlock: AdminssionBlock,
   careerBlock: CareerBlock,
   connectBlock: ConnectBlock,
-  callActionBlock: CallActionBlock,
   whyusMediaBlock: WhyusMediaBlock,
-  appointmentBlock: AppointmentBlock
+  appointmentBlock: AppointmentBlock,
+  callActionBlock: CallActionBlock
 
 }
 
