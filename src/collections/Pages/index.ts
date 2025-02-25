@@ -12,14 +12,14 @@ import { StudyAbroadBlock } from '@/blocks/StudyAbroadBlock/config'
 import { IELTSBlock } from '@/blocks/IELTSBlock/config'
 import { GetStartedBlock } from '@/blocks/GetStartedBlock/config'
 import { MapBlock } from '@/blocks/MapBlock/config'
-import { AppointmentBlock } from '@/blocks/AppointmentBlock/config'
+
 import { ServiceBlock } from '@/blocks/ServiceBlock/config'
 import { FAQBlock } from '@/blocks/FAQBlock/config'
 import { FutureBlock } from '@/blocks/FutureBlock/config'
 import { AdminssionBlock } from '@/blocks/AdmissionBlock/config'
 import { CareerBlock } from '@/blocks/CareerBlock/config'
 import { WorldStudentBlock } from '@/blocks/WorldStudentBlock/config'
-import { hero } from '@/heros/config'
+
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
@@ -34,7 +34,9 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import { ConnectBlock } from '@/blocks/ConnectBlock/config'
 import { WhyusMediaBlock } from '@/blocks/WhyusMedia/conig'
+import { hero } from '@/heros/config'
 import { CallActionBlock } from '@/blocks/CallActionBlock/config'
+
 
 
 
@@ -93,8 +95,7 @@ export const Pages: CollectionConfig<'pages'> = {
               name: 'layout',
               type: 'blocks',
               blocks: [Content, MediaBlock, Archive, FormBlock, TestimonialsBlock, CounselingBlock,
-                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock,
-                AppointmentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock, WhyusMediaBlock, ConnectBlock, CallActionBlock],
+                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock, WhyusMediaBlock, ConnectBlock, CallActionBlock],
               required: true,
               admin: {
                 initCollapsed: true,

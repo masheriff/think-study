@@ -167,7 +167,6 @@ export interface Page {
     | GetStartedBlock
     | MapBlock
     | WorldStudentBlock
-    | AppointmentBlock
     | ServiceBlock
     | FAQBlock
     | FutureBlock
@@ -890,51 +889,6 @@ export interface WorldStudentBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AppointmentBlock".
- */
-export interface AppointmentBlock {
-  leftContent: {
-    title: string;
-    subTitle: string;
-    highlightText: string;
-    extraText: string;
-    paragraphs?:
-      | {
-          text: string;
-          id?: string | null;
-        }[]
-      | null;
-    button: {
-      text: string;
-      url: string;
-    };
-  };
-  right: {
-    schedule: {
-      date: string;
-      day: string;
-      slots?:
-        | {
-            time: string;
-            id?: string | null;
-          }[]
-        | null;
-    };
-    universities?:
-      | {
-          img: number | Media;
-          alt?: string | null;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  bottomText: string;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'appointmentBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ServiceBlock".
  */
 export interface ServiceBlock {
@@ -1572,7 +1526,6 @@ export interface PagesSelect<T extends boolean = true> {
         getStartedBlock?: T | GetStartedBlockSelect<T>;
         mapBlock?: T | MapBlockSelect<T>;
         worldStudentBlock?: T | WorldStudentBlockSelect<T>;
-        appointmentBlock?: T | AppointmentBlockSelect<T>;
         serviceBlock?: T | ServiceBlockSelect<T>;
         faqBlock?: T | FAQBlockSelect<T>;
         futureBlock?: T | FutureBlockSelect<T>;
@@ -1855,58 +1808,6 @@ export interface WorldStudentBlockSelect<T extends boolean = true> {
         left?: T;
         id?: T;
       };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AppointmentBlock_select".
- */
-export interface AppointmentBlockSelect<T extends boolean = true> {
-  leftContent?:
-    | T
-    | {
-        title?: T;
-        subTitle?: T;
-        highlightText?: T;
-        extraText?: T;
-        paragraphs?:
-          | T
-          | {
-              text?: T;
-              id?: T;
-            };
-        button?:
-          | T
-          | {
-              text?: T;
-              url?: T;
-            };
-      };
-  right?:
-    | T
-    | {
-        schedule?:
-          | T
-          | {
-              date?: T;
-              day?: T;
-              slots?:
-                | T
-                | {
-                    time?: T;
-                    id?: T;
-                  };
-            };
-        universities?:
-          | T
-          | {
-              img?: T;
-              alt?: T;
-              id?: T;
-            };
-      };
-  bottomText?: T;
   id?: T;
   blockName?: T;
 }
