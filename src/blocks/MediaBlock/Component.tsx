@@ -7,7 +7,6 @@ import RichText from '@/components/RichText'
 import type { MediaBlock as MediaBlockProps } from '@/payload-types'
 
 import { Media } from '../../components/Media'
-import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 type Props = MediaBlockProps & {

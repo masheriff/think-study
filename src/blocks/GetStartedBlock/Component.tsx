@@ -15,7 +15,6 @@ export const GetStartedBlock: React.FC<Props> = (props) => {
         heading,
         title,
         features,
-        footerText,
         image,
     } = props;
 

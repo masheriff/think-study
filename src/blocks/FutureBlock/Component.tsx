@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import type { FutureBlock as FutureBlockType } from '@/payload-types'
-import AOS from 'aos';
+// import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 type Props = FutureBlockType & {

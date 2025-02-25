@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import type { CallActionBlock as CallActionBlockType } from '@/payload-types'
-// import AOS from 'aos';
-// import 'aos/dist/aos.css';
+
 
 type Props = CallActionBlockType & {
     className?: string
@@ -40,13 +39,14 @@ export const CallActionBlock: React.FC<Props> = (props) => {
     } = props
 
     const [showButton, setShowButton] = useState(false);
+    console.log(showButton)
 
-    const handleScroll = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        });
-    };
+    // const handleScroll = () => {
+    //     window.scrollTo({
+    //         top: 0,
+    //         behavior: 'smooth',
+    //     });
+    // };
 
     useEffect(() => {
         const handleScroll = () => {

@@ -1,11 +1,10 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import type { AdminssionBlock as AdminssionBlockType } from '@/payload-types'
 import CurlBraces from '../../../public/CurlBraces.png'
-import AOS from 'aos';
 import 'aos/dist/aos.css';
 import VerticalLineScroll from '@/components/Animation'
 
@@ -15,7 +14,7 @@ type Props = AdminssionBlockType & {
     currentStyles: CurrentStyles[] | undefined;
     rightImage: RightImage;
     CurlBraces: string;
-    theme?: any;
+    theme?: string;
 }
 
 type YearStyle = {
@@ -55,11 +54,11 @@ export const AdminssionBlock: React.FC<Props> = (props) => {
         rightImage,
     } = props;
 
-    const [isVisible, setIsVisible] = useState(false);
+    // const [isVisible, setIsVisible] = useState(false);
 
-    useEffect(() => {
-        setIsVisible(true);
-    }, []);
+    // useEffect(() => {
+    //     setIsVisible(true);
+    // }, []);
 
     return (
         <section className={cn('py-10   md:px-12', className, textStyles)}>

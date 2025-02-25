@@ -51,7 +51,7 @@ export const CareerBlock: React.FC<Props> = (props) => {
 
 
     return (
-        <section className={cn('py-16 px-6 md:px-12 bg-white   ', className)}>
+        <section className={cn('py-16 px-6 md:px-12    ', className)}>
             <div className="max-w-5xl mx-auto relative" data-aos="fade-left">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     {/* Left Content */}

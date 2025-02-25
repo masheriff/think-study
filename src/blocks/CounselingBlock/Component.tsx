@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { CounselingBlock as CounselingBlockType } from '@/payload-types'
 import useEmblaCarousel from 'embla-carousel-react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+
 
 type Props = CounselingBlockType & {
     className?: string
@@ -34,6 +34,8 @@ export const CounselingBlock: React.FC<Props> = (props) => {
     const [nextBtnEnabled, setNextBtnEnabled] = useState(true)
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
+
+    console.log(nextBtnEnabled, prevBtnEnabled)
 
     // Navigation functions
     const scrollPrev = useCallback(

@@ -1,10 +1,8 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { cn } from '@/utilities/ui'
-import Image from 'next/image'
 import type { ConnectBlock as ConnectBlockType } from '@/payload-types'
-import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 type Props = ConnectBlockType & {

@@ -1234,7 +1234,7 @@ export interface CallActionBlock {
     }[];
     id?: string | null;
   }[];
-  officeStyles?:
+  officeStyle?:
     | {
         family?: ('Inter' | 'Roboto' | 'Poppins') | null;
         size?: string | null;
@@ -2196,7 +2196,7 @@ export interface CallActionBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
-  officeStyles?:
+  officeStyle?:
     | T
     | {
         family?: T;

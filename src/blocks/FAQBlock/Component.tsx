@@ -4,8 +4,7 @@ import React, { useState } from 'react'
 import { cn } from '@/utilities/ui'
 import type { FAQBlock as FAQBlockType } from '@/payload-types'
 import { Plus, Minus } from 'lucide-react'
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+// import 'aos/dist/aos.css';
 
 type Props = FAQBlockType & {
     className?: string

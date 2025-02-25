@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { Fragment } from 'react'
 import type { Page } from '@/payload-types'
 import { FormBlock } from './Form/Component'
@@ -13,7 +14,7 @@ import { WorldStudentBlock } from './WorldStudentBlock/Component'
 import FAQBlock from './FAQBlock/Component'
 import FutureBlock from './FutureBlock/Component'
 import AdminssionBlock from './AdmissionBlock/Component'
-import careerBlock, { CareerBlock } from './CareerBlock/Component'
+import { CareerBlock } from './CareerBlock/Component'
 import ConnectBlock from './ConnectBlock/Component'
 import CallActionBlock from './CallActionBlock/Component'
 import WhyusMediaBlock from './WhyusMedia/Component'
@@ -65,6 +66,7 @@ const blockComponents: BlockComponentsType = {
   callActionBlock: CallActionBlock,
   whyusMediaBlock: WhyusMediaBlock,
   appointmentBlock: AppointmentBlock
+
 }
 
 export const RenderBlocks: React.FC<{

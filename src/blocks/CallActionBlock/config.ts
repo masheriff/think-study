@@ -93,7 +93,7 @@ export const CallActionBlock: Block = {
         },
 
         {
-            name: 'officeStyles',
+            name: 'officeStyle',
             type: 'array',
             label: 'Office Text Styles',
             fields: [...textStyleFields],

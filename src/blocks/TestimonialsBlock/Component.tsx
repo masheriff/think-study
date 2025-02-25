@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import { cn } from '@/utilities/ui'
 import type { TestimonialsBlock as TestimonialsBlockType } from '@/payload-types'
@@ -11,7 +11,7 @@ type Props = TestimonialsBlockType & {
 }
 
 export const TestimonialsBlock: React.FC<Props> = (props) => {
-    const [emblaRef, emblaApi] = useEmblaCarousel({
+    const [emblaRef] = useEmblaCarousel({
         align: "center",
         skipSnaps: false,
         dragFree: false,
