@@ -110,7 +110,7 @@ export const AdminssionBlock: React.FC<Props> = (props) => {
                         <div className="w-full  text-start ">
                             <h2 className="">{year}</h2>
                             <p className="text-4xl font-medium">
-                                <span >{description.split(' ')[0]}</span>
+                                <span>{description.split(' ')[0]}</span>
                             </p>
                             <p className=' italic font-light font-Delius text-[26px]'>{description.slice(description.indexOf(' ') + 1)}</p>
                         </div>
@@ -121,7 +121,7 @@ export const AdminssionBlock: React.FC<Props> = (props) => {
 
                 {/* Right Content */}
                 <div className="md:w-2/3 px-6 md:px-0 ps-[50px] md:ps-[160px]">
-                    <p className="text-xl text-[#ff0000] italic mb-0 italic font-Delius" >{ambitions}</p>
+                    <p className="text-xl text-[#ff0000] italic mb-0 font-Delius" >{ambitions}</p>
                     <p className="text-md font-normal max-w-[430px]">{successRate}</p>
                     <div className="mt-2 text-sm font-semibold flex flex-wrap items-center gap-1 max-w-full overflow-hidden">
                         {statistics &&

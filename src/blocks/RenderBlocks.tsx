@@ -22,8 +22,6 @@ import ServiceBlock from './ServiceBlock/Component'
 import AppointmentBlock from './AppointmentBlock/Component'
 
 
-
-
 type BlockComponentsType = {
   formBlock: typeof FormBlock
   mediaBlock: typeof MediaBlock
