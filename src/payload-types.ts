@@ -93,7 +93,7 @@ export interface Page {
   id: number;
   title: string;
   hero: {
-    type: 'none' | 'highImpact';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     heading?: {
       /**
        * Enter the text inside "|" symbols to highlight text in red. Example: "Regular text |highlighted text| regular text"
@@ -113,6 +113,21 @@ export interface Page {
        */
       fontSize?: string | null;
     };
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
     links?:
       | {
           link: {
@@ -1524,6 +1539,7 @@ export interface PagesSelect<T extends boolean = true> {
               fontFamily?: T;
               fontSize?: T;
             };
+        richText?: T;
         links?:
           | T
           | {
