@@ -1,0 +1,197 @@
+name: Payload CMS Deployment
+
+on:
+  push:
+    branches: ["main", "staging"]
+  pull_request:
+    branches: ["main", "staging"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup environment variables for staging
+        if: github.ref == 'refs/heads/staging'
+        run: |
+          echo "ENV_PREFIX=STAGING" >> $GITHUB_ENV
+          echo "DEPLOY_PATH=${{ secrets.STAGING_DEPLOY_PATH }}" >> $GITHUB_ENV
+          echo "APP_NAME=${{ secrets.STAGING_APP_NAME }}" >> $GITHUB_ENV
+          echo "PORT=${{ secrets.STAGING_PORT }}" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_ENVIRONMENT=staging" >> $GITHUB_ENV
+
+      - name: Setup environment variables for production
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "ENV_PREFIX=PROD" >> $GITHUB_ENV
+          echo "DEPLOY_PATH=${{ secrets.PROD_DEPLOY_PATH }}" >> $GITHUB_ENV
+          echo "APP_NAME=${{ secrets.PROD_APP_NAME }}" >> $GITHUB_ENV
+          echo "PORT=${{ secrets.PROD_PORT }}" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_ENVIRONMENT=production" >> $GITHUB_ENV
+
+      - name: Create environment file
+        run: |
+          echo "DATABASE_URI=${{ secrets[format('{0}_DATABASE_URI', env.ENV_PREFIX)] }}" > .env
+          echo "PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}" >> .env
+          echo "NEXT_PUBLIC_SERVER_URL=${{ secrets[format('{0}_NEXT_PUBLIC_SERVER_URL', env.ENV_PREFIX)] }}" >> .env
+          echo "NEXT_PUBLIC_ENVIRONMENT=${{ env.NEXT_PUBLIC_ENVIRONMENT }}" >> .env
+          echo "PORT=${{ env.PORT }}" >> .env
+          echo "APP_NAME=${{ env.APP_NAME }}" >> .env
+
+      - name: Deploy via rsync
+        uses: burnett01/rsync-deployments@5.2
+        with:
+          switches: -avzr --delete --exclude='node_modules' --exclude='package.json.old' --exclude='.next' --exclude='public/media'
+          path: ./
+          remote_host: ${{ secrets.SERVER_HOST }}
+          remote_user: ${{ secrets.SERVER_USER }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          remote_path: ${{ env.DEPLOY_PATH }}
+
+      - name: Execute remote SSH commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            # Load nvm and environment
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+            
+            source ~/.profile
+            source ~/.bashrc
+            
+            cd ${{ env.DEPLOY_PATH }}
+            
+            # Package installation with error handling
+            echo "Installing dependencies..."
+            rm -rf node_modules
+            if ! npm install; then
+              echo "❌ npm install failed"
+              exit 1
+            fi
+            
+            # Secure environment file
+            chmod 600 .env
+            
+            # Run database migrations with error handling
+            echo "Running database migrations..."
+            if ! npm run migrate; then
+              echo "❌ Database migration failed"
+              exit 1
+            fi
+            
+            # Clear cache
+            rm -rf .next
+            
+            # Set optimal memory for 2GB server
+            export NODE_OPTIONS="--max-old-space-size=1536"
+            
+            echo "Starting build..."
+            if ! NEXT_TELEMETRY_DISABLED=1 npm run build; then
+              echo "❌ Build failed"
+              exit 1
+            fi
+            
+            # Start the application with error handling
+            echo "Starting application with PM2..."
+            pm2 delete ${{ env.APP_NAME }} || true
+            if ! NODE_ENV=production PORT=${{ env.PORT }} pm2 start npm --name "${{ env.APP_NAME }}" -- start; then
+              echo "❌ PM2 start failed"
+              exit 1
+            fi
+            
+            if ! pm2 save; then
+              echo "❌ PM2 save failed"
+              exit 1
+            fi
+            
+            echo "✅ Deployment completed successfully!"
+
+  # Sync database and media files from staging to production when deploying to main
+  sync-to-production:
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Setup SSH for server operations
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          
+      - name: Sync database and media files from staging to production
+        run: |
+          # Connect to server and perform sync operations
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
+            # Create directory for database operations
+            mkdir -p ~/db_sync
+            
+            # Step 1: Create a database dump from staging
+            export PGPASSWORD=${{ secrets.STAGING_DB_PASSWORD }}
+            pg_dump -h localhost \
+                   -U ${{ secrets.STAGING_DB_USER }} \
+                   -d ${{ secrets.STAGING_DB_NAME }} > ~/db_sync/staging_dump.sql
+            
+            # Check if dump was created successfully
+            if [ ! -s ~/db_sync/staging_dump.sql ]; then
+              echo "❌ Failed to create database dump from staging"
+              exit 1
+            fi
+            
+            echo "✅ Staging database dump created successfully"
+            
+            # Step 2: Backup production database before overwriting (safety measure)
+            export PGPASSWORD=${{ secrets.PROD_DB_PASSWORD }}
+            pg_dump -h localhost \
+                   -U ${{ secrets.PROD_DB_USER }} \
+                   -d ${{ secrets.PROD_DB_NAME }} > ~/db_sync/prod_backup_before_sync.sql
+            
+            # Step 3: Drop existing schema and restore from staging dump
+            psql -h localhost \
+                -U ${{ secrets.PROD_DB_USER }} \
+                -d ${{ secrets.PROD_DB_NAME }} \
+                -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
+            
+            psql -h localhost \
+                -U ${{ secrets.PROD_DB_USER }} \
+                -d ${{ secrets.PROD_DB_NAME }} < ~/db_sync/staging_dump.sql
+            
+            # Step 4: Backup production media files before syncing
+            echo "Backing up production media files..."
+            BACKUP_TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+            MEDIA_BACKUP_DIR=~/media_backups/$BACKUP_TIMESTAMP
+            mkdir -p $MEDIA_BACKUP_DIR
+            
+            if [ -d "${{ secrets.PROD_DEPLOY_PATH }}/public/media/" ]; then
+              cp -r ${{ secrets.PROD_DEPLOY_PATH }}/public/media/ $MEDIA_BACKUP_DIR/
+              echo "✅ Production media backup created at $MEDIA_BACKUP_DIR"
+            else
+              echo "⚠️ No media folder found in production to backup"
+            fi
+            
+            # Step 5: Sync media files from staging to production
+            echo "Syncing media files from staging to production..."
+            mkdir -p ${{ secrets.PROD_DEPLOY_PATH }}/public/media/
+            rsync -avz --delete ${{ secrets.STAGING_DEPLOY_PATH }}/public/media/ ${{ secrets.PROD_DEPLOY_PATH }}/public/media/
+            
+            # Step 6: Clean up temporary files but keep the backups
+            rm ~/db_sync/staging_dump.sql
+            
+            # Keep only the 5 most recent media backups to save space
+            if [ -d ~/media_backups ]; then
+              ls -t ~/media_backups | tail -n +6 | xargs -I {} rm -rf ~/media_backups/{}
+              echo "Cleaned up older media backups, keeping the 5 most recent ones"
+            fi
+            
+            # Step 7: Restart the PM2 process for production to ensure it uses the new data
+            pm2 restart ${{ secrets.PROD_APP_NAME }}
+            
+            echo "✅ Production database and media files updated successfully from staging"
+          ENDSSH
