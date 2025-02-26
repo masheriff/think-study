@@ -4,7 +4,8 @@ import React, { useState } from 'react'
 import { cn } from '@/utilities/ui'
 import type { FAQBlock as FAQBlockType } from '@/payload-types'
 import { Plus, Minus } from 'lucide-react'
-// import 'aos/dist/aos.css';
+import 'aos/dist/aos.css';
+// import Aos from 'aos';
 
 type Props = FAQBlockType & {
     className?: string
@@ -24,6 +25,9 @@ export const FAQBlock: React.FC<Props> = (props) => {
         setOpenIndex(openIndex === index ? null : index)
     }
 
+    console.log(faqs, "faqs")
+
+
     return (
         <section className={cn(' max-w-6xl py-12 px-4 md:px-6 mx-auto', className)}>
             <h2
@@ -37,7 +41,7 @@ export const FAQBlock: React.FC<Props> = (props) => {
                 {title}
             </h2>
 
-            <div data-aos="fade-right" className="space-y-4 scroll-smooth snap-start scroll-ml-6 overflow-y-scroll h-[400px]">
+            <div className="space-y-4 scroll-smooth snap-start scroll-ml-6 overflow-y-scroll h-[400px]">
                 {faqs?.map((faq: FAQItem, index: number) => (
                     <div
                         key={faq.id || index}
@@ -46,10 +50,10 @@ export const FAQBlock: React.FC<Props> = (props) => {
                         <button
                             onClick={() => toggleFAQ(index)}
                             className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
-                            style={{
-                                fontSize: styles?.quesStyles?.fontSize || '18px',
-                                fontWeight: styles?.quesStyles?.fontWeight || 'medium',
-                            }}
+                        // style={{
+                        //     fontSize: styles?.quesStyles?.fontSize || '18px',
+                        //     fontWeight: styles?.quesStyles?.fontWeight || 'medium',
+                        // }}
                         >
                             <span>{faq.question}</span>
                             {openIndex === index ? (
@@ -72,6 +76,7 @@ export const FAQBlock: React.FC<Props> = (props) => {
                         )}
                     </div>
                 ))}
+
             </div>
 
         </section>

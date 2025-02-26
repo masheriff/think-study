@@ -88,8 +88,8 @@ export const ServiceBlock: React.FC<Props> = (props) => {
                             className=" mb-2"
                             style={{
                                 fontFamily: mainHeadingStyles?.family,
-                                fontSize: mainHeadingStyles?.size,
-                                color: mainHeadingStyles?.color,
+                                fontSize: mainHeadingStyles?.size || '1rem',
+                                color: mainHeadingStyles?.color || '#FF0000',
                             }}
                         >
                             {mainHeading}
@@ -121,7 +121,7 @@ export const ServiceBlock: React.FC<Props> = (props) => {
                                 style={{
                                     fontFamily: buttonStyle?.family,
                                     fontSize: buttonStyle?.size,
-                                    color: buttonStyle?.color,
+                                    color: buttonStyle?.color || '#000000',
                                 }}>
                                 {buttonText}
                             </h3>
@@ -146,7 +146,7 @@ export const ServiceBlock: React.FC<Props> = (props) => {
 
                             className=" p-4  py-[100px] rounded-3xl h-full flex flex-col align-center justify-center"
                             style={{
-                                backgroundColor: serviceStyles?.backgroundColor,
+                                backgroundColor: serviceStyles?.backgroundColor || '#C1F177',
                             }}
                         >
 
