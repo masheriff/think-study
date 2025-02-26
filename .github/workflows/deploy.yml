@@ -87,6 +87,64 @@ jobs:
               exit 1
             fi
             
+            # Initialize database with Payload collections if they don't exist
+            echo "Checking database tables..."
+            export PGPASSWORD=${{ secrets[format('{0}_DB_PASSWORD', env.ENV_PREFIX)] }}
+            if ! psql -h localhost -U ${{ secrets[format('{0}_DB_USER', env.ENV_PREFIX)] }} -d ${{ secrets[format('{0}_DB_NAME', env.ENV_PREFIX)] }} -c "SELECT * FROM information_schema.tables WHERE table_name = 'pages' LIMIT 1;" | grep -q "(1 row)"; then
+              echo "Tables not found. Initializing database with memory-efficient approach..."
+              
+              # Create a simple script to initialize Payload
+              cat > init-payload.js << 'EOL'
+              import { buildConfig } from './src/payload.config.js';
+              import { getPayload } from './src/payload/index.js';
+              
+              const initPayload = async () => {
+                try {
+                  console.log('Initializing Payload...');
+                  const payload = await getPayload();
+                  console.log('Payload initialized successfully');
+                  process.exit(0);
+                } catch (error) {
+                  console.error('Error initializing Payload:', error);
+                  process.exit(1);
+                }
+              };
+              
+              initPayload();
+              EOL
+              
+              # Run the script with limited memory
+              NODE_OPTIONS="--max-old-space-size=512" node init-payload.js
+              
+              # Check if tables were created
+              if ! psql -h localhost -U ${{ secrets[format('{0}_DB_USER', env.ENV_PREFIX)] }} -d ${{ secrets[format('{0}_DB_NAME', env.ENV_PREFIX)] }} -c "SELECT * FROM information_schema.tables WHERE table_name = 'pages' LIMIT 1;" | grep -q "(1 row)"; then
+                echo "⚠️ Tables still not created. Attempting to manually create minimal required tables..."
+                
+                # Create minimal tables directly with SQL
+                psql -h localhost -U ${{ secrets[format('{0}_DB_USER', env.ENV_PREFIX)] }} -d ${{ secrets[format('{0}_DB_NAME', env.ENV_PREFIX)] }} << 'EOSQL'
+                CREATE TABLE IF NOT EXISTS "pages" (
+                  id SERIAL PRIMARY KEY,
+                  title TEXT NOT NULL,
+                  slug TEXT UNIQUE NOT NULL,
+                  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+                  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+                );
+                
+                CREATE TABLE IF NOT EXISTS "posts" (
+                  id SERIAL PRIMARY KEY,
+                  title TEXT NOT NULL,
+                  slug TEXT UNIQUE NOT NULL,
+                  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+                  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+                );
+                EOSQL
+                
+                echo "Created minimal required tables manually"
+              fi
+            else
+              echo "✅ Database tables already exist"
+            fi
+            
             # Clear cache
             rm -rf .next
             
