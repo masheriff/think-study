@@ -175,6 +175,7 @@ export interface Page {
     | WhyusMediaBlock
     | ConnectBlock
     | CallActionBlock
+    | AppointmentBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1217,6 +1218,51 @@ export interface CallActionBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AppointmentBlock".
+ */
+export interface AppointmentBlock {
+  leftContent: {
+    title: string;
+    subTitle: string;
+    highlightText: string;
+    extraText: string;
+    paragraphs?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    button: {
+      text: string;
+      url: string;
+    };
+  };
+  right: {
+    schedule: {
+      date: string;
+      day: string;
+      slots?:
+        | {
+            time: string;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    universities?:
+      | {
+          img: number | Media;
+          alt?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  bottomText: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'appointmentBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1534,6 +1580,7 @@ export interface PagesSelect<T extends boolean = true> {
         whyusMediaBlock?: T | WhyusMediaBlockSelect<T>;
         connectBlock?: T | ConnectBlockSelect<T>;
         callActionBlock?: T | CallActionBlockSelect<T>;
+        appointmentBlock?: T | AppointmentBlockSelect<T>;
       };
   meta?:
     | T
@@ -2121,6 +2168,58 @@ export interface CallActionBlockSelect<T extends boolean = true> {
         color?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AppointmentBlock_select".
+ */
+export interface AppointmentBlockSelect<T extends boolean = true> {
+  leftContent?:
+    | T
+    | {
+        title?: T;
+        subTitle?: T;
+        highlightText?: T;
+        extraText?: T;
+        paragraphs?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        button?:
+          | T
+          | {
+              text?: T;
+              url?: T;
+            };
+      };
+  right?:
+    | T
+    | {
+        schedule?:
+          | T
+          | {
+              date?: T;
+              day?: T;
+              slots?:
+                | T
+                | {
+                    time?: T;
+                    id?: T;
+                  };
+            };
+        universities?:
+          | T
+          | {
+              img?: T;
+              alt?: T;
+              id?: T;
+            };
+      };
+  bottomText?: T;
   id?: T;
   blockName?: T;
 }
