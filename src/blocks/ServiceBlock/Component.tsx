@@ -1,12 +1,10 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import { cn } from '@/utilities/ui'
 import type { ServiceBlock as ServiceBlockType } from '@/payload-types'
 import Image from 'next/image'
 import downImage from '../../../public/down-arrow.png'
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 
 type Props = ServiceBlockType & {
@@ -55,18 +53,8 @@ export const ServiceBlock: React.FC<Props> = (props) => {
         serviceStyles,
     } = props
 
-    useEffect(() => {
-
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: false,
-            mirror: true
-        })
-    }, [])
-
     return (
-        <div className='md:px-12' data-aos="fade-right"> <section
+        <div className='md:px-12'> <section
             className={cn(' max-w-6xl  mx-auto mb-12 rounded-3xl py-8 px-4 md:px-8', className)}
             style={{
                 backgroundColor: backgroundColor || 'transparent',
