@@ -93,25 +93,23 @@ jobs:
             if ! psql -h localhost -U ${{ secrets[format('{0}_DB_USER', env.ENV_PREFIX)] }} -d ${{ secrets[format('{0}_DB_NAME', env.ENV_PREFIX)] }} -c "SELECT * FROM information_schema.tables WHERE table_name = 'pages' LIMIT 1;" | grep -q "(1 row)"; then
               echo "Tables not found. Initializing database with memory-efficient approach..."
               
-              # Create a simple script to initialize Payload
-              cat > init-payload.js << 'EOL'
-              import { buildConfig } from './src/payload.config.js';
-              import { getPayload } from './src/payload/index.js';
-              
-              const initPayload = async () => {
-                try {
-                  console.log('Initializing Payload...');
-                  const payload = await getPayload();
-                  console.log('Payload initialized successfully');
-                  process.exit(0);
-                } catch (error) {
-                  console.error('Error initializing Payload:', error);
-                  process.exit(1);
-                }
-              };
-              
-              initPayload();
-              EOL
+              # Create a simple script to initialize Payload - using a different approach to avoid heredoc issues
+              echo 'import { buildConfig } from "./src/payload.config.js";' > init-payload.js
+              echo 'import { getPayload } from "./src/payload/index.js";' >> init-payload.js
+              echo '' >> init-payload.js
+              echo 'const initPayload = async () => {' >> init-payload.js
+              echo '  try {' >> init-payload.js
+              echo '    console.log("Initializing Payload...");' >> init-payload.js
+              echo '    const payload = await getPayload();' >> init-payload.js
+              echo '    console.log("Payload initialized successfully");' >> init-payload.js
+              echo '    process.exit(0);' >> init-payload.js
+              echo '  } catch (error) {' >> init-payload.js
+              echo '    console.error("Error initializing Payload:", error);' >> init-payload.js
+              echo '    process.exit(1);' >> init-payload.js
+              echo '  }' >> init-payload.js
+              echo '};' >> init-payload.js
+              echo '' >> init-payload.js
+              echo 'initPayload();' >> init-payload.js
               
               # Run the script with limited memory
               NODE_OPTIONS="--max-old-space-size=512" node init-payload.js
@@ -121,23 +119,23 @@ jobs:
                 echo "⚠️ Tables still not created. Attempting to manually create minimal required tables..."
                 
                 # Create minimal tables directly with SQL
-                psql -h localhost -U ${{ secrets[format('{0}_DB_USER', env.ENV_PREFIX)] }} -d ${{ secrets[format('{0}_DB_NAME', env.ENV_PREFIX)] }} << 'EOSQL'
-                CREATE TABLE IF NOT EXISTS "pages" (
-                  id SERIAL PRIMARY KEY,
-                  title TEXT NOT NULL,
-                  slug TEXT UNIQUE NOT NULL,
-                  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-                  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-                );
-                
-                CREATE TABLE IF NOT EXISTS "posts" (
-                  id SERIAL PRIMARY KEY,
-                  title TEXT NOT NULL,
-                  slug TEXT UNIQUE NOT NULL,
-                  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-                  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-                );
-                EOSQL
+                psql -h localhost -U ${{ secrets[format('{0}_DB_USER', env.ENV_PREFIX)] }} -d ${{ secrets[format('{0}_DB_NAME', env.ENV_PREFIX)] }} << EOF
+CREATE TABLE IF NOT EXISTS "pages" (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  slug TEXT UNIQUE NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS "posts" (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  slug TEXT UNIQUE NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+EOF
                 
                 echo "Created minimal required tables manually"
               fi
