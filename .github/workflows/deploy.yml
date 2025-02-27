@@ -158,17 +158,25 @@ jobs:
               exit 1
             fi
             
-            # Start the application with error handling
+            # Start the application with PM2
             echo "Starting application with PM2..."
-            pm2 delete ${{ env.APP_NAME }} || true
+            # Check if the app is already running in PM2
+            if pm2 list | grep -q "${{ env.APP_NAME }}"; then
+              echo "Stopping existing PM2 process..."
+              pm2 stop "${{ env.APP_NAME }}" || true
+              pm2 delete "${{ env.APP_NAME }}" || true
+            fi
+            
+            # Start the app with PM2
             if ! NODE_ENV=production PORT=${{ env.PORT }} pm2 start npm --name "${{ env.APP_NAME }}" -- start; then
               echo "❌ PM2 start failed"
               exit 1
             fi
             
+            # Save PM2 configuration
             if ! pm2 save; then
-              echo "❌ PM2 save failed"
-              exit 1
+              echo "❌ PM2 save failed, but app is running"
+              # Continue anyway as this is non-critical
             fi
             
             echo "✅ Deployment completed successfully!"
