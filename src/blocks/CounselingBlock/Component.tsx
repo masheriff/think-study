@@ -89,7 +89,7 @@ export const CounselingBlock: React.FC<Props> = (props) => {
                         />
                     )}
                     {/* Embla Carousel */}
-                    <div className="overflow-hidden h-full mx-[-143px]" ref={emblaRef}>
+                    <div className="overflow-hidden h-full mx-[-10rem]" ref={emblaRef}>
                         <div className="flex h-full items-center">
                             {cards?.map((card, index) => (
                                 <div key={index} className="flex-[0_0_25%] mx-4">
@@ -105,7 +105,7 @@ export const CounselingBlock: React.FC<Props> = (props) => {
                                                 />
                                             </div>
                                         )}
-                                        <div className="flex flex-col items-center justify-center mt-16">
+                                        <div className="flex flex-col items-center justify-center mt-10">
                                             <h3 className="text-base font-light mb-2">{card.title}</h3>
                                             <p className="text-black-600 font-semibold mb-2">{card.courseName}</p>
                                             <div className='flex flex-row justify-center items-center gap-2 p-2 rounded-2xl border border-gray-500'>

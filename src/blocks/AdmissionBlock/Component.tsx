@@ -61,7 +61,7 @@ export const AdminssionBlock: React.FC<Props> = (props) => {
     // }, []);
 
     return (
-        <section className={cn('py-10   md:px-12', className, textStyles)}>
+        <section className={cn('', className, textStyles)}>
             <div className=" max-w-6xl p-6 py-4 mx-auto relative flex flex-col bg-[#D9F1FD] rounded-3xl md:flex-row items-start md:items-center">
                 {/* Left Timeline */}
                 <div className="relative md:w-1/3 my-8">

@@ -54,11 +54,11 @@ export const StudyAbroadBlock: React.FC<Props> = (props) => {
                 return (
                     <div
                         key={index}
-                        className={`max-w-6xl mx-auto flex flex-col gap-8 items-center ${card.imagePosition === "left" ? "md:flex-row" : "md:flex-row-reverse"
+                        className={`max-w-6xl mx-auto flex flex-col gap-8 mb-8 items-center ${card.imagePosition === "left" ? "md:flex-row" : "md:flex-row-reverse"
                             }`}
                     >
                         {/* Content Side */}
-                        <div className={`w-full md:w-3/4 space-y-6 space-x-4 flex items-start ${card.imagePosition === "left" ? "justify-start" : "justify-end"
+                        <div className={`w-full md:w-3/5 space-y-6 space-x-4 flex items-start ${card.imagePosition === "left" ? "justify-start" : "justify-end"
                             }`}>
                             {/* Number Placeholder */}
                             <div className="text-9xl font-bold text-black mt-4">
@@ -77,7 +77,7 @@ export const StudyAbroadBlock: React.FC<Props> = (props) => {
                         </div>
 
                         {/* Image Side */}
-                        <div className="w-full md:w-1/4 rounded-3xl overflow-hidden">
+                        <div className="w-full md:w-2/5 rounded-3xl overflow-hidden">
                             <Image
                                 src={imageData?.url || '/placeholder.svg'}
                                 alt={imageData?.alt || ''}

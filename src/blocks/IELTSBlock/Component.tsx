@@ -32,15 +32,15 @@ export const IELTSBlock: React.FC<Props> = (props) => {
     }
 
     return (
-        <section className={cn('py-12', className)}>
+        <section className={cn('', className)}>
             {/* Header Section */}
             <div className="container mb-8">
-                <div className="max-w-3xl mx-auto text-center">
+                <div className="max-w-4xl mx-auto text-center">
                     <h1 className="text-4xl font-bold mb-2">{title}</h1>
                     <h2 className="text-2xl text-red-500 italic mb-4">
                         {subtitle}
                     </h2>
-                    <p className="text-gray-700 max-w-2xl mx-auto text-center">
+                    <p className="text-gray-700 mx-auto text-center">
                         {description}
                     </p>
                 </div>
@@ -51,7 +51,7 @@ export const IELTSBlock: React.FC<Props> = (props) => {
                 <div className="bg-[#D3F584] rounded-3xl overflow-hidden p-10">
                     <div className="grid md:grid-cols-2 gap-8">
                         {/* Left Column */}
-                        <div className="space-y-6">
+                        <div className="space-y-6 flex flex-col justify-center">
                             {/* IELTS Logo and Hybrid Learning */}
                             <div className="flex items-center gap-4">
                                 <div className="flex items-center">
@@ -107,19 +107,21 @@ export const IELTSBlock: React.FC<Props> = (props) => {
 
                             {/* CTA Button */}
                             {ctaButton && (
-                                <Button
-                                    size="lg"
-                                    className="bg-purple-600 hover:bg-purple-700 text-white rounded-full px-8 py-2 mt-4"
-                                    asChild
-                                >
-                                    <a href={ctaButton.href}>{ctaButton.text}</a>
-                                </Button>
+                                <div className="flex">
+                                    <Button
+                                        size="lg"
+                                        className="bg-purple-600 hover:bg-purple-700 text-white rounded-full px-8 py-2 mt-4"
+                                        asChild
+                                    >
+                                        <a href={ctaButton.href}>{ctaButton.text}</a>
+                                    </Button>
+                                </div>
                             )}
                         </div>
 
                         {/* Right Column - Image */}
                         {image && typeof image !== 'number' && 'url' in image && (
-                            <div className="relative h-full min-h-[400px] w-full">
+                            <div className="relative h-full min-h-[500px] w-full">
                                 <Image
                                     src={image.url || ''}
                                     alt="IELTS Training"

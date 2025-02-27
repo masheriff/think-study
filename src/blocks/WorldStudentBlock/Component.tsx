@@ -1,8 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { cn } from '@/utilities/ui';
 import type { WorldStudentBlock as WorldStudentBlockType } from '@/payload-types';
 import { RichText } from '@payloadcms/richtext-lexical/react';
 
@@ -12,46 +11,140 @@ type Props = WorldStudentBlockType & {
 
 export const WorldStudentBlock: React.FC<Props> = (props) => {
     const {
-        className,
         backgroundImage,
         title,
         items
     } = props;
 
+    const containerRef = useRef<HTMLDivElement>(null);
+    // Fixed position for the center point
+    const [centerPoint, setCenterPoint] = useState({ x: 0, y: 0 });
+    const [itemPositions, setItemPositions] = useState<Array<{ x: number, y: number }>>([]);
+
     // Helper function to create curved path between two points
-    const _createCurvedPath = (startX: number, startY: number, endX: number, endY: number) => {
+    const createCurvedPath = (startX: number, startY: number, endX: number, endY: number) => {
         const midX = (startX + endX) / 2;
         const curveHeight = Math.abs(endX - startX) * 0.3;
         return `M ${startX} ${startY} Q ${midX} ${Math.min(startY, endY) - curveHeight} ${endX} ${endY}`;
     };
 
+    // Array of colors for each line
+    const lineColors = [
+        '#FF5733', // Orange-red
+        '#33FF57', // Green
+        '#3357FF', // Blue
+        '#F033FF', // Purple
+        '#FF33F0', // Pink
+    ];
+
     // Predefined positions for the markers
     const positions = [
         { left: '20%', top: '30%' }, // USA
         { left: '25%', top: '25%' }, // Canada
-        { left: '45%', top: '20%' }, // UK (Liverpool)
+        { left: '03%', top: '50%' }, // UK (Liverpool)
         { left: '60%', top: '35%' }, // Medical School
         { left: '75%', top: '45%' }, // Australia (Monash)
     ];
 
+    // Calculate center point and item positions after component mounts and whenever window resizes
+    useEffect(() => {
+        const calculatePositions = () => {
+            if (containerRef.current) {
+                const containerRect = containerRef.current.getBoundingClientRect();
+
+                // Set center point to the specified position (right: 30%, top: 45%)
+                setCenterPoint({
+                    x: containerRect.width * 0.7, // 100% - 30%
+                    y: containerRect.height * 0.45
+                });
+
+                // Calculate absolute positions for each item
+                const itemRects = Array.from(containerRef.current.querySelectorAll('.marker-item'))
+                    .map(item => {
+                        const rect = item.getBoundingClientRect();
+                        const relativeRect = {
+                            x: rect.left - containerRect.left + rect.width / 2,
+                            y: rect.top - containerRect.top
+                        };
+                        return relativeRect;
+                    });
+
+                setItemPositions(itemRects);
+            }
+        };
+
+        // Initial calculation
+        calculatePositions();
+
+        // Recalculate when window resizes
+        window.addEventListener('resize', calculatePositions);
+
+        return () => {
+            window.removeEventListener('resize', calculatePositions);
+        };
+    }, [items]);
+
     return (
-        <section className="block">
+        <section className="block my-[-2rem]">
             <hr className='w-1/2 mx-auto' />
-            <div className="block mt-12">
+            <div className="block mt-10">
                 <RichText className="text-center" data={title} />
             </div>
-            <div className={cn('relative w-full h-[700px] overflow-hidden', className)}>
+            <div
+                ref={containerRef}
+                className="w-full mt-6 overflow-hidden relative h-[700px]"
+            >
                 {backgroundImage && typeof backgroundImage === 'object' && 'url' in backgroundImage && (
-                    <div className="absolute inset-0 z-0">
-                        <Image
-                            src={backgroundImage.url || ''}
-                            alt="World Map Background"
-                            fill
-                            style={{ objectFit: 'cover' }}
-                            className="opacity-20"
-                        />
-                    </div>
+                    <Image
+                        src={backgroundImage.url || ''}
+                        alt="World Map Background"
+                        fill
+                        style={{ objectFit: 'cover' }}
+                        className="opacity-20"
+                    />
                 )}
+
+                {/* SVG for the connecting lines with gradients */}
+                <svg
+                    className="absolute top-0 left-0 w-full h-full"
+                    style={{ pointerEvents: 'none', zIndex: 5 }}
+                >
+                    <defs>
+                        {itemPositions.map((pos, idx) => (
+                            <linearGradient
+                                key={`gradient-${idx}`}
+                                id={`lineGradient-${idx}`}
+                                gradientUnits="userSpaceOnUse"
+                                x1={pos.x} y1={pos.y}
+                                x2={centerPoint.x} y2={centerPoint.y}
+                            >
+                                <stop offset="0%" stopColor={lineColors[idx % lineColors.length]} stopOpacity="0.2" />
+                                <stop offset="100%" stopColor={lineColors[idx % lineColors.length]} stopOpacity="1" />
+                            </linearGradient>
+                        ))}
+                    </defs>
+
+                    {itemPositions.map((pos, idx) => (
+                        <path
+                            key={`path-${idx}`}
+                            d={createCurvedPath(pos.x, pos.y, centerPoint.x, centerPoint.y)}
+                            stroke={`url(#lineGradient-${idx})`}
+                            strokeWidth="3"
+                            fill="none"
+                        />
+                    ))}
+                </svg>
+
+                {/* Central point */}
+                <div
+                    className="absolute bg-blue-600 rounded-full w-4 h-4"
+                    style={{
+                        right: `calc(30% - 8px)`,
+                        top: `calc(45% - 8px)`,
+                        zIndex: 20
+                    }}
+                />
+
                 {items?.map((item, index) => {
                     const pos = positions[index % positions.length];
                     if (!pos) return null;
@@ -59,13 +152,13 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
                     return (
                         <div
                             key={index}
-                            className="absolute bg-white p-2 flex flex-row items-center justify-around rounded-full w-44 shadow-lg"
+                            className="marker-item absolute bg-white p-2 flex flex-row items-center justify-around rounded-full w-44 shadow-lg"
                             style={{
                                 left: item.left || pos.left,
                                 right: item.right || 'auto',
                                 top: item.top || pos.top,
                                 bottom: item.bottom || 'auto',
-                                zIndex: item['z-index'] || 10
+                                zIndex: 10
                             }}
                         >
                             {typeof item.image === 'object' && item.image !== null && 'url' in item.image && (
@@ -83,93 +176,7 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
                     );
                 })}
             </div>
-
         </section>
-        // <section className={cn('relative w-full h-[600px] overflow-hidden', className)}>
-        //     {/* Background Map */}
-        //     {backgroundImage && typeof backgroundImage === 'object' && 'url' in backgroundImage && (
-        //         <div className="absolute inset-0 z-0">
-        //             <Image
-        //                 src={backgroundImage.url || ''}
-        //                 alt="World Map Background"
-        //                 fill
-        //                 style={{ objectFit: 'cover' }}
-        //                 className="opacity-20"
-        //             />
-        //         </div>
-        //     )}
-
-        //     {/* Title */}
-        //     <div className="text-center">
-        //         <h2 className="text-3xl font-bold mb-2">
-        //             {typeof title === 'string' ? title : ''}
-        //         </h2>
-        //     </div>
-
-        //     {/* SVG for curved lines */}
-        //     <svg className="absolute inset-0 w-full h-full pointer-events-none">
-        //         <defs>
-        //             <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-        //                 <stop offset="0%" style={{ stopColor: '#e11d48', stopOpacity: 0.4 }} />
-        //                 <stop offset="100%" style={{ stopColor: '#4f46e5', stopOpacity: 0.4 }} />
-        //             </linearGradient>
-        //         </defs>
-        //         {items?.map((_, index) => {
-        //             const paths = [
-        //                 createCurvedPath(200, 200, 400, 300),
-        //                 createCurvedPath(300, 250, 500, 350),
-        //                 createCurvedPath(400, 300, 600, 250),
-        //                 createCurvedPath(500, 350, 700, 400),
-        //                 createCurvedPath(600, 400, 800, 350),
-        //             ];
-
-        //             return (
-        //                 <path
-        //                     key={index}
-        //                     d={paths[index % paths.length]}
-        //                     fill="none"
-        //                     stroke="url(#lineGradient)"
-        //                     strokeWidth="2"
-        //                     className="animate-draw"
-        //                 />
-        //             );
-        //         })}
-        //     </svg>
-
-        //     {/* Student/University markers */}
-        //     {items?.map((item, index) => {
-        //         const pos = positions[index % positions.length];
-        //         if (!pos) return null;
-
-        //         return (
-        //             <div
-        //                 key={index}
-        //                 className="absolute"
-        //                 style={{
-        //                     left: pos.left,
-        //                     top: pos.top,
-        //                     zIndex: item['z-index'] || 1
-        //                 }}
-        //             >
-        //                 <div className="relative group">
-        //                     {typeof item.image === 'object' && item.image !== null && 'url' in item.image && (
-        //                         <div className="w-12 h-12 relative rounded-full overflow-hidden border-2 border-white shadow-lg">
-        //                             <Image
-        //                                 src={item.image.url || ''}
-        //                                 alt={item.title || ''}
-        //                                 fill
-        //                                 style={{ objectFit: 'cover' }}
-        //                             />
-        //                         </div>
-        //                     )}
-        //                     <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-white px-3 py-1 rounded-full shadow-md whitespace-nowrap">
-        //                         {item.title}
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         );
-        //     })}
-        // </section>
     );
 };
 

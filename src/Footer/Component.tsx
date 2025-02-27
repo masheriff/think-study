@@ -30,7 +30,7 @@ export async function Footer() {
   const footerData: Footer = (await getCachedGlobal("footer", 1)()) as unknown as Footer
 
   return (
-    <footer className="mt-auto border-t border-border bg-black dark:bg-card text-orange-400">
+    <footer className="mt-auto border-t border-border bg-black dark:bg-card text-[#F7674F]">
       <div className="container py-12">
         {/* Main Content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">

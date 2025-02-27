@@ -51,9 +51,9 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
                                         </div>
                                     )}
                                     <div className="w-full md:w-1/2 bg-[#C1F177] p-6 flex flex-col justify-between rounded-3xl overflow-hidden shadow-lg">
-                                        <div className="relative">
+                                        <div className="relative mt-4 mb-4">
                                             <Image className="absolute top-[-20px] left-[-10px]" src="/media/icons/quote.png" alt="Quote" width={35} height={35} />
-                                            <p className="text-xs text-gray-700 leading-relaxed mt-4 px-4">
+                                            <p className="text-xs text-gray-700 leading-relaxed mt-4 mb-4 text-justify px-4">
                                                 {testimonial.review}
                                             </p>
                                             <Image className="absolute bottom-[-15px] right-2" src="/media/icons/double-quotes.png" alt='Quote' width={35} height={35} />
