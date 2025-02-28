@@ -9,7 +9,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ heading, description, l
   const { setHeaderTheme } = useHeaderTheme()
 
   useEffect(() => {
-    setHeaderTheme('dark')
+    setHeaderTheme('light')
   }, [setHeaderTheme])
 
   return (

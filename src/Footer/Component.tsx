@@ -4,6 +4,7 @@ import type { ReactElement } from "react"
 import type { Footer } from "@/payload-types"
 import { CMSLink } from "@/components/Link"
 import { Logo } from "@/components/Logo/Logo"
+import TextHighlighter from "@/components/ui/texthighlighter"
 
 // Define valid social media types
 type SocialIconType = "facebook" | "twitter" | "instagram"
@@ -30,7 +31,7 @@ export async function Footer() {
   const footerData: Footer = (await getCachedGlobal("footer", 1)()) as unknown as Footer
 
   return (
-    <footer className="mt-auto border-t border-border bg-black dark:bg-card text-[#F7674F]">
+    <footer className="mt-auto border-t border-border bg-black/80 dark:bg-card text-[#F7674F]">
       <div className="container py-12">
         {/* Main Content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
@@ -41,6 +42,7 @@ export async function Footer() {
             </Link>
             <p className="text-muted-foreground text-white text-sm">{footerData?.description}</p>
           </div>
+
 
           {/* Services Column */}
           <div className="flex flex-col gap-3">
@@ -95,7 +97,7 @@ export async function Footer() {
           </div>
 
           {/* Copyright */}
-          <div className="text-center text-white text-sm mx-auto">{footerData?.copyright}</div>
+          <div className="text-center text-white text-sm mx-auto"><TextHighlighter text={footerData?.copyright} /></div>
         </div>
       </div>
     </footer>
