@@ -27,11 +27,12 @@ jobs:
       - name: Lint code
         run: npm run lint || echo "Linting issues detected"
       
-      - name: Setup test database
+      - name: Setup test environment
         run: |
-          echo "DATABASE_URI=${{ secrets.TEST_DATABASE_URI }}" > .env
+          # Using a local test database instead of connecting to server
+          echo "DATABASE_URI=mongodb://localhost:27017/payload-test" > .env
           echo "PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}" >> .env
-          
+      
       - name: Check migrations status
         run: npm run migrate:status
       
@@ -184,26 +185,26 @@ jobs:
             # Document migration in changelog
             echo "$(date): Deployed from ${{ github.ref }} with migrations" >> ~/deployment_changelog.txt
 
-  # Sync database and media files from staging to production when deploying to main
+  # Sync database and media files from staging to production using server-side operations
   sync-to-production:
     runs-on: ubuntu-latest
     needs: deploy
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     
     steps:
-      - name: Setup SSH for server operations
-        uses: webfactory/ssh-agent@v0.7.0
+      - name: Trigger server-side database and media sync
+        uses: appleboy/ssh-action@master
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          
-      - name: Sync database and media files from staging to production
-        run: |
-          # Connect to server and perform sync operations
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
             # Create directory for database operations
             mkdir -p ~/db_sync
             
             # Step 1: Create a database dump from staging
+            echo "Creating staging database dump..."
             export PGPASSWORD=${{ secrets.STAGING_DB_PASSWORD }}
             pg_dump -h localhost \
                    -U ${{ secrets.STAGING_DB_USER }} \
@@ -218,6 +219,7 @@ jobs:
             echo "✅ Staging database dump created successfully"
             
             # Step 2: Backup production database before overwriting (safety measure)
+            echo "Backing up production database..."
             export PGPASSWORD=${{ secrets.PROD_DB_PASSWORD }}
             BACKUP_TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
             BACKUP_DIR=~/db_backups/$BACKUP_TIMESTAMP
@@ -228,6 +230,7 @@ jobs:
                    -d ${{ secrets.PROD_DB_NAME }} > $BACKUP_DIR/prod_backup_before_sync.sql
             
             # Step 3: Drop existing schema and restore from staging dump
+            echo "Restoring staging database to production..."
             psql -h localhost \
                 -U ${{ secrets.PROD_DB_USER }} \
                 -d ${{ secrets.PROD_DB_NAME }} \
@@ -276,4 +279,3 @@ jobs:
             
             # Document sync in changelog
             echo "$(date): Synced database and media from staging to production" >> ~/deployment_changelog.txt
-          ENDSSH
