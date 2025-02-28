@@ -42,6 +42,7 @@ export async function Footer() {
             <p className="text-muted-foreground text-white text-sm">{footerData?.description}</p>
           </div>
 
+
           {/* Services Column */}
           <div className="flex flex-col gap-3">
             <h3 className="font-normal mb-2">Services</h3>
