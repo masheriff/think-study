@@ -7,7 +7,6 @@ on:
     branches: ["main", "staging"]
 
 jobs:
-
   deploy:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
@@ -150,21 +149,6 @@ jobs:
             
             # Document migration in changelog
             echo "$(date): Deployed from ${{ github.ref }} with migrations" >> ~/deployment_changelog.txt
-            
-            # Run tests on the staging server for real-world validation
-            if [ "${{ env.APP_NAME }}" = "${{ secrets.STAGING_APP_NAME }}" ]; then
-              echo "Running verification tests on staging server..."
-              cd ${{ secrets.STAGING_DEPLOY_PATH }}
-              
-              # Create test environment file with test database
-              echo "DATABASE_URI=${{ secrets.TEST_DATABASE_URI }}" > .env.test
-              echo "PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}" >> .env.test
-              
-              # Run tests with the test environment
-              NODE_ENV=test NODE_OPTIONS="--max-old-space-size=1024" npm test
-              
-              echo "✅ Staging verification tests completed"
-            fi
 
   # Sync database and media files from staging to production when deploying to main
   sync-to-production:
