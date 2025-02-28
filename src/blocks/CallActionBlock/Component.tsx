@@ -66,7 +66,7 @@ export const CallActionBlock: React.FC<Props> = (props) => {
         <section className={cn('container', className)}>
             <div className="space-y-12">
                 <div className="relative">
-                    <div className="bg-gray-100 rounded-3xl px-8 md:px-12">
+                    <div className="bg-gray-200 rounded-3xl px-8 md:px-12">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                             {/* Left Side - Contact Info */}
                             <div className="space-y-8">

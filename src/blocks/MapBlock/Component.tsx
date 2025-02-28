@@ -16,8 +16,8 @@ export const MapBlock: React.FC<Props> = (props) => {
     } = props;
 
     return (
-        <section className={cn('py-16', className)}>
-            <div className="container mx-auto px-4">
+        <section className={cn('', className)}>
+            <div className="container">
                 {/* Common Heading */}
                 {heading && (
                     <h2 className="text-3xl font-bold mb-8 text-center">
@@ -27,7 +27,7 @@ export const MapBlock: React.FC<Props> = (props) => {
 
                 {/* Offices List with Iframes */}
                 {offices && offices.length > 0 && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 rounded-2xl p-10 bg-neutral-200">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 rounded-2xl p-10 bg-gray-200">
                         {offices.map((office, index) => (
                             <div key={index} className="flex flex-col">
                                 {/* Office Iframe */}
