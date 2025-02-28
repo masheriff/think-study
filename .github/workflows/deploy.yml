@@ -7,40 +7,6 @@ on:
     branches: ["main", "staging"]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-          cache: 'npm'
-          
-      - name: Install dependencies
-        run: npm ci
-          
-      - name: Lint code
-        run: npm run lint || echo "Linting issues detected"
-      
-      - name: Setup test environment
-        run: |
-          # Using a local test database instead of connecting to server
-          echo "DATABASE_URI=mongodb://localhost:27017/payload-test" > .env
-          echo "PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}" >> .env
-      
-      - name: Check migrations status
-        run: npm run migrate:status
-      
-      - name: Apply migrations
-        run: npm run migrate
-        
-      - name: Run tests
-        run: npm test || echo "Tests failed"
 
   deploy:
     runs-on: ubuntu-latest
@@ -184,15 +150,30 @@ jobs:
             
             # Document migration in changelog
             echo "$(date): Deployed from ${{ github.ref }} with migrations" >> ~/deployment_changelog.txt
+            
+            # Run tests on the staging server for real-world validation
+            if [ "${{ env.APP_NAME }}" = "${{ secrets.STAGING_APP_NAME }}" ]; then
+              echo "Running verification tests on staging server..."
+              cd ${{ secrets.STAGING_DEPLOY_PATH }}
+              
+              # Create test environment file with test database
+              echo "DATABASE_URI=${{ secrets.TEST_DATABASE_URI }}" > .env.test
+              echo "PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}" >> .env.test
+              
+              # Run tests with the test environment
+              NODE_ENV=test NODE_OPTIONS="--max-old-space-size=1024" npm test
+              
+              echo "✅ Staging verification tests completed"
+            fi
 
-  # Sync database and media files from staging to production using server-side operations
+  # Sync database and media files from staging to production when deploying to main
   sync-to-production:
     runs-on: ubuntu-latest
     needs: deploy
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     
     steps:
-      - name: Trigger server-side database and media sync
+      - name: Execute remote SSH commands to sync databases and media
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -200,6 +181,14 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
+            # Load environment variables and profiles
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+            
+            source ~/.profile
+            source ~/.bashrc
+            
             # Create directory for database operations
             mkdir -p ~/db_sync
             
@@ -229,6 +218,8 @@ jobs:
                    -U ${{ secrets.PROD_DB_USER }} \
                    -d ${{ secrets.PROD_DB_NAME }} > $BACKUP_DIR/prod_backup_before_sync.sql
             
+            echo "✅ Production database backup created at $BACKUP_DIR/prod_backup_before_sync.sql"
+            
             # Step 3: Drop existing schema and restore from staging dump
             echo "Restoring staging database to production..."
             psql -h localhost \
@@ -240,6 +231,8 @@ jobs:
                 -U ${{ secrets.PROD_DB_USER }} \
                 -d ${{ secrets.PROD_DB_NAME }} < ~/db_sync/staging_dump.sql
             
+            echo "✅ Database restored successfully from staging to production"
+            
             # Step 4: Backup production media files before syncing
             echo "Backing up production media files..."
             MEDIA_BACKUP_DIR=~/media_backups/$BACKUP_TIMESTAMP
@@ -250,12 +243,14 @@ jobs:
               echo "✅ Production media backup created at $MEDIA_BACKUP_DIR"
             else
               echo "⚠️ No media folder found in production to backup"
+              mkdir -p ${{ secrets.PROD_DEPLOY_PATH }}/public/media/
             fi
             
             # Step 5: Sync media files from staging to production
             echo "Syncing media files from staging to production..."
-            mkdir -p ${{ secrets.PROD_DEPLOY_PATH }}/public/media/
             rsync -avz --delete ${{ secrets.STAGING_DEPLOY_PATH }}/public/media/ ${{ secrets.PROD_DEPLOY_PATH }}/public/media/
+            
+            echo "✅ Media files synced from staging to production"
             
             # Step 6: Clean up temporary files but keep the backups
             rm ~/db_sync/staging_dump.sql
@@ -273,6 +268,7 @@ jobs:
             fi
             
             # Step 7: Restart the PM2 process for production to ensure it uses the new data
+            echo "Restarting production application..."
             pm2 restart ${{ secrets.PROD_APP_NAME }}
             
             echo "✅ Production database and media files updated successfully from staging"
