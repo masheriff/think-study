@@ -19,7 +19,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
   return (
     <header className="relative z-20 bg-white">
-      <div className="container max-w-6xl  mx-auto px-2 py-4 flex justify-between items-center">
+      <div className="container py-4 flex justify-between items-center">
         <Link href="/" className="flex-shrink-0">
           <Logo priority />
         </Link>
@@ -29,7 +29,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
             <Link href="/contact">
               <Button
                 variant="outline"
-                className="bg-purple-800 hover:bg-purple-900 hover:text-white text-white px-4 py-2 rounded-3xl transition-colors"
+                className="bg-[#6B5BA9] hover:bg-[#574A8C] hover:text-white text-white px-4 py-2 rounded-3xl transition-colors"
               >
                 Schedule Counseling
               </Button>

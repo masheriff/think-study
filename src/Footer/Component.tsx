@@ -4,6 +4,7 @@ import type { ReactElement } from "react"
 import type { Footer } from "@/payload-types"
 import { CMSLink } from "@/components/Link"
 import { Logo } from "@/components/Logo/Logo"
+import TextHighlighter from "@/components/ui/texthighlighter"
 
 // Define valid social media types
 type SocialIconType = "facebook" | "twitter" | "instagram"
@@ -30,75 +31,76 @@ export async function Footer() {
   const footerData: Footer = (await getCachedGlobal("footer", 1)()) as unknown as Footer
 
   return (
-    <footer className="mt-auto border-t border-border bg-black dark:bg-card text-[#F7674F]">
-      <div className="container py-12">
-        {/* Main Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          {/* Logo & Description */}
-          <div className="space-y-4">
-            <Link href="/">
-              <Logo />
-            </Link>
-            <p className="text-muted-foreground text-white text-sm">{footerData?.description}</p>
-          </div>
-
-          {/* Services Column */}
-          <div className="flex flex-col gap-3">
-            <h3 className="font-normal mb-2">Services</h3>
-            {footerData?.services?.map(({ link }, i) => (
-              <CMSLink className="text-muted-foreground text-white text-sm" key={i} {...link} />
-            ))}
-          </div>
-
-          {/* About Column */}
-          <div className="flex flex-col gap-3">
-            <h3 className="font-normal mb-2">About</h3>
-            {footerData?.about?.map(({ link }, i) => (
-              <CMSLink className="text-muted-foreground text-white text-sm" key={i} {...link} />
-            ))}
-          </div>
-
-          {/* Help Column */}
-          <div className="flex flex-col gap-3">
-            <h3 className="font-normal mb-2">Help</h3>
-            {footerData?.help?.map(({ link }, i) => (
-              <CMSLink className="text-muted-foreground text-white text-sm" key={i} {...link} />
-            ))}
-          </div>
+    // <footer className="mt-auto border-t border-border">
+    <footer className="container py-12 bg-black dark:bg-card text-[#F7674F] rounded-xl">
+      {/* Main Content */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        {/* Logo & Description */}
+        <div className="space-y-4">
+          <Link href="/">
+            <Logo />
+          </Link>
+          <p className="text-muted-foreground text-white text-sm">{footerData?.description}</p>
         </div>
-        {/* Bottom Section */}
-        <div className="pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
-            {/* Legal Links */}
-            <div className="flex gap-6">
-              {footerData?.legal?.map(({ link }, i) => (
-                <CMSLink key={i} {...link} className="text-white text-sm hover:text-orange-300" />
-              ))}
-            </div>
 
-            {/* Social Media */}
-            <div className="flex items-center justify-center gap-4">
-              {footerData?.social?.map(({ link }, i) => {
-                const socialType = link.label?.toLowerCase().trim() as SocialIconType
-                return (
-                  <CMSLink
-                    key={i}
-                    {...link}
-                    label={""}
-                    className="text-white hover:text-orange-300 transition-colors flex items-center justify-center"
-                  >
-                    {socialType && SocialIcons[socialType]}
-                  </CMSLink>
-                )
-              })}
-            </div>
-          </div>
 
-          {/* Copyright */}
-          <div className="text-center text-white text-sm mx-auto">{footerData?.copyright}</div>
+        {/* Services Column */}
+        <div className="flex flex-col gap-3">
+          <h3 className="font-normal mb-2">Services</h3>
+          {footerData?.services?.map(({ link }, i) => (
+            <CMSLink className="text-muted-foreground text-white text-sm" key={i} {...link} />
+          ))}
+        </div>
+
+        {/* About Column */}
+        <div className="flex flex-col gap-3">
+          <h3 className="font-normal mb-2">About</h3>
+          {footerData?.about?.map(({ link }, i) => (
+            <CMSLink className="text-muted-foreground text-white text-sm" key={i} {...link} />
+          ))}
+        </div>
+
+        {/* Help Column */}
+        <div className="flex flex-col gap-3">
+          <h3 className="font-normal mb-2">Help</h3>
+          {footerData?.help?.map(({ link }, i) => (
+            <CMSLink className="text-muted-foreground text-white text-sm" key={i} {...link} />
+          ))}
         </div>
       </div>
+      {/* Bottom Section */}
+      <div className="pt-8">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
+          {/* Legal Links */}
+          <div className="flex gap-6">
+            {footerData?.legal?.map(({ link }, i) => (
+              <CMSLink key={i} {...link} className="text-white text-sm hover:text-orange-300" />
+            ))}
+          </div>
+
+          {/* Social Media */}
+          <div className="flex items-center justify-center gap-4">
+            {footerData?.social?.map(({ link }, i) => {
+              const socialType = link.label?.toLowerCase().trim() as SocialIconType
+              return (
+                <CMSLink
+                  key={i}
+                  {...link}
+                  label={""}
+                  className="text-white hover:text-orange-300 transition-colors flex items-center justify-center"
+                >
+                  {socialType && SocialIcons[socialType]}
+                </CMSLink>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="text-center text-white text-sm mx-auto"><TextHighlighter text={footerData?.copyright} /></div>
+      </div>
     </footer>
+    // </footer>
   )
 }
 
