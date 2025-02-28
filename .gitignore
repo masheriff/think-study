@@ -8,3 +8,4 @@ node_modules
 
 public/robots.txt
 public/sitemap*.xml
+server_db_backup.dump
