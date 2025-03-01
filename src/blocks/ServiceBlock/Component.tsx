@@ -74,7 +74,7 @@ export const ServiceBlock: React.FC<Props> = (props) => {
                         {/* Header Section */}
                         <div className="max-w-4xl mx-auto text-start mb-2">
                             <h2
-                                className=" mb-2"
+                                className=" mb-3"
                                 style={{
                                     fontFamily: mainHeadingStyles?.family,
                                     fontSize: mainHeadingStyles?.size || '1rem',
@@ -83,19 +83,19 @@ export const ServiceBlock: React.FC<Props> = (props) => {
                             >
                                 {mainHeading}
                             </h2>
-                            <p className="mb-2"
+                            <p className="mb-3"
                                 style={{
                                     fontFamily: descriptionStyle?.family,
-                                    fontSize: descriptionStyle?.size,
+                                    fontSize: descriptionStyle?.size || '14px',
                                     color: descriptionStyle?.color,
                                 }}
                             >
                                 {description}
                             </p>
-                            <p className=""
+                            <p className="mb-3"
                                 style={{
                                     fontFamily: descriptionStyle?.family,
-                                    fontSize: descriptionStyle?.size,
+                                    fontSize: descriptionStyle?.size || '14px',
                                     color: descriptionStyle?.color,
                                 }}
                             >

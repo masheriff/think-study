@@ -19,7 +19,7 @@ const textStyleFields: Field[] = [
     {
         name: 'color',
         type: 'text',
-        defaultValue: '#000000',
+        defaultValue: '#FF0000',
     },
 ];
 

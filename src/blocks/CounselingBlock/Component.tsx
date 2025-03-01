@@ -35,8 +35,6 @@ export const CounselingBlock: React.FC<Props> = (props) => {
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
 
-    // console.log(nextBtnEnabled, prevBtnEnabled)
-
     // Navigation functions
     const _scrollPrev = useCallback( // Marked as unused
         () => emblaApi && emblaApi.scrollPrev(),

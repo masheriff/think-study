@@ -107,7 +107,7 @@ export const CareerBlock: React.FC<Props> = (props) => {
                             </p>
                         </div>
 
-                        <div className="flex flex-row justify-between gap-6">
+                        <div className="flex flex-row justify-between gap-0">
                             {statistics?.map((stat, index) => (
                                 <div key={index} className="flex-1">
                                     <div
@@ -163,7 +163,7 @@ export const CareerBlock: React.FC<Props> = (props) => {
                     </div> */}
                     <div className="w-full md:w-[69%] relative flex justify-center">
                         {/* Button Container */}
-                        <div className="absolute top-[103px] left-1/2 -translate-x-1/2 flex flex-wrap justify-center items-center gap-2 w-full w-[550px] smax-w-[800px]">
+                        <div className="absolute top-[115px] left-1/2 -translate-x-1/2 flex flex-wrap justify-center items-center gap-2  w-[550px] smax-w-[800px]">
                             {bText?.map((stat, index) => (
                                 <button
                                     key={index}

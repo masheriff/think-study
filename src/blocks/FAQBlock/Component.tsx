@@ -25,9 +25,6 @@ export const FAQBlock: React.FC<Props> = (props) => {
         setOpenIndex(openIndex === index ? null : index)
     }
 
-    console.log(faqs, "faqs")
-
-
     return (
         <section className={cn(' max-w-6xl py-0 px-4 md:px-6 mx-auto', className)}>
             <h2

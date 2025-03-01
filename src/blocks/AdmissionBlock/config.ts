@@ -101,7 +101,7 @@ export const AdminssionBlock: Block = {
             type: 'text',
             required: true,
             label: 'Ambitions',
-            defaultValue: 'We understand your ambitions like they’re our own',
+            defaultValue: 'We understand your ambitions like they’re our own.',
         },
         {
             name: 'description',
@@ -115,7 +115,7 @@ export const AdminssionBlock: Block = {
             type: 'text',
             required: true,
             label: 'Success Rate',
-            defaultValue: '98% Success Rate in International Admissions!',
+            defaultValue: 'Unlock Your Global Future – 98% Success Rate in International Admissions!',
         },
         {
             name: 'statistics',
