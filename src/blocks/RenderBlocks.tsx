@@ -20,6 +20,8 @@ import WhyusMediaBlock from './WhyusMedia/Component'
 import ServiceBlock from './ServiceBlock/Component'
 import CallActionBlock from './CallActionBlock/Component'
 import AppointmentBlock from './AppointmentBlock/Component'
+import { StudyInCourse } from './StudyInCourse/Component'
+import StudyInChecklist from './StudyInCheckList/Component'
 
 
 
@@ -43,7 +45,8 @@ type BlockComponentsType = {
   appointmentBlock: typeof AppointmentBlock
   careerBlock: typeof CareerBlock
   callActionBlock: typeof CallActionBlock
-
+  studyInCourse: typeof StudyInCourse
+  studyInChecklist: typeof StudyInChecklist
 }
 
 const blockComponents: BlockComponentsType = {
@@ -66,6 +69,8 @@ const blockComponents: BlockComponentsType = {
   whyusMediaBlock: WhyusMediaBlock,
   appointmentBlock: AppointmentBlock,
   callActionBlock: CallActionBlock,
+  studyInCourse: StudyInCourse,
+  studyInChecklist: StudyInChecklist
 
 }
 

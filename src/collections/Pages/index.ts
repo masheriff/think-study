@@ -38,6 +38,10 @@ import { hero } from '@/heros/config'
 import { CallActionBlock } from '@/blocks/CallActionBlock/config'
 import { AppointmentBlock } from '@/blocks/AppointmentBlock/config'
 
+// Study In Page
+import { StudyInCourse } from '@/blocks/StudyInCourse/config'
+import { StudyInChecklist } from '@/blocks/StudyInCheckList/config'
+
 
 
 
@@ -96,7 +100,7 @@ export const Pages: CollectionConfig<'pages'> = {
               name: 'layout',
               type: 'blocks',
               blocks: [Content, MediaBlock, Archive, FormBlock, TestimonialsBlock, CounselingBlock,
-                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock, WhyusMediaBlock, ConnectBlock, CallActionBlock, AppointmentBlock],
+                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock, WhyusMediaBlock, ConnectBlock, CallActionBlock, AppointmentBlock, StudyInCourse, StudyInChecklist],
               required: true,
               admin: {
                 initCollapsed: true,
