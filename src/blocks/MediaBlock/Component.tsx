@@ -3,11 +3,8 @@ import type { StaticImageData } from 'next/image'
 import { cn } from '@/utilities/ui'
 import React from 'react'
 import RichText from '@/components/RichText'
-
 import type { MediaBlock as MediaBlockProps } from '@/payload-types'
-
 import { Media } from '../../components/Media'
-import 'aos/dist/aos.css';
 
 type Props = MediaBlockProps & {
   breakout?: boolean
@@ -42,7 +39,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
         },
         className,
       )}
-      data-aos="fade-left"
+
     >
       {(media || staticImage) && (
         <Media

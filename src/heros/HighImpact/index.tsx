@@ -18,13 +18,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ heading, description, l
         <div className="max-w-[50rem] md:text-center">
           {/* Heading */}
           {heading && (
-            <div
-              className="mb-6"
-              style={{
-                fontFamily: heading.fontFamily ? `var(--font-${heading.fontFamily.toLowerCase().replace(' ', '-')})` : undefined,
-                fontSize: heading.fontSize || undefined,
-              }}
-            >
+            <div className="mb-6">
               <h1 className="text-4xl font-semibold p-4">
                 <TextHighlighter text={heading.content || ''} />
               </h1>
@@ -33,13 +27,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ heading, description, l
 
           {/* Description */}
           {description && (
-            <div
-              className="mb-8"
-              style={{
-                fontFamily: description.fontFamily ? `var(--font-${description.fontFamily.toLowerCase().replace(' ', '-')})` : undefined,
-                fontSize: description.fontSize || undefined,
-              }}
-            >
+            <div className="mb-8">
               <p className="text-lg">{description.content}</p>
             </div>
           )}

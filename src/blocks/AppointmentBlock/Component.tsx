@@ -29,7 +29,7 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                     <div className="flex flex-col w-1/2 space-y-6">
                         <h6 className="text-xl font-medium text-black/65">{leftContent?.title}</h6>
                         <h2 className="text-4xl font-semibold text-gray-700">{leftContent?.subTitle}</h2>
-                        <p className="text-2xl font-bold italic text-red-600 font-caveat">{leftContent?.highlightText}</p>
+                        <p className="text-3xl text-red-500 font-courgette italic font-normal mb-4">{leftContent?.highlightText}</p>
                         {/* New extraText field */}
                         <p className="text-base text-black/65">{leftContent?.extraText}</p>
                         <div>

@@ -39,7 +39,7 @@ export const CallActionBlock: React.FC<Props> = (props) => {
     } = props
 
     const [showButton, setShowButton] = useState(false);
-    console.log(showButton)
+
 
     // const handleScroll = () => {
     //     window.scrollTo({
@@ -61,6 +61,7 @@ export const CallActionBlock: React.FC<Props> = (props) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // console.log(officeStyles, "officeStyles")
 
     return (
         <section className={cn('container', className)}>
@@ -86,7 +87,7 @@ export const CallActionBlock: React.FC<Props> = (props) => {
                                             <div
                                                 className="text-xl"
                                                 style={{
-                                                    color: officeStyles?.[0]?.color || '#000000',
+                                                    color: officeStyles?.[0]?.color || '#FF0000',
                                                     fontSize: officeStyles?.[0]?.size || '1.25rem',
                                                     fontFamily: officeStyles?.[0]?.family,
                                                 }}

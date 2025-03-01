@@ -5,7 +5,7 @@ import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import type { FutureBlock as FutureBlockType } from '@/payload-types'
 // import AOS from 'aos';
-import 'aos/dist/aos.css';
+// import 'aos/dist/aos.css';
 
 type Props = FutureBlockType & {
     className?: string

@@ -6,6 +6,7 @@ node_modules
 .next
 .vercel
 
+public/media
 public/robots.txt
 public/sitemap*.xml
 server_db_backup.dump

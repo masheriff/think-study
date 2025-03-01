@@ -99,19 +99,9 @@ export interface Page {
        * Enter the text inside "|" symbols to highlight text in red. Example: "Regular text |highlighted text| regular text"
        */
       content?: string | null;
-      fontFamily?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-      /**
-       * Enter value with unit (e.g., 2rem, 24px)
-       */
-      fontSize?: string | null;
     };
     description?: {
       content?: string | null;
-      fontFamily?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-      /**
-       * Enter value with unit (e.g., 2rem, 24px)
-       */
-      fontSize?: string | null;
     };
     richText?: {
       root: {
@@ -750,11 +740,6 @@ export interface StudyAbroadBlock {
   description: string;
   title: {
     content: string;
-    font?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-    /**
-     * Enter value with unit (e.g., 2rem, 24px)
-     */
-    size?: string | null;
   };
   titleDescription: string;
   cards?:
@@ -1529,15 +1514,11 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               content?: T;
-              fontFamily?: T;
-              fontSize?: T;
             };
         description?:
           | T
           | {
               content?: T;
-              fontFamily?: T;
-              fontSize?: T;
             };
         richText?: T;
         links?:
@@ -1744,8 +1725,6 @@ export interface StudyAbroadBlockSelect<T extends boolean = true> {
     | T
     | {
         content?: T;
-        font?: T;
-        size?: T;
       };
   titleDescription?: T;
   cards?:

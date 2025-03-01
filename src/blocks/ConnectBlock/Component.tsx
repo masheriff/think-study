@@ -39,15 +39,15 @@ export const ConnectBlock: React.FC<Props> = (props) => {
 
 
     return (
-        <section className={cn('py-10 px-6 md:px-12', className)}>
-            <div className="max-w-6xl mx-auto space-y-12">
+        <section className={cn(' px-6 md:px-12', className)}>
+            <div className="max-w-5xl mx-auto space-y-12">
                 <div>   {/* Top Section */}
                     <div className="text-center space-y-6 mb-16">
                         <h1
                             className="text-4xl md:text-5xl"
                             style={{
                                 color: headingStyles?.[0]?.color || '#000000',
-                                fontSize: headingStyles?.[0]?.size || '2rem',
+                                fontSize: headingStyles?.[0]?.size || '26px',
                                 fontFamily: headingStyles?.[0]?.family,
                             }}
                         >
@@ -55,7 +55,7 @@ export const ConnectBlock: React.FC<Props> = (props) => {
                         </h1>
 
                         <p
-                            className="text-2xl md:text-3xl italic"
+                            className="text-2xl md:text-3xl italic font-bold"
                             style={{
                                 color: connectStyles?.[0]?.color || '#FF0000',
                                 fontSize: connectStyles?.[0]?.size || '1.875rem',

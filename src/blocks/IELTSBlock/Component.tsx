@@ -37,7 +37,7 @@ export const IELTSBlock: React.FC<Props> = (props) => {
             <div className="container mb-8">
                 <div className="max-w-4xl mx-auto text-center">
                     <h1 className="text-4xl font-bold mb-2">{title}</h1>
-                    <h2 className="text-2xl text-red-500 italic mb-4">
+                    <h2 className="text-3xl text-red-500 font-courgette italic font-normal mb-4">
                         {subtitle}
                     </h2>
                     <p className="text-gray-700 mx-auto text-center">
