@@ -1,48 +1,4 @@
-import { Block, Field } from 'payload';
-
-const textStyleFields: Field[] = [
-    {
-        name: 'Family',
-        type: 'select',
-        options: [
-            { label: 'Inter', value: 'Inter' },
-            { label: 'Roboto', value: 'Roboto' },
-            { label: 'Open Sans', value: 'Open Sans' },
-            { label: 'Montserrat', value: 'Montserrat' },
-            { label: 'Delius', value: 'Delius' },
-            { label: 'Lato', value: 'Lato' },
-            { label: 'Poppins', value: 'Poppins' },
-        ],
-        defaultValue: 'Inter',
-        admin: {
-            description: 'Select the font family',
-        },
-        // Custom enum name to prevent exceeding length limit
-        // name: 'fontFamilyEnum',
-    },
-    {
-        name: 'Size',
-        type: 'text',
-        defaultValue: '1rem',
-        admin: {
-            description: 'Enter value with unit (e.g., 2rem, 24px)',
-        },
-        // Custom name for font size field
-        // name: 'fontSizeField',
-    },
-    {
-        name: 'Color',
-        type: 'text',
-        defaultValue: '#000000',
-        admin: {
-            description: 'Hex color code (e.g., #FFFFFF)',
-        },
-        // Custom name for text color field
-        // name: 'textColorField',
-    },
-];
-
-
+import { Block } from 'payload';
 
 export const AdminssionBlock: Block = {
     slug: 'adminssionBlock',
@@ -62,12 +18,6 @@ export const AdminssionBlock: Block = {
 
         },
         {
-            name: 'yearStyles',
-            type: 'array',
-            label: 'Year Styles',
-            fields: [...textStyleFields],
-        },
-        {
             name: 'day',
             type: 'text',
             required: true,
@@ -81,13 +31,6 @@ export const AdminssionBlock: Block = {
             label: 'Current Description',
             defaultValue: 'Leaders in domestic + global admissions',
         },
-        {
-            name: 'currentStyles',
-            type: 'array',
-            label: 'Current Description  Styles',
-            fields: [...textStyleFields],
-        },
-
         {
             name: 'currentYear',
             type: 'text',
@@ -158,12 +101,6 @@ export const AdminssionBlock: Block = {
             admin: {
                 description: 'Add courses that will be displayed',
             },
-        },
-        {
-            name: 'textStyles',
-            type: 'array',
-            label: 'Text Styles',
-            fields: [...textStyleFields],
         },
     ],
 };

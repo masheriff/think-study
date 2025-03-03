@@ -99,19 +99,9 @@ export interface Page {
        * Enter the text inside "|" symbols to highlight text in red. Example: "Regular text |highlighted text| regular text"
        */
       content?: string | null;
-      fontFamily?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-      /**
-       * Enter value with unit (e.g., 2rem, 24px)
-       */
-      fontSize?: string | null;
     };
     description?: {
       content?: string | null;
-      fontFamily?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-      /**
-       * Enter value with unit (e.g., 2rem, 24px)
-       */
-      fontSize?: string | null;
     };
     richText?: {
       root: {
@@ -161,6 +151,7 @@ export interface Page {
     | FormBlock
     | TestimonialsBlock
     | CounselingBlock
+    | CallToActionBlock
     | UniversitiesBlock
     | StudyAbroadBlock
     | IELTSBlock
@@ -174,7 +165,6 @@ export interface Page {
     | CareerBlock
     | WhyusMediaBlock
     | ConnectBlock
-    | CallActionBlock
     | AppointmentBlock
     | StudyInCourse
     | StudyInChecklist
@@ -727,6 +717,26 @@ export interface CounselingBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CallToActionBlock".
+ */
+export interface CallToActionBlock {
+  callText: string;
+  studentImage: number | Media;
+  logoImage: number | Media;
+  offices: {
+    name: string;
+    phoneNumbers: {
+      number: string;
+      id?: string | null;
+    }[];
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'callToActionBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "UniversitiesBlock".
  */
 export interface UniversitiesBlock {
@@ -760,11 +770,6 @@ export interface StudyAbroadBlock {
   description: string;
   title: {
     content: string;
-    font?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-    /**
-     * Enter value with unit (e.g., 2rem, 24px)
-     */
-    size?: string | null;
   };
   titleDescription: string;
   cards?:
@@ -905,42 +910,14 @@ export interface WorldStudentBlock {
 export interface ServiceBlock {
   backgroundimage?: (number | null) | Media;
   mainHeading: string;
-  mainHeadingStyles?: {
-    family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-    size?: string | null;
-    color?: string | null;
-    backgroundColor?: string | null;
-  };
   description: string;
   subDescription: string;
-  descriptionStyle?: {
-    family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-    size?: string | null;
-    color?: string | null;
-    backgroundColor?: string | null;
-  };
   buttonText: string;
-  buttonStyle?: {
-    family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-    size?: string | null;
-    color?: string | null;
-    backgroundColor?: string | null;
-  };
   services: {
     title: string;
     description: string;
     id?: string | null;
   }[];
-  serviceStyles?: {
-    family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-    size?: string | null;
-    color?: string | null;
-    backgroundColor?: string | null;
-  };
-  /**
-   * Background color for the service block
-   */
-  backgroundColor?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'serviceBlock';
@@ -959,17 +936,6 @@ export interface FAQBlock {
     answer: string;
     id?: string | null;
   }[];
-  styles?: {
-    titleStyles?: {
-      fontSize?: string | null;
-      fontWeight?: ('normal' | 'medium' | 'bold') | null;
-      textAlign?: ('left' | 'center' | 'right') | null;
-    };
-    quesStyles?: {
-      fontSize?: string | null;
-      fontWeight?: ('normal' | 'medium' | 'bold') | null;
-    };
-  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'faqBlock';
@@ -1027,42 +993,8 @@ export interface FutureBlock {
  */
 export interface AdminssionBlock {
   year: string;
-  yearStyles?:
-    | {
-        /**
-         * Select the font family
-         */
-        Family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat' | 'Delius' | 'Lato' | 'Poppins') | null;
-        /**
-         * Enter value with unit (e.g., 2rem, 24px)
-         */
-        Size?: string | null;
-        /**
-         * Hex color code (e.g., #FFFFFF)
-         */
-        Color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   day: string;
   currentDescription: string;
-  currentStyles?:
-    | {
-        /**
-         * Select the font family
-         */
-        Family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat' | 'Delius' | 'Lato' | 'Poppins') | null;
-        /**
-         * Enter value with unit (e.g., 2rem, 24px)
-         */
-        Size?: string | null;
-        /**
-         * Hex color code (e.g., #FFFFFF)
-         */
-        Color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   currentYear: string;
   ambitions: string;
   description: string;
@@ -1082,23 +1014,6 @@ export interface AdminssionBlock {
     name: string;
     id?: string | null;
   }[];
-  textStyles?:
-    | {
-        /**
-         * Select the font family
-         */
-        Family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat' | 'Delius' | 'Lato' | 'Poppins') | null;
-        /**
-         * Enter value with unit (e.g., 2rem, 24px)
-         */
-        Size?: string | null;
-        /**
-         * Hex color code (e.g., #FFFFFF)
-         */
-        Color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'adminssionBlock';
@@ -1124,38 +1039,6 @@ export interface CareerBlock {
         id?: string | null;
       }[]
     | null;
-  headStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  subStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  statStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  Styles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'careerBlock';
@@ -1178,53 +1061,9 @@ export interface ConnectBlock {
   mainHeading: string;
   connectText: string;
   buttonText: string;
-  headingStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  connectStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'connectBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallActionBlock".
- */
-export interface CallActionBlock {
-  callText: string;
-  studentImage: number | Media;
-  logoImage: number | Media;
-  offices: {
-    name: string;
-    phoneNumbers: {
-      number: string;
-      id?: string | null;
-    }[];
-    id?: string | null;
-  }[];
-  officeStyle?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'callActionBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1696,15 +1535,11 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               content?: T;
-              fontFamily?: T;
-              fontSize?: T;
             };
         description?:
           | T
           | {
               content?: T;
-              fontFamily?: T;
-              fontSize?: T;
             };
         richText?: T;
         links?:
@@ -1733,6 +1568,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         testimonialsBlock?: T | TestimonialsBlockSelect<T>;
         counselingBlock?: T | CounselingBlockSelect<T>;
+        callToActionBlock?: T | CallToActionBlockSelect<T>;
         universitiesBlock?: T | UniversitiesBlockSelect<T>;
         studyAbroadBlock?: T | StudyAbroadBlockSelect<T>;
         ieltsBlock?: T | IELTSBlockSelect<T>;
@@ -1746,7 +1582,6 @@ export interface PagesSelect<T extends boolean = true> {
         careerBlock?: T | CareerBlockSelect<T>;
         whyusMediaBlock?: T | WhyusMediaBlockSelect<T>;
         connectBlock?: T | ConnectBlockSelect<T>;
-        callActionBlock?: T | CallActionBlockSelect<T>;
         appointmentBlock?: T | AppointmentBlockSelect<T>;
         studyInCourse?: T | StudyInCourseSelect<T>;
         studyInChecklist?: T | StudyInChecklistSelect<T>;
@@ -1888,6 +1723,29 @@ export interface CounselingBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CallToActionBlock_select".
+ */
+export interface CallToActionBlockSelect<T extends boolean = true> {
+  callText?: T;
+  studentImage?: T;
+  logoImage?: T;
+  offices?:
+    | T
+    | {
+        name?: T;
+        phoneNumbers?:
+          | T
+          | {
+              number?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "UniversitiesBlock_select".
  */
 export interface UniversitiesBlockSelect<T extends boolean = true> {
@@ -1922,8 +1780,6 @@ export interface StudyAbroadBlockSelect<T extends boolean = true> {
     | T
     | {
         content?: T;
-        font?: T;
-        size?: T;
       };
   titleDescription?: T;
   cards?:
@@ -2043,33 +1899,9 @@ export interface WorldStudentBlockSelect<T extends boolean = true> {
 export interface ServiceBlockSelect<T extends boolean = true> {
   backgroundimage?: T;
   mainHeading?: T;
-  mainHeadingStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        backgroundColor?: T;
-      };
   description?: T;
   subDescription?: T;
-  descriptionStyle?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        backgroundColor?: T;
-      };
   buttonText?: T;
-  buttonStyle?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        backgroundColor?: T;
-      };
   services?:
     | T
     | {
@@ -2077,15 +1909,6 @@ export interface ServiceBlockSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
-  serviceStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        backgroundColor?: T;
-      };
-  backgroundColor?: T;
   id?: T;
   blockName?: T;
 }
@@ -2101,23 +1924,6 @@ export interface FAQBlockSelect<T extends boolean = true> {
         question?: T;
         answer?: T;
         id?: T;
-      };
-  styles?:
-    | T
-    | {
-        titleStyles?:
-          | T
-          | {
-              fontSize?: T;
-              fontWeight?: T;
-              textAlign?: T;
-            };
-        quesStyles?:
-          | T
-          | {
-              fontSize?: T;
-              fontWeight?: T;
-            };
       };
   id?: T;
   blockName?: T;
@@ -2178,24 +1984,8 @@ export interface FutureBlockSelect<T extends boolean = true> {
  */
 export interface AdminssionBlockSelect<T extends boolean = true> {
   year?: T;
-  yearStyles?:
-    | T
-    | {
-        Family?: T;
-        Size?: T;
-        Color?: T;
-        id?: T;
-      };
   day?: T;
   currentDescription?: T;
-  currentStyles?:
-    | T
-    | {
-        Family?: T;
-        Size?: T;
-        Color?: T;
-        id?: T;
-      };
   currentYear?: T;
   ambitions?: T;
   description?: T;
@@ -2211,14 +2001,6 @@ export interface AdminssionBlockSelect<T extends boolean = true> {
     | T
     | {
         name?: T;
-        id?: T;
-      };
-  textStyles?:
-    | T
-    | {
-        Family?: T;
-        Size?: T;
-        Color?: T;
         id?: T;
       };
   id?: T;
@@ -2247,38 +2029,6 @@ export interface CareerBlockSelect<T extends boolean = true> {
         text?: T;
         id?: T;
       };
-  headStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  subStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  statStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  Styles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
   id?: T;
   blockName?: T;
 }
@@ -2299,53 +2049,6 @@ export interface ConnectBlockSelect<T extends boolean = true> {
   mainHeading?: T;
   connectText?: T;
   buttonText?: T;
-  headingStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  connectStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallActionBlock_select".
- */
-export interface CallActionBlockSelect<T extends boolean = true> {
-  callText?: T;
-  studentImage?: T;
-  logoImage?: T;
-  offices?:
-    | T
-    | {
-        name?: T;
-        phoneNumbers?:
-          | T
-          | {
-              number?: T;
-              id?: T;
-            };
-        id?: T;
-      };
-  officeStyle?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
   id?: T;
   blockName?: T;
 }

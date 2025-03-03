@@ -2,28 +2,6 @@ import type { Field } from 'payload'
 import { linkGroup } from '@/fields/linkGroup'
 import { FixedToolbarFeature, HeadingFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 
-const textStyleFields: Field[] = [
-    {
-        name: 'fontFamily',
-        type: 'select',
-        options: [
-            { label: 'Inter', value: 'Inter' },
-            { label: 'Roboto', value: 'Roboto' },
-            { label: 'Open Sans', value: 'Open Sans' },
-            { label: 'Montserrat', value: 'Montserrat' },
-        ],
-        defaultValue: 'Inter',
-    },
-    {
-        name: 'fontSize',
-        type: 'text',
-        defaultValue: '1rem',
-        admin: {
-            description: 'Enter value with unit (e.g., 2rem, 24px)',
-        },
-    },
-]
-
 export const hero: Field = {
     name: 'hero',
     type: 'group',
@@ -51,7 +29,6 @@ export const hero: Field = {
                         description: 'Enter the text inside "|" symbols to highlight text in red. Example: "Regular text |highlighted text| regular text"',
                     },
                 },
-                ...textStyleFields,
             ],
         },
         {
@@ -62,7 +39,6 @@ export const hero: Field = {
                     name: 'content',
                     type: 'text',
                 },
-                ...textStyleFields,
             ],
         },
         {

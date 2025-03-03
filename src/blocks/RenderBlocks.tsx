@@ -18,12 +18,17 @@ import { CareerBlock } from './CareerBlock/Component'
 import ConnectBlock from './ConnectBlock/Component'
 import WhyusMediaBlock from './WhyusMedia/Component'
 import ServiceBlock from './ServiceBlock/Component'
-import CallActionBlock from './CallActionBlock/Component'
 import AppointmentBlock from './AppointmentBlock/Component'
 import { StudyInCourse } from './StudyInCourse/Component'
 import StudyInChecklist from './StudyInCheckList/Component'
 import { BenefitsInStudy } from './StudyInBenefits/Comonent'
+import CallToActionBlock from './CallToActionBlock/Component'
 import { StudyInNotes } from './StudyInNotes/Component'
+
+
+
+
+
 
 type BlockComponentsType = {
   formBlock: typeof FormBlock
@@ -44,12 +49,11 @@ type BlockComponentsType = {
   whyusMediaBlock: typeof WhyusMediaBlock
   appointmentBlock: typeof AppointmentBlock
   careerBlock: typeof CareerBlock
-  callActionBlock: typeof CallActionBlock
+  callToActionBlock: typeof CallToActionBlock
   studyInCourse: typeof StudyInCourse
   studyInChecklist: typeof StudyInChecklist
   benefitsInStudy: typeof BenefitsInStudy
   studyInNotes: typeof StudyInNotes
-
 }
 
 const blockComponents: BlockComponentsType = {
@@ -71,7 +75,7 @@ const blockComponents: BlockComponentsType = {
   connectBlock: ConnectBlock,
   whyusMediaBlock: WhyusMediaBlock,
   appointmentBlock: AppointmentBlock,
-  callActionBlock: CallActionBlock,
+  callToActionBlock: CallToActionBlock,
   studyInCourse: StudyInCourse,
   studyInChecklist: StudyInChecklist,
   benefitsInStudy: BenefitsInStudy,

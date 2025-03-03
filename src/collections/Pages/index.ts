@@ -12,19 +12,17 @@ import { StudyAbroadBlock } from '@/blocks/StudyAbroadBlock/config'
 import { IELTSBlock } from '@/blocks/IELTSBlock/config'
 import { GetStartedBlock } from '@/blocks/GetStartedBlock/config'
 import { MapBlock } from '@/blocks/MapBlock/config'
-
 import { ServiceBlock } from '@/blocks/ServiceBlock/config'
 import { FAQBlock } from '@/blocks/FAQBlock/config'
 import { FutureBlock } from '@/blocks/FutureBlock/config'
 import { AdminssionBlock } from '@/blocks/AdmissionBlock/config'
 import { CareerBlock } from '@/blocks/CareerBlock/config'
 import { WorldStudentBlock } from '@/blocks/WorldStudentBlock/config'
-
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
-
+import { CallToActionBlock } from '@/blocks/CallToActionBlock/config'
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -35,7 +33,7 @@ import {
 import { ConnectBlock } from '@/blocks/ConnectBlock/config'
 import { WhyusMediaBlock } from '@/blocks/WhyusMedia/conig'
 import { hero } from '@/heros/config'
-import { CallActionBlock } from '@/blocks/CallActionBlock/config'
+
 import { AppointmentBlock } from '@/blocks/AppointmentBlock/config'
 
 // Study In Page
@@ -43,11 +41,6 @@ import { StudyInCourse } from '@/blocks/StudyInCourse/config'
 import { StudyInChecklist } from '@/blocks/StudyInCheckList/config'
 import { BenefitsInStudy } from '@/blocks/StudyInBenefits/config'
 import { StudyInNotes } from '@/blocks/StudyInNotes/config'
-
-
-
-
-
 
 
 export const Pages: CollectionConfig<'pages'> = {
@@ -104,8 +97,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Content, MediaBlock, Archive, FormBlock, TestimonialsBlock, CounselingBlock,
-                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock, WhyusMediaBlock, ConnectBlock, CallActionBlock, AppointmentBlock, StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes],
+              blocks: [Content, MediaBlock, Archive, FormBlock, TestimonialsBlock, CounselingBlock, CallToActionBlock, UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock, WhyusMediaBlock, ConnectBlock, AppointmentBlock, StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes],
               required: true,
               admin: {
                 initCollapsed: true,
