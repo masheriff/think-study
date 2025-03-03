@@ -21,6 +21,7 @@ export const SlugComponent: React.FC<SlugComponentProps> = ({
 }) => {
   const { label } = field
 
+
   const checkboxFieldPath = path?.includes('.')
     ? `${path}.${checkboxFieldPathFromProps}`
     : checkboxFieldPathFromProps

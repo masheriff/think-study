@@ -12,7 +12,6 @@ interface HeaderClientProps {
 }
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
-  console.log('HeaderClient', data);
   const pathname = usePathname()
 
   useEffect(() => { }, [pathname])

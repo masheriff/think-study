@@ -21,7 +21,7 @@ export const WhyusMediaBlock: React.FC<Props> = ({ media, className }) => {
     }
 
     return (
-        <div className={`max-w-6xl mx-auto ${className}`}>
+        <div className={`container ${className}`}>
             <Image
                 src={media.url}
                 alt={media.alt || 'Media image'}

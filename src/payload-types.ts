@@ -176,6 +176,15 @@ export interface Page {
     | ConnectBlock
     | CallActionBlock
     | AppointmentBlock
+    | StudyInCourse
+    | StudyInChecklist
+    | {
+        backgroundImage: number | Media;
+        benefitsDescription: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'benefitsInStudy';
+      }
   )[];
   meta?: {
     title?: string | null;
@@ -1263,6 +1272,121 @@ export interface AppointmentBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInCourse".
+ */
+export interface StudyInCourse {
+  title: string;
+  titleStyles?:
+    | {
+        /**
+         * Select the font family
+         */
+        Family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat' | 'Delius' | 'Lato' | 'Poppins') | null;
+        /**
+         * Enter value with unit (e.g., 2rem, 24px)
+         */
+        Size?: string | null;
+        /**
+         * Hex color code (e.g., #FFFFFF)
+         */
+        Color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  country: string;
+  countryStyles?:
+    | {
+        /**
+         * Select the font family
+         */
+        Family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat' | 'Delius' | 'Lato' | 'Poppins') | null;
+        /**
+         * Enter value with unit (e.g., 2rem, 24px)
+         */
+        Size?: string | null;
+        /**
+         * Hex color code (e.g., #FFFFFF)
+         */
+        Color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  image: number | Media;
+  /**
+   * Hex color code for the image background
+   */
+  imageBackgroundColor?: string | null;
+  /**
+   * Hex color code for the main container background
+   */
+  containerBackgroundColor?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studyInCourse';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInChecklist".
+ */
+export interface StudyInChecklist {
+  title: string;
+  titleStyles?:
+    | {
+        /**
+         * Enter value with unit (e.g., 2rem, 24px)
+         */
+        fontSize?: string | null;
+        /**
+         * Hex color code (e.g., #FFFFFF)
+         */
+        color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  subtitle: string;
+  subStyles?:
+    | {
+        /**
+         * Enter value with unit (e.g., 2rem, 24px)
+         */
+        fontSize?: string | null;
+        /**
+         * Hex color code (e.g., #FFFFFF)
+         */
+        color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  checkItems?:
+    | {
+        text: string;
+        Styles?:
+          | {
+              /**
+               * Enter value with unit (e.g., 2rem, 24px)
+               */
+              fontSize?: string | null;
+              /**
+               * Hex color code (e.g., #FFFFFF)
+               */
+              color?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  image: number | Media;
+  /**
+   * Hex color code for the image background
+   */
+  imageBackgroundColor?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studyInChecklist';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1581,6 +1705,16 @@ export interface PagesSelect<T extends boolean = true> {
         connectBlock?: T | ConnectBlockSelect<T>;
         callActionBlock?: T | CallActionBlockSelect<T>;
         appointmentBlock?: T | AppointmentBlockSelect<T>;
+        studyInCourse?: T | StudyInCourseSelect<T>;
+        studyInChecklist?: T | StudyInChecklistSelect<T>;
+        benefitsInStudy?:
+          | T
+          | {
+              backgroundImage?: T;
+              benefitsDescription?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
@@ -2220,6 +2354,74 @@ export interface AppointmentBlockSelect<T extends boolean = true> {
             };
       };
   bottomText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInCourse_select".
+ */
+export interface StudyInCourseSelect<T extends boolean = true> {
+  title?: T;
+  titleStyles?:
+    | T
+    | {
+        Family?: T;
+        Size?: T;
+        Color?: T;
+        id?: T;
+      };
+  country?: T;
+  countryStyles?:
+    | T
+    | {
+        Family?: T;
+        Size?: T;
+        Color?: T;
+        id?: T;
+      };
+  image?: T;
+  imageBackgroundColor?: T;
+  containerBackgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInChecklist_select".
+ */
+export interface StudyInChecklistSelect<T extends boolean = true> {
+  title?: T;
+  titleStyles?:
+    | T
+    | {
+        fontSize?: T;
+        color?: T;
+        id?: T;
+      };
+  subtitle?: T;
+  subStyles?:
+    | T
+    | {
+        fontSize?: T;
+        color?: T;
+        id?: T;
+      };
+  checkItems?:
+    | T
+    | {
+        text?: T;
+        Styles?:
+          | T
+          | {
+              fontSize?: T;
+              color?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  image?: T;
+  imageBackgroundColor?: T;
   id?: T;
   blockName?: T;
 }
