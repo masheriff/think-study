@@ -151,6 +151,7 @@ export interface Page {
     | FormBlock
     | TestimonialsBlock
     | CounselingBlock
+    | CallToActionBlock
     | UniversitiesBlock
     | StudyAbroadBlock
     | IELTSBlock
@@ -164,7 +165,6 @@ export interface Page {
     | CareerBlock
     | WhyusMediaBlock
     | ConnectBlock
-    | CallActionBlock
     | AppointmentBlock
   )[];
   meta?: {
@@ -707,6 +707,26 @@ export interface CounselingBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CallToActionBlock".
+ */
+export interface CallToActionBlock {
+  callText: string;
+  studentImage: number | Media;
+  logoImage: number | Media;
+  offices: {
+    name: string;
+    phoneNumbers: {
+      number: string;
+      id?: string | null;
+    }[];
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'callToActionBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "UniversitiesBlock".
  */
 export interface UniversitiesBlock {
@@ -1175,34 +1195,6 @@ export interface ConnectBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallActionBlock".
- */
-export interface CallActionBlock {
-  callText: string;
-  studentImage: number | Media;
-  logoImage: number | Media;
-  offices: {
-    name: string;
-    phoneNumbers: {
-      number: string;
-      id?: string | null;
-    }[];
-    id?: string | null;
-  }[];
-  officeStyle?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'callActionBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "AppointmentBlock".
  */
 export interface AppointmentBlock {
@@ -1547,6 +1539,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         testimonialsBlock?: T | TestimonialsBlockSelect<T>;
         counselingBlock?: T | CounselingBlockSelect<T>;
+        callToActionBlock?: T | CallToActionBlockSelect<T>;
         universitiesBlock?: T | UniversitiesBlockSelect<T>;
         studyAbroadBlock?: T | StudyAbroadBlockSelect<T>;
         ieltsBlock?: T | IELTSBlockSelect<T>;
@@ -1560,7 +1553,6 @@ export interface PagesSelect<T extends boolean = true> {
         careerBlock?: T | CareerBlockSelect<T>;
         whyusMediaBlock?: T | WhyusMediaBlockSelect<T>;
         connectBlock?: T | ConnectBlockSelect<T>;
-        callActionBlock?: T | CallActionBlockSelect<T>;
         appointmentBlock?: T | AppointmentBlockSelect<T>;
       };
   meta?:
@@ -1682,6 +1674,29 @@ export interface CounselingBlockSelect<T extends boolean = true> {
           | T
           | {
               name?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CallToActionBlock_select".
+ */
+export interface CallToActionBlockSelect<T extends boolean = true> {
+  callText?: T;
+  studentImage?: T;
+  logoImage?: T;
+  offices?:
+    | T
+    | {
+        name?: T;
+        phoneNumbers?:
+          | T
+          | {
+              number?: T;
               id?: T;
             };
         id?: T;
@@ -2109,37 +2124,6 @@ export interface ConnectBlockSelect<T extends boolean = true> {
         id?: T;
       };
   connectStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallActionBlock_select".
- */
-export interface CallActionBlockSelect<T extends boolean = true> {
-  callText?: T;
-  studentImage?: T;
-  logoImage?: T;
-  offices?:
-    | T
-    | {
-        name?: T;
-        phoneNumbers?:
-          | T
-          | {
-              number?: T;
-              id?: T;
-            };
-        id?: T;
-      };
-  officeStyle?:
     | T
     | {
         family?: T;

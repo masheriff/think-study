@@ -3,7 +3,6 @@
 import React from 'react'
 import { cn } from '@/utilities/ui'
 import type { ServiceBlock as ServiceBlockType } from '@/payload-types'
-import Image from 'next/image'
 import { DownArrow } from '../../components/thinkstudy-svg/index'
 
 

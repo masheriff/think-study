@@ -1,25 +1,15 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { cn } from '@/utilities/ui'
 import Image from 'next/image'
-import type { CallActionBlock as CallActionBlockType } from '@/payload-types'
+import type { CallToActionBlock as CallToActionBlockType } from '@/payload-types'
 
 
-type Props = CallActionBlockType & {
+type Props = CallToActionBlockType & {
     className?: string
-    headingStyles?: TextStyle[]
-    connectStyles?: TextStyle[]
-    officeStyles?: TextStyle[]
     studentImage: MediaType
     logoImage: MediaType
 }
 
-type TextStyle = {
-    family: string
-    size: string
-    color: string
-}
 
 type MediaType = {
     url?: string
@@ -28,17 +18,14 @@ type MediaType = {
     height?: number
 }
 
-export const CallActionBlock: React.FC<Props> = (props) => {
+export const CallToActionBlock: React.FC<Props> = (props) => {
     const {
-        className,
         callText,
         offices,
-        officeStyles,
         studentImage,
         logoImage,
     } = props
 
-    const [showButton, setShowButton] = useState(false);
 
 
     // const handleScroll = () => {
@@ -48,30 +35,30 @@ export const CallActionBlock: React.FC<Props> = (props) => {
     //     });
     // };
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 100) {
-                setShowButton(true);
-            } else {
-                setShowButton(false);
-            }
-        };
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         if (window.scrollY > 100) {
+    //             setShowButton(true);
+    //         } else {
+    //             setShowButton(false);
+    //         }
+    //     };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    //     window.addEventListener('scroll', handleScroll);
+    //     return () => window.removeEventListener('scroll', handleScroll);
+    // }, []);
 
     // console.log(officeStyles, "officeStyles")
 
     return (
-        <section className={cn('container', className)}>
+        <section className="container">
             <div className="space-y-12">
                 <div className="relative">
                     <div className="bg-gray-200 rounded-3xl px-8 md:px-12">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                             {/* Left Side - Contact Info */}
                             <div className="space-y-8">
-                                <p className="text-xl italic text-red-500">{callText}</p>
+                                <p className="text-xl italic font-mynerve text-[#FF0000]">{callText}</p>
 
                                 {offices?.map((office, index) => (
                                     <div key={index} className="space-y-2">
@@ -85,15 +72,7 @@ export const CallActionBlock: React.FC<Props> = (props) => {
                                             </div>
                                             <div className="text-5xl ms-2">&#125;</div>
                                             <div
-                                                className="text-xl"
-                                                style={{
-                                                    color: officeStyles?.[0]?.color || '#FF0000',
-                                                    fontSize: officeStyles?.[0]?.size || '1.25rem',
-                                                    fontFamily: officeStyles?.[0]?.family,
-                                                }}
-                                            >
-                                                {office.name}
-                                            </div>
+                                                className="text-xl">{office.name}</div>
                                         </div>
                                     </div>
                                 ))}
@@ -140,4 +119,4 @@ export const CallActionBlock: React.FC<Props> = (props) => {
     )
 }
 
-export default CallActionBlock
+export default CallToActionBlock

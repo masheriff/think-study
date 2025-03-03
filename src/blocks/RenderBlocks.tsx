@@ -18,8 +18,8 @@ import { CareerBlock } from './CareerBlock/Component'
 import ConnectBlock from './ConnectBlock/Component'
 import WhyusMediaBlock from './WhyusMedia/Component'
 import ServiceBlock from './ServiceBlock/Component'
-import CallActionBlock from './CallActionBlock/Component'
 import AppointmentBlock from './AppointmentBlock/Component'
+import CallToActionBlock from './CallToActionBlock/Component'
 
 
 
@@ -42,8 +42,7 @@ type BlockComponentsType = {
   whyusMediaBlock: typeof WhyusMediaBlock
   appointmentBlock: typeof AppointmentBlock
   careerBlock: typeof CareerBlock
-  callActionBlock: typeof CallActionBlock
-
+  callToActionBlock: typeof CallToActionBlock
 }
 
 const blockComponents: BlockComponentsType = {
@@ -65,8 +64,7 @@ const blockComponents: BlockComponentsType = {
   connectBlock: ConnectBlock,
   whyusMediaBlock: WhyusMediaBlock,
   appointmentBlock: AppointmentBlock,
-  callActionBlock: CallActionBlock,
-
+  callToActionBlock: CallToActionBlock
 }
 
 export const RenderBlocks: React.FC<{
