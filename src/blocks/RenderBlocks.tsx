@@ -23,11 +23,7 @@ import AppointmentBlock from './AppointmentBlock/Component'
 import { StudyInCourse } from './StudyInCourse/Component'
 import StudyInChecklist from './StudyInCheckList/Component'
 import { BenefitsInStudy } from './StudyInBenefits/Comonent'
-
-
-
-
-
+import { StudyInNotes } from './StudyInNotes/Component'
 
 type BlockComponentsType = {
   formBlock: typeof FormBlock
@@ -52,6 +48,7 @@ type BlockComponentsType = {
   studyInCourse: typeof StudyInCourse
   studyInChecklist: typeof StudyInChecklist
   benefitsInStudy: typeof BenefitsInStudy
+  studyInNotes: typeof StudyInNotes
 
 }
 
@@ -77,7 +74,9 @@ const blockComponents: BlockComponentsType = {
   callActionBlock: CallActionBlock,
   studyInCourse: StudyInCourse,
   studyInChecklist: StudyInChecklist,
-  benefitsInStudy: BenefitsInStudy
+  benefitsInStudy: BenefitsInStudy,
+  studyInNotes: StudyInNotes
+
 
 }
 

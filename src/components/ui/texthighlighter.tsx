@@ -5,11 +5,11 @@ interface TextHighlighterProps {
 }
 
 const TextHighlighter: React.FC<TextHighlighterProps> = ({ text }) => {
-    const parts = text.split(/\|(.*?)\|/g).filter(Boolean);
+    // const parts = text.split(/\|(.*?)\|/g).filter(Boolean);
 
     return (
         <>
-            {parts.map((part, index) => {
+            {/* {parts.map((part, index) => {
                 if (index % 2 !== 0) {
                     return (
                         <span key={index} className="text-red-500" dangerouslySetInnerHTML={{ __html: part }} />
@@ -25,7 +25,7 @@ const TextHighlighter: React.FC<TextHighlighterProps> = ({ text }) => {
                         ))
                     );
                 }
-            })}
+            })} */}
         </>
     );
 };

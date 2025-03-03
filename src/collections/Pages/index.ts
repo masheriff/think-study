@@ -42,6 +42,8 @@ import { AppointmentBlock } from '@/blocks/AppointmentBlock/config'
 import { StudyInCourse } from '@/blocks/StudyInCourse/config'
 import { StudyInChecklist } from '@/blocks/StudyInCheckList/config'
 import { BenefitsInStudy } from '@/blocks/StudyInBenefits/config'
+import { StudyInNotes } from '@/blocks/StudyInNotes/config'
+
 
 
 
@@ -103,7 +105,7 @@ export const Pages: CollectionConfig<'pages'> = {
               name: 'layout',
               type: 'blocks',
               blocks: [Content, MediaBlock, Archive, FormBlock, TestimonialsBlock, CounselingBlock,
-                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock, WhyusMediaBlock, ConnectBlock, CallActionBlock, AppointmentBlock, StudyInCourse, StudyInChecklist, BenefitsInStudy],
+                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock, WhyusMediaBlock, ConnectBlock, CallActionBlock, AppointmentBlock, StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes],
               required: true,
               admin: {
                 initCollapsed: true,

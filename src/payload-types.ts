@@ -185,6 +185,7 @@ export interface Page {
         blockName?: string | null;
         blockType: 'benefitsInStudy';
       }
+    | StudyInNotes
   )[];
   meta?: {
     title?: string | null;
@@ -1387,6 +1388,48 @@ export interface StudyInChecklist {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInNotes".
+ */
+export interface StudyInNotes {
+  title: string;
+  subtitle: string;
+  intakeTable: {
+    fallIntake: {
+      applicationDeadline: string;
+      classesStart: string;
+    };
+    springIntake: {
+      applicationDeadline: string;
+      classesStart: string;
+    };
+    summerIntake: {
+      applicationDeadline: string;
+      classesStart: string;
+    };
+  };
+  expensesTable: {
+    stay: {
+      monthlyAverage: string;
+    };
+    foodBudget: {
+      monthlyAverage: string;
+    };
+    localTransport: {
+      monthlyAverage: string;
+    };
+    phoneBills: {
+      monthlyAverage: string;
+    };
+    movingAround: {
+      monthlyAverage: string;
+    };
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studyInNotes';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1715,6 +1758,7 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        studyInNotes?: T | StudyInNotesSelect<T>;
       };
   meta?:
     | T
@@ -2422,6 +2466,67 @@ export interface StudyInChecklistSelect<T extends boolean = true> {
       };
   image?: T;
   imageBackgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInNotes_select".
+ */
+export interface StudyInNotesSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  intakeTable?:
+    | T
+    | {
+        fallIntake?:
+          | T
+          | {
+              applicationDeadline?: T;
+              classesStart?: T;
+            };
+        springIntake?:
+          | T
+          | {
+              applicationDeadline?: T;
+              classesStart?: T;
+            };
+        summerIntake?:
+          | T
+          | {
+              applicationDeadline?: T;
+              classesStart?: T;
+            };
+      };
+  expensesTable?:
+    | T
+    | {
+        stay?:
+          | T
+          | {
+              monthlyAverage?: T;
+            };
+        foodBudget?:
+          | T
+          | {
+              monthlyAverage?: T;
+            };
+        localTransport?:
+          | T
+          | {
+              monthlyAverage?: T;
+            };
+        phoneBills?:
+          | T
+          | {
+              monthlyAverage?: T;
+            };
+        movingAround?:
+          | T
+          | {
+              monthlyAverage?: T;
+            };
+      };
   id?: T;
   blockName?: T;
 }
