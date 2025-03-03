@@ -1,34 +1,12 @@
-import { Block, Field } from 'payload';
+import { Block } from 'payload';
 
-const textStyleFields: Field[] = [
-    {
-        name: 'family',
-        type: 'select',
-        options: [
-            { label: 'Inter', value: 'Inter' },
-            { label: 'Roboto', value: 'Roboto' },
-            { label: 'Poppins', value: 'Poppins' },
-        ],
-        defaultValue: 'Inter',
-    },
-    {
-        name: 'size',
-        type: 'text',
-        defaultValue: '1rem',
-    },
-    {
-        name: 'color',
-        type: 'text',
-        defaultValue: '#FF0000',
-    },
-];
 
-export const CallActionBlock: Block = {
-    slug: 'callActionBlock',
-    interfaceName: 'CallActionBlock',
+export const CallToActionBlock: Block = {
+    slug: 'callToActionBlock',
+    interfaceName: 'CallToActionBlock',
     labels: {
-        singular: 'CTA Block',
-        plural: 'CTA Blocks',
+        singular: 'Call To Action Block',
+        plural: 'Call To Action Blocks',
     },
     fields: [
 
@@ -91,12 +69,5 @@ export const CallActionBlock: Block = {
                 }
             ]
         },
-
-        {
-            name: 'officeStyle',
-            type: 'array',
-            label: 'Office Text Styles',
-            fields: [...textStyleFields],
-        }
     ],
 };

@@ -1,169 +1,81 @@
 'use client'
 
 import React from 'react'
-import { cn } from '@/utilities/ui'
 import type { ServiceBlock as ServiceBlockType } from '@/payload-types'
-import Image from 'next/image'
 import { DownArrow } from '../../components/thinkstudy-svg/index'
 
-
 type Props = ServiceBlockType & {
-    className?: string
-    mainHeadingStyles: mainHeadingStyles | undefined;
-    descriptionStyle: descriptionStyle | undefined;
-    buttonStyle: buttonStyle | undefined;
+    className?: string;
     downImage: string;
-    serviceStyles: serviceStyles | undefined;
 }
 
-type mainHeadingStyles = {
-    family: string;
-    size: string;
-    color: string;
-}
-type descriptionStyle = {
-    family: string;
-    size: string;
-    color: string;
-}
-type buttonStyle = {
-    family: string;
-    size: string;
-    color: string;
-}
-type serviceStyles = {
-    family: string;
-    size: string;
-    color: string;
-    backgroundColor: string;
-}
 export const ServiceBlock: React.FC<Props> = (props) => {
     const {
-        className,
         mainHeading,
-        mainHeadingStyles,
         description,
         subDescription,
         services,
-        backgroundColor,
         backgroundimage,
-        descriptionStyle,
         buttonText,
-        buttonStyle,
-        serviceStyles,
     } = props
 
     return (
         <div className='container'>
             <section
-                className={cn('  mb-12 rounded-3xl py-8 px-4 md:px-8', className)}
+                className="mb-12 rounded-3xl py-12 px-4 md:px-8"
                 style={{
-                    backgroundColor: backgroundColor || 'transparent',
-                    backgroundImage: typeof backgroundimage === 'object' && backgroundimage?.url ? `url(${backgroundimage.url})` : 'none'
-                    ,
+                    backgroundColor: '#D9F1FD',
+                    backgroundImage: typeof backgroundimage === 'object' && backgroundimage?.url ? `url(${backgroundimage.url})` : 'none',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                 }}
             >
-
-
                 <div className="max-w-7xl mx-auto">
-                    <div className="header-block max-w-2xl bg-white/20 backdrop-blur-lg border  border-[#FFFFFF] rounded-3xl p-8">
-
-
-                        {/* Header Section */}
-                        <div className="max-w-4xl mx-auto text-start mb-2">
-                            <h2
-                                className=" mb-3"
-                                style={{
-                                    fontFamily: mainHeadingStyles?.family,
-                                    fontSize: mainHeadingStyles?.size || '1rem',
-                                    color: mainHeadingStyles?.color || '#FF0000',
-                                }}
-                            >
-                                {mainHeading}
-                            </h2>
-                            <p className="mb-3"
-                                style={{
-                                    fontFamily: descriptionStyle?.family,
-                                    fontSize: descriptionStyle?.size || '14px',
-                                    color: descriptionStyle?.color,
-                                }}
-                            >
-                                {description}
-                            </p>
-                            <p className="mb-3"
-                                style={{
-                                    fontFamily: descriptionStyle?.family,
-                                    fontSize: descriptionStyle?.size || '14px',
-                                    color: descriptionStyle?.color,
-                                }}
-                            >
-                                {subDescription}
-                            </p>
-                        </div>
-
-                        {/* How we make it happen section */}
-                        <div className="mb-2 flex items-center justify-start">
-                            {/* Button */}
-                            <div className="inline-block bg-[#C1F177] px-6 py-2 rounded-full">
-                                <h3
-                                    style={{
-                                        fontFamily: buttonStyle?.family,
-                                        fontSize: buttonStyle?.size,
-                                        color: buttonStyle?.color || "#000000",
-                                    }}
-                                >
+                    {/* Header Section */}
+                    <div className="w-1/2 text-center mb-12 bg-white/20 backdrop-blur-lg border border-[#FFFFFF] rounded-xl p-2">
+                        <h2 className="text-[#FF0000] mb-2 font-mynerve italic" style={{ fontSize: '23px' }}>
+                            {mainHeading}
+                        </h2>
+                        <p className="mb-4 text-sm">
+                            {description}
+                        </p>
+                        <p className="mb-8 text-sm">
+                            {subDescription}
+                        </p>
+                        <div className="flex items-center justify-between">
+                            <div className="inline-block bg-[#C1F177] px-8 py-3 rounded-xl">
+                                <h3 className="text-base">
                                     {buttonText}
                                 </h3>
                             </div>
-
-                            {/* Down Arrows */}
-                            <div className="flex flex-row items-center space-x-2 ms-[10px]">
+                            <div className="flex flex-row items-center space-x-2 ml-4">
                                 <DownArrow />
                                 <DownArrow />
                                 <DownArrow />
                                 <DownArrow />
                             </div>
                         </div>
-
                     </div>
 
-
                     {/* Services Grid */}
-                    <div className="grid grid-cols-1 mt-8 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {services?.map((service, index) => (
                             <div
                                 key={index}
-
-                                className=" p-4  py-[100px] rounded-3xl h-full flex flex-col align-center justify-center"
-                                style={{
-                                    backgroundColor: serviceStyles?.backgroundColor || '#C1F177',
-                                }}
+                                className="p-6 rounded-3xl h-[300px] flex flex-col items-center justify-center bg-[#C1F177]"
                             >
-
-                                <h4 className="text-[18px] text-center font-medium mb-1"
-                                    style={{
-                                        // fontFamily: serviceStyles?.family,
-                                        // fontSize: serviceStyles?.size,
-                                        // color: serviceStyles?.color,
-                                    }}
-                                >{service.title}</h4>
-                                <p className="text-sm flex-grow text-center"
-                                    style={{
-                                        fontFamily: serviceStyles?.family,
-                                        fontSize: serviceStyles?.size,
-                                        color: serviceStyles?.color,
-                                    }}
-                                >{service.description}</p>
-
+                                <h4 className="text-xl text-center font-medium mb-3">
+                                    {service.title}
+                                </h4>
+                                <p className="text-sm text-center">
+                                    {service.description}
+                                </p>
                             </div>
                         ))}
                     </div>
-
                 </div>
-            </section></div>
-
+            </section>
+        </div>
     )
 }
 
