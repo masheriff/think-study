@@ -22,6 +22,10 @@ import CallActionBlock from './CallActionBlock/Component'
 import AppointmentBlock from './AppointmentBlock/Component'
 import { StudyInCourse } from './StudyInCourse/Component'
 import StudyInChecklist from './StudyInCheckList/Component'
+import { BenefitsInStudy } from './StudyInBenefits/Comonent'
+
+
+
 
 
 
@@ -47,6 +51,8 @@ type BlockComponentsType = {
   callActionBlock: typeof CallActionBlock
   studyInCourse: typeof StudyInCourse
   studyInChecklist: typeof StudyInChecklist
+  benefitsInStudy: typeof BenefitsInStudy
+
 }
 
 const blockComponents: BlockComponentsType = {
@@ -70,7 +76,8 @@ const blockComponents: BlockComponentsType = {
   appointmentBlock: AppointmentBlock,
   callActionBlock: CallActionBlock,
   studyInCourse: StudyInCourse,
-  studyInChecklist: StudyInChecklist
+  studyInChecklist: StudyInChecklist,
+  benefitsInStudy: BenefitsInStudy
 
 }
 

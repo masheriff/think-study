@@ -22,40 +22,38 @@ export const StudyInChecklist: React.FC<Props> = (props) => {
         imageBackgroundColor,
     } = props;
 
-    console.log(imageBackgroundColor, image, "imageBackgroundColor")
-
     return (
         <section className={cn('container', className)}>
-            <div className="flex bg-[#D9F1FD] rounded-3xl flex-col md:flex-row items-center overflow-hidden">
+            <div className="flex bg-[#D9F1FD] p-12 rounded-3xl flex-col md:flex-row items-center overflow-hidden">
                 {/* Left Text (80%) */}
-                <div className="md:w-[60%] p-6  flex flex-col justify-start items-start md:items-start h-full">
+                <div className="md:w-[80%] p-6 flex flex-col justify-start items-start md:items-start h-full">
                     <div>
                         <h2
-                            className="text-3xl font-bold mb-4"
+                            className=" font-semibold mb-0"
                             style={{
-                                fontSize: titleStyles?.[0]?.fontSize || '2rem',
+                                fontSize: titleStyles?.[0]?.fontSize || '50px',
                                 color: titleStyles?.[0]?.color || '#000000',
                             }}
                         >
                             {title}
                         </h2>
                         <h3
-                            className="text-xl font-semibold mb-6"
+                            className="font-bold mb-4"
                             style={{
-                                fontSize: subStyles?.[0]?.fontSize || '1.5rem',
+                                fontSize: subStyles?.[0]?.fontSize || '40px',
                                 color: subStyles?.[0]?.color || '#FF0000',
                             }} >
                             {subtitle}
                         </h3>
                     </div>
                     <div>
-                        <ul className="list-disc list-inside space-y-2">
+                        <ul className="list-disc list-inside space-y-0">
                             {checkItems?.map((item, index) => (
                                 <li
                                     key={index}
                                     className="text-base"
                                     style={{
-                                        fontSize: item.Styles?.[0]?.fontSize || '1rem',
+                                        fontSize: item.Styles?.[0]?.fontSize || '18px',
                                         color: item.Styles?.[0]?.color || '#000000',
                                     }}
                                 >
@@ -69,8 +67,8 @@ export const StudyInChecklist: React.FC<Props> = (props) => {
                 </div>
 
                 {/* Right Image (40%) */}
-                <div className="relative">
-                    <div className="absolute z-0 top-[12px] ms-[78px] left-[-10px] bottom-0 w-[110%]  h-[97%] rounded-3xl"
+                <div className="relative md:w-[40%]">
+                    <div className="absolute z-0 top-[12px] ms-[10px] left-[-10px] bottom-0 w-[110%]  h-[97%] rounded-3xl"
                         style={{ backgroundColor: imageBackgroundColor || "#C1F177" }}>
                     </div>
 
@@ -80,7 +78,7 @@ export const StudyInChecklist: React.FC<Props> = (props) => {
                             alt={image.alt || 'Study in course image'}
                             width={image.width || 836}
                             height={image.height || 836}
-                            className="z-10 relative left-[70px]"
+                            className="z-10 relative left-[24px]"
                         />
                     ) : (
                         <div>Image not found</div>

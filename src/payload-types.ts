@@ -178,6 +178,13 @@ export interface Page {
     | AppointmentBlock
     | StudyInCourse
     | StudyInChecklist
+    | {
+        backgroundImage: number | Media;
+        benefitsDescription: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'benefitsInStudy';
+      }
   )[];
   meta?: {
     title?: string | null;
@@ -1700,6 +1707,14 @@ export interface PagesSelect<T extends boolean = true> {
         appointmentBlock?: T | AppointmentBlockSelect<T>;
         studyInCourse?: T | StudyInCourseSelect<T>;
         studyInChecklist?: T | StudyInChecklistSelect<T>;
+        benefitsInStudy?:
+          | T
+          | {
+              backgroundImage?: T;
+              benefitsDescription?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
