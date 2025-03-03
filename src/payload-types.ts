@@ -176,6 +176,7 @@ export interface Page {
         blockType: 'benefitsInStudy';
       }
     | StudyInNotes
+    | StudyInApplication
   )[];
   meta?: {
     title?: string | null;
@@ -1269,6 +1270,30 @@ export interface StudyInNotes {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInApplication".
+ */
+export interface StudyInApplication {
+  mainTitle: string;
+  subTitle: string;
+  leftContent: {
+    headline: string;
+    highlight: string;
+    subheadline: string;
+  };
+  rightContent?: {
+    services?:
+      | {
+          serviceText: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studyInApplication';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1594,6 +1619,7 @@ export interface PagesSelect<T extends boolean = true> {
               blockName?: T;
             };
         studyInNotes?: T | StudyInNotesSelect<T>;
+        studyInApplication?: T | StudyInApplicationSelect<T>;
       };
   meta?:
     | T
@@ -2228,6 +2254,33 @@ export interface StudyInNotesSelect<T extends boolean = true> {
           | T
           | {
               monthlyAverage?: T;
+            };
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInApplication_select".
+ */
+export interface StudyInApplicationSelect<T extends boolean = true> {
+  mainTitle?: T;
+  subTitle?: T;
+  leftContent?:
+    | T
+    | {
+        headline?: T;
+        highlight?: T;
+        subheadline?: T;
+      };
+  rightContent?:
+    | T
+    | {
+        services?:
+          | T
+          | {
+              serviceText?: T;
+              id?: T;
             };
       };
   id?: T;

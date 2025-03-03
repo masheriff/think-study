@@ -24,10 +24,7 @@ import StudyInChecklist from './StudyInCheckList/Component'
 import { BenefitsInStudy } from './StudyInBenefits/Comonent'
 import CallToActionBlock from './CallToActionBlock/Component'
 import { StudyInNotes } from './StudyInNotes/Component'
-
-
-
-
+import { StudyInApplication } from './StudyInApplication/Component'
 
 
 type BlockComponentsType = {
@@ -54,6 +51,7 @@ type BlockComponentsType = {
   studyInChecklist: typeof StudyInChecklist
   benefitsInStudy: typeof BenefitsInStudy
   studyInNotes: typeof StudyInNotes
+  studyInApplication: typeof StudyInApplication
 }
 
 const blockComponents: BlockComponentsType = {
@@ -79,9 +77,8 @@ const blockComponents: BlockComponentsType = {
   studyInCourse: StudyInCourse,
   studyInChecklist: StudyInChecklist,
   benefitsInStudy: BenefitsInStudy,
-  studyInNotes: StudyInNotes
-
-
+  studyInNotes: StudyInNotes,
+  studyInApplication: StudyInApplication
 }
 
 export const RenderBlocks: React.FC<{
