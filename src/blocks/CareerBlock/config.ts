@@ -1,27 +1,5 @@
-import { Block, Field } from 'payload';
+import { Block } from 'payload';
 
-const textStyleFields: Field[] = [
-    {
-        name: 'family',
-        type: 'select',
-        options: [
-            { label: 'Inter', value: 'Inter' },
-            { label: 'Roboto', value: 'Roboto' },
-            { label: 'Poppins', value: 'Poppins' },
-        ],
-        defaultValue: 'Inter',
-    },
-    {
-        name: 'size',
-        type: 'text',
-        defaultValue: '1rem',
-    },
-    {
-        name: 'color',
-        type: 'text',
-        defaultValue: '#000000',
-    },
-];
 
 export const CareerBlock: Block = {
     slug: 'careerBlock',
@@ -100,33 +78,6 @@ export const CareerBlock: Block = {
 
 
             ],
-        },
-
-
-
-        {
-            name: 'headStyles',
-            type: 'array',
-            label: 'Heading Styles',
-            fields: [...textStyleFields],
-        },
-        {
-            name: 'subStyles',
-            type: 'array',
-            label: 'Subheading Styles',
-            fields: [...textStyleFields],
-        },
-        {
-            name: 'statStyles',
-            type: 'array',
-            label: 'Statistics Styles',
-            fields: [...textStyleFields],
-        },
-        {
-            name: 'Styles',
-            type: 'array',
-            label: 'Button Styles',
-            fields: [...textStyleFields],
         },
     ],
 };
