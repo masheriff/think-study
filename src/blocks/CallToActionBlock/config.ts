@@ -4,6 +4,8 @@ import { Block } from 'payload';
 export const CallToActionBlock: Block = {
     slug: 'callToActionBlock',
     interfaceName: 'CallToActionBlock',
+    imageURL: '/assets/blocks/CallToActionBlock.png',
+    imageAltText: 'CallToActionBlock Image',
     labels: {
         singular: 'Call To Action Block',
         plural: 'Call To Action Blocks',

@@ -4,6 +4,8 @@ import { Block } from 'payload';
 export const CareerBlock: Block = {
     slug: 'careerBlock',
     interfaceName: 'careerBlock',
+    imageURL: '/assets/blocks/CareerBlock.png',
+    imageAltText: 'CareerBlock Image',
     labels: {
         singular: 'Career Counseling Block',
         plural: 'Career Counseling Blocks',
