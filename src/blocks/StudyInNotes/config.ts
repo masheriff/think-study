@@ -23,6 +23,67 @@ export const StudyInNotes: Block = {
             required: true,
         },
         {
+
+            name: 'intakeheader',
+            type: 'group',
+            label: 'Intake Header',
+            fields: [
+                {
+                    name: 'Intake',
+                    type: 'text',
+                    label: 'Intake',
+                    defaultValue: 'Intake',
+                    required: true,
+                },
+                {
+                    name: 'application',
+                    type: 'text',
+                    label: 'Application Deadline',
+                    defaultValue: 'Application Deadline',
+                    required: true,
+                },
+                {
+                    name: 'Classesstart',
+                    type: 'text',
+                    label: 'Classes Start Usually',
+                    defaultValue: 'Classes Start Usually',
+                    required: true,
+                },
+            ],
+
+        },
+        {
+
+            name: 'inTaketableHeader',
+            type: 'group',
+            label: 'Intake Header',
+            fields: [
+                {
+                    name: 'FallIntake',
+                    type: 'text',
+                    label: 'FallIntake',
+                    defaultValue: 'Fall Intake',
+                    required: true,
+                },
+                {
+                    name: 'springintake',
+                    type: 'text',
+                    label: 'SpringIntake',
+                    defaultValue: 'Spring Intake',
+                    required: true,
+                },
+                {
+                    name: 'summerintake',
+                    type: 'text',
+                    label: 'Summer Intake',
+                    defaultValue: 'Summer Intake',
+                    required: true,
+                },
+            ],
+
+        },
+
+        {
             name: 'intakeTable',
             type: 'group',
             label: 'Intake Table',
@@ -92,6 +153,85 @@ export const StudyInNotes: Block = {
                 },
             ],
         },
+
+        {
+
+            name: 'righttableheader',
+            type: 'group',
+            label: 'Header',
+            fields: [
+                {
+                    name: 'livingexpenses',
+                    type: 'text',
+                    label: 'Living Expenses',
+                    defaultValue: 'Living Expenses',
+                    required: true,
+                },
+                {
+                    name: 'average ',
+                    type: 'text',
+                    label: 'Average Expenses',
+                    defaultValue: 'Monthly Average Expenses (in USD)',
+                    required: true,
+                },
+                {
+                    name: 'dollar ',
+                    type: 'text',
+                    label: 'Dollar',
+                    defaultValue: 'in USD',
+                    required: true,
+                },
+
+            ],
+
+        },
+
+        {
+
+            name: 'livingTable',
+            type: 'group',
+            label: 'Living Table',
+            fields: [
+                {
+                    name: 'Stay',
+                    type: 'text',
+                    label: 'Stay',
+                    defaultValue: 'Stay',
+                    required: true,
+                },
+                {
+                    name: 'foodbudget ',
+                    type: 'text',
+                    label: 'Food Budget',
+                    defaultValue: 'Food Budget',
+                    required: true,
+                },
+                {
+                    name: 'Localtransport ',
+                    type: 'text',
+                    label: 'Local Transport',
+                    defaultValue: 'Local Transport',
+                    required: true,
+                },
+                {
+                    name: 'phonebills ',
+                    type: 'text',
+                    label: 'Phone Bills',
+                    defaultValue: 'Phone Bills',
+                    required: true,
+                },
+                {
+                    name: 'movingaround',
+                    type: 'text',
+                    label: 'Moving Around',
+                    defaultValue: 'Moving Around',
+                    required: true,
+                },
+
+            ],
+
+        },
+
         {
             name: 'expensesTable',
             type: 'group',

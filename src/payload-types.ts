@@ -1117,50 +1117,8 @@ export interface AppointmentBlock {
  */
 export interface StudyInCourse {
   title: string;
-  titleStyles?:
-    | {
-        /**
-         * Select the font family
-         */
-        Family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat' | 'Delius' | 'Lato' | 'Poppins') | null;
-        /**
-         * Enter value with unit (e.g., 2rem, 24px)
-         */
-        Size?: string | null;
-        /**
-         * Hex color code (e.g., #FFFFFF)
-         */
-        Color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   country: string;
-  countryStyles?:
-    | {
-        /**
-         * Select the font family
-         */
-        Family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat' | 'Delius' | 'Lato' | 'Poppins') | null;
-        /**
-         * Enter value with unit (e.g., 2rem, 24px)
-         */
-        Size?: string | null;
-        /**
-         * Hex color code (e.g., #FFFFFF)
-         */
-        Color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   image: number | Media;
-  /**
-   * Hex color code for the image background
-   */
-  imageBackgroundColor?: string | null;
-  /**
-   * Hex color code for the main container background
-   */
-  containerBackgroundColor?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'studyInCourse';
@@ -1171,57 +1129,14 @@ export interface StudyInCourse {
  */
 export interface StudyInChecklist {
   title: string;
-  titleStyles?:
-    | {
-        /**
-         * Enter value with unit (e.g., 2rem, 24px)
-         */
-        fontSize?: string | null;
-        /**
-         * Hex color code (e.g., #FFFFFF)
-         */
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   subtitle: string;
-  subStyles?:
-    | {
-        /**
-         * Enter value with unit (e.g., 2rem, 24px)
-         */
-        fontSize?: string | null;
-        /**
-         * Hex color code (e.g., #FFFFFF)
-         */
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   checkItems?:
     | {
         text: string;
-        Styles?:
-          | {
-              /**
-               * Enter value with unit (e.g., 2rem, 24px)
-               */
-              fontSize?: string | null;
-              /**
-               * Hex color code (e.g., #FFFFFF)
-               */
-              color?: string | null;
-              id?: string | null;
-            }[]
-          | null;
         id?: string | null;
       }[]
     | null;
   image: number | Media;
-  /**
-   * Hex color code for the image background
-   */
-  imageBackgroundColor?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'studyInChecklist';
@@ -1233,6 +1148,16 @@ export interface StudyInChecklist {
 export interface StudyInNotes {
   title: string;
   subtitle: string;
+  intakeheader: {
+    Intake: string;
+    application: string;
+    Classesstart: string;
+  };
+  inTaketableHeader: {
+    FallIntake: string;
+    springintake: string;
+    summerintake: string;
+  };
   intakeTable: {
     fallIntake: {
       applicationDeadline: string;
@@ -1246,6 +1171,18 @@ export interface StudyInNotes {
       applicationDeadline: string;
       classesStart: string;
     };
+  };
+  righttableheader: {
+    livingexpenses: string;
+    'average ': string;
+    'dollar ': string;
+  };
+  livingTable: {
+    Stay: string;
+    'foodbudget ': string;
+    'Localtransport ': string;
+    'phonebills ': string;
+    movingaround: string;
   };
   expensesTable: {
     stay: {
@@ -2136,26 +2073,8 @@ export interface AppointmentBlockSelect<T extends boolean = true> {
  */
 export interface StudyInCourseSelect<T extends boolean = true> {
   title?: T;
-  titleStyles?:
-    | T
-    | {
-        Family?: T;
-        Size?: T;
-        Color?: T;
-        id?: T;
-      };
   country?: T;
-  countryStyles?:
-    | T
-    | {
-        Family?: T;
-        Size?: T;
-        Color?: T;
-        id?: T;
-      };
   image?: T;
-  imageBackgroundColor?: T;
-  containerBackgroundColor?: T;
   id?: T;
   blockName?: T;
 }
@@ -2165,36 +2084,14 @@ export interface StudyInCourseSelect<T extends boolean = true> {
  */
 export interface StudyInChecklistSelect<T extends boolean = true> {
   title?: T;
-  titleStyles?:
-    | T
-    | {
-        fontSize?: T;
-        color?: T;
-        id?: T;
-      };
   subtitle?: T;
-  subStyles?:
-    | T
-    | {
-        fontSize?: T;
-        color?: T;
-        id?: T;
-      };
   checkItems?:
     | T
     | {
         text?: T;
-        Styles?:
-          | T
-          | {
-              fontSize?: T;
-              color?: T;
-              id?: T;
-            };
         id?: T;
       };
   image?: T;
-  imageBackgroundColor?: T;
   id?: T;
   blockName?: T;
 }
@@ -2205,6 +2102,20 @@ export interface StudyInChecklistSelect<T extends boolean = true> {
 export interface StudyInNotesSelect<T extends boolean = true> {
   title?: T;
   subtitle?: T;
+  intakeheader?:
+    | T
+    | {
+        Intake?: T;
+        application?: T;
+        Classesstart?: T;
+      };
+  inTaketableHeader?:
+    | T
+    | {
+        FallIntake?: T;
+        springintake?: T;
+        summerintake?: T;
+      };
   intakeTable?:
     | T
     | {
@@ -2226,6 +2137,22 @@ export interface StudyInNotesSelect<T extends boolean = true> {
               applicationDeadline?: T;
               classesStart?: T;
             };
+      };
+  righttableheader?:
+    | T
+    | {
+        livingexpenses?: T;
+        'average '?: T;
+        'dollar '?: T;
+      };
+  livingTable?:
+    | T
+    | {
+        Stay?: T;
+        'foodbudget '?: T;
+        'Localtransport '?: T;
+        'phonebills '?: T;
+        movingaround?: T;
       };
   expensesTable?:
     | T

@@ -1,39 +1,4 @@
-import { Block, Field } from 'payload';
-
-const textStyleFields: Field[] = [
-    {
-        name: 'Family',
-        type: 'select',
-        options: [
-            { label: 'Inter', value: 'Inter' },
-            { label: 'Roboto', value: 'Roboto' },
-            { label: 'Open Sans', value: 'Open Sans' },
-            { label: 'Montserrat', value: 'Montserrat' },
-            { label: 'Delius', value: 'Delius' },
-            { label: 'Lato', value: 'Lato' },
-            { label: 'Poppins', value: 'Poppins' },
-        ],
-        defaultValue: 'Inter',
-        admin: {
-            description: 'Select the font family',
-        },
-    },
-    {
-        name: 'Size',
-        type: 'text',
-        admin: {
-            description: 'Enter value with unit (e.g., 2rem, 24px)',
-        },
-    },
-    {
-        name: 'Color',
-        type: 'text',
-        defaultValue: '#000000',
-        admin: {
-            description: 'Hex color code (e.g., #FFFFFF)',
-        },
-    },
-];
+import { Block } from 'payload';
 
 export const StudyInCourse: Block = {
     slug: 'studyInCourse',
@@ -50,12 +15,7 @@ export const StudyInCourse: Block = {
             label: 'Title',
             defaultValue: 'Study in the',
         },
-        {
-            name: 'titleStyles',
-            type: 'array',
-            label: 'Title Styles',
-            fields: [...textStyleFields],
-        },
+
         {
             name: 'country',
             type: 'text',
@@ -64,35 +24,12 @@ export const StudyInCourse: Block = {
             defaultValue: 'USA',
         },
         {
-            name: 'countryStyles',
-            type: 'array',
-            label: 'Country Styles',
-            fields: [...textStyleFields],
-        },
-        {
             name: 'image',
             type: 'upload',
             relationTo: 'media',
             required: true,
             label: 'Image',
         },
-        {
-            name: 'imageBackgroundColor',
-            type: 'text',
-            label: 'Image Background Color',
-            defaultValue: '#C1F177',
-            admin: {
-                description: 'Hex color code for the image background',
-            },
-        },
-        {
-            name: 'containerBackgroundColor',
-            type: 'text',
-            label: 'Container Background Color',
-            defaultValue: '#D0E9F9',
-            admin: {
-                description: 'Hex color code for the main container background',
-            },
-        },
+
     ],
 };
