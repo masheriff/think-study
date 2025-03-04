@@ -4,6 +4,8 @@ import type { Block } from "payload"
 export const StudyAbroadBlock: Block = {
     slug: "studyAbroadBlock",
     interfaceName: "StudyAbroadBlock",
+    imageURL: '/assets/blocks/StudyAbroadBlock.png',
+    imageAltText: 'StudyAbroadBlock Image',
     labels: {
         singular: "Study Abroad Block",
         plural: "Study Abroad Blocks",

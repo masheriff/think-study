@@ -26,7 +26,7 @@ export const FAQBlock: React.FC<Props> = (props) => {
 
     return (
         <section className="container">
-            <h2 className="text-center text-3xl mb-12"> {title} </h2>
+            <h2 className="text-center text-5xl mb-12"> {title} </h2>
 
             <div className={`space-y-4 snap-start scroll-ml-6 h-[400px] ${faqs?.length > 5 ? "overflow-y-scroll scroll-smooth" : "overflow-visible"
                 }`}>

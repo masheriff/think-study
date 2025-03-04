@@ -18,6 +18,8 @@ const faqItemFields: Field[] = [
 export const FAQBlock: Block = {
     slug: 'faqBlock',
     interfaceName: 'FAQBlock',
+    imageURL: '/assets/blocks/FAQBlock.png',
+    imageAltText: 'FAQBlock Image',
     labels: {
         singular: 'FAQ Block',
         plural: 'FAQ Blocks',

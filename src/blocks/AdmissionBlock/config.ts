@@ -1,11 +1,13 @@
 import { Block } from 'payload';
 
-export const AdminssionBlock: Block = {
-    slug: 'adminssionBlock',
-    interfaceName: 'AdminssionBlock',
+export const AdmissionBlock: Block = {
+    slug: 'admissionBlock',
+    interfaceName: 'AdmissionBlock',
+    imageURL: '/assets/blocks/AdmissionBlock.png',
+    imageAltText: 'AdmissionBlock Image',
     labels: {
-        singular: 'Adminssion Block',
-        plural: 'Adminssion Blocks',
+        singular: 'Admission Block',
+        plural: 'Admission Blocks',
     },
     fields: [
 

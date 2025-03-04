@@ -14,8 +14,7 @@ import { GetStartedBlock } from '@/blocks/GetStartedBlock/config'
 import { MapBlock } from '@/blocks/MapBlock/config'
 import { ServiceBlock } from '@/blocks/ServiceBlock/config'
 import { FAQBlock } from '@/blocks/FAQBlock/config'
-import { FutureBlock } from '@/blocks/FutureBlock/config'
-import { AdminssionBlock } from '@/blocks/AdmissionBlock/config'
+import { AdmissionBlock } from '@/blocks/AdmissionBlock/config'
 import { CareerBlock } from '@/blocks/CareerBlock/config'
 import { WorldStudentBlock } from '@/blocks/WorldStudentBlock/config'
 import { slugField } from '@/fields/slug'
@@ -42,6 +41,7 @@ import { StudyInChecklist } from '@/blocks/StudyInCheckList/config'
 import { BenefitsInStudy } from '@/blocks/StudyInBenefits/config'
 import { StudyInNotes } from '@/blocks/StudyInNotes/config'
 import { StudyInApplication } from '@/blocks/StudyInApplication/config'
+
 // import { StudyInApplication } from '@/blocks/StudyInApplication/config'
 
 
@@ -101,7 +101,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Content, MediaBlock, Archive, FormBlock, TestimonialsBlock, CounselingBlock, CallToActionBlock, UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock, WhyusMediaBlock, ConnectBlock, AppointmentBlock, StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes, StudyInApplication],
+              blocks: [Content, MediaBlock, Archive, FormBlock, AdmissionBlock, TestimonialsBlock, CounselingBlock, CallToActionBlock, UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, CareerBlock, WhyusMediaBlock, ConnectBlock, AppointmentBlock, StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes, StudyInApplication],
               required: true,
               admin: {
                 initCollapsed: true,

@@ -3,6 +3,8 @@ import { Block } from "payload";
 export const UniversitiesBlock: Block = {
     slug: 'universitiesBlock',
     interfaceName: 'UniversitiesBlock',
+    imageURL: '/assets/blocks/UniversitiesBlock.png',
+    imageAltText: 'UniversitiesBlock Image',
     labels: {
         singular: 'Universities Block',
         plural: 'Universities Blocks',

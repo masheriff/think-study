@@ -12,8 +12,6 @@ import GetStartedBlock from './GetStartedBlock/Component'
 import MapBlock from './MapBlock/Component'
 import { WorldStudentBlock } from './WorldStudentBlock/Component'
 import FAQBlock from './FAQBlock/Component'
-import FutureBlock from './FutureBlock/Component'
-import AdminssionBlock from './AdmissionBlock/Component'
 import { CareerBlock } from './CareerBlock/Component'
 import ConnectBlock from './ConnectBlock/Component'
 import WhyusMediaBlock from './WhyusMedia/Component'
@@ -25,6 +23,7 @@ import { BenefitsInStudy } from './StudyInBenefits/Comonent'
 import CallToActionBlock from './CallToActionBlock/Component'
 import { StudyInNotes } from './StudyInNotes/Component'
 import { StudyInApplication } from './StudyInApplication/Component'
+import AdmissionBlock from './AdmissionBlock/Component'
 
 
 type BlockComponentsType = {
@@ -40,8 +39,7 @@ type BlockComponentsType = {
   worldStudentBlock: typeof WorldStudentBlock
   serviceBlock: typeof ServiceBlock
   faqBlock: typeof FAQBlock
-  futureBlock: typeof FutureBlock
-  adminssionBlock: typeof AdminssionBlock
+  admissionBlock: typeof AdmissionBlock
   connectBlock: typeof ConnectBlock
   whyusMediaBlock: typeof WhyusMediaBlock
   appointmentBlock: typeof AppointmentBlock
@@ -67,8 +65,7 @@ const blockComponents: BlockComponentsType = {
   worldStudentBlock: WorldStudentBlock,
   serviceBlock: ServiceBlock,
   faqBlock: FAQBlock,
-  futureBlock: FutureBlock,
-  adminssionBlock: AdminssionBlock,
+  admissionBlock: AdmissionBlock,
   careerBlock: CareerBlock,
   connectBlock: ConnectBlock,
   whyusMediaBlock: WhyusMediaBlock,
