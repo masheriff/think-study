@@ -3,6 +3,8 @@ import { Block } from 'payload'
 export const AppointmentBlock: Block = {
     slug: 'appointmentBlock',
     interfaceName: 'AppointmentBlock',
+    imageURL: '/assets/blocks/Appointment.png',
+    imageAltText: 'Appointment Block Image',
     fields: [
         {
             name: 'leftContent',

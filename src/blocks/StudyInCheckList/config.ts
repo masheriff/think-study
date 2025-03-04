@@ -3,6 +3,8 @@ import { Block } from 'payload';
 export const StudyInChecklist: Block = {
     slug: 'studyInChecklist',
     interfaceName: 'StudyInChecklist',
+    imageURL: '/assets/blocks/StudyIn-CheckList.svg',
+    imageAltText: 'Study In Checklist',
     labels: {
         singular: 'Study In Checklist',
         plural: 'Study In Checklists',

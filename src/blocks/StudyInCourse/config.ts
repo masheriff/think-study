@@ -3,6 +3,8 @@ import { Block } from 'payload';
 export const StudyInCourse: Block = {
     slug: 'studyInCourse',
     interfaceName: 'StudyInCourse',
+    imageURL: '/assets/blocks/StudyIn-Course.svg',
+    imageAltText: 'Study In Course Image',
     labels: {
         singular: 'Study In Course',
         plural: 'Study In Courses',

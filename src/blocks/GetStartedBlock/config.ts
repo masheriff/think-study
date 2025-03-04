@@ -3,6 +3,8 @@ import { Block } from "payload";
 export const GetStartedBlock: Block = {
     slug: 'getStartedBlock',
     interfaceName: 'GetStartedBlock',
+    imageURL: '/assets/blocks/GetStartedBlock.png',
+    imageAltText: 'GetStartedBlock Image',
     labels: {
         singular: 'Get Started Block',
         plural: 'Get Started Blocks',

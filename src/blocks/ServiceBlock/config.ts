@@ -4,6 +4,8 @@ import { Block } from 'payload';
 export const ServiceBlock: Block = {
     slug: 'serviceBlock',
     interfaceName: 'ServiceBlock',
+    imageURL: '/assets/blocks/ServiceBlock.png',
+    imageAltText: 'ServiceBlock Image',
     labels: {
         singular: 'Service Block',
         plural: 'Service Blocks',

@@ -3,6 +3,8 @@ import { Block } from 'payload';
 export const StudyInNotes: Block = {
     slug: 'studyInNotes',
     interfaceName: 'StudyInNotes',
+    imageURL: '/assets/blocks/StudyIn-Notes.svg',
+    imageAltText: 'Study In Notes',
     labels: {
         singular: 'Study In Abroad',
         plural: 'Study In Abroads',

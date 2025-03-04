@@ -4,6 +4,8 @@ import { Block } from 'payload';
 export const ConnectBlock: Block = {
     slug: 'connectBlock',
     interfaceName: 'ConnectBlock',
+    imageURL: '/assets/blocks/ConnectBlock.png',
+    imageAltText: 'ConnectBlock Image',
     labels: {
         singular: 'Connect Block',
         plural: 'Connect Blocks',

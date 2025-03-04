@@ -3,6 +3,8 @@ import { Block } from "payload/";
 export const MapBlock: Block = {
     slug: 'mapBlock',
     interfaceName: 'MapBlock',
+    imageURL: '/assets/blocks/MapBlock.png',
+    imageAltText: 'MapBlock Image',
     labels: {
         singular: 'Map Block',
         plural: 'Map Blocks',

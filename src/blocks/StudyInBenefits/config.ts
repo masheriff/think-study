@@ -2,6 +2,8 @@ import { Block } from 'payload';
 
 export const BenefitsInStudy: Block = {
     slug: 'benefitsInStudy',
+    imageURL: '/assets/blocks/StudyIn-Abord.svg',
+    imageAltText: 'Study In Benefits',
     labels: {
         singular: 'Study In Benefits',
         plural: 'Study In Benefits Blocks',

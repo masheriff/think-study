@@ -149,6 +149,7 @@ export interface Page {
     | MediaBlock
     | ArchiveBlock
     | FormBlock
+    | AdmissionBlock
     | TestimonialsBlock
     | CounselingBlock
     | CallToActionBlock
@@ -160,8 +161,6 @@ export interface Page {
     | WorldStudentBlock
     | ServiceBlock
     | FAQBlock
-    | FutureBlock
-    | AdminssionBlock
     | CareerBlock
     | WhyusMediaBlock
     | ConnectBlock
@@ -666,6 +665,37 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AdmissionBlock".
+ */
+export interface AdmissionBlock {
+  year: string;
+  day: string;
+  currentDescription: string;
+  currentYear: string;
+  ambitions: string;
+  description: string;
+  successRate: string;
+  /**
+   * Add statistics that will be displayed
+   */
+  statistics: {
+    value: string;
+    label: string;
+    id?: string | null;
+  }[];
+  /**
+   * Add courses that will be displayed
+   */
+  courses: {
+    name: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'admissionBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TestimonialsBlock".
  */
 export interface TestimonialsBlock {
@@ -940,84 +970,6 @@ export interface FAQBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'faqBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FutureBlock".
- */
-export interface FutureBlock {
-  mainHeading: string;
-  connectText: string;
-  buttonText: string;
-  callText: string;
-  studentImage: number | Media;
-  logoImage: number | Media;
-  offices: {
-    name: string;
-    phoneNumbers: {
-      number: string;
-      id?: string | null;
-    }[];
-    id?: string | null;
-  }[];
-  headingStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  connectStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  officeStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'futureBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AdminssionBlock".
- */
-export interface AdminssionBlock {
-  year: string;
-  day: string;
-  currentDescription: string;
-  currentYear: string;
-  ambitions: string;
-  description: string;
-  successRate: string;
-  /**
-   * Add statistics that will be displayed
-   */
-  statistics: {
-    value: string;
-    label: string;
-    id?: string | null;
-  }[];
-  /**
-   * Add courses that will be displayed
-   */
-  courses: {
-    name: string;
-    id?: string | null;
-  }[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'adminssionBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1528,6 +1480,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        admissionBlock?: T | AdmissionBlockSelect<T>;
         testimonialsBlock?: T | TestimonialsBlockSelect<T>;
         counselingBlock?: T | CounselingBlockSelect<T>;
         callToActionBlock?: T | CallToActionBlockSelect<T>;
@@ -1539,8 +1492,6 @@ export interface PagesSelect<T extends boolean = true> {
         worldStudentBlock?: T | WorldStudentBlockSelect<T>;
         serviceBlock?: T | ServiceBlockSelect<T>;
         faqBlock?: T | FAQBlockSelect<T>;
-        futureBlock?: T | FutureBlockSelect<T>;
-        adminssionBlock?: T | AdminssionBlockSelect<T>;
         careerBlock?: T | CareerBlockSelect<T>;
         whyusMediaBlock?: T | WhyusMediaBlockSelect<T>;
         connectBlock?: T | ConnectBlockSelect<T>;
@@ -1629,6 +1580,34 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AdmissionBlock_select".
+ */
+export interface AdmissionBlockSelect<T extends boolean = true> {
+  year?: T;
+  day?: T;
+  currentDescription?: T;
+  currentYear?: T;
+  ambitions?: T;
+  description?: T;
+  successRate?: T;
+  statistics?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  courses?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1886,84 +1865,6 @@ export interface FAQBlockSelect<T extends boolean = true> {
     | {
         question?: T;
         answer?: T;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FutureBlock_select".
- */
-export interface FutureBlockSelect<T extends boolean = true> {
-  mainHeading?: T;
-  connectText?: T;
-  buttonText?: T;
-  callText?: T;
-  studentImage?: T;
-  logoImage?: T;
-  offices?:
-    | T
-    | {
-        name?: T;
-        phoneNumbers?:
-          | T
-          | {
-              number?: T;
-              id?: T;
-            };
-        id?: T;
-      };
-  headingStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  connectStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  officeStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AdminssionBlock_select".
- */
-export interface AdminssionBlockSelect<T extends boolean = true> {
-  year?: T;
-  day?: T;
-  currentDescription?: T;
-  currentYear?: T;
-  ambitions?: T;
-  description?: T;
-  successRate?: T;
-  statistics?:
-    | T
-    | {
-        value?: T;
-        label?: T;
-        id?: T;
-      };
-  courses?:
-    | T
-    | {
-        name?: T;
         id?: T;
       };
   id?: T;
