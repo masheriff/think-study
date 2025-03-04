@@ -45,9 +45,9 @@ export const StudyInChecklist: React.FC<Props> = (props) => {
                             </ol>
                         </div>
 
-                        <ul className="hidden sm:block xl:w-[80%] w-full sm:ms-[10px] list-disc list-inside space-y-0">
+                        <ul className="hidden sm:block xl:w-[80%] w-full sm:ms-[10px]  list-disc list-inside space-y-0">
                             {checkItems?.map((item, index) => (
-                                <li key={index} className="font-normal mb-2 leading-tight font-roboto md:text-[18px] lg:text-[19px] text-[#000000]">
+                                <li key={index} className="font-normal leading-tight pb-[5px] font-roboto md:text-[18px] lg:text-[19px] text-[#000000]">
                                     {item.text}
                                 </li>
                             ))}
@@ -74,7 +74,6 @@ export const StudyInChecklist: React.FC<Props> = (props) => {
                     )}
                 </div>
             </div>
-
         </section>
     );
 };
