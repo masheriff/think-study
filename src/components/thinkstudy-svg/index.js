@@ -1,4 +1,4 @@
-// import CurlyBraces from '../../../public/CurlBraces.svg'
+// import CurlyBraces from '../../../public/checkbox.svg'
 
 export const CurlyBraces = () => {
   return (
