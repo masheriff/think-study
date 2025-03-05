@@ -178,6 +178,7 @@ export interface Page {
     | StudyInApplication
     | IELTSEnroll
     | IELTSPrep
+    | IELTSFeatures
   )[];
   meta?: {
     title?: string | null;
@@ -1225,6 +1226,23 @@ export interface IELTSPrep {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSFeatures".
+ */
+export interface IELTSFeatures {
+  Heading: string;
+  featuresList?:
+    | {
+        featureText: string;
+        id?: string | null;
+      }[]
+    | null;
+  studentImage: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ieltsFeatures';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1552,6 +1570,7 @@ export interface PagesSelect<T extends boolean = true> {
         studyInApplication?: T | StudyInApplicationSelect<T>;
         ieltsEnroll?: T | IELTSEnrollSelect<T>;
         ieltsPrep?: T | IELTSPrepSelect<T>;
+        ieltsFeatures?: T | IELTSFeaturesSelect<T>;
       };
   meta?:
     | T
@@ -2187,6 +2206,22 @@ export interface IELTSPrepSelect<T extends boolean = true> {
         id?: T;
       };
   backgroundImage?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSFeatures_select".
+ */
+export interface IELTSFeaturesSelect<T extends boolean = true> {
+  Heading?: T;
+  featuresList?:
+    | T
+    | {
+        featureText?: T;
+        id?: T;
+      };
+  studentImage?: T;
   id?: T;
   blockName?: T;
 }

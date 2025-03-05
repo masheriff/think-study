@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { cn } from '@/utilities/ui';
 import type { GetStartedBlock as GetStartedBlockType } from '@/payload-types';
+import { Triangle } from '@/components/thinkstudy-svg';
 
 type Props = GetStartedBlockType & {
     className?: string;
@@ -21,7 +22,7 @@ export const GetStartedBlock: React.FC<Props> = (props) => {
     return (
         <section className={cn('', className)}>
             <div className="container">
-                <div className="bg-blue-50 flex flex-col md:flex-row items-center justify-between p-10 rounded-3xl">
+                <div className="bg-[#D9F1FD] flex flex-col md:flex-row items-center justify-between p-10 rounded-3xl">
                     {/* Left Content */}
                     <div className="flex-1 mb-8 md:mb-0">
                         {heading && (
@@ -47,10 +48,8 @@ export const GetStartedBlock: React.FC<Props> = (props) => {
                             <ul className="space-y-4 list-none pl-0">
                                 {features.map((feature, index) => (
                                     <li key={index} className="flex items-start">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="22" viewBox="0 0 18 22" fill="none" className="mr-3 mt-1.5">
-                                            <path d="M18 11L0 21.3923V0.607696L18 11Z" fill="#FF0000" />
-                                        </svg>
-                                        <p className="text-gray-700 leading-relaxed">
+                                        <Triangle />
+                                        <p className="text-gray-700 leading-8">
                                             {feature.text}
                                         </p>
                                     </li>

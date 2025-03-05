@@ -33,7 +33,7 @@ export const IELTSPrep: React.FC<Props> = ({
                 <div className="w-full max-w-6xl mx-auto py-12 md:py-20">
                     {/* Heading Section */}
                     <div className="text-center mb-12 md:mb-20">
-                        <h2 className="flex text-3xl md:text-5xl font-bold leading-tight mb-4">
+                        <h2 className="flex text-center justify-center text-3xl md:text-5xl font-bold leading-tight mb-4">
                             <span className="block">{normalHeading}</span>
                             <span className="text-[#FF0000] font-mynerve italic">{highlightedHeading}</span>
                         </h2>

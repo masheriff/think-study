@@ -26,6 +26,7 @@ import { StudyInApplication } from './StudyInApplication/Component'
 import AdmissionBlock from './AdmissionBlock/Component'
 import { IELTSEnroll } from './IELTSEnroll/Component'
 import { IELTSPrep } from './IELTSPrep/Component'
+import { IELTSFeatures } from './IELTSFeatures/Component'
 
 
 
@@ -55,6 +56,7 @@ type BlockComponentsType = {
   studyInApplication: typeof StudyInApplication
   ieltsEnroll: typeof IELTSEnroll
   ieltsPrep: typeof IELTSPrep
+  ieltsFeatures: typeof IELTSFeatures
 }
 
 const blockComponents: BlockComponentsType = {
@@ -82,7 +84,8 @@ const blockComponents: BlockComponentsType = {
   studyInNotes: StudyInNotes,
   studyInApplication: StudyInApplication,
   ieltsEnroll: IELTSEnroll,
-  ieltsPrep: IELTSPrep
+  ieltsPrep: IELTSPrep,
+  ieltsFeatures: IELTSFeatures
 }
 
 export const RenderBlocks: React.FC<{

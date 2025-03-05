@@ -4,6 +4,7 @@ import type { AppointmentBlock as AppointmentBlockType } from '@/payload-types'
 import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import Link from 'next/link'
+import { CheckBox } from '@/components/thinkstudy-svg'
 
 type Props = AppointmentBlockType & {
     className?: string
@@ -35,8 +36,8 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                         <div>
                             {leftContent?.paragraphs?.map((para, index) => (
                                 <p key={index} className="text-black/65 text-base flex items-center">
-                                    <Image src="/media/icons/square.png" alt="checkbox" width={15} height={15} className="mr-2" />
-                                    {para.text}
+                                    <CheckBox />
+                                    <span className='ml-2'>{para.text}</span>
                                 </p>
                             ))}
                         </div>
