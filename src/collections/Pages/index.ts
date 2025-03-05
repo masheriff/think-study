@@ -41,6 +41,9 @@ import { StudyInChecklist } from '@/blocks/StudyInCheckList/config'
 import { BenefitsInStudy } from '@/blocks/StudyInBenefits/config'
 import { StudyInNotes } from '@/blocks/StudyInNotes/config'
 import { StudyInApplication } from '@/blocks/StudyInApplication/config'
+//Ace IELTS page
+import { IELTSEnroll } from '@/blocks/IELTSEnroll/config'
+import { IELTSPrep } from '@/blocks/IELTSPrep/config'
 
 // import { StudyInApplication } from '@/blocks/StudyInApplication/config'
 
@@ -101,7 +104,9 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Content, MediaBlock, Archive, FormBlock, AdmissionBlock, TestimonialsBlock, CounselingBlock, CallToActionBlock, UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, CareerBlock, WhyusMediaBlock, ConnectBlock, AppointmentBlock, StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes, StudyInApplication],
+              blocks: [Content, MediaBlock, Archive, FormBlock, AdmissionBlock, TestimonialsBlock, CounselingBlock, CallToActionBlock, UniversitiesBlock,
+                StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, CareerBlock, WhyusMediaBlock, ConnectBlock, AppointmentBlock,
+                StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes, StudyInApplication, IELTSEnroll, IELTSPrep],
               required: true,
               admin: {
                 initCollapsed: true,

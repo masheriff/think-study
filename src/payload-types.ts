@@ -176,6 +176,8 @@ export interface Page {
       }
     | StudyInNotes
     | StudyInApplication
+    | IELTSEnroll
+    | IELTSPrep
   )[];
   meta?: {
     title?: string | null;
@@ -1183,6 +1185,46 @@ export interface StudyInApplication {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSEnroll".
+ */
+export interface IELTSEnroll {
+  titlePrefix: string;
+  titleEmphasis: string;
+  titleSuffix: string;
+  buttonText: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ieltsEnroll';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSPrep".
+ */
+export interface IELTSPrep {
+  normalHeading: string;
+  highlightedHeading: string;
+  /**
+   * Enter the text inside "|" symbols to highlight text in black color. Example: "Regular text |highlighted text| regular text"
+   */
+  normalDescription: string;
+  /**
+   * Enter the text inside "|" symbols to highlight text in black color. Example: "Regular text |highlighted text| regular text"
+   */
+  contentCard: string;
+  iconCards?:
+    | {
+        icon: number | Media;
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundImage: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ieltsPrep';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1508,6 +1550,8 @@ export interface PagesSelect<T extends boolean = true> {
             };
         studyInNotes?: T | StudyInNotesSelect<T>;
         studyInApplication?: T | StudyInApplicationSelect<T>;
+        ieltsEnroll?: T | IELTSEnrollSelect<T>;
+        ieltsPrep?: T | IELTSPrepSelect<T>;
       };
   meta?:
     | T
@@ -2111,6 +2155,38 @@ export interface StudyInApplicationSelect<T extends boolean = true> {
               id?: T;
             };
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSEnroll_select".
+ */
+export interface IELTSEnrollSelect<T extends boolean = true> {
+  titlePrefix?: T;
+  titleEmphasis?: T;
+  titleSuffix?: T;
+  buttonText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSPrep_select".
+ */
+export interface IELTSPrepSelect<T extends boolean = true> {
+  normalHeading?: T;
+  highlightedHeading?: T;
+  normalDescription?: T;
+  contentCard?: T;
+  iconCards?:
+    | T
+    | {
+        icon?: T;
+        text?: T;
+        id?: T;
+      };
+  backgroundImage?: T;
   id?: T;
   blockName?: T;
 }
