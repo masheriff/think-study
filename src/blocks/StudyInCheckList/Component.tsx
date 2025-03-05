@@ -20,7 +20,7 @@ export const StudyInChecklist: React.FC<Props> = (props) => {
     } = props;
 
     return (
-        <section className={cn('container h-screen', className)}>
+        <section className={cn('container ', className)}>
             <div className="flex bg-[#D9F1FD] sm:px-12 sm-py-6 p-4 rounded-3xl flex-col xl:flex-row items-center overflow-hidden">
                 {/* Left Text (80%) */}
                 <div className="xl:w-[85%] w-full p-6 py-2 ms-6 flex flex-col justify-start items-start md:items-start h-full">
