@@ -41,8 +41,10 @@ export const IELTSFeatures: React.FC<Props> = ({
                             </h2>
                             <div className="space-y-6">
                                 {featuresList?.map((feature, index) => (
-                                    <div key={index} className="flex items-center">
-                                        <CheckBox />
+                                    <div key={index} className="flex items-center leading-relaxed">
+                                        <span className="w-6 h-6 flex items-center justify-center">
+                                            <CheckBox />
+                                        </span>
                                         <span className="text-lg font-medium ml-2">{feature.featureText}</span>
                                     </div>
                                 ))}

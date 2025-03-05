@@ -179,6 +179,8 @@ export interface Page {
     | IELTSEnroll
     | IELTSPrep
     | IELTSFeatures
+    | IELTSPackages
+    | IELTSRoadmap
   )[];
   meta?: {
     title?: string | null;
@@ -1243,6 +1245,62 @@ export interface IELTSFeatures {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSPackages".
+ */
+export interface IELTSPackages {
+  mainHeading: string;
+  higlightedHeading: string;
+  description: string;
+  currencyLabel: string;
+  enrollButtonText: string;
+  packages?:
+    | {
+        optionLabel: string;
+        packageTitle: string;
+        details?:
+          | {
+              label: string;
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        includesHeading: string;
+        includes?:
+          | {
+              includeItem: string;
+              id?: string | null;
+            }[]
+          | null;
+        price: number;
+        packageColor: 'green' | 'yellow';
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ieltsPackages';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSRoadmap".
+ */
+export interface IELTSRoadmap {
+  title: string;
+  subtitle?: string | null;
+  steps?:
+    | {
+        stepNumber: number;
+        icon: number | Media;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ieltsRoadmap';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1571,6 +1629,8 @@ export interface PagesSelect<T extends boolean = true> {
         ieltsEnroll?: T | IELTSEnrollSelect<T>;
         ieltsPrep?: T | IELTSPrepSelect<T>;
         ieltsFeatures?: T | IELTSFeaturesSelect<T>;
+        ieltsPackages?: T | IELTSPackagesSelect<T>;
+        ieltsRoadmap?: T | IELTSRoadmapSelect<T>;
       };
   meta?:
     | T
@@ -2222,6 +2282,60 @@ export interface IELTSFeaturesSelect<T extends boolean = true> {
         id?: T;
       };
   studentImage?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSPackages_select".
+ */
+export interface IELTSPackagesSelect<T extends boolean = true> {
+  mainHeading?: T;
+  higlightedHeading?: T;
+  description?: T;
+  currencyLabel?: T;
+  enrollButtonText?: T;
+  packages?:
+    | T
+    | {
+        optionLabel?: T;
+        packageTitle?: T;
+        details?:
+          | T
+          | {
+              label?: T;
+              text?: T;
+              id?: T;
+            };
+        includesHeading?: T;
+        includes?:
+          | T
+          | {
+              includeItem?: T;
+              id?: T;
+            };
+        price?: T;
+        packageColor?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSRoadmap_select".
+ */
+export interface IELTSRoadmapSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  steps?:
+    | T
+    | {
+        stepNumber?: T;
+        icon?: T;
+        description?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

@@ -30,13 +30,14 @@ export const DownArrow = () => {
 
 export const CheckBox = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
-      <image
-        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAABT5JREFUeF7tm11MW2UYx//PaRlslIJfm04xrKeTbImLOmeMCqwt4hLZTPxA54zu0k23Kz8SzRIu/NYb48adFwohiEazoRc4aSkzRuNnMNGx9QBTxnRsSnsKbmnPeczhI4H2lJ62FHpKz+153rf//+993+c95+1zCCv8ohXuHwUAhRmwwgkYXgLl/uoNrEZ2gbGRCWtzkRsxzgN0iizWrmDdwJARjUkBrPY5byhifoeBJsA0OYMZ6FCj1ucmGwZGFwKxIIDyHudtKvHnAK4zQjMHY0YVCzVO1gV+TqQtIQBt5K3M3wO4NgeNpSJpVIlatyWaCQkB2L1iBwOPpvJLuRrLoPawO7BHT58uAC3hqUpUMtGaT8ZetZAijruGh2MDdQHYveJBBt5N1quZ7hPjQMgjHTYIwNnC4H1mMphMK4GPhNyDzxoEIH40s+0l69c09wnoDLmluJymuwTKfI5OMD1iGndGhBJ/LLsGtWeZeVcBgB68wgwoLIGczgEXAFwE4ARgMbL8p2LyIAcwEw6Fx6Q30ASl9KsNW0gQugi40RCEPADwouyW3ppr1t7j2M1E7SsBwGuyW3o51mip33GzoFB/XgNI9ASnmbb1OPYRUUs+A2iV+6S9aIYaa9Lm37iJFPUEgKvyFcAxmSofgqs3GmtwtV+stCj42nACNOEu4JVJuR+u4UtxI98trqUi9AGoNjTys0Hm2QX4uxIqqR9z/RaONVjhq6pQWfAx6JaUzJtmBjB+pcjl7aEdI//EGlzXvaV0smiiG8DdKZs3CYCASkrNhGv4rziDnZtX2a6+1EWghrTMmwDAiIWUGr0jK/ywtagsGPwUxI1pm89xAGNsEerCdad/jzPYDMFWK7YRsDsj8zkMICgwuYOewE9xBhlk7xVbmPF0xuaXAMA4wP0AiQCuNyaYJ8DUIHukb/Tiy7zimwBeMNaXgajsbYPcB3XVg3L9yYtohlBWK75uQPhlQVV3BuuHjuubd74E8KsGbBkPyRYAtgibY9dvktGLgtEke6TP9NTbfM5niDnu+Nq40wSRWQKgyvaKEtz+Y2TezyZev0zA3pBb+lBPpt3nfIKZPwAgZGw4toMsAQCBdoTcAe0BZf41lcGdrQR+fPYGMQ6GPNJ7Cab9AwB/AsC66OazmQQJ+DNCdNd/rsBInHBtDw+Na6Z2MeNQ2CO9omeu1OvwCKAvABRnxXw2AUwLppMc4brwfdL5OAO+qpIyWPfIrsD7Cab9ncysJUNb1sxnH8CU9H6hKLI9WPPHv0aNTJ/oCL0AX2m0Tdpx2coBMYK+LaHie/Xe5GKF232ik3nqtXZpii+WCIBWQ9MTIqVR711+FsJM8YV2mlOV9oim2nCpAMzoOipT5cN6pzm2Puc1FGE/CJtS9ZBR/BIDAJjb5BODT809z7viuKM8YqEeArZmZCadxksOQBPJ3FZcXLT/wj0D8nTVidIB8B3p6M+4zbIAmFYdYeAcAZXLWnKzjAAyHrxF6aAAoFAgUagQMVwiY/eu8CIpu9dxhEH7FyX55EgnTDgcdkkHYuUUCiX1BigvS2VZdYx7hs4YmgFakM0rti/KeXxuLIFW2S09qSclYbX4mi+r11usUa1cfn1ueEhbxVnFGt02WXvmXEoAtOA1fuetFmXqgwmzQjirktA44Tr9SyJ8ST+Z0WaCYFXeJvBjWTmtTXtgF2yogrldFdTndf9sndM0KYDZ2ApfVZWqWnaqAm4i8Lrs6M6sVwb9Lag4JUA9ppfwUl4CmckxR2vDM8AcdlJXWQCQOrP8arHiZ8D/EPmyX/9onlgAAAAASUVORK5CYII="
-        x="0"
-        y="0"
-        width="30"
-        height="30"
+    <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="50" height="50" rx="8" fill="green" />
+      <path
+        d="M12 25L20 33L38 15"
+        stroke="white"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   )

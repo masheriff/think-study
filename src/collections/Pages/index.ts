@@ -45,10 +45,8 @@ import { StudyInApplication } from '@/blocks/StudyInApplication/config'
 import { IELTSEnroll } from '@/blocks/IELTSEnroll/config'
 import { IELTSPrep } from '@/blocks/IELTSPrep/config'
 import { IELTSFeatures } from '@/blocks/IELTSFeatures/config'
-
-// import { StudyInApplication } from '@/blocks/StudyInApplication/config'
-
-
+import { IELTSPackages } from '@/blocks/IELTSPackages/config'
+import { IELTSRoadmap } from '@/blocks/IELTSRoadmap/config'
 
 
 export const Pages: CollectionConfig<'pages'> = {
@@ -106,8 +104,9 @@ export const Pages: CollectionConfig<'pages'> = {
               name: 'layout',
               type: 'blocks',
               blocks: [Content, MediaBlock, Archive, FormBlock, AdmissionBlock, TestimonialsBlock, CounselingBlock, CallToActionBlock, UniversitiesBlock,
-                StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, CareerBlock, WhyusMediaBlock, ConnectBlock, AppointmentBlock,
-                StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes, StudyInApplication, IELTSEnroll, IELTSPrep, IELTSFeatures],
+                StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, CareerBlock, WhyusMediaBlock, ConnectBlock,
+                AppointmentBlock, StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes, StudyInApplication, IELTSEnroll, IELTSPrep, IELTSFeatures,
+                IELTSPackages, IELTSRoadmap],
               required: true,
               admin: {
                 initCollapsed: true,

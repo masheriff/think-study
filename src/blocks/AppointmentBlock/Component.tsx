@@ -35,8 +35,10 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                         <p className="text-base text-black/65">{leftContent?.extraText}</p>
                         <div>
                             {leftContent?.paragraphs?.map((para, index) => (
-                                <p key={index} className="text-black/65 text-base flex items-center">
-                                    <CheckBox />
+                                <p key={index} className="text-black/65 text-base flex items-center leading-relaxed" >
+                                    <span className="w-6 h-6 flex items-center justify-center">
+                                        <CheckBox />
+                                    </span>
                                     <span className='ml-2'>{para.text}</span>
                                 </p>
                             ))}
