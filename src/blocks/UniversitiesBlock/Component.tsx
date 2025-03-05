@@ -45,26 +45,39 @@ export const UniversitiesBlock: React.FC<Props> = (props) => {
                     )}
                 </div>
                 {/* University Images */}
-                {universitiesImages && universitiesImages.length > 0 && (
+                {universitiesImages && universitiesImages?.length > 0 && (
+                    <div className="relative overflow-hidden mt-16 py-10">
+                        {/* Top Gradient Overlay */}
+                        <div className="w-full absolute top-0 h-20 bg-gradient-to-b from-green-100/40 via-green-50/50 to-transparent z-10"></div>
 
-                    <div className="grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-12 gap-4 mt-16 relative py-10"> {/* 12 columns with small gap */}
-                        <div className="w-full absolute top-0  h-20 bg-gradient-to-b from-green-100/40 via-green-50/50 to-transparent z-10"></div>
-                        {universitiesImages.map((universityImage, index) => (
-                            typeof universityImage.image !== 'number' && 'url' in universityImage.image && (
-                                <div key={index} className="flex justify-center items-center p-4 bg-gray-100 rounded-3xl">
-                                    <div className="w-full h-[50px] relative  ">
-                                        <Image
-                                            src={universityImage.image.url || ''}
-                                            alt="University Logo"
-                                            fill
-                                            style={{ objectFit: "contain" }}
-                                        />
+                        {/* Scrolling University Logos */}
+                        <div className="grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-12 gap-4 h-[300px]">
+                            {universitiesImages.map((universityImage, index) =>
+                                typeof universityImage.image !== 'number' && 'url' in universityImage.image ? (
+                                    <div
+                                        key={index}
+                                        className="flex justify-center items-center p-4 bg-gray-100 rounded-3xl animate-infinite-slide-up"
+                                    // style={{
+                                    //     animationDelay: `${index * 0.1}s`,
+                                    // }}
+                                    >
+                                        <div className="w-full h-[50px] relative">
+                                            <Image
+                                                src={universityImage.image.url || ''}
+                                                alt="University Logo"
+                                                fill
+                                                style={{ objectFit: 'contain' }}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                        ))}
-                        <div className="w-full absolute bottom-0  h-20 bg-gradient-to-b from-transparent via-green-50/50 to-green-100/40 z-10"></div>
+                                ) : null
+                            )}
+                        </div>
+
+                        {/* Bottom Gradient Overlay */}
+                        <div className="w-full absolute bottom-0 h-20 bg-gradient-to-b from-transparent via-green-50/50 to-green-100/40 z-10"></div>
                     </div>
+
                 )}
                 <hr className="mt-32 w-96 mx-auto" />
             </div>
