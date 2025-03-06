@@ -25,10 +25,10 @@ export const IELTSPackages: React.FC<Props> = ({
 
     return (
         <div className="container">
-            <section className={cn('rounded-3xl py-4 px-4 md:px-8 bg-[#D9F1FD]', className)}>
-                <div className="w-full max-w-6xl mx-auto py-12 md:py-20">
+            <section className={cn('rounded-3xl py-2 px-2 md:px-4 bg-[#D9F1FD]', className)}>
+                <div className="max-w-6xl mx-auto py-8 md:py-10">
                     {/* Heading Section */}
-                    <div className="text-center mb-12 md:mb-16">
+                    <div className="text-center mb-12 md:mb-14">
                         <h2 className="text-3xl md:text-5xl font-bold leading-tight mb-4">
                             {mainHeading} <span className="text-[#FF0000] font-fuzzyBubbles">{higlightedHeading}</span>
                         </h2>
@@ -73,7 +73,7 @@ export const IELTSPackages: React.FC<Props> = ({
                                     <p className="text-3xl font-bold mb-4">
                                         {currencyLabel} {pkg.price.toLocaleString()}/-
                                     </p>
-                                    <button className="bg-purple-600 text-white px-8 py-2 rounded-full hover:bg-purple-700 transition-colors">
+                                    <button className="bg-[#6B5BA9] hover:bg-[#574A8C] text-white px-8 py-2 rounded-full transition-colors">
                                         {enrollButtonText}
                                     </button>
                                 </div>
