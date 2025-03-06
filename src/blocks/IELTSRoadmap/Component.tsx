@@ -17,12 +17,12 @@ export const IELTSRoadmap: React.FC<Props> = ({
     return (
         <div className="container">
             <section
-                className={cn('rounded-3xl py-12 px-4 md:px-8', className)}
+                className={cn('rounded-3xl py-6 px-4 md:px-8', className)}
                 style={{
                     backgroundColor: '#D9F1FD',
                 }}
             >
-                <div className="w-full max-w-6xl mx-auto py-12 md:py-20">
+                <div className="w-full max-w-6xl mx-auto py-12 md:py-14">
                     {/* Heading Section */}
                     <div className="text-center mb-12 md:mb-20 max-w-5xl">
                         <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
