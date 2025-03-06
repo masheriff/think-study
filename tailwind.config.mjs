@@ -108,6 +108,7 @@ const config = {
         roboto: ['var(--font-roboto)', 'sans-serif'],
         openSans: ['var(--font-open-sans)', 'sans-serif'],
         montserrat: ['var(--font-montserrat)', 'sans-serif'],
+        fuzzyBubbles: ['Fuzzy Bubbles', 'cursive'],
       },
     },
   },

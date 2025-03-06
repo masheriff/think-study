@@ -31,7 +31,7 @@ export const DownArrow = () => {
 export const CheckBox = () => {
   return (
     <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="50" height="50" rx="8" fill="green" />
+      <rect width="50" height="50" rx="8" fill="#06D001" />
       <path
         d="M12 25L20 33L38 15"
         stroke="white"
@@ -48,7 +48,7 @@ export const Triangle = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="18"
-      height="22"
+      height="18"
       viewBox="0 0 18 22"
       fill="none"
       className="mr-3 mt-1.5"

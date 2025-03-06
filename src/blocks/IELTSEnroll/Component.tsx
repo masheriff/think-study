@@ -43,7 +43,7 @@ export const IELTSEnroll: React.FC<Props> = ({
 
                     {/* Enroll Button */}
                     <button
-                        className="px-14 py-2 bg-[#C5FF64] text-black rounded-full hover:bg-[#B3E658] transition-colors"
+                        className="px-14 py-1 bg-[#C1F177] text-black rounded-full hover:bg-[#b9f165] transition-colors"
                     >
                         {buttonText}
                     </button>

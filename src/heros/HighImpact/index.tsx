@@ -14,8 +14,8 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ heading, description, l
 
   return (
     <div className="relative">
-      <div className="container mb-8 z-10 relative flex items-center justify-center">
-        <div className="max-w-[50rem] md:text-center">
+      <div className="container mb-8 z-10 relative flex items-center justify-center py-20 overflow-hidden">
+        <div className="max-w-3xl md:text-center">
           {/* Heading */}
           {heading && (
             <div className="mb-6">

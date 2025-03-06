@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 import React, { useCallback, useEffect, useState } from 'react'
 import { cn } from '@/utilities/ui'
@@ -5,7 +6,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { CounselingBlock as CounselingBlockType } from '@/payload-types'
 import useEmblaCarousel from 'embla-carousel-react'
-
 
 type Props = CounselingBlockType & {
     className?: string
@@ -29,21 +29,15 @@ export const CounselingBlock: React.FC<Props> = (props) => {
         }
     })
 
-    // Carousel navigation state
-    const [_prevBtnEnabled] = useState(false) // Marked as unused
-    const [_nextBtnEnabled] = useState(true) // Marked as unused
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
+    const [scrollProgress, setScrollProgress] = useState(0)
 
-    // Navigation functions
-    const _scrollPrev = useCallback( // Marked as unused
-        () => emblaApi && emblaApi.scrollPrev(),
-        [emblaApi]
-    )
-    const _scrollNext = useCallback( // Marked as unused
-        () => emblaApi && emblaApi.scrollNext(),
-        [emblaApi]
-    )
+    // Update scroll progress
+    const updateScrollProgress = useCallback(() => {
+        if (!emblaApi) return
+        setScrollProgress(emblaApi.scrollProgress() * 100)
+    }, [emblaApi])
 
     const onSelect = useCallback(() => {
         if (!emblaApi) return
@@ -52,15 +46,23 @@ export const CounselingBlock: React.FC<Props> = (props) => {
 
     useEffect(() => {
         if (!emblaApi) return
+
         onSelect()
+        updateScrollProgress()
         setScrollSnaps(emblaApi.scrollSnapList())
+
         emblaApi.on('select', onSelect)
         emblaApi.on('reInit', onSelect)
+        emblaApi.on('scroll', updateScrollProgress)
+        emblaApi.on('reInit', updateScrollProgress)
+
         return () => {
-            emblaApi.off('select', onSelect)
-            emblaApi.off('reInit', onSelect)
+            emblaApi?.off('select', onSelect)
+            emblaApi?.off('reInit', onSelect)
+            emblaApi?.off('scroll', updateScrollProgress)
+            emblaApi?.off('reInit', updateScrollProgress)
         }
-    }, [emblaApi, onSelect])
+    }, [emblaApi, onSelect, updateScrollProgress])
 
     return (
         <section className={cn("my-8", className)}>
@@ -77,7 +79,7 @@ export const CounselingBlock: React.FC<Props> = (props) => {
                         </Link>
                     )}
                 </div>
-                <div className="relative w-full h-[500px] mt-10">
+                <div className="relative w-full h-[450px] mt-10">
                     {typeof backgroundImage !== 'number' && backgroundImage && (
                         <Image
                             src={backgroundImage.url || ''}
@@ -87,64 +89,54 @@ export const CounselingBlock: React.FC<Props> = (props) => {
                         />
                     )}
                     {/* Embla Carousel */}
-                    <div className="overflow-hidden h-full mx-[-10rem]" ref={emblaRef}>
-                        <div className="flex h-full items-center">
-                            {cards?.map((card, index) => (
-                                <div key={index} className="flex-[0_0_25%] mx-4">
-                                    <div className="bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg rounded-xl p-8 shadow-xl h-60 relative">
-                                        {typeof card.icon !== 'number' && card.icon && (
-                                            <div className="absolute top-[10px] right-[-6px] transform -translate-x-1/2 p-1 rounded-full bg-lime-400 w-10 h-10">
-                                                <Image
-                                                    src={card.icon.url || ''}
-                                                    alt="Icon"
-                                                    width={40}
-                                                    height={40}
-                                                    className="p-1"
-                                                />
-                                            </div>
-                                        )}
-                                        <div className="flex flex-col items-center justify-center mt-10">
-                                            <h3 className="text-base font-light mb-2">{card.title}</h3>
-                                            <p className="text-black-600 font-semibold mb-2">{card.courseName}</p>
-                                            <div className='flex flex-row justify-center items-center gap-2 p-2 rounded-2xl border border-gray-500'>
-                                                {card.countries?.map((country, index) => (
-                                                    <p key={index} className="text-gray-600 text-sm">
-                                                        {country.name}
-                                                    </p>
-                                                ))}
+                    <div className="absolute bottom-0 left-0 w-full">
+                        <div className="overflow-hidden h-full mx-[-10rem]" ref={emblaRef}>
+                            <div className="flex h-full items-center">
+                                {cards?.map((card, index) => (
+                                    <div key={index} className="flex-[0_0_25%] mx-4">
+                                        <div className="bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg rounded-xl p-8 shadow-xl h-60 relative">
+                                            {typeof card.icon !== 'number' && card.icon && (
+                                                <div className="absolute top-[10px] right-[-6px] transform -translate-x-1/2 p-1 rounded-full bg-lime-400 w-10 h-10">
+                                                    <Image
+                                                        src={card.icon.url || ''}
+                                                        alt="Icon"
+                                                        width={40}
+                                                        height={40}
+                                                        className="p-1"
+                                                    />
+                                                </div>
+                                            )}
+                                            <div className="flex flex-col items-center justify-center mt-10">
+                                                <h3 className="text-base font-light mb-2">{card.title}</h3>
+                                                <p className="text-black-600 font-semibold mb-2">{card.courseName}</p>
+                                                <div className='flex flex-row justify-center items-center gap-2 p-2 rounded-2xl border border-gray-500'>
+                                                    {card.countries?.map((country, index) => (
+                                                        <p key={index} className="text-gray-600 text-sm">
+                                                            {country.name}
+                                                        </p>
+                                                    ))}
+                                                </div>
                                             </div>
                                         </div>
-
-                                        {typeof card.cardImage !== 'number' && card.cardImage && (
-                                            <div className="absolute bottom-[-10px] right-[1px] w-28 h-28 mb-6">
-                                                <Image
-                                                    src={card.cardImage.url || ''}
-                                                    alt="Card Image"
-                                                    fill
-                                                    className="object-cover rounded-lg"
-                                                />
-                                            </div>
-                                        )}
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     </div>
-                    {/* Dot Indicators */}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex justify-center gap-2">
-                        {scrollSnaps.map((_, index) => (
-                            <button
-                                key={index}
-                                className={cn(
-                                    "w-2 h-2 rounded-full transition-all",
-                                    selectedIndex === index ? "bg-violet-600 w-4" : "bg-slate-50"
-                                )}
-                                onClick={() => emblaApi?.scrollTo(index)}
+                    {/* Scroll Progress Bar with Static Vertical Line */}
+                    <div className="absolute bottom-[-50px] left-1/2 -translate-x-1/2 flex items-center justify-center w-3/4">
+                        {/* Static Vertical Line */}
+                        <div className="w-[3px] h-7 bg-violet-600 mr-1" />
+
+                        {/* Progress Bar */}
+                        <div className="w-1/3 h-2 bg-violet-200 rounded-r-full relative" >
+                            <div
+                                className="h-2 bg-violet-600 rounded-full transition-all"
+                                style={{ width: `${scrollProgress}%` }}
                             />
-                        ))}
+                        </div>
                     </div>
                 </div>
-
             </div>
         </section>
     )
