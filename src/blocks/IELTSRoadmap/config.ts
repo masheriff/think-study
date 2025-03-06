@@ -3,6 +3,8 @@ import { Block } from 'payload';
 export const IELTSRoadmap: Block = {
     slug: 'ieltsRoadmap',
     interfaceName: 'IELTSRoadmap',
+    imageURL: '/assets/blocks/IELTSRoadmap.png',
+    imageAltText: 'IELTSRoadmap Image',
     labels: {
         singular: 'IELTS Roadmap',
         plural: 'IELTS Roadmap Blocks',

@@ -3,6 +3,8 @@ import { Block } from 'payload';
 export const IELTSPackages: Block = {
     slug: 'ieltsPackages',
     interfaceName: 'IELTSPackages',
+    imageURL: '/assets/blocks/IELTSPackages.png',
+    imageAltText: 'IELTSPackages Image',
     labels: {
         singular: 'IELTS Packages',
         plural: 'IELTS Packages Blocks',
