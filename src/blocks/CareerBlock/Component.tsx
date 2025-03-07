@@ -4,6 +4,7 @@ import React from 'react'
 import Image from 'next/image'
 import type { CareerBlock as CareerBlockType } from '@/payload-types'
 import TextHighlighter from '@/components/ui/texthighlighter'
+import { Button } from '@/components/ui/button'
 
 type Props = CareerBlockType & {
     className?: string
@@ -82,12 +83,13 @@ export const CareerBlock: React.FC<Props> = (props) => {
                         {/* Button Container */}
                         <div className="absolute top-[80px] left-1/2 -translate-x-1/2 flex flex-wrap justify-center items-center gap-2 w-[550px] smax-w-[800px]">
                             {bText?.map((stat, index) => (
-                                <button
+                                <Button
                                     key={index}
-                                    className="bg-[#65558F] text-white px-6 py-2 rounded-full text-[12px] font-semibold flex items-center justify-center"
+                                    variant="outline"
+                                    className="bg-[#6B5BA9] hover:bg-[#574A8C] hover:text-white text-white px-4 py-2 rounded-3xl transition-colors"
                                 >
                                     {stat?.text}
-                                </button>
+                                </Button>
                             ))}
                         </div>
 

@@ -2,6 +2,7 @@
 
 import React from 'react'
 import type { ConnectBlock as ConnectBlockType } from '@/payload-types'
+import { Button } from '@/components/ui/button'
 // import 'aos/dist/aos.css';
 
 type Props = ConnectBlockType & {
@@ -44,9 +45,15 @@ export const ConnectBlock: React.FC<Props> = (props) => {
                             {connectText}
                         </p>
 
-                        <button className="bg-[#65558F] text-white px-8 py-3 rounded-full text-sm">
+                        {/* <button className="bg-[#65558F] text-white px-8 py-3 rounded-full text-sm">
                             {buttonText}
-                        </button>
+                        </button> */}
+                        <Button
+                            variant="outline"
+                            className="bg-[#6B5BA9] hover:bg-[#574A8C] hover:text-white text-white px-4 py-2 rounded-3xl transition-colors"
+                        >
+                            {buttonText}
+                        </Button>
                     </div>
                 </div>
             </div>

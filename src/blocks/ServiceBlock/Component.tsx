@@ -42,7 +42,7 @@ export const ServiceBlock: React.FC<Props> = (props) => {
                         <p className="mb-8 text-sm">
                             {subDescription}
                         </p>
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-start">
                             <div className="inline-block bg-[#C1F177] px-8 py-3 rounded-xl">
                                 <h3 className="text-base">
                                     {buttonText}
