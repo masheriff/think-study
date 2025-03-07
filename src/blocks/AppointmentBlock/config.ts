@@ -25,7 +25,6 @@ export const AppointmentBlock: Block = {
                     type: 'text',
                     required: true,
                 },
-                // New field added below highlightText and above paragraphs:
                 {
                     name: 'extraText',
                     type: 'text',
@@ -61,7 +60,6 @@ export const AppointmentBlock: Block = {
             ],
         },
         {
-            // Renamed "rightContent" to "right" for shorter generated identifiers.
             name: 'right',
             type: 'group',
             fields: [
@@ -70,17 +68,26 @@ export const AppointmentBlock: Block = {
                     type: 'group',
                     fields: [
                         {
-                            name: 'date',
+                            name: 'fromDate',
                             type: 'date',
                             required: true,
+                            admin: {
+                                description: 'Start date of the appointment range'
+                            }
+                        },
+                        {
+                            name: 'toDate',
+                            type: 'date',
+                            required: false,
+                            admin: {
+                                description: 'End date of the appointment range (optional)'
+                            }
                         },
                         {
                             name: 'day',
                             type: 'text',
-                            required: true,
                         },
                         {
-                            // Renamed "timeSlots" to "slots" to reduce identifier length.
                             name: 'slots',
                             type: 'array',
                             fields: [

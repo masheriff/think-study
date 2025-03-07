@@ -16,7 +16,6 @@ import { CareerBlock } from './CareerBlock/Component'
 import ConnectBlock from './ConnectBlock/Component'
 import WhyusMediaBlock from './WhyusMedia/Component'
 import ServiceBlock from './ServiceBlock/Component'
-import AppointmentBlock from './AppointmentBlock/Component'
 import { StudyInCourse } from './StudyInCourse/Component'
 import StudyInChecklist from './StudyInCheckList/Component'
 import { BenefitsInStudy } from './StudyInBenefits/Comonent'
@@ -29,6 +28,7 @@ import { IELTSPrep } from './IELTSPrep/Component'
 import { IELTSFeatures } from './IELTSFeatures/Component'
 import { IELTSPackages } from './IELTSPackages/Component'
 import { IELTSRoadmap } from './IELTSRoadmap/Component'
+import AppointmentBlock from './AppointmentBlock/Component'
 
 
 type BlockComponentsType = {
@@ -47,7 +47,6 @@ type BlockComponentsType = {
   admissionBlock: typeof AdmissionBlock
   connectBlock: typeof ConnectBlock
   whyusMediaBlock: typeof WhyusMediaBlock
-  appointmentBlock: typeof AppointmentBlock
   careerBlock: typeof CareerBlock
   callToActionBlock: typeof CallToActionBlock
   studyInCourse: typeof StudyInCourse
@@ -60,6 +59,7 @@ type BlockComponentsType = {
   ieltsFeatures: typeof IELTSFeatures
   ieltsPackages: typeof IELTSPackages
   ieltsRoadmap: typeof IELTSRoadmap
+  appointmentBlock: typeof AppointmentBlock
 }
 
 const blockComponents: BlockComponentsType = {
@@ -79,7 +79,6 @@ const blockComponents: BlockComponentsType = {
   careerBlock: CareerBlock,
   connectBlock: ConnectBlock,
   whyusMediaBlock: WhyusMediaBlock,
-  appointmentBlock: AppointmentBlock,
   callToActionBlock: CallToActionBlock,
   studyInCourse: StudyInCourse,
   studyInChecklist: StudyInChecklist,
@@ -90,7 +89,8 @@ const blockComponents: BlockComponentsType = {
   ieltsPrep: IELTSPrep,
   ieltsFeatures: IELTSFeatures,
   ieltsPackages: IELTSPackages,
-  ieltsRoadmap: IELTSRoadmap
+  ieltsRoadmap: IELTSRoadmap,
+  appointmentBlock: AppointmentBlock
 }
 
 export const RenderBlocks: React.FC<{
@@ -108,7 +108,7 @@ export const RenderBlocks: React.FC<{
         if (blockType && blockType in blockComponents) {
           const Block = blockComponents[blockType as keyof BlockComponentsType]
           return (
-            <div className="my-28 py-6" key={index}>
+            <div className="my-28" key={index}>
               <Block {...(block as any)} disableInnerContainer />
             </div>
           )

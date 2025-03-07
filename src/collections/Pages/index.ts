@@ -33,7 +33,6 @@ import { ConnectBlock } from '@/blocks/ConnectBlock/config'
 import { WhyusMediaBlock } from '@/blocks/WhyusMedia/conig'
 import { hero } from '@/heros/config'
 
-import { AppointmentBlock } from '@/blocks/AppointmentBlock/config'
 
 // Study In Page
 import { StudyInCourse } from '@/blocks/StudyInCourse/config'
@@ -47,6 +46,7 @@ import { IELTSPrep } from '@/blocks/IELTSPrep/config'
 import { IELTSFeatures } from '@/blocks/IELTSFeatures/config'
 import { IELTSPackages } from '@/blocks/IELTSPackages/config'
 import { IELTSRoadmap } from '@/blocks/IELTSRoadmap/config'
+import { AppointmentBlock } from '@/blocks/AppointmentBlock/config'
 
 
 export const Pages: CollectionConfig<'pages'> = {
@@ -105,8 +105,8 @@ export const Pages: CollectionConfig<'pages'> = {
               type: 'blocks',
               blocks: [Content, MediaBlock, Archive, FormBlock, AdmissionBlock, TestimonialsBlock, CounselingBlock, CallToActionBlock, UniversitiesBlock,
                 StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, CareerBlock, WhyusMediaBlock, ConnectBlock,
-                AppointmentBlock, StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes, StudyInApplication, IELTSEnroll, IELTSPrep, IELTSFeatures,
-                IELTSPackages, IELTSRoadmap],
+                StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes, StudyInApplication, IELTSEnroll, IELTSPrep, IELTSFeatures,
+                IELTSPackages, IELTSRoadmap, AppointmentBlock],
               required: true,
               admin: {
                 initCollapsed: true,

@@ -164,7 +164,6 @@ export interface Page {
     | CareerBlock
     | WhyusMediaBlock
     | ConnectBlock
-    | AppointmentBlock
     | StudyInCourse
     | StudyInChecklist
     | {
@@ -181,6 +180,7 @@ export interface Page {
     | IELTSFeatures
     | IELTSPackages
     | IELTSRoadmap
+    | AppointmentBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1029,51 +1029,6 @@ export interface ConnectBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AppointmentBlock".
- */
-export interface AppointmentBlock {
-  leftContent: {
-    title: string;
-    subTitle: string;
-    highlightText: string;
-    extraText: string;
-    paragraphs?:
-      | {
-          text: string;
-          id?: string | null;
-        }[]
-      | null;
-    button: {
-      text: string;
-      url: string;
-    };
-  };
-  right: {
-    schedule: {
-      date: string;
-      day: string;
-      slots?:
-        | {
-            time: string;
-            id?: string | null;
-          }[]
-        | null;
-    };
-    universities?:
-      | {
-          img: number | Media;
-          alt?: string | null;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  bottomText: string;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'appointmentBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "StudyInCourse".
  */
 export interface StudyInCourse {
@@ -1302,6 +1257,58 @@ export interface IELTSRoadmap {
   id?: string | null;
   blockName?: string | null;
   blockType: 'ieltsRoadmap';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AppointmentBlock".
+ */
+export interface AppointmentBlock {
+  leftContent: {
+    title: string;
+    subTitle: string;
+    highlightText: string;
+    extraText: string;
+    paragraphs?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    button: {
+      text: string;
+      url: string;
+    };
+  };
+  right: {
+    schedule: {
+      /**
+       * Start date of the appointment range
+       */
+      fromDate: string;
+      /**
+       * End date of the appointment range (optional)
+       */
+      toDate?: string | null;
+      day?: string | null;
+      slots?:
+        | {
+            time: string;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    universities?:
+      | {
+          img: number | Media;
+          alt?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  bottomText: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'appointmentBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1617,7 +1624,6 @@ export interface PagesSelect<T extends boolean = true> {
         careerBlock?: T | CareerBlockSelect<T>;
         whyusMediaBlock?: T | WhyusMediaBlockSelect<T>;
         connectBlock?: T | ConnectBlockSelect<T>;
-        appointmentBlock?: T | AppointmentBlockSelect<T>;
         studyInCourse?: T | StudyInCourseSelect<T>;
         studyInChecklist?: T | StudyInChecklistSelect<T>;
         benefitsInStudy?:
@@ -1635,6 +1641,7 @@ export interface PagesSelect<T extends boolean = true> {
         ieltsFeatures?: T | IELTSFeaturesSelect<T>;
         ieltsPackages?: T | IELTSPackagesSelect<T>;
         ieltsRoadmap?: T | IELTSRoadmapSelect<T>;
+        appointmentBlock?: T | AppointmentBlockSelect<T>;
       };
   meta?:
     | T
@@ -2046,58 +2053,6 @@ export interface ConnectBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AppointmentBlock_select".
- */
-export interface AppointmentBlockSelect<T extends boolean = true> {
-  leftContent?:
-    | T
-    | {
-        title?: T;
-        subTitle?: T;
-        highlightText?: T;
-        extraText?: T;
-        paragraphs?:
-          | T
-          | {
-              text?: T;
-              id?: T;
-            };
-        button?:
-          | T
-          | {
-              text?: T;
-              url?: T;
-            };
-      };
-  right?:
-    | T
-    | {
-        schedule?:
-          | T
-          | {
-              date?: T;
-              day?: T;
-              slots?:
-                | T
-                | {
-                    time?: T;
-                    id?: T;
-                  };
-            };
-        universities?:
-          | T
-          | {
-              img?: T;
-              alt?: T;
-              id?: T;
-            };
-      };
-  bottomText?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "StudyInCourse_select".
  */
 export interface StudyInCourseSelect<T extends boolean = true> {
@@ -2341,6 +2296,59 @@ export interface IELTSRoadmapSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AppointmentBlock_select".
+ */
+export interface AppointmentBlockSelect<T extends boolean = true> {
+  leftContent?:
+    | T
+    | {
+        title?: T;
+        subTitle?: T;
+        highlightText?: T;
+        extraText?: T;
+        paragraphs?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        button?:
+          | T
+          | {
+              text?: T;
+              url?: T;
+            };
+      };
+  right?:
+    | T
+    | {
+        schedule?:
+          | T
+          | {
+              fromDate?: T;
+              toDate?: T;
+              day?: T;
+              slots?:
+                | T
+                | {
+                    time?: T;
+                    id?: T;
+                  };
+            };
+        universities?:
+          | T
+          | {
+              img?: T;
+              alt?: T;
+              id?: T;
+            };
+      };
+  bottomText?: T;
   id?: T;
   blockName?: T;
 }
