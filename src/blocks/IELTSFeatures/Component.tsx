@@ -45,7 +45,7 @@ export const IELTSFeatures: React.FC<Props> = ({
                                         <span className="w-6 h-6 flex items-center justify-center">
                                             <CheckBox />
                                         </span>
-                                        <span className="text-lg font-medium ml-2">{feature.featureText}</span>
+                                        <span className="text-lg font-semibold ml-2">{feature.featureText}</span>
                                     </div>
                                 ))}
                             </div>

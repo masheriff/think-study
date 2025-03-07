@@ -41,7 +41,7 @@ export const ConnectBlock: React.FC<Props> = (props) => {
                         </h1>
 
                         <p
-                            className="text-3xl md:text-3xl font-fuzzyBubbles font-semibold"
+                            className="text-3xl md:text-3xl font-mynerve italic font-semibold"
                             style={{
                                 color: '#FF0000',
                                 fontSize: '1.875rem',

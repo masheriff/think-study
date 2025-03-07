@@ -85,5 +85,18 @@ export const StudyAbroadBlock: Block = {
                 },
             ],
         },
+        {
+            name: 'backgroundColor',
+            type: 'select',
+            label: 'Background Color',
+            options: [
+                { label: 'Blue', value: 'blue' },
+                { label: 'White', value: 'white' }
+            ],
+            required: true,
+            admin: {
+                description: 'Choose the background here'
+            }
+        }
     ],
 }

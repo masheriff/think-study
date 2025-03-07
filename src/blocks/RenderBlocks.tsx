@@ -108,7 +108,7 @@ export const RenderBlocks: React.FC<{
         if (blockType && blockType in blockComponents) {
           const Block = blockComponents[blockType as keyof BlockComponentsType]
           return (
-            <div className="my-20" key={index}>
+            <div className="my-28 py-6" key={index}>
               <Block {...(block as any)} disableInnerContainer />
             </div>
           )

@@ -35,7 +35,7 @@ export const IELTSPrep: React.FC<Props> = ({
                     <div className="text-center mb-12 md:mb-20">
                         <h2 className="flex text-center justify-center text-3xl md:text-5xl font-bold leading-tight mb-4">
                             <span className="block">{normalHeading}</span>
-                            <span className="text-[#FF0000] font-fuzzyBubbles p-1">{highlightedHeading}</span>
+                            <span className="text-[#FF0000] font-mynerve italic">{highlightedHeading}</span>
                         </h2>
                         <p className="mt-4 text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
                             <TextHighlightBold text={normalDescription} />
@@ -62,7 +62,7 @@ export const IELTSPrep: React.FC<Props> = ({
                                                     alt={card.icon.alt || card.icon.filename || ""}
                                                     width={40}
                                                     height={40}
-                                                    className="text-red-600"
+                                                    className="text-[#FF0000]"
                                                 />
                                             </div>
                                         )}

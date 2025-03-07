@@ -12,7 +12,7 @@ const TextHighlighter: React.FC<TextHighlighterProps> = ({ text }) => {
             {parts.map((part, index) => {
                 if (index % 2 !== 0) {
                     return (
-                        <span key={index} className="text-red-500" dangerouslySetInnerHTML={{ __html: part }} />
+                        <span key={index} className="text-[#FF0000]" dangerouslySetInnerHTML={{ __html: part }} />
                     );
                 } else {
                     const segments = part.split('<br />');

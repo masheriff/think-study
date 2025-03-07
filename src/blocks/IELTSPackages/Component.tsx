@@ -30,7 +30,7 @@ export const IELTSPackages: React.FC<Props> = ({
                     {/* Heading Section */}
                     <div className="text-center mb-12 md:mb-14">
                         <h2 className="text-3xl md:text-5xl font-bold leading-tight mb-4">
-                            {mainHeading} <span className="text-[#FF0000] font-fuzzyBubbles">{higlightedHeading}</span>
+                            {mainHeading} <span className="text-[#FF0000] font-mynerve italic">{higlightedHeading}</span>
                         </h2>
                         <p><TextHighlightBold text={description} /></p>
                     </div>

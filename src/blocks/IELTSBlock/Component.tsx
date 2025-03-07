@@ -27,7 +27,6 @@ export const IELTSBlock: React.FC<Props> = (props) => {
         ieltsImage,
     } = props;
 
-    // Early return if required data is missing
     if (!title || !subtitle || !description) {
         return null;
     }
@@ -35,32 +34,32 @@ export const IELTSBlock: React.FC<Props> = (props) => {
     return (
         <section className={cn('', className)}>
             {/* Header Section */}
-            <div className="container my-20">
-                <div className="max-w-5xl mx-auto text-center">
-                    <h1 className="text-4xl font-bold mb-4">{title}</h1>
-                    <h2 className="text-3xl text-red-500 font-fuzzyBubbles italic font-bold mb-4">
+            <div className="container px-6 md:px-12 mb-12">
+                <div className="max-w-5xl mx-auto text-center space-y-6">
+                    <h1 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-3">{title}</h1>
+                    <h2 className="text-3xl text-[#FF0000] font-mynerve italic font-bold">
                         {subtitle}
                     </h2>
-                    <p className="text-gray-700">
+                    <p className="text-base text-gray-700">
                         {description}
                     </p>
                 </div>
             </div>
 
             {/* Main Content */}
-            <div className="container bg-[#D3F584] rounded-3xl overflow-hidden p-10 w-full">
-                <div className="grid md:grid-cols-2 gap-8">
+            <div className="container bg-[#D3F584] rounded-3xl overflow-hidden p-12 w-full">
+                <div className="grid md:grid-cols-2 gap-12">
                     {/* Left Column */}
-                    <div className="space-y-6 flex flex-col justify-center">
+                    <div className="space-y-8 flex flex-col justify-center">
                         {/* IELTS Logo and Hybrid Learning */}
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-6">
                             <div className="flex items-center">
                                 {ieltsText && (
-                                    <div className="text-2xl font-bold mr-2">{ieltsText}</div>
+                                    <div className="text-2xl font-bold">{ieltsText}</div>
                                 )}
-                                <div className="border-l border-gray-400 h-6 mx-2" />
+                                <div className="border-l border-gray-400 h-8 mx-3" />
                                 {ieltsImage && typeof ieltsImage !== 'number' && 'url' in ieltsImage && (
-                                    <div className="relative w-16 h-8">
+                                    <div className="relative w-20 h-10">
                                         <Image
                                             src={ieltsImage.url || ''}
                                             alt="IELTS Logo"
@@ -80,12 +79,12 @@ export const IELTSBlock: React.FC<Props> = (props) => {
 
                         {/* Study Modes */}
                         {studyModes && studyModes.length > 0 && (
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-3">
                                 {studyModes.map((mode, index) => (
                                     <Badge
                                         key={index}
                                         variant="outline"
-                                        className="bg-white text-gray-700 hover:bg-gray-100 rounded-full px-4 py-1 text-sm"
+                                        className="bg-white text-gray-700 hover:bg-gray-100 rounded-full px-5 py-2 text-sm"
                                     >
                                         {mode.label}
                                     </Badge>
@@ -95,7 +94,7 @@ export const IELTSBlock: React.FC<Props> = (props) => {
 
                         {/* Features List */}
                         {features && features.length > 0 && (
-                            <ul className="space-y-3 text-gray-800">
+                            <ul className="space-y-4 text-lg text-gray-800">
                                 {features.map((feature, index) => (
                                     <li key={index} className="flex items-start">
                                         <span className="mr-2">•</span>
@@ -107,9 +106,8 @@ export const IELTSBlock: React.FC<Props> = (props) => {
 
                         {/* CTA Button */}
                         {ctaButton && (
-                            <div className="flex">
-                                <Button
-                                    className="inline-block bg-[#6B5BA9] hover:bg-[#574A8C] text-white px-4 rounded-full text-base font-semibold">
+                            <div>
+                                <Button className="bg-[#6B5BA9] hover:bg-[#574A8C] hover:text-white text-white px-6 py-3 rounded-3xl transition-colors">
                                     <a href={ctaButton.href}>{ctaButton.text}</a>
                                 </Button>
                             </div>
@@ -118,13 +116,12 @@ export const IELTSBlock: React.FC<Props> = (props) => {
 
                     {/* Right Column - Image */}
                     {image && typeof image !== 'number' && 'url' in image && (
-                        <div className="relative h-full min-h-[500px] w-full">
+                        <div className="relative h-full min-h-[500px] w-full rounded-3xl overflow-hidden shadow-lg">
                             <Image
                                 src={image.url || ''}
                                 alt="IELTS Training"
                                 fill
                                 style={{ objectFit: "cover" }}
-                                className="object-cover rounded-3xl"
                             />
                         </div>
                     )}

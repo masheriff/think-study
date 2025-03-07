@@ -5,6 +5,7 @@ import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import Link from 'next/link'
 import { CheckBox } from '@/components/thinkstudy-svg'
+import { Button } from '@/components/ui/button'
 
 type Props = AppointmentBlockType & {
     className?: string
@@ -30,7 +31,7 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                     <div className="flex flex-col w-1/2 space-y-6">
                         <h6 className="text-xl font-medium text-black/65">{leftContent?.title}</h6>
                         <h2 className="text-4xl font-semibold text-gray-700">{leftContent?.subTitle}</h2>
-                        <p className="text-3xl text-red-500 font-kaushan mb-4">{leftContent?.highlightText}</p>
+                        <p className="text-3xl text-[#FF0000] font-mynerve italic mb-4 font-semibold">{leftContent?.highlightText}</p>
                         {/* New extraText field */}
                         <p className="text-base text-black/65">{leftContent?.extraText}</p>
                         <div>
@@ -43,16 +44,16 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                                 </p>
                             ))}
                         </div>
-                        <div className='block'>
+                        <div className="block">
                             {leftContent?.button && (
-                                <Link
-                                    href={leftContent.button.url}
-                                    className="inline-block bg-[#6B5BA9] hover:bg-[#574A8C] text-white p-3 rounded-full text-base font-semibold mt-6"
+                                <Button
+                                    className="bg-[#6B5BA9] hover:bg-[#574A8C] hover:text-white text-white px-4 py-2 rounded-3xl transition-colors mb-3"
                                 >
-                                    {leftContent.button.text}
-                                </Link>
+                                    <a href={leftContent.button.url}>{leftContent.button.text}</a>
+                                </Button>
                             )}
                         </div>
+
                     </div>
                     <div className="flex flex-col w-1/2 h-full my-auto">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">

@@ -819,6 +819,10 @@ export interface StudyAbroadBlock {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Choose the background here
+   */
+  backgroundColor: 'blue' | 'white';
   id?: string | null;
   blockName?: string | null;
   blockType: 'studyAbroadBlock';
@@ -1858,6 +1862,7 @@ export interface StudyAbroadBlockSelect<T extends boolean = true> {
         imagePosition?: T;
         id?: T;
       };
+  backgroundColor?: T;
   id?: T;
   blockName?: T;
 }

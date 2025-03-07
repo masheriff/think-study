@@ -28,7 +28,7 @@ export const IELTSRoadmap: React.FC<Props> = ({
                         <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
                             {title}
                             {subtitle && (
-                                <span className="block text-[#FF0000] text-3xl md:text-5xl mt-2 font-fuzzyBubbles text-end">
+                                <span className="block text-[#FF0000] text-3xl md:text-5xl mt-2 font-mynerve italic text-end">
                                     {subtitle}
                                 </span>
                             )}

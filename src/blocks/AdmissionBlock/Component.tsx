@@ -70,15 +70,15 @@ export const AdmissionBlock: React.FC<Props> = (props) => {
 
                 {/* Right Content */}
                 <div className="md:w-[70%] px-6 md:px-0 ps-[50px] ">
-                    <p className="text-[#FF0000] mb-0 font-mynerve italic" style={{ fontSize: '23px' }}>{ambitions}</p>
+                    <p className="text-[#FF0000] mb-1 italic font-medium font-mynerve text-[26px]">{ambitions}</p>
 
-                    <p className="text-lg font-medium max-w-[430px]">{successRate}</p>
+                    <p className="text-base font-normal max-w-[430px]">{successRate}</p>
                     <div className="mt-2 text-sm font-semibold flex flex-wrap items-center gap-1 max-w-full overflow-hidden">
                         {statistics &&
                             statistics.map((stat, index) => (
-                                <div key={index} className="text-center me-5 flex items-center gap-2 w-[120px] min-w-[100px] italic">
-                                    <h3 className="text-[18px] font-bold">{stat.value}</h3>
-                                    <p className="text-[18px] ">{stat.label}</p>
+                                <div key={index} className="font-normal max-w-[430px] text-center flex gap-1">
+                                    <h3 className="text-base font-bold italic">{stat.value}</h3>
+                                    <p className="text-base font-bold italic">{stat.label}</p>
                                 </div>
                             ))}
                     </div>
@@ -102,7 +102,7 @@ export const AdmissionBlock: React.FC<Props> = (props) => {
                                 {' '}
                                 <ul className="list-none mt-2 space-y-1 ps-16 ">
                                     {courses.map((course, index) => (
-                                        <li key={index} className="text-[18px] sm:text-md md:text-md font-medium">
+                                        <li key={index} className="text-[18px] sm:text-sm md:text-sm font-medium">
                                             {course.name}
                                         </li>
                                     ))}

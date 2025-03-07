@@ -61,10 +61,10 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
                                         <div className="mt-4 bg-white rounded-xl p-3 shadow-sm">
                                             <div className="flex justify-between items-center">
                                                 <div>
-                                                    <h3 className="text-sm font-medium text-red-500">
+                                                    <h3 className="text-sm font-medium text-[#FF0000]">
                                                         {testimonial.name}
                                                     </h3>
-                                                    <p className="text-xs text-red-500">
+                                                    <p className="text-xs text-[#FF0000]">
                                                         {testimonial.course}
                                                     </p>
                                                 </div>

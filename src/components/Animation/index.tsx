@@ -39,7 +39,7 @@ const VerticalLineScroll = () => {
 
                 {/* Circle that moves up */}
                 <div
-                    className="absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-lime-300 rounded-full"
+                    className="absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-[#C5FF64] rounded-full"
                     style={{
                         bottom: `calc(${circlePosition} - 20px)`
                     }}

@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { CounselingBlock as CounselingBlockType } from '@/payload-types'
 import useEmblaCarousel from 'embla-carousel-react'
+import { Button } from '@/components/ui/button'
 
 type Props = CounselingBlockType & {
     className?: string
@@ -69,14 +70,14 @@ export const CounselingBlock: React.FC<Props> = (props) => {
             <div className="container md:p-0 p-10">
                 <div className="text-left md:w-3/4 w-full">
                     <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-3">{heading}</h2>
-                    <p className='text-gray-600 md:text-lg'>{description}</p>
+                    <p className='text-gray-600 md:text-lg mb-3'>{description}</p>
                     {button && (
-                        <Link
-                            href={button.url}
-                            className="inline-block bg-[#6B5BA9] hover:bg-[#574A8C] text-white p-3 rounded-full text-base font-semibold mt-3"
+                        <Button
+                            className="bg-[#6B5BA9] hover:bg-[#574A8C] hover:text-white text-white px-4 py-2 rounded-3xl transition-colors mb-3"
+                            asChild
                         >
-                            {button.text}
-                        </Link>
+                            <a href={button.url}>{button.text}</a>
+                        </Button>
                     )}
                 </div>
                 <div className="relative w-full h-[450px] mt-10">
@@ -90,13 +91,13 @@ export const CounselingBlock: React.FC<Props> = (props) => {
                     )}
                     {/* Embla Carousel */}
                     <div className="absolute bottom-0 left-0 w-full">
-                        <div className="overflow-hidden h-full mx-[-10rem]" ref={emblaRef}>
+                        <div className="overflow-hidden h-full" ref={emblaRef}>
                             <div className="flex h-full items-center">
                                 {cards?.map((card, index) => (
-                                    <div key={index} className="flex-[0_0_25%] mx-4">
+                                    <div key={index} className="flex-[0_0_33.33%] mx-4">
                                         <div className="bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg rounded-xl p-8 shadow-xl h-60 relative">
                                             {typeof card.icon !== 'number' && card.icon && (
-                                                <div className="absolute top-[10px] right-[-6px] transform -translate-x-1/2 p-1 rounded-full bg-lime-400 w-10 h-10">
+                                                <div className="absolute top-[10px] right-[-6px] transform -translate-x-1/2 p-1 rounded-full bg-[#C5FF64] w-10 h-10">
                                                     <Image
                                                         src={card.icon.url || ''}
                                                         alt="Icon"
@@ -111,7 +112,7 @@ export const CounselingBlock: React.FC<Props> = (props) => {
                                                 <p className="text-black-600 font-semibold mb-2">{card.courseName}</p>
                                                 <div className='flex flex-row justify-center items-center gap-2 p-2 rounded-2xl border border-gray-500'>
                                                     {card.countries?.map((country, index) => (
-                                                        <p key={index} className="text-gray-600 text-sm">
+                                                        <p key={index} className="text-black font-semibold text-sm">
                                                             {country.name}
                                                         </p>
                                                     ))}

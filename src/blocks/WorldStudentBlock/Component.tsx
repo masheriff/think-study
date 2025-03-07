@@ -33,8 +33,8 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
         '#FF5733', // Orange-red
         '#33FF57', // Green
         '#3357FF', // Blue
-        '#F033FF', // Purple
-        '#FF33F0', // Pink
+        '#F033FF', // Pink
+        '#640D5F', // Violet
     ];
 
     // Predefined positions for the markers
@@ -136,14 +136,14 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
                 </svg>
 
                 {/* Central point */}
-                <div
-                    className="absolute bg-blue-600 rounded-full w-4 h-4"
+                {/* <div
+                    className="absolute bg-blue-600 rounded-full w-3 h-3"
                     style={{
-                        right: `calc(32% - 8px)`,
+                        right: `calc(32.2% - 8px)`,
                         top: `calc(54% - 8px)`,
                         zIndex: 20
                     }}
-                />
+                /> */}
 
                 {items?.map((item, index) => {
                     const pos = positions[index % positions.length];

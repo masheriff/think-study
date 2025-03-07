@@ -32,8 +32,8 @@ export const ServiceBlock: React.FC<Props> = (props) => {
             >
                 <div className="max-w-7xl mx-auto">
                     {/* Header Section */}
-                    <div className="w-1/2 text-center mb-12 bg-white/20 backdrop-blur-lg border border-[#FFFFFF] rounded-xl p-2">
-                        <h2 className="text-[#FF0000] mb-2 font-mynerve italic" style={{ fontSize: '23px' }}>
+                    <div className="w-[60%] text-center mb-12 bg-white/20 backdrop-blur-lg border border-[#FFFFFF] rounded-xl p-2">
+                        <h2 className="text-[#FF0000] mb-1 italic font-medium font-mynerve text-[26px]">
                             {mainHeading}
                         </h2>
                         <p className="mb-4 text-sm">
