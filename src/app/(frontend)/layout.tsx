@@ -10,6 +10,7 @@ import {
   Caveat,
   Courgette,
   Mynerve,
+  Fuzzy_Bubbles,
 } from 'next/font/google';
 import React from 'react';
 
@@ -70,12 +71,18 @@ export const mynerve = Mynerve({
   variable: '--font-mynerve',
 });
 
+export const fuzzyBubbles = Fuzzy_Bubbles({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-fuzzy-bubbles',
+});
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode();
 
   return (
     <html
-      className={`${inter.className} ${roboto.variable} ${openSans.variable} ${montserrat.variable} ${kaushanScript.variable} ${delius.variable} ${poppins.variable} ${caveat.variable} ${courgette.variable} ${mynerve.variable}`}
+      className={`${inter.className} ${roboto.variable} ${openSans.variable} ${montserrat.variable} ${kaushanScript.variable} ${delius.variable} ${poppins.variable} ${caveat.variable} ${courgette.variable} ${mynerve.variable} ${fuzzyBubbles.variable}`}
       lang="en"
       suppressHydrationWarning
     >

@@ -106,7 +106,7 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
 
                 {/* SVG for the connecting lines with gradients */}
                 <svg
-                    className="absolute top-0 left-0 w-full h-full"
+                    className="absolute top-[65px] left-[-34px] w-full h-full"
                     style={{ pointerEvents: 'none', zIndex: 5 }}
                 >
                     <defs>
@@ -139,8 +139,8 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
                 <div
                     className="absolute bg-blue-600 rounded-full w-4 h-4"
                     style={{
-                        right: `calc(30% - 8px)`,
-                        top: `calc(45% - 8px)`,
+                        right: `calc(32% - 8px)`,
+                        top: `calc(54% - 8px)`,
                         zIndex: 20
                     }}
                 />

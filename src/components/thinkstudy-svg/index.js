@@ -27,3 +27,33 @@ export const DownArrow = () => {
     </svg>
   )
 }
+
+export const CheckBox = () => {
+  return (
+    <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="50" height="50" rx="8" fill="#06D001" />
+      <path
+        d="M12 25L20 33L38 15"
+        stroke="white"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+export const Triangle = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 18 22"
+      fill="none"
+      className="mr-3 mt-1.5"
+    >
+      <path d="M18 11L0 21.3923V0.607696L18 11Z" fill="#FF0000" />
+    </svg>
+  )
+}

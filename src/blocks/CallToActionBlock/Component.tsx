@@ -58,7 +58,7 @@ export const CallToActionBlock: React.FC<Props> = (props) => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                             {/* Left Side - Contact Info */}
                             <div className="space-y-8">
-                                <p className="text-2xl font-caveat text-[#FF0000]">{callText}</p>
+                                <p className="text-xl font-fuzzyBubbles text-[#FF0000]">{callText}</p>
 
                                 {offices?.map((office, index) => (
                                     <div key={index} className="space-y-2">
@@ -72,7 +72,7 @@ export const CallToActionBlock: React.FC<Props> = (props) => {
                                             </div>
                                             <div className="text-5xl ms-2">&#125;</div>
                                             <div
-                                                className="text-xl">{office.name}</div>
+                                                className="text-xl text-[#FF0000]">{office.name}</div>
                                         </div>
                                     </div>
                                 ))}

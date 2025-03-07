@@ -37,7 +37,7 @@ const config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'bounce-reverse': 'bounce-reverse 2s infinite',
         'slide-up': 'slideUp 1s ease-out',
-        'infinite-slide-up': 'infiniteSlideUp 8s linear infinite',
+        'infinite-slide-up': 'infiniteSlideUp 30s linear infinite',
       },
       keyframes: {
         'accordion-down': {
@@ -55,20 +55,9 @@ const config = {
         infiniteSlideUp: {
           '0%': {
             transform: 'translateY(100%)',
-            opacity: '0.7',
-          },
-          '20%': {
-            opacity: '1',
-          },
-          '50%': {
-            opacity: '1',
-          },
-          '80%': {
-            opacity: '1',
           },
           '100%': {
             transform: 'translateY(-100%)',
-            opacity: '0.7',
           },
         },
       },

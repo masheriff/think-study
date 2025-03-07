@@ -24,6 +24,11 @@ import CallToActionBlock from './CallToActionBlock/Component'
 import { StudyInNotes } from './StudyInNotes/Component'
 import { StudyInApplication } from './StudyInApplication/Component'
 import AdmissionBlock from './AdmissionBlock/Component'
+import { IELTSEnroll } from './IELTSEnroll/Component'
+import { IELTSPrep } from './IELTSPrep/Component'
+import { IELTSFeatures } from './IELTSFeatures/Component'
+import { IELTSPackages } from './IELTSPackages/Component'
+import { IELTSRoadmap } from './IELTSRoadmap/Component'
 
 
 type BlockComponentsType = {
@@ -50,6 +55,11 @@ type BlockComponentsType = {
   benefitsInStudy: typeof BenefitsInStudy
   studyInNotes: typeof StudyInNotes
   studyInApplication: typeof StudyInApplication
+  ieltsEnroll: typeof IELTSEnroll
+  ieltsPrep: typeof IELTSPrep
+  ieltsFeatures: typeof IELTSFeatures
+  ieltsPackages: typeof IELTSPackages
+  ieltsRoadmap: typeof IELTSRoadmap
 }
 
 const blockComponents: BlockComponentsType = {
@@ -75,7 +85,12 @@ const blockComponents: BlockComponentsType = {
   studyInChecklist: StudyInChecklist,
   benefitsInStudy: BenefitsInStudy,
   studyInNotes: StudyInNotes,
-  studyInApplication: StudyInApplication
+  studyInApplication: StudyInApplication,
+  ieltsEnroll: IELTSEnroll,
+  ieltsPrep: IELTSPrep,
+  ieltsFeatures: IELTSFeatures,
+  ieltsPackages: IELTSPackages,
+  ieltsRoadmap: IELTSRoadmap
 }
 
 export const RenderBlocks: React.FC<{

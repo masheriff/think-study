@@ -4,6 +4,7 @@ import type { AppointmentBlock as AppointmentBlockType } from '@/payload-types'
 import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import Link from 'next/link'
+import { CheckBox } from '@/components/thinkstudy-svg'
 
 type Props = AppointmentBlockType & {
     className?: string
@@ -24,19 +25,21 @@ const AppointmentBlock: React.FC<Props> = (props) => {
 
     return (
         <section className={cn("my-8", className)}>
-            <div className="container bg-[#D9F1FD] p-20 rounded-2xl">
+            <div className="container bg-[#D9F1FD] p-16 rounded-2xl">
                 <div className="flex md:flex-row flex-col align-items-center justify-between space-x-20">
                     <div className="flex flex-col w-1/2 space-y-6">
                         <h6 className="text-xl font-medium text-black/65">{leftContent?.title}</h6>
                         <h2 className="text-4xl font-semibold text-gray-700">{leftContent?.subTitle}</h2>
-                        <p className="text-3xl text-red-500 font-kaushan font-normal mb-4">{leftContent?.highlightText}</p>
+                        <p className="text-3xl text-red-500 font-kaushan mb-4">{leftContent?.highlightText}</p>
                         {/* New extraText field */}
                         <p className="text-base text-black/65">{leftContent?.extraText}</p>
                         <div>
                             {leftContent?.paragraphs?.map((para, index) => (
-                                <p key={index} className="text-black/65 text-base flex items-center">
-                                    <Image src="/media/icons/square.png" alt="checkbox" width={15} height={15} className="mr-2" />
-                                    {para.text}
+                                <p key={index} className="text-black/65 text-base flex items-center leading-relaxed" >
+                                    <span className="w-6 h-6 flex items-center justify-center">
+                                        <CheckBox />
+                                    </span>
+                                    <span className='ml-2'>{para.text}</span>
                                 </p>
                             ))}
                         </div>

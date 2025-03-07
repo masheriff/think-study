@@ -39,8 +39,8 @@ export const StudyAbroadBlock: React.FC<Props> = (props) => {
             {/* "Our Pathway" Section */}
             {title && (
                 <div className="text-center w-3/4 mx-auto space-y-6 my-16">
-                    <h3 className="text-4xl text-[#E63E30] font-normal mb-4 font-caveat">{title.content}</h3>
-                    <p className="text-gray-600 italic font-serif">{titleDescription}</p>
+                    <h3 className="text-4xl text-[#E63E30] font-bold mb-4 font-fuzzyBubbles">{title.content}</h3>
+                    <p className="text-gray-600 italic">{titleDescription}</p>
                 </div>
             )}
 
@@ -77,7 +77,7 @@ export const StudyAbroadBlock: React.FC<Props> = (props) => {
                         </div>
 
                         {/* Image Side */}
-                        <div className={`w-full md:w-2/5 rounded-3xl overflow-hidden flex ${card.imagePosition === "left" ? "justify-end" : "justify-start"}`}>
+                        <div className={`w-full md:w-2/5 rounded-3xl overflow-hidden flex ${card.imagePosition === "left" ? "justify-start" : "justify-end"}`}>
                             <Image
                                 src={imageData?.url || '/placeholder.svg'}
                                 alt={imageData?.alt || ''}
