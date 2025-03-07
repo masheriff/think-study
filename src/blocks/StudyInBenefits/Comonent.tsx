@@ -40,11 +40,12 @@ export const BenefitsInStudy: React.FC<BenefitsInStudyType> = (props) => {
                         />
                     )}
                 </div>
-                <div className="text-center mt-[32px] px-2">
-                    <p className="sm:text-[21px] text-[14px] font-roboto font-normal leading-7">
+                <div className="text-center mt-[32px] px-16">
+                    <p className="sm:text-[21px] text-[14px] font-roboto font-normal leading-7 text-justify">
                         {benefitsDescription}
                     </p>
                 </div>
+
             </div>
 
         </section>

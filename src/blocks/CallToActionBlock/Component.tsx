@@ -1,15 +1,12 @@
 'use client'
-
 import Image from 'next/image'
 import type { CallToActionBlock as CallToActionBlockType } from '@/payload-types'
-
 
 type Props = CallToActionBlockType & {
     className?: string
     studentImage: MediaType
     logoImage: MediaType
 }
-
 
 type MediaType = {
     url?: string
@@ -26,30 +23,6 @@ export const CallToActionBlock: React.FC<Props> = (props) => {
         logoImage,
     } = props
 
-
-
-    // const handleScroll = () => {
-    //     window.scrollTo({
-    //         top: 0,
-    //         behavior: 'smooth',
-    //     });
-    // };
-
-    // useEffect(() => {
-    //     const handleScroll = () => {
-    //         if (window.scrollY > 100) {
-    //             setShowButton(true);
-    //         } else {
-    //             setShowButton(false);
-    //         }
-    //     };
-
-    //     window.addEventListener('scroll', handleScroll);
-    //     return () => window.removeEventListener('scroll', handleScroll);
-    // }, []);
-
-    // console.log(officeStyles, "officeStyles")
-
     return (
         <section className="container">
             <div className="space-y-12">
@@ -58,7 +31,7 @@ export const CallToActionBlock: React.FC<Props> = (props) => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                             {/* Left Side - Contact Info */}
                             <div className="space-y-8">
-                                <p className="text-xl font-fuzzyBubbles text-[#FF0000]">{callText}</p>
+                                <p className="text-[26px] font-mynerve text-[#FF0000]">{callText}</p>
 
                                 {offices?.map((office, index) => (
                                     <div key={index} className="space-y-2">
@@ -76,8 +49,6 @@ export const CallToActionBlock: React.FC<Props> = (props) => {
                                         </div>
                                     </div>
                                 ))}
-
-
                             </div>
 
                             {/* Right Side - Student Image */}
@@ -104,17 +75,11 @@ export const CallToActionBlock: React.FC<Props> = (props) => {
                                         priority
                                     />
                                 )}
-
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
-
             </div>
-
         </section>
     )
 }

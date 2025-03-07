@@ -33,7 +33,7 @@ export const StudyInCourse: React.FC<Props> = (props) => {
 
                 {/* Right Image (40%) */}
                 <div className="relative">
-                    <div className="absolute z-0 top-[12px] lg:ms-[68px] xl:ms-[88px] md:ms-[63px] ms-[37px] left-0 bottom-0 w-[80%] mx-auto h-[95%] bg-[#C1F177] rounded-3xl">
+                    <div className="absolute z-0 top-[12px] lg:ms-[68px] xl:ms-[88px] md:ms-[63px] ms-[37px] left-0 bottom-0 w-[80%] mx-auto h-[97%] bg-[#C1F177] rounded-3xl">
                     </div>
                     {typeof image === 'object' && image !== null && 'url' in image ? (
                         <Image
