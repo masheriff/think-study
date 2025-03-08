@@ -86,6 +86,9 @@ export const AppointmentBlock: Block = {
                         {
                             name: 'day',
                             type: 'text',
+                            admin: {
+                                description: 'Enter only for single date.'
+                            }
                         },
                         {
                             name: 'slots',
@@ -99,6 +102,15 @@ export const AppointmentBlock: Block = {
                             ],
                         },
                     ],
+                },
+                {
+                    name: 'uniHeading',
+                    type: 'text',
+                    required: true,
+                    defaultValue: 'Participating Universities',
+                    admin: {
+                        description: 'Heading for universities section'
+                    }
                 },
                 {
                     name: 'universities',

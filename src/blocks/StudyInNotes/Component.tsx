@@ -26,7 +26,7 @@ export const StudyInNotes: React.FC<Props> = ({
                 {/* Left Section: Title + Intake Table */}
                 <div className="md:w-[70%] md:mt-[36px] lg:mt-33[px]  xl:mt-0 lg:ms-[60px] md:[4px] lg:mt-[40px] xl:mt-0 ms-[10px]">
                     <h2 className="sm:text-[40px] text-[26px] font-semibold text-black">{title}</h2>
-                    <p className="xl:text-[53px] lg:text-[62px] md:text-[48px] sm:text-[32px] text-[26px] font-caveat font-bold text-[#FF0000] mb-6 leading-none">
+                    <p className="xl:text-[45px] lg:text-[62px] md:text-[48px] sm:text-[32px] text-[26px] font-mynerve font-bold text-[#FF0000] mb-6 leading-none">
                         {subtitle}
                     </p>
                     {/* Intake Table */}

@@ -31,7 +31,7 @@ export const StudyInChecklist: React.FC<Props> = (props) => {
                             {title}
                         </h2>
 
-                        <h3 className="font-bold mb-4 sm:mb-[10px]  text-[30px] font-caveat md:text-[55px] lg:text-[57px] xl:[57px] 3xl:text-[68px] sm:leading-none leading-tight text-[#FF0000]">
+                        <h3 className="font-bold mb-4 sm:mb-[10px]  text-[30px] font-mynerve md:text-[55px] lg:text-[43px] xl:[57px] 3xl:text-[68px] sm:leading-none leading-tight text-[#FF0000]">
                             {subtitle}
                         </h3>
                     </div>

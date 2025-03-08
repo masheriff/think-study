@@ -36,6 +36,8 @@ const config = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'bounce-reverse': 'bounce-reverse 2s infinite',
+        'slide-up': 'slideUp 1s ease-out',
+        'infinite-slide-up': 'infiniteSlideUp 45s linear infinite',
       },
       keyframes: {
         'accordion-down': {
@@ -50,8 +52,13 @@ const config = {
           '0%, 100%': { transform: 'translateY(0) translateX(-50%)' },
           '50%': { transform: 'translateY(-100%) translateX(-50%)' },
         },
-        animation: {
-          'bounce-reverse': 'bounce-reverse 2s infinite',
+        infiniteSlideUp: {
+          '0%': {
+            transform: 'translateY(0%)',
+          },
+          '100%': {
+            transform: 'translateY(-100%)',
+          },
         },
       },
       borderRadius: {
@@ -108,7 +115,6 @@ const config = {
         roboto: ['var(--font-roboto)', 'sans-serif'],
         openSans: ['var(--font-open-sans)', 'sans-serif'],
         montserrat: ['var(--font-montserrat)', 'sans-serif'],
-        fuzzyBubbles: ['Fuzzy Bubbles', 'cursive'],
       },
     },
   },

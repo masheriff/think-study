@@ -103,10 +103,10 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Content, MediaBlock, Archive, FormBlock, AdmissionBlock, TestimonialsBlock, CounselingBlock, CallToActionBlock, UniversitiesBlock,
+              blocks: [Content, MediaBlock, Archive, FormBlock, AppointmentBlock, AdmissionBlock, TestimonialsBlock, CounselingBlock, CallToActionBlock, UniversitiesBlock,
                 StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, CareerBlock, WhyusMediaBlock, ConnectBlock,
                 StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes, StudyInApplication, IELTSEnroll, IELTSPrep, IELTSFeatures,
-                IELTSPackages, IELTSRoadmap, AppointmentBlock],
+                IELTSPackages, IELTSRoadmap],
               required: true,
               admin: {
                 initCollapsed: true,
