@@ -40,7 +40,7 @@ export const IELTSRoadmap: React.FC<Props> = ({
                         {steps?.map((step, index) => (
                             <div key={index} className="relative flex flex-col items-center gap-6">
                                 {/* Card Container */}
-                                <div className="bg-[#C5FF64] rounded-2xl shadow-xl p-4 md:p-4 hover:shadow-2xl transition-all duration-300 w-[80%]">
+                                <div className="bg-[#C1F177] rounded-2xl shadow-xl p-4 md:p-4 hover:shadow-2xl transition-all duration-300 w-[80%]">
                                     {/* Step Number */}
                                     <div className="text-4xl font-bold mb-4">
                                         {step.stepNumber}

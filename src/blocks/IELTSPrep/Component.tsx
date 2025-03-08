@@ -44,14 +44,14 @@ export const IELTSPrep: React.FC<Props> = ({
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                         {/* Left Content Card */}
-                        <div className="bg-[#C5FF64] rounded-2xl shadow-xl p-8 md:p-10">
+                        <div className="bg-[#C1F177] rounded-2xl shadow-xl p-8 md:p-10">
                             <div className="prose-lg text-gray-800 space-y-6">
                                 <TextHighlightBold text={contentCard} />
                             </div>
                         </div>
 
                         {/* Right Content Card */}
-                        <div className="bg-[#C5FF64] rounded-2xl shadow-xl p-8 md:p-10">
+                        <div className="bg-[#C1F177] rounded-2xl shadow-xl p-8 md:p-10">
                             <div className="space-y-8">
                                 {iconCards?.map((card, index) => (
                                     <div key={index} className="flex items-start">
