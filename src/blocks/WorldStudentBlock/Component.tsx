@@ -92,7 +92,7 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
             </div>
             <div
                 ref={containerRef}
-                className="w-full mt-6 overflow-hidden relative h-[700px]"
+                className="w-full overflow-hidden relative h-[500px] mx-auto"
             >
                 {backgroundImage && typeof backgroundImage === 'object' && 'url' in backgroundImage && (
                     <Image
@@ -106,7 +106,7 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
 
                 {/* SVG for the connecting lines with gradients */}
                 <svg
-                    className="absolute top-[65px] left-[-34px] w-full h-full"
+                    className="absolute top-[65px] left-[-50px] w-full h-full"
                     style={{ pointerEvents: 'none', zIndex: 5 }}
                 >
                     <defs>

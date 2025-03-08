@@ -36,6 +36,7 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                 setDateError(null)
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [right?.schedule?.fromDate, right?.schedule?.toDate])
 
     // Function to format date range display
