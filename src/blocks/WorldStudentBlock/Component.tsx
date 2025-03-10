@@ -35,15 +35,17 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
         '#3357FF', // Blue
         '#F033FF', // Pink
         '#640D5F', // Violet
+        '#1D8489', // Teal blue
     ];
 
     // Predefined positions for the markers
     const positions = [
-        { left: '20%', top: '30%' }, // USA
-        { left: '25%', top: '25%' }, // Canada
-        { left: '03%', top: '50%' }, // UK (Liverpool)
-        { left: '60%', top: '35%' }, // Medical School
-        { left: '75%', top: '45%' }, // Australia (Monash)
+        { left: '15%', top: '55%' }, // USA
+        { left: '25%', top: '30%' }, // Canada
+        { left: '42%', top: '18%' }, // UK (Liverpool)
+        { left: '60%', top: '60%' }, // Medical School
+        { left: '70%', top: '85%' }, // Australia (Monash)
+        { left: '70%', top: '35%' }, //  (St. Petersburg) Russia
     ];
 
     // Calculate center point and item positions after component mounts and whenever window resizes
@@ -92,7 +94,7 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
             </div>
             <div
                 ref={containerRef}
-                className="w-full overflow-hidden relative h-[500px] mx-auto"
+                className="w-full overflow-hidden relative h-[650px] mx-auto"
             >
                 {backgroundImage && typeof backgroundImage === 'object' && 'url' in backgroundImage && (
                     <Image
