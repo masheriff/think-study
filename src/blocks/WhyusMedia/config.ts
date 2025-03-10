@@ -3,7 +3,7 @@ import type { Block } from 'payload'
 export const WhyusMediaBlock: Block = {
     slug: 'whyusMediaBlock',
     interfaceName: 'WhyusMediaBlock',
-    imageURL: '/assets/blocks/WhyusMediaBlock.png',
+    imageURL: '/assets/blocks/WhyUsMediaBlock.png',
     imageAltText: 'WhyusMediaBlock Image',
     fields: [
         {
