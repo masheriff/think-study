@@ -10,30 +10,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_pages_blocks_archive_populate_by" AS ENUM('collection', 'selection');
   CREATE TYPE "public"."enum_pages_blocks_archive_relation_to" AS ENUM('posts');
   CREATE TYPE "public"."enum_pages_blocks_study_abroad_block_cards_image_position" AS ENUM('left', 'right');
-  CREATE TYPE "public"."enum_pages_blocks_study_abroad_block_title_font" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat');
-  CREATE TYPE "public"."enum_pages_blocks_service_block_main_heading_styles_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat');
-  CREATE TYPE "public"."enum_pages_blocks_service_block_description_style_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat');
-  CREATE TYPE "public"."enum_pages_blocks_service_block_button_style_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat');
-  CREATE TYPE "public"."enum_pages_blocks_service_block_service_styles_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat');
-  CREATE TYPE "public"."enum_pages_blocks_faq_block_styles_title_styles_font_weight" AS ENUM('normal', 'medium', 'bold');
-  CREATE TYPE "public"."enum_pages_blocks_faq_block_styles_title_styles_text_align" AS ENUM('left', 'center', 'right');
-  CREATE TYPE "public"."enum_pages_blocks_faq_block_styles_ques_styles_font_weight" AS ENUM('normal', 'medium', 'bold');
-  CREATE TYPE "public"."enum_pages_blocks_future_block_heading_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum_pages_blocks_future_block_connect_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum_pages_blocks_future_block_office_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum_pages_blocks_adminssion_block_year_styles_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat', 'Delius', 'Lato', 'Poppins');
-  CREATE TYPE "public"."enum_pages_blocks_adminssion_block_current_styles_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat', 'Delius', 'Lato', 'Poppins');
-  CREATE TYPE "public"."enum_pages_blocks_adminssion_block_text_styles_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat', 'Delius', 'Lato', 'Poppins');
-  CREATE TYPE "public"."enum_pages_blocks_career_block_head_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum_pages_blocks_career_block_sub_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum_pages_blocks_career_block_stat_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum_pages_blocks_career_block_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum_pages_blocks_connect_block_heading_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum_pages_blocks_connect_block_connect_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum_pages_blocks_call_action_block_office_style_family" AS ENUM('Inter', 'Roboto', 'Poppins');
+  CREATE TYPE "public"."enum_pages_blocks_study_abroad_block_background_color" AS ENUM('blue', 'white');
+  CREATE TYPE "public"."enum_pages_blocks_ielts_packages_packages_package_color" AS ENUM('green', 'yellow');
   CREATE TYPE "public"."enum_pages_hero_type" AS ENUM('none', 'highImpact', 'mediumImpact', 'lowImpact');
-  CREATE TYPE "public"."enum_pages_hero_heading_font_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat');
-  CREATE TYPE "public"."enum_pages_hero_description_font_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat');
   CREATE TYPE "public"."enum_pages_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__pages_v_version_hero_links_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum__pages_v_version_hero_links_link_appearance" AS ENUM('default', 'outline');
@@ -43,30 +22,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum__pages_v_blocks_archive_populate_by" AS ENUM('collection', 'selection');
   CREATE TYPE "public"."enum__pages_v_blocks_archive_relation_to" AS ENUM('posts');
   CREATE TYPE "public"."enum__pages_v_blocks_study_abroad_block_cards_image_position" AS ENUM('left', 'right');
-  CREATE TYPE "public"."enum__pages_v_blocks_study_abroad_block_title_font" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat');
-  CREATE TYPE "public"."enum__pages_v_blocks_service_block_main_heading_styles_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat');
-  CREATE TYPE "public"."enum__pages_v_blocks_service_block_description_style_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat');
-  CREATE TYPE "public"."enum__pages_v_blocks_service_block_button_style_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat');
-  CREATE TYPE "public"."enum__pages_v_blocks_service_block_service_styles_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat');
-  CREATE TYPE "public"."enum__pages_v_blocks_faq_block_styles_title_styles_font_weight" AS ENUM('normal', 'medium', 'bold');
-  CREATE TYPE "public"."enum__pages_v_blocks_faq_block_styles_title_styles_text_align" AS ENUM('left', 'center', 'right');
-  CREATE TYPE "public"."enum__pages_v_blocks_faq_block_styles_ques_styles_font_weight" AS ENUM('normal', 'medium', 'bold');
-  CREATE TYPE "public"."enum__pages_v_blocks_future_block_heading_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum__pages_v_blocks_future_block_connect_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum__pages_v_blocks_future_block_office_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum__pages_v_blocks_adminssion_block_year_styles_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat', 'Delius', 'Lato', 'Poppins');
-  CREATE TYPE "public"."enum__pages_v_blocks_adminssion_block_current_styles_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat', 'Delius', 'Lato', 'Poppins');
-  CREATE TYPE "public"."enum__pages_v_blocks_adminssion_block_text_styles_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat', 'Delius', 'Lato', 'Poppins');
-  CREATE TYPE "public"."enum__pages_v_blocks_career_block_head_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum__pages_v_blocks_career_block_sub_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum__pages_v_blocks_career_block_stat_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum__pages_v_blocks_career_block_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum__pages_v_blocks_connect_block_heading_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum__pages_v_blocks_connect_block_connect_styles_family" AS ENUM('Inter', 'Roboto', 'Poppins');
-  CREATE TYPE "public"."enum__pages_v_blocks_call_action_block_office_style_family" AS ENUM('Inter', 'Roboto', 'Poppins');
+  CREATE TYPE "public"."enum__pages_v_blocks_study_abroad_block_background_color" AS ENUM('blue', 'white');
+  CREATE TYPE "public"."enum__pages_v_blocks_ielts_packages_packages_package_color" AS ENUM('green', 'yellow');
   CREATE TYPE "public"."enum__pages_v_version_hero_type" AS ENUM('none', 'highImpact', 'mediumImpact', 'lowImpact');
-  CREATE TYPE "public"."enum__pages_v_version_hero_heading_font_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat');
-  CREATE TYPE "public"."enum__pages_v_version_hero_description_font_family" AS ENUM('Inter', 'Roboto', 'Open Sans', 'Montserrat');
   CREATE TYPE "public"."enum__pages_v_version_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum_posts_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__posts_v_version_status" AS ENUM('draft', 'published');
@@ -75,7 +33,10 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_payload_jobs_log_task_slug" AS ENUM('inline', 'schedulePublish');
   CREATE TYPE "public"."enum_payload_jobs_log_state" AS ENUM('failed', 'succeeded');
   CREATE TYPE "public"."enum_payload_jobs_task_slug" AS ENUM('inline', 'schedulePublish');
+  CREATE TYPE "public"."enum_header_nav_items_sub_menu_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum_header_nav_items_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum_header_buttons_links_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum_header_buttons_links_link_appearance" AS ENUM('default', 'outline');
   CREATE TYPE "public"."enum_footer_services_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum_footer_about_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum_footer_help_link_type" AS ENUM('reference', 'custom');
@@ -146,6 +107,77 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
+  CREATE TABLE IF NOT EXISTS "pages_blocks_appointment_block_left_content_paragraphs" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"text" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_appointment_block_right_schedule_slots" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"time" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_appointment_block_right_universities" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"img_id" integer,
+  	"alt" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_appointment_block" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"left_content_title" varchar,
+  	"left_content_sub_title" varchar,
+  	"left_content_highlight_text" varchar,
+  	"left_content_extra_text" varchar,
+  	"left_content_button_text" varchar,
+  	"left_content_button_url" varchar,
+  	"right_schedule_from_date" timestamp(3) with time zone,
+  	"right_schedule_to_date" timestamp(3) with time zone,
+  	"right_schedule_day" varchar,
+  	"right_uni_heading" varchar DEFAULT 'Participating Universities',
+  	"bottom_text" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_admission_block_statistics" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"value" varchar,
+  	"label" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_admission_block_courses" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_admission_block" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"year" varchar DEFAULT '1995',
+  	"day" varchar DEFAULT 'Today',
+  	"current_description" varchar DEFAULT 'Leaders in domestic + global admissions',
+  	"current_year" varchar DEFAULT '2025',
+  	"ambitions" varchar DEFAULT 'We understand your ambitions like they’re our own.',
+  	"description" varchar DEFAULT 'Established for domestic admissions',
+  	"success_rate" varchar DEFAULT 'Unlock Your Global Future – 98% Success Rate in International Admissions!',
+  	"block_name" varchar
+  );
+  
   CREATE TABLE IF NOT EXISTS "pages_blocks_testimonials_block_testimonials" (
   	"_order" integer NOT NULL,
   	"_parent_id" varchar NOT NULL,
@@ -197,6 +229,31 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
+  CREATE TABLE IF NOT EXISTS "pages_blocks_call_to_action_block_offices_phone_numbers" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"number" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_call_to_action_block_offices" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_call_to_action_block" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"call_text" varchar DEFAULT 'Call or WhatsApp',
+  	"student_image_id" integer,
+  	"logo_image_id" integer,
+  	"block_name" varchar
+  );
+  
   CREATE TABLE IF NOT EXISTS "pages_blocks_universities_block_stats" (
   	"_order" integer NOT NULL,
   	"_parent_id" varchar NOT NULL,
@@ -244,9 +301,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"subheading" varchar,
   	"description" varchar,
   	"title_content" varchar,
-  	"title_font" "enum_pages_blocks_study_abroad_block_title_font" DEFAULT 'Inter',
-  	"title_size" varchar DEFAULT '1rem',
   	"title_description" varchar,
+  	"background_color" "enum_pages_blocks_study_abroad_block_background_color",
   	"block_name" varchar
   );
   
@@ -358,26 +414,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"id" varchar PRIMARY KEY NOT NULL,
   	"backgroundimage_id" integer,
   	"main_heading" varchar DEFAULT 'Here''''s What We Do & Why We''''re the Right Choice for You',
-  	"main_heading_styles_family" "enum_pages_blocks_service_block_main_heading_styles_family" DEFAULT 'Inter',
-  	"main_heading_styles_size" varchar,
-  	"main_heading_styles_color" varchar,
-  	"main_heading_styles_background_color" varchar,
   	"description" varchar DEFAULT 'Getting into your dream university isn''''t just about meeting requirements — it''''s about finding the right fit for your ambitions and future goals.',
   	"sub_description" varchar DEFAULT 'At Think Study, we provide end-to-end guidance, helping students navigate everything from choosing the right course to securing admissions with confidence.',
-  	"description_style_family" "enum_pages_blocks_service_block_description_style_family" DEFAULT 'Inter',
-  	"description_style_size" varchar,
-  	"description_style_color" varchar,
-  	"description_style_background_color" varchar,
   	"button_text" varchar,
-  	"button_style_family" "enum_pages_blocks_service_block_button_style_family" DEFAULT 'Inter',
-  	"button_style_size" varchar,
-  	"button_style_color" varchar,
-  	"button_style_background_color" varchar,
-  	"service_styles_family" "enum_pages_blocks_service_block_service_styles_family" DEFAULT 'Inter',
-  	"service_styles_size" varchar,
-  	"service_styles_color" varchar,
-  	"service_styles_background_color" varchar,
-  	"background_color" varchar DEFAULT '#D9F1FD',
   	"block_name" varchar
   );
   
@@ -395,123 +434,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_path" text NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
   	"title" varchar DEFAULT 'FAQs',
-  	"styles_title_styles_font_size" varchar DEFAULT '48px',
-  	"styles_title_styles_font_weight" "enum_pages_blocks_faq_block_styles_title_styles_font_weight" DEFAULT 'bold',
-  	"styles_title_styles_text_align" "enum_pages_blocks_faq_block_styles_title_styles_text_align" DEFAULT 'center',
-  	"styles_ques_styles_font_size" varchar DEFAULT '18px',
-  	"styles_ques_styles_font_weight" "enum_pages_blocks_faq_block_styles_ques_styles_font_weight" DEFAULT 'medium',
-  	"block_name" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_future_block_offices_phone_numbers" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"number" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_future_block_offices" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"name" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_future_block_heading_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"family" "enum_pages_blocks_future_block_heading_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000'
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_future_block_connect_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"family" "enum_pages_blocks_future_block_connect_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000'
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_future_block_office_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"family" "enum_pages_blocks_future_block_office_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000'
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_future_block" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"_path" text NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"main_heading" varchar DEFAULT 'Your future is having global skills — lets make studying abroad happen!',
-  	"connect_text" varchar DEFAULT 'connect with our team today!',
-  	"button_text" varchar DEFAULT 'Schedule Counseling',
-  	"call_text" varchar DEFAULT 'Call or WhatsApp',
-  	"student_image_id" integer,
-  	"logo_image_id" integer,
-  	"block_name" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_adminssion_block_year_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"family" "enum_pages_blocks_adminssion_block_year_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000'
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_adminssion_block_current_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"family" "enum_pages_blocks_adminssion_block_current_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000'
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_adminssion_block_statistics" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"value" varchar,
-  	"label" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_adminssion_block_courses" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"name" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_adminssion_block_text_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"family" "enum_pages_blocks_adminssion_block_text_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000'
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_adminssion_block" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"_path" text NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"year" varchar DEFAULT '1995',
-  	"day" varchar DEFAULT 'Today',
-  	"current_description" varchar DEFAULT 'Leaders in domestic + global admissions',
-  	"current_year" varchar DEFAULT '2025',
-  	"ambitions" varchar DEFAULT 'We understand your ambitions like they’re our own',
-  	"description" varchar DEFAULT 'Established for domestic admissions',
-  	"success_rate" varchar DEFAULT '98% Success Rate in International Admissions!',
   	"block_name" varchar
   );
   
@@ -528,42 +450,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" varchar NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
   	"text" varchar DEFAULT 'Schedule Counseling'
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_career_block_head_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"family" "enum_pages_blocks_career_block_head_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000'
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_career_block_sub_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"family" "enum_pages_blocks_career_block_sub_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000'
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_career_block_stat_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"family" "enum_pages_blocks_career_block_stat_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000'
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_career_block_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"family" "enum_pages_blocks_career_block_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000'
   );
   
   CREATE TABLE IF NOT EXISTS "pages_blocks_career_block" (
@@ -588,24 +474,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
-  CREATE TABLE IF NOT EXISTS "pages_blocks_connect_block_heading_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"family" "enum_pages_blocks_connect_block_heading_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000'
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_connect_block_connect_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"family" "enum_pages_blocks_connect_block_connect_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000'
-  );
-  
   CREATE TABLE IF NOT EXISTS "pages_blocks_connect_block" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -617,76 +485,205 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
-  CREATE TABLE IF NOT EXISTS "pages_blocks_call_action_block_offices_phone_numbers" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"number" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_call_action_block_offices" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"name" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_call_action_block_office_style" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"family" "enum_pages_blocks_call_action_block_office_style_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000'
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_call_action_block" (
+  CREATE TABLE IF NOT EXISTS "pages_blocks_study_in_course" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
   	"_path" text NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
-  	"call_text" varchar DEFAULT 'Call or WhatsApp',
-  	"student_image_id" integer,
-  	"logo_image_id" integer,
+  	"title" varchar DEFAULT 'Study in the',
+  	"country" varchar DEFAULT 'USA',
+  	"image_id" integer,
   	"block_name" varchar
   );
   
-  CREATE TABLE IF NOT EXISTS "pages_blocks_appointment_block_left_content_paragraphs" (
+  CREATE TABLE IF NOT EXISTS "pages_blocks_study_in_checklist_check_items" (
   	"_order" integer NOT NULL,
   	"_parent_id" varchar NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
   	"text" varchar
   );
   
-  CREATE TABLE IF NOT EXISTS "pages_blocks_appointment_block_right_schedule_slots" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"time" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_appointment_block_right_universities" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" varchar NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"img_id" integer,
-  	"alt" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "pages_blocks_appointment_block" (
+  CREATE TABLE IF NOT EXISTS "pages_blocks_study_in_checklist" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
   	"_path" text NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
-  	"left_content_title" varchar,
-  	"left_content_sub_title" varchar,
-  	"left_content_highlight_text" varchar,
-  	"left_content_extra_text" varchar,
-  	"left_content_button_text" varchar,
-  	"left_content_button_url" varchar,
-  	"right_schedule_date" timestamp(3) with time zone,
-  	"right_schedule_day" varchar,
-  	"bottom_text" varchar,
+  	"title" varchar DEFAULT 'Your Essential Checklist!',
+  	"subtitle" varchar DEFAULT 'Reasons to Study in America',
+  	"image_id" integer,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_benefits_in_study" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"background_image_id" integer,
+  	"benefits_description" varchar DEFAULT 'Studying in the USA gives international students a chance to experience top-quality education in a welcoming and diverse environment. American universities are famous for their high teaching standards, modern facilities, and a wide selection of courses and degrees. Students gain practical knowledge, improve their English skills, and learn how to adapt to different cultures. The USA also offers excellent career prospects and strong student support services. With its vibrant campus life and numerous opportunities, studying in America is an attractive choice for students around the world.',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_study_in_notes" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"title" varchar DEFAULT 'Study Abroad Smarter:',
+  	"subtitle" varchar DEFAULT 'The Insider Notes You Need Before You Pack!',
+  	"intakeheader_intake" varchar DEFAULT 'Intake',
+  	"intakeheader_application" varchar DEFAULT 'Application Deadline',
+  	"intakeheader_classesstart" varchar DEFAULT 'Classes Start Usually',
+  	"in_taketable_header_fall_intake" varchar DEFAULT 'Fall Intake',
+  	"in_taketable_header_springintake" varchar DEFAULT 'Spring Intake',
+  	"in_taketable_header_summerintake" varchar DEFAULT 'Summer Intake',
+  	"intake_table_fall_intake_application_deadline" varchar DEFAULT 'December To March',
+  	"intake_table_fall_intake_classes_start" varchar DEFAULT 'August to September',
+  	"intake_table_spring_intake_application_deadline" varchar DEFAULT 'July To November',
+  	"intake_table_spring_intake_classes_start" varchar DEFAULT 'January to February',
+  	"intake_table_summer_intake_application_deadline" varchar DEFAULT 'January To March',
+  	"intake_table_summer_intake_classes_start" varchar DEFAULT 'May or June',
+  	"righttableheader_livingexpenses" varchar DEFAULT 'Living Expenses',
+  	"righttableheader_average" varchar DEFAULT 'Monthly Average Expenses (in USD)',
+  	"righttableheader_dollar" varchar DEFAULT 'in USD',
+  	"living_table_stay" varchar DEFAULT 'Stay',
+  	"living_table_foodbudget" varchar DEFAULT 'Food Budget',
+  	"living_table_localtransport" varchar DEFAULT 'Local Transport',
+  	"living_table_phonebills" varchar DEFAULT 'Phone Bills',
+  	"living_table_movingaround" varchar DEFAULT 'Moving Around',
+  	"expenses_table_stay_monthly_average" varchar DEFAULT 'Around 1000 on sharing',
+  	"expenses_table_food_budget_monthly_average" varchar DEFAULT 'we can make in 500',
+  	"expenses_table_local_transport_monthly_average" varchar DEFAULT '200 will be a good budget',
+  	"expenses_table_phone_bills_monthly_average" varchar DEFAULT '75 is the average budget',
+  	"expenses_table_moving_around_monthly_average" varchar DEFAULT '250-300 but depends',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_study_in_application_right_content_services" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"service_text" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_study_in_application" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"main_title" varchar DEFAULT 'From Application to Admission - We''''ve Got You!',
+  	"sub_title" varchar DEFAULT 'Think. Study. Succeed. - We Make Your Global Education Dream a Reality!',
+  	"left_content_headline" varchar DEFAULT 'Studying abroad can be complex, but we make it effortless.',
+  	"left_content_highlight" varchar DEFAULT 'Our expert mentors',
+  	"left_content_subheadline" varchar DEFAULT 'guide you every step of the way.',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_ielts_enroll" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"title_prefix" varchar DEFAULT 'Clear',
+  	"title_emphasis" varchar DEFAULT 'IELTS',
+  	"title_suffix" varchar DEFAULT 'with Confidence',
+  	"button_text" varchar DEFAULT 'Enroll Now!',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_ielts_prep_icon_cards" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"icon_id" integer,
+  	"text" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_ielts_prep" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"normal_heading" varchar,
+  	"highlighted_heading" varchar,
+  	"normal_description" varchar,
+  	"content_card" varchar,
+  	"background_image_id" integer,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_ielts_features_features_list" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"feature_text" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_ielts_features" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"heading" varchar,
+  	"student_image_id" integer,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_ielts_packages_packages_details" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"label" varchar,
+  	"text" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_ielts_packages_packages_includes" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"include_item" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_ielts_packages_packages" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"option_label" varchar,
+  	"package_title" varchar,
+  	"includes_heading" varchar DEFAULT 'Includes:',
+  	"price" numeric,
+  	"package_color" "enum_pages_blocks_ielts_packages_packages_package_color"
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_ielts_packages" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"main_heading" varchar,
+  	"higlighted_heading" varchar,
+  	"description" varchar,
+  	"currency_label" varchar DEFAULT 'INR',
+  	"enroll_button_text" varchar DEFAULT 'Enroll Now',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_ielts_roadmap_steps" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"step_number" numeric,
+  	"icon_id" integer,
+  	"description" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_ielts_roadmap" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"subtitle" varchar,
   	"block_name" varchar
   );
   
@@ -695,11 +692,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"title" varchar,
   	"hero_type" "enum_pages_hero_type" DEFAULT 'lowImpact',
   	"hero_heading_content" varchar,
-  	"hero_heading_font_family" "enum_pages_hero_heading_font_family" DEFAULT 'Inter',
-  	"hero_heading_font_size" varchar DEFAULT '1rem',
   	"hero_description_content" varchar,
-  	"hero_description_font_family" "enum_pages_hero_description_font_family" DEFAULT 'Inter',
-  	"hero_description_font_size" varchar DEFAULT '1rem',
   	"hero_rich_text" jsonb,
   	"hero_media_id" integer,
   	"meta_title" varchar,
@@ -794,6 +787,84 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_appointment_block_left_content_paragraphs" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"text" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_appointment_block_right_schedule_slots" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"time" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_appointment_block_right_universities" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"img_id" integer,
+  	"alt" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_appointment_block" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"left_content_title" varchar,
+  	"left_content_sub_title" varchar,
+  	"left_content_highlight_text" varchar,
+  	"left_content_extra_text" varchar,
+  	"left_content_button_text" varchar,
+  	"left_content_button_url" varchar,
+  	"right_schedule_from_date" timestamp(3) with time zone,
+  	"right_schedule_to_date" timestamp(3) with time zone,
+  	"right_schedule_day" varchar,
+  	"right_uni_heading" varchar DEFAULT 'Participating Universities',
+  	"bottom_text" varchar,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_admission_block_statistics" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"value" varchar,
+  	"label" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_admission_block_courses" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"name" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_admission_block" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"year" varchar DEFAULT '1995',
+  	"day" varchar DEFAULT 'Today',
+  	"current_description" varchar DEFAULT 'Leaders in domestic + global admissions',
+  	"current_year" varchar DEFAULT '2025',
+  	"ambitions" varchar DEFAULT 'We understand your ambitions like they’re our own.',
+  	"description" varchar DEFAULT 'Established for domestic admissions',
+  	"success_rate" varchar DEFAULT 'Unlock Your Global Future – 98% Success Rate in International Admissions!',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
   CREATE TABLE IF NOT EXISTS "_pages_v_blocks_testimonials_block_testimonials" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -850,6 +921,34 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_call_to_action_block_offices_phone_numbers" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"number" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_call_to_action_block_offices" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"name" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_call_to_action_block" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"call_text" varchar DEFAULT 'Call or WhatsApp',
+  	"student_image_id" integer,
+  	"logo_image_id" integer,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
   CREATE TABLE IF NOT EXISTS "_pages_v_blocks_universities_block_stats" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -901,9 +1000,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"subheading" varchar,
   	"description" varchar,
   	"title_content" varchar,
-  	"title_font" "enum__pages_v_blocks_study_abroad_block_title_font" DEFAULT 'Inter',
-  	"title_size" varchar DEFAULT '1rem',
   	"title_description" varchar,
+  	"background_color" "enum__pages_v_blocks_study_abroad_block_background_color",
   	"_uuid" varchar,
   	"block_name" varchar
   );
@@ -1026,26 +1124,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"id" serial PRIMARY KEY NOT NULL,
   	"backgroundimage_id" integer,
   	"main_heading" varchar DEFAULT 'Here''''s What We Do & Why We''''re the Right Choice for You',
-  	"main_heading_styles_family" "enum__pages_v_blocks_service_block_main_heading_styles_family" DEFAULT 'Inter',
-  	"main_heading_styles_size" varchar,
-  	"main_heading_styles_color" varchar,
-  	"main_heading_styles_background_color" varchar,
   	"description" varchar DEFAULT 'Getting into your dream university isn''''t just about meeting requirements — it''''s about finding the right fit for your ambitions and future goals.',
   	"sub_description" varchar DEFAULT 'At Think Study, we provide end-to-end guidance, helping students navigate everything from choosing the right course to securing admissions with confidence.',
-  	"description_style_family" "enum__pages_v_blocks_service_block_description_style_family" DEFAULT 'Inter',
-  	"description_style_size" varchar,
-  	"description_style_color" varchar,
-  	"description_style_background_color" varchar,
   	"button_text" varchar,
-  	"button_style_family" "enum__pages_v_blocks_service_block_button_style_family" DEFAULT 'Inter',
-  	"button_style_size" varchar,
-  	"button_style_color" varchar,
-  	"button_style_background_color" varchar,
-  	"service_styles_family" "enum__pages_v_blocks_service_block_service_styles_family" DEFAULT 'Inter',
-  	"service_styles_size" varchar,
-  	"service_styles_color" varchar,
-  	"service_styles_background_color" varchar,
-  	"background_color" varchar DEFAULT '#D9F1FD',
   	"_uuid" varchar,
   	"block_name" varchar
   );
@@ -1065,135 +1146,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_path" text NOT NULL,
   	"id" serial PRIMARY KEY NOT NULL,
   	"title" varchar DEFAULT 'FAQs',
-  	"styles_title_styles_font_size" varchar DEFAULT '48px',
-  	"styles_title_styles_font_weight" "enum__pages_v_blocks_faq_block_styles_title_styles_font_weight" DEFAULT 'bold',
-  	"styles_title_styles_text_align" "enum__pages_v_blocks_faq_block_styles_title_styles_text_align" DEFAULT 'center',
-  	"styles_ques_styles_font_size" varchar DEFAULT '18px',
-  	"styles_ques_styles_font_weight" "enum__pages_v_blocks_faq_block_styles_ques_styles_font_weight" DEFAULT 'medium',
-  	"_uuid" varchar,
-  	"block_name" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_future_block_offices_phone_numbers" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"number" varchar,
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_future_block_offices" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"name" varchar,
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_future_block_heading_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"family" "enum__pages_v_blocks_future_block_heading_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000',
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_future_block_connect_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"family" "enum__pages_v_blocks_future_block_connect_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000',
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_future_block_office_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"family" "enum__pages_v_blocks_future_block_office_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000',
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_future_block" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"_path" text NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"main_heading" varchar DEFAULT 'Your future is having global skills — lets make studying abroad happen!',
-  	"connect_text" varchar DEFAULT 'connect with our team today!',
-  	"button_text" varchar DEFAULT 'Schedule Counseling',
-  	"call_text" varchar DEFAULT 'Call or WhatsApp',
-  	"student_image_id" integer,
-  	"logo_image_id" integer,
-  	"_uuid" varchar,
-  	"block_name" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_adminssion_block_year_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"family" "enum__pages_v_blocks_adminssion_block_year_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000',
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_adminssion_block_current_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"family" "enum__pages_v_blocks_adminssion_block_current_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000',
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_adminssion_block_statistics" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"value" varchar,
-  	"label" varchar,
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_adminssion_block_courses" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"name" varchar,
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_adminssion_block_text_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"family" "enum__pages_v_blocks_adminssion_block_text_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000',
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_adminssion_block" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"_path" text NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"year" varchar DEFAULT '1995',
-  	"day" varchar DEFAULT 'Today',
-  	"current_description" varchar DEFAULT 'Leaders in domestic + global admissions',
-  	"current_year" varchar DEFAULT '2025',
-  	"ambitions" varchar DEFAULT 'We understand your ambitions like they’re our own',
-  	"description" varchar DEFAULT 'Established for domestic admissions',
-  	"success_rate" varchar DEFAULT '98% Success Rate in International Admissions!',
   	"_uuid" varchar,
   	"block_name" varchar
   );
@@ -1212,46 +1164,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL,
   	"id" serial PRIMARY KEY NOT NULL,
   	"text" varchar DEFAULT 'Schedule Counseling',
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_career_block_head_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"family" "enum__pages_v_blocks_career_block_head_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000',
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_career_block_sub_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"family" "enum__pages_v_blocks_career_block_sub_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000',
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_career_block_stat_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"family" "enum__pages_v_blocks_career_block_stat_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000',
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_career_block_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"family" "enum__pages_v_blocks_career_block_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000',
   	"_uuid" varchar
   );
   
@@ -1279,26 +1191,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_connect_block_heading_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"family" "enum__pages_v_blocks_connect_block_heading_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000',
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_connect_block_connect_styles" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"family" "enum__pages_v_blocks_connect_block_connect_styles_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000',
-  	"_uuid" varchar
-  );
-  
   CREATE TABLE IF NOT EXISTS "_pages_v_blocks_connect_block" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -1311,45 +1203,19 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_call_action_block_offices_phone_numbers" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"number" varchar,
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_call_action_block_offices" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"name" varchar,
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_call_action_block_office_style" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"family" "enum__pages_v_blocks_call_action_block_office_style_family" DEFAULT 'Inter',
-  	"size" varchar DEFAULT '1rem',
-  	"color" varchar DEFAULT '#000000',
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_call_action_block" (
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_study_in_course" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
   	"_path" text NOT NULL,
   	"id" serial PRIMARY KEY NOT NULL,
-  	"call_text" varchar DEFAULT 'Call or WhatsApp',
-  	"student_image_id" integer,
-  	"logo_image_id" integer,
+  	"title" varchar DEFAULT 'Study in the',
+  	"country" varchar DEFAULT 'USA',
+  	"image_id" integer,
   	"_uuid" varchar,
   	"block_name" varchar
   );
   
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_appointment_block_left_content_paragraphs" (
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_study_in_checklist_check_items" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
   	"id" serial PRIMARY KEY NOT NULL,
@@ -1357,37 +1223,202 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_uuid" varchar
   );
   
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_appointment_block_right_schedule_slots" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"time" varchar,
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_appointment_block_right_universities" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"img_id" integer,
-  	"alt" varchar,
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_appointment_block" (
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_study_in_checklist" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
   	"_path" text NOT NULL,
   	"id" serial PRIMARY KEY NOT NULL,
-  	"left_content_title" varchar,
-  	"left_content_sub_title" varchar,
-  	"left_content_highlight_text" varchar,
-  	"left_content_extra_text" varchar,
-  	"left_content_button_text" varchar,
-  	"left_content_button_url" varchar,
-  	"right_schedule_date" timestamp(3) with time zone,
-  	"right_schedule_day" varchar,
-  	"bottom_text" varchar,
+  	"title" varchar DEFAULT 'Your Essential Checklist!',
+  	"subtitle" varchar DEFAULT 'Reasons to Study in America',
+  	"image_id" integer,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_benefits_in_study" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"background_image_id" integer,
+  	"benefits_description" varchar DEFAULT 'Studying in the USA gives international students a chance to experience top-quality education in a welcoming and diverse environment. American universities are famous for their high teaching standards, modern facilities, and a wide selection of courses and degrees. Students gain practical knowledge, improve their English skills, and learn how to adapt to different cultures. The USA also offers excellent career prospects and strong student support services. With its vibrant campus life and numerous opportunities, studying in America is an attractive choice for students around the world.',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_study_in_notes" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"title" varchar DEFAULT 'Study Abroad Smarter:',
+  	"subtitle" varchar DEFAULT 'The Insider Notes You Need Before You Pack!',
+  	"intakeheader_intake" varchar DEFAULT 'Intake',
+  	"intakeheader_application" varchar DEFAULT 'Application Deadline',
+  	"intakeheader_classesstart" varchar DEFAULT 'Classes Start Usually',
+  	"in_taketable_header_fall_intake" varchar DEFAULT 'Fall Intake',
+  	"in_taketable_header_springintake" varchar DEFAULT 'Spring Intake',
+  	"in_taketable_header_summerintake" varchar DEFAULT 'Summer Intake',
+  	"intake_table_fall_intake_application_deadline" varchar DEFAULT 'December To March',
+  	"intake_table_fall_intake_classes_start" varchar DEFAULT 'August to September',
+  	"intake_table_spring_intake_application_deadline" varchar DEFAULT 'July To November',
+  	"intake_table_spring_intake_classes_start" varchar DEFAULT 'January to February',
+  	"intake_table_summer_intake_application_deadline" varchar DEFAULT 'January To March',
+  	"intake_table_summer_intake_classes_start" varchar DEFAULT 'May or June',
+  	"righttableheader_livingexpenses" varchar DEFAULT 'Living Expenses',
+  	"righttableheader_average" varchar DEFAULT 'Monthly Average Expenses (in USD)',
+  	"righttableheader_dollar" varchar DEFAULT 'in USD',
+  	"living_table_stay" varchar DEFAULT 'Stay',
+  	"living_table_foodbudget" varchar DEFAULT 'Food Budget',
+  	"living_table_localtransport" varchar DEFAULT 'Local Transport',
+  	"living_table_phonebills" varchar DEFAULT 'Phone Bills',
+  	"living_table_movingaround" varchar DEFAULT 'Moving Around',
+  	"expenses_table_stay_monthly_average" varchar DEFAULT 'Around 1000 on sharing',
+  	"expenses_table_food_budget_monthly_average" varchar DEFAULT 'we can make in 500',
+  	"expenses_table_local_transport_monthly_average" varchar DEFAULT '200 will be a good budget',
+  	"expenses_table_phone_bills_monthly_average" varchar DEFAULT '75 is the average budget',
+  	"expenses_table_moving_around_monthly_average" varchar DEFAULT '250-300 but depends',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_study_in_application_right_content_services" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"service_text" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_study_in_application" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"main_title" varchar DEFAULT 'From Application to Admission - We''''ve Got You!',
+  	"sub_title" varchar DEFAULT 'Think. Study. Succeed. - We Make Your Global Education Dream a Reality!',
+  	"left_content_headline" varchar DEFAULT 'Studying abroad can be complex, but we make it effortless.',
+  	"left_content_highlight" varchar DEFAULT 'Our expert mentors',
+  	"left_content_subheadline" varchar DEFAULT 'guide you every step of the way.',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_ielts_enroll" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"title_prefix" varchar DEFAULT 'Clear',
+  	"title_emphasis" varchar DEFAULT 'IELTS',
+  	"title_suffix" varchar DEFAULT 'with Confidence',
+  	"button_text" varchar DEFAULT 'Enroll Now!',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_ielts_prep_icon_cards" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"icon_id" integer,
+  	"text" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_ielts_prep" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"normal_heading" varchar,
+  	"highlighted_heading" varchar,
+  	"normal_description" varchar,
+  	"content_card" varchar,
+  	"background_image_id" integer,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_ielts_features_features_list" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"feature_text" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_ielts_features" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"heading" varchar,
+  	"student_image_id" integer,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_ielts_packages_packages_details" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"label" varchar,
+  	"text" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_ielts_packages_packages_includes" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"include_item" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_ielts_packages_packages" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"option_label" varchar,
+  	"package_title" varchar,
+  	"includes_heading" varchar DEFAULT 'Includes:',
+  	"price" numeric,
+  	"package_color" "enum__pages_v_blocks_ielts_packages_packages_package_color",
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_ielts_packages" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"main_heading" varchar,
+  	"higlighted_heading" varchar,
+  	"description" varchar,
+  	"currency_label" varchar DEFAULT 'INR',
+  	"enroll_button_text" varchar DEFAULT 'Enroll Now',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_ielts_roadmap_steps" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"step_number" numeric,
+  	"icon_id" integer,
+  	"description" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_ielts_roadmap" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"subtitle" varchar,
   	"_uuid" varchar,
   	"block_name" varchar
   );
@@ -1398,11 +1429,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"version_title" varchar,
   	"version_hero_type" "enum__pages_v_version_hero_type" DEFAULT 'lowImpact',
   	"version_hero_heading_content" varchar,
-  	"version_hero_heading_font_family" "enum__pages_v_version_hero_heading_font_family" DEFAULT 'Inter',
-  	"version_hero_heading_font_size" varchar DEFAULT '1rem',
   	"version_hero_description_content" varchar,
-  	"version_hero_description_font_family" "enum__pages_v_version_hero_description_font_family" DEFAULT 'Inter',
-  	"version_hero_description_font_size" varchar DEFAULT '1rem',
   	"version_hero_rich_text" jsonb,
   	"version_hero_media_id" integer,
   	"version_meta_title" varchar,
@@ -1874,6 +1901,16 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
   );
   
+  CREATE TABLE IF NOT EXISTS "header_nav_items_sub_menu" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"link_type" "enum_header_nav_items_sub_menu_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"link_label" varchar NOT NULL
+  );
+  
   CREATE TABLE IF NOT EXISTS "header_nav_items" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -1882,6 +1919,17 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"link_new_tab" boolean,
   	"link_url" varchar,
   	"link_label" varchar NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "header_buttons_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"link_type" "enum_header_buttons_links_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"link_label" varchar NOT NULL,
+  	"link_appearance" "enum_header_buttons_links_link_appearance" DEFAULT 'default'
   );
   
   CREATE TABLE IF NOT EXISTS "header" (
@@ -2015,6 +2063,54 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "pages_blocks_appointment_block_left_content_paragraphs" ADD CONSTRAINT "pages_blocks_appointment_block_left_content_paragraphs_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_appointment_block"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_appointment_block_right_schedule_slots" ADD CONSTRAINT "pages_blocks_appointment_block_right_schedule_slots_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_appointment_block"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_appointment_block_right_universities" ADD CONSTRAINT "pages_blocks_appointment_block_right_universities_img_id_media_id_fk" FOREIGN KEY ("img_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_appointment_block_right_universities" ADD CONSTRAINT "pages_blocks_appointment_block_right_universities_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_appointment_block"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_appointment_block" ADD CONSTRAINT "pages_blocks_appointment_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_admission_block_statistics" ADD CONSTRAINT "pages_blocks_admission_block_statistics_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_admission_block"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_admission_block_courses" ADD CONSTRAINT "pages_blocks_admission_block_courses_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_admission_block"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_admission_block" ADD CONSTRAINT "pages_blocks_admission_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "pages_blocks_testimonials_block_testimonials" ADD CONSTRAINT "pages_blocks_testimonials_block_testimonials_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -2070,6 +2166,36 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "pages_blocks_counseling_block" ADD CONSTRAINT "pages_blocks_counseling_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_call_to_action_block_offices_phone_numbers" ADD CONSTRAINT "pages_blocks_call_to_action_block_offices_phone_numbers_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_call_to_action_block_offices"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_call_to_action_block_offices" ADD CONSTRAINT "pages_blocks_call_to_action_block_offices_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_call_to_action_block"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_call_to_action_block" ADD CONSTRAINT "pages_blocks_call_to_action_block_student_image_id_media_id_fk" FOREIGN KEY ("student_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_call_to_action_block" ADD CONSTRAINT "pages_blocks_call_to_action_block_logo_image_id_media_id_fk" FOREIGN KEY ("logo_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_call_to_action_block" ADD CONSTRAINT "pages_blocks_call_to_action_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -2231,90 +2357,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "pages_blocks_future_block_offices_phone_numbers" ADD CONSTRAINT "pages_blocks_future_block_offices_phone_numbers_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_future_block_offices"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_future_block_offices" ADD CONSTRAINT "pages_blocks_future_block_offices_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_future_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_future_block_heading_styles" ADD CONSTRAINT "pages_blocks_future_block_heading_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_future_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_future_block_connect_styles" ADD CONSTRAINT "pages_blocks_future_block_connect_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_future_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_future_block_office_styles" ADD CONSTRAINT "pages_blocks_future_block_office_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_future_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_future_block" ADD CONSTRAINT "pages_blocks_future_block_student_image_id_media_id_fk" FOREIGN KEY ("student_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_future_block" ADD CONSTRAINT "pages_blocks_future_block_logo_image_id_media_id_fk" FOREIGN KEY ("logo_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_future_block" ADD CONSTRAINT "pages_blocks_future_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_adminssion_block_year_styles" ADD CONSTRAINT "pages_blocks_adminssion_block_year_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_adminssion_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_adminssion_block_current_styles" ADD CONSTRAINT "pages_blocks_adminssion_block_current_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_adminssion_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_adminssion_block_statistics" ADD CONSTRAINT "pages_blocks_adminssion_block_statistics_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_adminssion_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_adminssion_block_courses" ADD CONSTRAINT "pages_blocks_adminssion_block_courses_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_adminssion_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_adminssion_block_text_styles" ADD CONSTRAINT "pages_blocks_adminssion_block_text_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_adminssion_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_adminssion_block" ADD CONSTRAINT "pages_blocks_adminssion_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
    ALTER TABLE "pages_blocks_career_block_statistics" ADD CONSTRAINT "pages_blocks_career_block_statistics_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_career_block"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -2322,30 +2364,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "pages_blocks_career_block_b_text" ADD CONSTRAINT "pages_blocks_career_block_b_text_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_career_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_career_block_head_styles" ADD CONSTRAINT "pages_blocks_career_block_head_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_career_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_career_block_sub_styles" ADD CONSTRAINT "pages_blocks_career_block_sub_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_career_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_career_block_stat_styles" ADD CONSTRAINT "pages_blocks_career_block_stat_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_career_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_career_block_styles" ADD CONSTRAINT "pages_blocks_career_block_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_career_block"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -2375,85 +2393,157 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "pages_blocks_connect_block_heading_styles" ADD CONSTRAINT "pages_blocks_connect_block_heading_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_connect_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "pages_blocks_connect_block_connect_styles" ADD CONSTRAINT "pages_blocks_connect_block_connect_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_connect_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
    ALTER TABLE "pages_blocks_connect_block" ADD CONSTRAINT "pages_blocks_connect_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "pages_blocks_call_action_block_offices_phone_numbers" ADD CONSTRAINT "pages_blocks_call_action_block_offices_phone_numbers_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_call_action_block_offices"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "pages_blocks_study_in_course" ADD CONSTRAINT "pages_blocks_study_in_course_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "pages_blocks_call_action_block_offices" ADD CONSTRAINT "pages_blocks_call_action_block_offices_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_call_action_block"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "pages_blocks_study_in_course" ADD CONSTRAINT "pages_blocks_study_in_course_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "pages_blocks_call_action_block_office_style" ADD CONSTRAINT "pages_blocks_call_action_block_office_style_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_call_action_block"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "pages_blocks_study_in_checklist_check_items" ADD CONSTRAINT "pages_blocks_study_in_checklist_check_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_study_in_checklist"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "pages_blocks_call_action_block" ADD CONSTRAINT "pages_blocks_call_action_block_student_image_id_media_id_fk" FOREIGN KEY ("student_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "pages_blocks_study_in_checklist" ADD CONSTRAINT "pages_blocks_study_in_checklist_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "pages_blocks_call_action_block" ADD CONSTRAINT "pages_blocks_call_action_block_logo_image_id_media_id_fk" FOREIGN KEY ("logo_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "pages_blocks_study_in_checklist" ADD CONSTRAINT "pages_blocks_study_in_checklist_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "pages_blocks_call_action_block" ADD CONSTRAINT "pages_blocks_call_action_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "pages_blocks_benefits_in_study" ADD CONSTRAINT "pages_blocks_benefits_in_study_background_image_id_media_id_fk" FOREIGN KEY ("background_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "pages_blocks_appointment_block_left_content_paragraphs" ADD CONSTRAINT "pages_blocks_appointment_block_left_content_paragraphs_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_appointment_block"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "pages_blocks_benefits_in_study" ADD CONSTRAINT "pages_blocks_benefits_in_study_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "pages_blocks_appointment_block_right_schedule_slots" ADD CONSTRAINT "pages_blocks_appointment_block_right_schedule_slots_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_appointment_block"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "pages_blocks_study_in_notes" ADD CONSTRAINT "pages_blocks_study_in_notes_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "pages_blocks_appointment_block_right_universities" ADD CONSTRAINT "pages_blocks_appointment_block_right_universities_img_id_media_id_fk" FOREIGN KEY ("img_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "pages_blocks_study_in_application_right_content_services" ADD CONSTRAINT "pages_blocks_study_in_application_right_content_services_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_study_in_application"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "pages_blocks_appointment_block_right_universities" ADD CONSTRAINT "pages_blocks_appointment_block_right_universities_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_appointment_block"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "pages_blocks_study_in_application" ADD CONSTRAINT "pages_blocks_study_in_application_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "pages_blocks_appointment_block" ADD CONSTRAINT "pages_blocks_appointment_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "pages_blocks_ielts_enroll" ADD CONSTRAINT "pages_blocks_ielts_enroll_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_ielts_prep_icon_cards" ADD CONSTRAINT "pages_blocks_ielts_prep_icon_cards_icon_id_media_id_fk" FOREIGN KEY ("icon_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_ielts_prep_icon_cards" ADD CONSTRAINT "pages_blocks_ielts_prep_icon_cards_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_ielts_prep"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_ielts_prep" ADD CONSTRAINT "pages_blocks_ielts_prep_background_image_id_media_id_fk" FOREIGN KEY ("background_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_ielts_prep" ADD CONSTRAINT "pages_blocks_ielts_prep_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_ielts_features_features_list" ADD CONSTRAINT "pages_blocks_ielts_features_features_list_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_ielts_features"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_ielts_features" ADD CONSTRAINT "pages_blocks_ielts_features_student_image_id_media_id_fk" FOREIGN KEY ("student_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_ielts_features" ADD CONSTRAINT "pages_blocks_ielts_features_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_ielts_packages_packages_details" ADD CONSTRAINT "pages_blocks_ielts_packages_packages_details_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_ielts_packages_packages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_ielts_packages_packages_includes" ADD CONSTRAINT "pages_blocks_ielts_packages_packages_includes_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_ielts_packages_packages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_ielts_packages_packages" ADD CONSTRAINT "pages_blocks_ielts_packages_packages_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_ielts_packages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_ielts_packages" ADD CONSTRAINT "pages_blocks_ielts_packages_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_ielts_roadmap_steps" ADD CONSTRAINT "pages_blocks_ielts_roadmap_steps_icon_id_media_id_fk" FOREIGN KEY ("icon_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_ielts_roadmap_steps" ADD CONSTRAINT "pages_blocks_ielts_roadmap_steps_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_ielts_roadmap"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_ielts_roadmap" ADD CONSTRAINT "pages_blocks_ielts_roadmap_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -2543,6 +2633,54 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_appointment_block_left_content_paragraphs" ADD CONSTRAINT "_pages_v_blocks_appointment_block_left_content_paragraphs_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_appointment_block"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_appointment_block_right_schedule_slots" ADD CONSTRAINT "_pages_v_blocks_appointment_block_right_schedule_slots_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_appointment_block"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_appointment_block_right_universities" ADD CONSTRAINT "_pages_v_blocks_appointment_block_right_universities_img_id_media_id_fk" FOREIGN KEY ("img_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_appointment_block_right_universities" ADD CONSTRAINT "_pages_v_blocks_appointment_block_right_universities_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_appointment_block"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_appointment_block" ADD CONSTRAINT "_pages_v_blocks_appointment_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_admission_block_statistics" ADD CONSTRAINT "_pages_v_blocks_admission_block_statistics_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_admission_block"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_admission_block_courses" ADD CONSTRAINT "_pages_v_blocks_admission_block_courses_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_admission_block"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_admission_block" ADD CONSTRAINT "_pages_v_blocks_admission_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "_pages_v_blocks_testimonials_block_testimonials" ADD CONSTRAINT "_pages_v_blocks_testimonials_block_testimonials_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -2598,6 +2736,36 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "_pages_v_blocks_counseling_block" ADD CONSTRAINT "_pages_v_blocks_counseling_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_call_to_action_block_offices_phone_numbers" ADD CONSTRAINT "_pages_v_blocks_call_to_action_block_offices_phone_numbers_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_call_to_action_block_offices"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_call_to_action_block_offices" ADD CONSTRAINT "_pages_v_blocks_call_to_action_block_offices_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_call_to_action_block"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_call_to_action_block" ADD CONSTRAINT "_pages_v_blocks_call_to_action_block_student_image_id_media_id_fk" FOREIGN KEY ("student_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_call_to_action_block" ADD CONSTRAINT "_pages_v_blocks_call_to_action_block_logo_image_id_media_id_fk" FOREIGN KEY ("logo_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_call_to_action_block" ADD CONSTRAINT "_pages_v_blocks_call_to_action_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -2759,90 +2927,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_future_block_offices_phone_numbers" ADD CONSTRAINT "_pages_v_blocks_future_block_offices_phone_numbers_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_future_block_offices"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_future_block_offices" ADD CONSTRAINT "_pages_v_blocks_future_block_offices_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_future_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_future_block_heading_styles" ADD CONSTRAINT "_pages_v_blocks_future_block_heading_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_future_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_future_block_connect_styles" ADD CONSTRAINT "_pages_v_blocks_future_block_connect_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_future_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_future_block_office_styles" ADD CONSTRAINT "_pages_v_blocks_future_block_office_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_future_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_future_block" ADD CONSTRAINT "_pages_v_blocks_future_block_student_image_id_media_id_fk" FOREIGN KEY ("student_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_future_block" ADD CONSTRAINT "_pages_v_blocks_future_block_logo_image_id_media_id_fk" FOREIGN KEY ("logo_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_future_block" ADD CONSTRAINT "_pages_v_blocks_future_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_adminssion_block_year_styles" ADD CONSTRAINT "_pages_v_blocks_adminssion_block_year_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_adminssion_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_adminssion_block_current_styles" ADD CONSTRAINT "_pages_v_blocks_adminssion_block_current_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_adminssion_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_adminssion_block_statistics" ADD CONSTRAINT "_pages_v_blocks_adminssion_block_statistics_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_adminssion_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_adminssion_block_courses" ADD CONSTRAINT "_pages_v_blocks_adminssion_block_courses_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_adminssion_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_adminssion_block_text_styles" ADD CONSTRAINT "_pages_v_blocks_adminssion_block_text_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_adminssion_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_adminssion_block" ADD CONSTRAINT "_pages_v_blocks_adminssion_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
    ALTER TABLE "_pages_v_blocks_career_block_statistics" ADD CONSTRAINT "_pages_v_blocks_career_block_statistics_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_career_block"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -2850,30 +2934,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "_pages_v_blocks_career_block_b_text" ADD CONSTRAINT "_pages_v_blocks_career_block_b_text_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_career_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_career_block_head_styles" ADD CONSTRAINT "_pages_v_blocks_career_block_head_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_career_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_career_block_sub_styles" ADD CONSTRAINT "_pages_v_blocks_career_block_sub_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_career_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_career_block_stat_styles" ADD CONSTRAINT "_pages_v_blocks_career_block_stat_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_career_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_career_block_styles" ADD CONSTRAINT "_pages_v_blocks_career_block_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_career_block"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -2903,85 +2963,157 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_connect_block_heading_styles" ADD CONSTRAINT "_pages_v_blocks_connect_block_heading_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_connect_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_connect_block_connect_styles" ADD CONSTRAINT "_pages_v_blocks_connect_block_connect_styles_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_connect_block"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
    ALTER TABLE "_pages_v_blocks_connect_block" ADD CONSTRAINT "_pages_v_blocks_connect_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_call_action_block_offices_phone_numbers" ADD CONSTRAINT "_pages_v_blocks_call_action_block_offices_phone_numbers_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_call_action_block_offices"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "_pages_v_blocks_study_in_course" ADD CONSTRAINT "_pages_v_blocks_study_in_course_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_call_action_block_offices" ADD CONSTRAINT "_pages_v_blocks_call_action_block_offices_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_call_action_block"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "_pages_v_blocks_study_in_course" ADD CONSTRAINT "_pages_v_blocks_study_in_course_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_call_action_block_office_style" ADD CONSTRAINT "_pages_v_blocks_call_action_block_office_style_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_call_action_block"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "_pages_v_blocks_study_in_checklist_check_items" ADD CONSTRAINT "_pages_v_blocks_study_in_checklist_check_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_study_in_checklist"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_call_action_block" ADD CONSTRAINT "_pages_v_blocks_call_action_block_student_image_id_media_id_fk" FOREIGN KEY ("student_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "_pages_v_blocks_study_in_checklist" ADD CONSTRAINT "_pages_v_blocks_study_in_checklist_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_call_action_block" ADD CONSTRAINT "_pages_v_blocks_call_action_block_logo_image_id_media_id_fk" FOREIGN KEY ("logo_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "_pages_v_blocks_study_in_checklist" ADD CONSTRAINT "_pages_v_blocks_study_in_checklist_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_call_action_block" ADD CONSTRAINT "_pages_v_blocks_call_action_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "_pages_v_blocks_benefits_in_study" ADD CONSTRAINT "_pages_v_blocks_benefits_in_study_background_image_id_media_id_fk" FOREIGN KEY ("background_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_appointment_block_left_content_paragraphs" ADD CONSTRAINT "_pages_v_blocks_appointment_block_left_content_paragraphs_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_appointment_block"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "_pages_v_blocks_benefits_in_study" ADD CONSTRAINT "_pages_v_blocks_benefits_in_study_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_appointment_block_right_schedule_slots" ADD CONSTRAINT "_pages_v_blocks_appointment_block_right_schedule_slots_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_appointment_block"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "_pages_v_blocks_study_in_notes" ADD CONSTRAINT "_pages_v_blocks_study_in_notes_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_appointment_block_right_universities" ADD CONSTRAINT "_pages_v_blocks_appointment_block_right_universities_img_id_media_id_fk" FOREIGN KEY ("img_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "_pages_v_blocks_study_in_application_right_content_services" ADD CONSTRAINT "_pages_v_blocks_study_in_application_right_content_services_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_study_in_application"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_appointment_block_right_universities" ADD CONSTRAINT "_pages_v_blocks_appointment_block_right_universities_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_appointment_block"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "_pages_v_blocks_study_in_application" ADD CONSTRAINT "_pages_v_blocks_study_in_application_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_pages_v_blocks_appointment_block" ADD CONSTRAINT "_pages_v_blocks_appointment_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "_pages_v_blocks_ielts_enroll" ADD CONSTRAINT "_pages_v_blocks_ielts_enroll_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_ielts_prep_icon_cards" ADD CONSTRAINT "_pages_v_blocks_ielts_prep_icon_cards_icon_id_media_id_fk" FOREIGN KEY ("icon_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_ielts_prep_icon_cards" ADD CONSTRAINT "_pages_v_blocks_ielts_prep_icon_cards_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_ielts_prep"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_ielts_prep" ADD CONSTRAINT "_pages_v_blocks_ielts_prep_background_image_id_media_id_fk" FOREIGN KEY ("background_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_ielts_prep" ADD CONSTRAINT "_pages_v_blocks_ielts_prep_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_ielts_features_features_list" ADD CONSTRAINT "_pages_v_blocks_ielts_features_features_list_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_ielts_features"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_ielts_features" ADD CONSTRAINT "_pages_v_blocks_ielts_features_student_image_id_media_id_fk" FOREIGN KEY ("student_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_ielts_features" ADD CONSTRAINT "_pages_v_blocks_ielts_features_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_ielts_packages_packages_details" ADD CONSTRAINT "_pages_v_blocks_ielts_packages_packages_details_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_ielts_packages_packages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_ielts_packages_packages_includes" ADD CONSTRAINT "_pages_v_blocks_ielts_packages_packages_includes_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_ielts_packages_packages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_ielts_packages_packages" ADD CONSTRAINT "_pages_v_blocks_ielts_packages_packages_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_ielts_packages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_ielts_packages" ADD CONSTRAINT "_pages_v_blocks_ielts_packages_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_ielts_roadmap_steps" ADD CONSTRAINT "_pages_v_blocks_ielts_roadmap_steps_icon_id_media_id_fk" FOREIGN KEY ("icon_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_ielts_roadmap_steps" ADD CONSTRAINT "_pages_v_blocks_ielts_roadmap_steps_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_ielts_roadmap"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_ielts_roadmap" ADD CONSTRAINT "_pages_v_blocks_ielts_roadmap_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -3341,7 +3473,19 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "header_nav_items_sub_menu" ADD CONSTRAINT "header_nav_items_sub_menu_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."header_nav_items"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "header_nav_items" ADD CONSTRAINT "header_nav_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."header"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "header_buttons_links" ADD CONSTRAINT "header_buttons_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."header"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -3430,6 +3574,23 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "pages_blocks_form_block_parent_id_idx" ON "pages_blocks_form_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_form_block_path_idx" ON "pages_blocks_form_block" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "pages_blocks_form_block_form_idx" ON "pages_blocks_form_block" USING btree ("form_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_left_content_paragraphs_order_idx" ON "pages_blocks_appointment_block_left_content_paragraphs" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_left_content_paragraphs_parent_id_idx" ON "pages_blocks_appointment_block_left_content_paragraphs" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_right_schedule_slots_order_idx" ON "pages_blocks_appointment_block_right_schedule_slots" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_right_schedule_slots_parent_id_idx" ON "pages_blocks_appointment_block_right_schedule_slots" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_right_universities_order_idx" ON "pages_blocks_appointment_block_right_universities" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_right_universities_parent_id_idx" ON "pages_blocks_appointment_block_right_universities" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_right_universities_img_idx" ON "pages_blocks_appointment_block_right_universities" USING btree ("img_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_order_idx" ON "pages_blocks_appointment_block" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_parent_id_idx" ON "pages_blocks_appointment_block" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_path_idx" ON "pages_blocks_appointment_block" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_admission_block_statistics_order_idx" ON "pages_blocks_admission_block_statistics" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_admission_block_statistics_parent_id_idx" ON "pages_blocks_admission_block_statistics" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_admission_block_courses_order_idx" ON "pages_blocks_admission_block_courses" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_admission_block_courses_parent_id_idx" ON "pages_blocks_admission_block_courses" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_admission_block_order_idx" ON "pages_blocks_admission_block" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_admission_block_parent_id_idx" ON "pages_blocks_admission_block" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_admission_block_path_idx" ON "pages_blocks_admission_block" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "pages_blocks_testimonials_block_testimonials_order_idx" ON "pages_blocks_testimonials_block_testimonials" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "pages_blocks_testimonials_block_testimonials_parent_id_idx" ON "pages_blocks_testimonials_block_testimonials" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_testimonials_block_testimonials_image_idx" ON "pages_blocks_testimonials_block_testimonials" USING btree ("image_id");
@@ -3447,6 +3608,15 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "pages_blocks_counseling_block_parent_id_idx" ON "pages_blocks_counseling_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_counseling_block_path_idx" ON "pages_blocks_counseling_block" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "pages_blocks_counseling_block_background_image_idx" ON "pages_blocks_counseling_block" USING btree ("background_image_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_call_to_action_block_offices_phone_numbers_order_idx" ON "pages_blocks_call_to_action_block_offices_phone_numbers" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_call_to_action_block_offices_phone_numbers_parent_id_idx" ON "pages_blocks_call_to_action_block_offices_phone_numbers" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_call_to_action_block_offices_order_idx" ON "pages_blocks_call_to_action_block_offices" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_call_to_action_block_offices_parent_id_idx" ON "pages_blocks_call_to_action_block_offices" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_call_to_action_block_order_idx" ON "pages_blocks_call_to_action_block" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_call_to_action_block_parent_id_idx" ON "pages_blocks_call_to_action_block" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_call_to_action_block_path_idx" ON "pages_blocks_call_to_action_block" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_call_to_action_block_student_image_idx" ON "pages_blocks_call_to_action_block" USING btree ("student_image_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_call_to_action_block_logo_image_idx" ON "pages_blocks_call_to_action_block" USING btree ("logo_image_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_universities_block_stats_order_idx" ON "pages_blocks_universities_block_stats" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "pages_blocks_universities_block_stats_parent_id_idx" ON "pages_blocks_universities_block_stats" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_universities_block_universities_images_order_idx" ON "pages_blocks_universities_block_universities_images" USING btree ("_order");
@@ -3499,46 +3669,10 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "pages_blocks_faq_block_order_idx" ON "pages_blocks_faq_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "pages_blocks_faq_block_parent_id_idx" ON "pages_blocks_faq_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_faq_block_path_idx" ON "pages_blocks_faq_block" USING btree ("_path");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_future_block_offices_phone_numbers_order_idx" ON "pages_blocks_future_block_offices_phone_numbers" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_future_block_offices_phone_numbers_parent_id_idx" ON "pages_blocks_future_block_offices_phone_numbers" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_future_block_offices_order_idx" ON "pages_blocks_future_block_offices" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_future_block_offices_parent_id_idx" ON "pages_blocks_future_block_offices" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_future_block_heading_styles_order_idx" ON "pages_blocks_future_block_heading_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_future_block_heading_styles_parent_id_idx" ON "pages_blocks_future_block_heading_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_future_block_connect_styles_order_idx" ON "pages_blocks_future_block_connect_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_future_block_connect_styles_parent_id_idx" ON "pages_blocks_future_block_connect_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_future_block_office_styles_order_idx" ON "pages_blocks_future_block_office_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_future_block_office_styles_parent_id_idx" ON "pages_blocks_future_block_office_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_future_block_order_idx" ON "pages_blocks_future_block" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_future_block_parent_id_idx" ON "pages_blocks_future_block" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_future_block_path_idx" ON "pages_blocks_future_block" USING btree ("_path");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_future_block_student_image_idx" ON "pages_blocks_future_block" USING btree ("student_image_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_future_block_logo_image_idx" ON "pages_blocks_future_block" USING btree ("logo_image_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_adminssion_block_year_styles_order_idx" ON "pages_blocks_adminssion_block_year_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_adminssion_block_year_styles_parent_id_idx" ON "pages_blocks_adminssion_block_year_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_adminssion_block_current_styles_order_idx" ON "pages_blocks_adminssion_block_current_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_adminssion_block_current_styles_parent_id_idx" ON "pages_blocks_adminssion_block_current_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_adminssion_block_statistics_order_idx" ON "pages_blocks_adminssion_block_statistics" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_adminssion_block_statistics_parent_id_idx" ON "pages_blocks_adminssion_block_statistics" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_adminssion_block_courses_order_idx" ON "pages_blocks_adminssion_block_courses" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_adminssion_block_courses_parent_id_idx" ON "pages_blocks_adminssion_block_courses" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_adminssion_block_text_styles_order_idx" ON "pages_blocks_adminssion_block_text_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_adminssion_block_text_styles_parent_id_idx" ON "pages_blocks_adminssion_block_text_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_adminssion_block_order_idx" ON "pages_blocks_adminssion_block" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_adminssion_block_parent_id_idx" ON "pages_blocks_adminssion_block" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_adminssion_block_path_idx" ON "pages_blocks_adminssion_block" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "pages_blocks_career_block_statistics_order_idx" ON "pages_blocks_career_block_statistics" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "pages_blocks_career_block_statistics_parent_id_idx" ON "pages_blocks_career_block_statistics" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_career_block_b_text_order_idx" ON "pages_blocks_career_block_b_text" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "pages_blocks_career_block_b_text_parent_id_idx" ON "pages_blocks_career_block_b_text" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_career_block_head_styles_order_idx" ON "pages_blocks_career_block_head_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_career_block_head_styles_parent_id_idx" ON "pages_blocks_career_block_head_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_career_block_sub_styles_order_idx" ON "pages_blocks_career_block_sub_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_career_block_sub_styles_parent_id_idx" ON "pages_blocks_career_block_sub_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_career_block_stat_styles_order_idx" ON "pages_blocks_career_block_stat_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_career_block_stat_styles_parent_id_idx" ON "pages_blocks_career_block_stat_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_career_block_styles_order_idx" ON "pages_blocks_career_block_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_career_block_styles_parent_id_idx" ON "pages_blocks_career_block_styles" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_career_block_order_idx" ON "pages_blocks_career_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "pages_blocks_career_block_parent_id_idx" ON "pages_blocks_career_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_career_block_path_idx" ON "pages_blocks_career_block" USING btree ("_path");
@@ -3547,34 +3681,62 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "pages_blocks_whyus_media_block_parent_id_idx" ON "pages_blocks_whyus_media_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_whyus_media_block_path_idx" ON "pages_blocks_whyus_media_block" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "pages_blocks_whyus_media_block_media_idx" ON "pages_blocks_whyus_media_block" USING btree ("media_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_connect_block_heading_styles_order_idx" ON "pages_blocks_connect_block_heading_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_connect_block_heading_styles_parent_id_idx" ON "pages_blocks_connect_block_heading_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_connect_block_connect_styles_order_idx" ON "pages_blocks_connect_block_connect_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_connect_block_connect_styles_parent_id_idx" ON "pages_blocks_connect_block_connect_styles" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_connect_block_order_idx" ON "pages_blocks_connect_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "pages_blocks_connect_block_parent_id_idx" ON "pages_blocks_connect_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_connect_block_path_idx" ON "pages_blocks_connect_block" USING btree ("_path");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_call_action_block_offices_phone_numbers_order_idx" ON "pages_blocks_call_action_block_offices_phone_numbers" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_call_action_block_offices_phone_numbers_parent_id_idx" ON "pages_blocks_call_action_block_offices_phone_numbers" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_call_action_block_offices_order_idx" ON "pages_blocks_call_action_block_offices" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_call_action_block_offices_parent_id_idx" ON "pages_blocks_call_action_block_offices" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_call_action_block_office_style_order_idx" ON "pages_blocks_call_action_block_office_style" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_call_action_block_office_style_parent_id_idx" ON "pages_blocks_call_action_block_office_style" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_call_action_block_order_idx" ON "pages_blocks_call_action_block" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_call_action_block_parent_id_idx" ON "pages_blocks_call_action_block" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_call_action_block_path_idx" ON "pages_blocks_call_action_block" USING btree ("_path");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_call_action_block_student_image_idx" ON "pages_blocks_call_action_block" USING btree ("student_image_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_call_action_block_logo_image_idx" ON "pages_blocks_call_action_block" USING btree ("logo_image_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_left_content_paragraphs_order_idx" ON "pages_blocks_appointment_block_left_content_paragraphs" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_left_content_paragraphs_parent_id_idx" ON "pages_blocks_appointment_block_left_content_paragraphs" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_right_schedule_slots_order_idx" ON "pages_blocks_appointment_block_right_schedule_slots" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_right_schedule_slots_parent_id_idx" ON "pages_blocks_appointment_block_right_schedule_slots" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_right_universities_order_idx" ON "pages_blocks_appointment_block_right_universities" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_right_universities_parent_id_idx" ON "pages_blocks_appointment_block_right_universities" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_right_universities_img_idx" ON "pages_blocks_appointment_block_right_universities" USING btree ("img_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_order_idx" ON "pages_blocks_appointment_block" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_parent_id_idx" ON "pages_blocks_appointment_block" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "pages_blocks_appointment_block_path_idx" ON "pages_blocks_appointment_block" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_course_order_idx" ON "pages_blocks_study_in_course" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_course_parent_id_idx" ON "pages_blocks_study_in_course" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_course_path_idx" ON "pages_blocks_study_in_course" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_course_image_idx" ON "pages_blocks_study_in_course" USING btree ("image_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_checklist_check_items_order_idx" ON "pages_blocks_study_in_checklist_check_items" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_checklist_check_items_parent_id_idx" ON "pages_blocks_study_in_checklist_check_items" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_checklist_order_idx" ON "pages_blocks_study_in_checklist" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_checklist_parent_id_idx" ON "pages_blocks_study_in_checklist" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_checklist_path_idx" ON "pages_blocks_study_in_checklist" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_checklist_image_idx" ON "pages_blocks_study_in_checklist" USING btree ("image_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_benefits_in_study_order_idx" ON "pages_blocks_benefits_in_study" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_benefits_in_study_parent_id_idx" ON "pages_blocks_benefits_in_study" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_benefits_in_study_path_idx" ON "pages_blocks_benefits_in_study" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_benefits_in_study_background_image_idx" ON "pages_blocks_benefits_in_study" USING btree ("background_image_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_notes_order_idx" ON "pages_blocks_study_in_notes" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_notes_parent_id_idx" ON "pages_blocks_study_in_notes" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_notes_path_idx" ON "pages_blocks_study_in_notes" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_application_right_content_services_order_idx" ON "pages_blocks_study_in_application_right_content_services" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_application_right_content_services_parent_id_idx" ON "pages_blocks_study_in_application_right_content_services" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_application_order_idx" ON "pages_blocks_study_in_application" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_application_parent_id_idx" ON "pages_blocks_study_in_application" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_study_in_application_path_idx" ON "pages_blocks_study_in_application" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_enroll_order_idx" ON "pages_blocks_ielts_enroll" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_enroll_parent_id_idx" ON "pages_blocks_ielts_enroll" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_enroll_path_idx" ON "pages_blocks_ielts_enroll" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_prep_icon_cards_order_idx" ON "pages_blocks_ielts_prep_icon_cards" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_prep_icon_cards_parent_id_idx" ON "pages_blocks_ielts_prep_icon_cards" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_prep_icon_cards_icon_idx" ON "pages_blocks_ielts_prep_icon_cards" USING btree ("icon_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_prep_order_idx" ON "pages_blocks_ielts_prep" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_prep_parent_id_idx" ON "pages_blocks_ielts_prep" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_prep_path_idx" ON "pages_blocks_ielts_prep" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_prep_background_image_idx" ON "pages_blocks_ielts_prep" USING btree ("background_image_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_features_features_list_order_idx" ON "pages_blocks_ielts_features_features_list" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_features_features_list_parent_id_idx" ON "pages_blocks_ielts_features_features_list" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_features_order_idx" ON "pages_blocks_ielts_features" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_features_parent_id_idx" ON "pages_blocks_ielts_features" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_features_path_idx" ON "pages_blocks_ielts_features" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_features_student_image_idx" ON "pages_blocks_ielts_features" USING btree ("student_image_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_packages_packages_details_order_idx" ON "pages_blocks_ielts_packages_packages_details" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_packages_packages_details_parent_id_idx" ON "pages_blocks_ielts_packages_packages_details" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_packages_packages_includes_order_idx" ON "pages_blocks_ielts_packages_packages_includes" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_packages_packages_includes_parent_id_idx" ON "pages_blocks_ielts_packages_packages_includes" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_packages_packages_order_idx" ON "pages_blocks_ielts_packages_packages" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_packages_packages_parent_id_idx" ON "pages_blocks_ielts_packages_packages" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_packages_order_idx" ON "pages_blocks_ielts_packages" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_packages_parent_id_idx" ON "pages_blocks_ielts_packages" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_packages_path_idx" ON "pages_blocks_ielts_packages" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_roadmap_steps_order_idx" ON "pages_blocks_ielts_roadmap_steps" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_roadmap_steps_parent_id_idx" ON "pages_blocks_ielts_roadmap_steps" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_roadmap_steps_icon_idx" ON "pages_blocks_ielts_roadmap_steps" USING btree ("icon_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_roadmap_order_idx" ON "pages_blocks_ielts_roadmap" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_roadmap_parent_id_idx" ON "pages_blocks_ielts_roadmap" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_ielts_roadmap_path_idx" ON "pages_blocks_ielts_roadmap" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "pages_hero_hero_media_idx" ON "pages" USING btree ("hero_media_id");
   CREATE INDEX IF NOT EXISTS "pages_meta_meta_image_idx" ON "pages" USING btree ("meta_image_id");
   CREATE INDEX IF NOT EXISTS "pages_slug_idx" ON "pages" USING btree ("slug");
@@ -3605,6 +3767,23 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_form_block_parent_id_idx" ON "_pages_v_blocks_form_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_form_block_path_idx" ON "_pages_v_blocks_form_block" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_form_block_form_idx" ON "_pages_v_blocks_form_block" USING btree ("form_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_left_content_paragraphs_order_idx" ON "_pages_v_blocks_appointment_block_left_content_paragraphs" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_left_content_paragraphs_parent_id_idx" ON "_pages_v_blocks_appointment_block_left_content_paragraphs" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_right_schedule_slots_order_idx" ON "_pages_v_blocks_appointment_block_right_schedule_slots" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_right_schedule_slots_parent_id_idx" ON "_pages_v_blocks_appointment_block_right_schedule_slots" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_right_universities_order_idx" ON "_pages_v_blocks_appointment_block_right_universities" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_right_universities_parent_id_idx" ON "_pages_v_blocks_appointment_block_right_universities" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_right_universities_img_idx" ON "_pages_v_blocks_appointment_block_right_universities" USING btree ("img_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_order_idx" ON "_pages_v_blocks_appointment_block" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_parent_id_idx" ON "_pages_v_blocks_appointment_block" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_path_idx" ON "_pages_v_blocks_appointment_block" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_admission_block_statistics_order_idx" ON "_pages_v_blocks_admission_block_statistics" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_admission_block_statistics_parent_id_idx" ON "_pages_v_blocks_admission_block_statistics" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_admission_block_courses_order_idx" ON "_pages_v_blocks_admission_block_courses" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_admission_block_courses_parent_id_idx" ON "_pages_v_blocks_admission_block_courses" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_admission_block_order_idx" ON "_pages_v_blocks_admission_block" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_admission_block_parent_id_idx" ON "_pages_v_blocks_admission_block" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_admission_block_path_idx" ON "_pages_v_blocks_admission_block" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_testimonials_block_testimonials_order_idx" ON "_pages_v_blocks_testimonials_block_testimonials" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_testimonials_block_testimonials_parent_id_idx" ON "_pages_v_blocks_testimonials_block_testimonials" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_testimonials_block_testimonials_image_idx" ON "_pages_v_blocks_testimonials_block_testimonials" USING btree ("image_id");
@@ -3622,6 +3801,15 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_counseling_block_parent_id_idx" ON "_pages_v_blocks_counseling_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_counseling_block_path_idx" ON "_pages_v_blocks_counseling_block" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_counseling_block_background_image_idx" ON "_pages_v_blocks_counseling_block" USING btree ("background_image_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_to_action_block_offices_phone_numbers_order_idx" ON "_pages_v_blocks_call_to_action_block_offices_phone_numbers" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_to_action_block_offices_phone_numbers_parent_id_idx" ON "_pages_v_blocks_call_to_action_block_offices_phone_numbers" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_to_action_block_offices_order_idx" ON "_pages_v_blocks_call_to_action_block_offices" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_to_action_block_offices_parent_id_idx" ON "_pages_v_blocks_call_to_action_block_offices" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_to_action_block_order_idx" ON "_pages_v_blocks_call_to_action_block" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_to_action_block_parent_id_idx" ON "_pages_v_blocks_call_to_action_block" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_to_action_block_path_idx" ON "_pages_v_blocks_call_to_action_block" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_to_action_block_student_image_idx" ON "_pages_v_blocks_call_to_action_block" USING btree ("student_image_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_to_action_block_logo_image_idx" ON "_pages_v_blocks_call_to_action_block" USING btree ("logo_image_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_universities_block_stats_order_idx" ON "_pages_v_blocks_universities_block_stats" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_universities_block_stats_parent_id_idx" ON "_pages_v_blocks_universities_block_stats" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_universities_block_universities_images_order_idx" ON "_pages_v_blocks_universities_block_universities_images" USING btree ("_order");
@@ -3674,46 +3862,10 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_faq_block_order_idx" ON "_pages_v_blocks_faq_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_faq_block_parent_id_idx" ON "_pages_v_blocks_faq_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_faq_block_path_idx" ON "_pages_v_blocks_faq_block" USING btree ("_path");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_future_block_offices_phone_numbers_order_idx" ON "_pages_v_blocks_future_block_offices_phone_numbers" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_future_block_offices_phone_numbers_parent_id_idx" ON "_pages_v_blocks_future_block_offices_phone_numbers" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_future_block_offices_order_idx" ON "_pages_v_blocks_future_block_offices" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_future_block_offices_parent_id_idx" ON "_pages_v_blocks_future_block_offices" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_future_block_heading_styles_order_idx" ON "_pages_v_blocks_future_block_heading_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_future_block_heading_styles_parent_id_idx" ON "_pages_v_blocks_future_block_heading_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_future_block_connect_styles_order_idx" ON "_pages_v_blocks_future_block_connect_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_future_block_connect_styles_parent_id_idx" ON "_pages_v_blocks_future_block_connect_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_future_block_office_styles_order_idx" ON "_pages_v_blocks_future_block_office_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_future_block_office_styles_parent_id_idx" ON "_pages_v_blocks_future_block_office_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_future_block_order_idx" ON "_pages_v_blocks_future_block" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_future_block_parent_id_idx" ON "_pages_v_blocks_future_block" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_future_block_path_idx" ON "_pages_v_blocks_future_block" USING btree ("_path");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_future_block_student_image_idx" ON "_pages_v_blocks_future_block" USING btree ("student_image_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_future_block_logo_image_idx" ON "_pages_v_blocks_future_block" USING btree ("logo_image_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_adminssion_block_year_styles_order_idx" ON "_pages_v_blocks_adminssion_block_year_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_adminssion_block_year_styles_parent_id_idx" ON "_pages_v_blocks_adminssion_block_year_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_adminssion_block_current_styles_order_idx" ON "_pages_v_blocks_adminssion_block_current_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_adminssion_block_current_styles_parent_id_idx" ON "_pages_v_blocks_adminssion_block_current_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_adminssion_block_statistics_order_idx" ON "_pages_v_blocks_adminssion_block_statistics" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_adminssion_block_statistics_parent_id_idx" ON "_pages_v_blocks_adminssion_block_statistics" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_adminssion_block_courses_order_idx" ON "_pages_v_blocks_adminssion_block_courses" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_adminssion_block_courses_parent_id_idx" ON "_pages_v_blocks_adminssion_block_courses" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_adminssion_block_text_styles_order_idx" ON "_pages_v_blocks_adminssion_block_text_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_adminssion_block_text_styles_parent_id_idx" ON "_pages_v_blocks_adminssion_block_text_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_adminssion_block_order_idx" ON "_pages_v_blocks_adminssion_block" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_adminssion_block_parent_id_idx" ON "_pages_v_blocks_adminssion_block" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_adminssion_block_path_idx" ON "_pages_v_blocks_adminssion_block" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_career_block_statistics_order_idx" ON "_pages_v_blocks_career_block_statistics" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_career_block_statistics_parent_id_idx" ON "_pages_v_blocks_career_block_statistics" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_career_block_b_text_order_idx" ON "_pages_v_blocks_career_block_b_text" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_career_block_b_text_parent_id_idx" ON "_pages_v_blocks_career_block_b_text" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_career_block_head_styles_order_idx" ON "_pages_v_blocks_career_block_head_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_career_block_head_styles_parent_id_idx" ON "_pages_v_blocks_career_block_head_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_career_block_sub_styles_order_idx" ON "_pages_v_blocks_career_block_sub_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_career_block_sub_styles_parent_id_idx" ON "_pages_v_blocks_career_block_sub_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_career_block_stat_styles_order_idx" ON "_pages_v_blocks_career_block_stat_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_career_block_stat_styles_parent_id_idx" ON "_pages_v_blocks_career_block_stat_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_career_block_styles_order_idx" ON "_pages_v_blocks_career_block_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_career_block_styles_parent_id_idx" ON "_pages_v_blocks_career_block_styles" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_career_block_order_idx" ON "_pages_v_blocks_career_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_career_block_parent_id_idx" ON "_pages_v_blocks_career_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_career_block_path_idx" ON "_pages_v_blocks_career_block" USING btree ("_path");
@@ -3722,34 +3874,62 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_whyus_media_block_parent_id_idx" ON "_pages_v_blocks_whyus_media_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_whyus_media_block_path_idx" ON "_pages_v_blocks_whyus_media_block" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_whyus_media_block_media_idx" ON "_pages_v_blocks_whyus_media_block" USING btree ("media_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_connect_block_heading_styles_order_idx" ON "_pages_v_blocks_connect_block_heading_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_connect_block_heading_styles_parent_id_idx" ON "_pages_v_blocks_connect_block_heading_styles" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_connect_block_connect_styles_order_idx" ON "_pages_v_blocks_connect_block_connect_styles" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_connect_block_connect_styles_parent_id_idx" ON "_pages_v_blocks_connect_block_connect_styles" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_connect_block_order_idx" ON "_pages_v_blocks_connect_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_connect_block_parent_id_idx" ON "_pages_v_blocks_connect_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_connect_block_path_idx" ON "_pages_v_blocks_connect_block" USING btree ("_path");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_action_block_offices_phone_numbers_order_idx" ON "_pages_v_blocks_call_action_block_offices_phone_numbers" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_action_block_offices_phone_numbers_parent_id_idx" ON "_pages_v_blocks_call_action_block_offices_phone_numbers" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_action_block_offices_order_idx" ON "_pages_v_blocks_call_action_block_offices" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_action_block_offices_parent_id_idx" ON "_pages_v_blocks_call_action_block_offices" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_action_block_office_style_order_idx" ON "_pages_v_blocks_call_action_block_office_style" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_action_block_office_style_parent_id_idx" ON "_pages_v_blocks_call_action_block_office_style" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_action_block_order_idx" ON "_pages_v_blocks_call_action_block" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_action_block_parent_id_idx" ON "_pages_v_blocks_call_action_block" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_action_block_path_idx" ON "_pages_v_blocks_call_action_block" USING btree ("_path");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_action_block_student_image_idx" ON "_pages_v_blocks_call_action_block" USING btree ("student_image_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_call_action_block_logo_image_idx" ON "_pages_v_blocks_call_action_block" USING btree ("logo_image_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_left_content_paragraphs_order_idx" ON "_pages_v_blocks_appointment_block_left_content_paragraphs" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_left_content_paragraphs_parent_id_idx" ON "_pages_v_blocks_appointment_block_left_content_paragraphs" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_right_schedule_slots_order_idx" ON "_pages_v_blocks_appointment_block_right_schedule_slots" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_right_schedule_slots_parent_id_idx" ON "_pages_v_blocks_appointment_block_right_schedule_slots" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_right_universities_order_idx" ON "_pages_v_blocks_appointment_block_right_universities" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_right_universities_parent_id_idx" ON "_pages_v_blocks_appointment_block_right_universities" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_right_universities_img_idx" ON "_pages_v_blocks_appointment_block_right_universities" USING btree ("img_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_order_idx" ON "_pages_v_blocks_appointment_block" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_parent_id_idx" ON "_pages_v_blocks_appointment_block" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_appointment_block_path_idx" ON "_pages_v_blocks_appointment_block" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_course_order_idx" ON "_pages_v_blocks_study_in_course" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_course_parent_id_idx" ON "_pages_v_blocks_study_in_course" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_course_path_idx" ON "_pages_v_blocks_study_in_course" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_course_image_idx" ON "_pages_v_blocks_study_in_course" USING btree ("image_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_checklist_check_items_order_idx" ON "_pages_v_blocks_study_in_checklist_check_items" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_checklist_check_items_parent_id_idx" ON "_pages_v_blocks_study_in_checklist_check_items" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_checklist_order_idx" ON "_pages_v_blocks_study_in_checklist" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_checklist_parent_id_idx" ON "_pages_v_blocks_study_in_checklist" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_checklist_path_idx" ON "_pages_v_blocks_study_in_checklist" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_checklist_image_idx" ON "_pages_v_blocks_study_in_checklist" USING btree ("image_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_benefits_in_study_order_idx" ON "_pages_v_blocks_benefits_in_study" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_benefits_in_study_parent_id_idx" ON "_pages_v_blocks_benefits_in_study" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_benefits_in_study_path_idx" ON "_pages_v_blocks_benefits_in_study" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_benefits_in_study_background_image_idx" ON "_pages_v_blocks_benefits_in_study" USING btree ("background_image_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_notes_order_idx" ON "_pages_v_blocks_study_in_notes" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_notes_parent_id_idx" ON "_pages_v_blocks_study_in_notes" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_notes_path_idx" ON "_pages_v_blocks_study_in_notes" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_application_right_content_services_order_idx" ON "_pages_v_blocks_study_in_application_right_content_services" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_application_right_content_services_parent_id_idx" ON "_pages_v_blocks_study_in_application_right_content_services" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_application_order_idx" ON "_pages_v_blocks_study_in_application" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_application_parent_id_idx" ON "_pages_v_blocks_study_in_application" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_study_in_application_path_idx" ON "_pages_v_blocks_study_in_application" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_enroll_order_idx" ON "_pages_v_blocks_ielts_enroll" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_enroll_parent_id_idx" ON "_pages_v_blocks_ielts_enroll" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_enroll_path_idx" ON "_pages_v_blocks_ielts_enroll" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_prep_icon_cards_order_idx" ON "_pages_v_blocks_ielts_prep_icon_cards" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_prep_icon_cards_parent_id_idx" ON "_pages_v_blocks_ielts_prep_icon_cards" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_prep_icon_cards_icon_idx" ON "_pages_v_blocks_ielts_prep_icon_cards" USING btree ("icon_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_prep_order_idx" ON "_pages_v_blocks_ielts_prep" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_prep_parent_id_idx" ON "_pages_v_blocks_ielts_prep" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_prep_path_idx" ON "_pages_v_blocks_ielts_prep" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_prep_background_image_idx" ON "_pages_v_blocks_ielts_prep" USING btree ("background_image_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_features_features_list_order_idx" ON "_pages_v_blocks_ielts_features_features_list" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_features_features_list_parent_id_idx" ON "_pages_v_blocks_ielts_features_features_list" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_features_order_idx" ON "_pages_v_blocks_ielts_features" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_features_parent_id_idx" ON "_pages_v_blocks_ielts_features" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_features_path_idx" ON "_pages_v_blocks_ielts_features" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_features_student_image_idx" ON "_pages_v_blocks_ielts_features" USING btree ("student_image_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_packages_packages_details_order_idx" ON "_pages_v_blocks_ielts_packages_packages_details" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_packages_packages_details_parent_id_idx" ON "_pages_v_blocks_ielts_packages_packages_details" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_packages_packages_includes_order_idx" ON "_pages_v_blocks_ielts_packages_packages_includes" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_packages_packages_includes_parent_id_idx" ON "_pages_v_blocks_ielts_packages_packages_includes" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_packages_packages_order_idx" ON "_pages_v_blocks_ielts_packages_packages" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_packages_packages_parent_id_idx" ON "_pages_v_blocks_ielts_packages_packages" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_packages_order_idx" ON "_pages_v_blocks_ielts_packages" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_packages_parent_id_idx" ON "_pages_v_blocks_ielts_packages" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_packages_path_idx" ON "_pages_v_blocks_ielts_packages" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_roadmap_steps_order_idx" ON "_pages_v_blocks_ielts_roadmap_steps" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_roadmap_steps_parent_id_idx" ON "_pages_v_blocks_ielts_roadmap_steps" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_roadmap_steps_icon_idx" ON "_pages_v_blocks_ielts_roadmap_steps" USING btree ("icon_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_roadmap_order_idx" ON "_pages_v_blocks_ielts_roadmap" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_roadmap_parent_id_idx" ON "_pages_v_blocks_ielts_roadmap" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_ielts_roadmap_path_idx" ON "_pages_v_blocks_ielts_roadmap" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_pages_v_parent_idx" ON "_pages_v" USING btree ("parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_version_hero_version_hero_media_idx" ON "_pages_v" USING btree ("version_hero_media_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_version_meta_version_meta_image_idx" ON "_pages_v" USING btree ("version_meta_image_id");
@@ -3912,8 +4092,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "payload_preferences_rels_users_id_idx" ON "payload_preferences_rels" USING btree ("users_id");
   CREATE INDEX IF NOT EXISTS "payload_migrations_updated_at_idx" ON "payload_migrations" USING btree ("updated_at");
   CREATE INDEX IF NOT EXISTS "payload_migrations_created_at_idx" ON "payload_migrations" USING btree ("created_at");
+  CREATE INDEX IF NOT EXISTS "header_nav_items_sub_menu_order_idx" ON "header_nav_items_sub_menu" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "header_nav_items_sub_menu_parent_id_idx" ON "header_nav_items_sub_menu" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "header_nav_items_order_idx" ON "header_nav_items" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "header_nav_items_parent_id_idx" ON "header_nav_items" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "header_buttons_links_order_idx" ON "header_buttons_links" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "header_buttons_links_parent_id_idx" ON "header_buttons_links" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "header_rels_order_idx" ON "header_rels" USING btree ("order");
   CREATE INDEX IF NOT EXISTS "header_rels_parent_idx" ON "header_rels" USING btree ("parent_id");
   CREATE INDEX IF NOT EXISTS "header_rels_path_idx" ON "header_rels" USING btree ("path");
@@ -3944,11 +4128,21 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "pages_blocks_media_block" CASCADE;
   DROP TABLE "pages_blocks_archive" CASCADE;
   DROP TABLE "pages_blocks_form_block" CASCADE;
+  DROP TABLE "pages_blocks_appointment_block_left_content_paragraphs" CASCADE;
+  DROP TABLE "pages_blocks_appointment_block_right_schedule_slots" CASCADE;
+  DROP TABLE "pages_blocks_appointment_block_right_universities" CASCADE;
+  DROP TABLE "pages_blocks_appointment_block" CASCADE;
+  DROP TABLE "pages_blocks_admission_block_statistics" CASCADE;
+  DROP TABLE "pages_blocks_admission_block_courses" CASCADE;
+  DROP TABLE "pages_blocks_admission_block" CASCADE;
   DROP TABLE "pages_blocks_testimonials_block_testimonials" CASCADE;
   DROP TABLE "pages_blocks_testimonials_block" CASCADE;
   DROP TABLE "pages_blocks_counseling_block_cards_countries" CASCADE;
   DROP TABLE "pages_blocks_counseling_block_cards" CASCADE;
   DROP TABLE "pages_blocks_counseling_block" CASCADE;
+  DROP TABLE "pages_blocks_call_to_action_block_offices_phone_numbers" CASCADE;
+  DROP TABLE "pages_blocks_call_to_action_block_offices" CASCADE;
+  DROP TABLE "pages_blocks_call_to_action_block" CASCADE;
   DROP TABLE "pages_blocks_universities_block_stats" CASCADE;
   DROP TABLE "pages_blocks_universities_block_universities_images" CASCADE;
   DROP TABLE "pages_blocks_universities_block" CASCADE;
@@ -3967,37 +4161,29 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "pages_blocks_service_block" CASCADE;
   DROP TABLE "pages_blocks_faq_block_faqs" CASCADE;
   DROP TABLE "pages_blocks_faq_block" CASCADE;
-  DROP TABLE "pages_blocks_future_block_offices_phone_numbers" CASCADE;
-  DROP TABLE "pages_blocks_future_block_offices" CASCADE;
-  DROP TABLE "pages_blocks_future_block_heading_styles" CASCADE;
-  DROP TABLE "pages_blocks_future_block_connect_styles" CASCADE;
-  DROP TABLE "pages_blocks_future_block_office_styles" CASCADE;
-  DROP TABLE "pages_blocks_future_block" CASCADE;
-  DROP TABLE "pages_blocks_adminssion_block_year_styles" CASCADE;
-  DROP TABLE "pages_blocks_adminssion_block_current_styles" CASCADE;
-  DROP TABLE "pages_blocks_adminssion_block_statistics" CASCADE;
-  DROP TABLE "pages_blocks_adminssion_block_courses" CASCADE;
-  DROP TABLE "pages_blocks_adminssion_block_text_styles" CASCADE;
-  DROP TABLE "pages_blocks_adminssion_block" CASCADE;
   DROP TABLE "pages_blocks_career_block_statistics" CASCADE;
   DROP TABLE "pages_blocks_career_block_b_text" CASCADE;
-  DROP TABLE "pages_blocks_career_block_head_styles" CASCADE;
-  DROP TABLE "pages_blocks_career_block_sub_styles" CASCADE;
-  DROP TABLE "pages_blocks_career_block_stat_styles" CASCADE;
-  DROP TABLE "pages_blocks_career_block_styles" CASCADE;
   DROP TABLE "pages_blocks_career_block" CASCADE;
   DROP TABLE "pages_blocks_whyus_media_block" CASCADE;
-  DROP TABLE "pages_blocks_connect_block_heading_styles" CASCADE;
-  DROP TABLE "pages_blocks_connect_block_connect_styles" CASCADE;
   DROP TABLE "pages_blocks_connect_block" CASCADE;
-  DROP TABLE "pages_blocks_call_action_block_offices_phone_numbers" CASCADE;
-  DROP TABLE "pages_blocks_call_action_block_offices" CASCADE;
-  DROP TABLE "pages_blocks_call_action_block_office_style" CASCADE;
-  DROP TABLE "pages_blocks_call_action_block" CASCADE;
-  DROP TABLE "pages_blocks_appointment_block_left_content_paragraphs" CASCADE;
-  DROP TABLE "pages_blocks_appointment_block_right_schedule_slots" CASCADE;
-  DROP TABLE "pages_blocks_appointment_block_right_universities" CASCADE;
-  DROP TABLE "pages_blocks_appointment_block" CASCADE;
+  DROP TABLE "pages_blocks_study_in_course" CASCADE;
+  DROP TABLE "pages_blocks_study_in_checklist_check_items" CASCADE;
+  DROP TABLE "pages_blocks_study_in_checklist" CASCADE;
+  DROP TABLE "pages_blocks_benefits_in_study" CASCADE;
+  DROP TABLE "pages_blocks_study_in_notes" CASCADE;
+  DROP TABLE "pages_blocks_study_in_application_right_content_services" CASCADE;
+  DROP TABLE "pages_blocks_study_in_application" CASCADE;
+  DROP TABLE "pages_blocks_ielts_enroll" CASCADE;
+  DROP TABLE "pages_blocks_ielts_prep_icon_cards" CASCADE;
+  DROP TABLE "pages_blocks_ielts_prep" CASCADE;
+  DROP TABLE "pages_blocks_ielts_features_features_list" CASCADE;
+  DROP TABLE "pages_blocks_ielts_features" CASCADE;
+  DROP TABLE "pages_blocks_ielts_packages_packages_details" CASCADE;
+  DROP TABLE "pages_blocks_ielts_packages_packages_includes" CASCADE;
+  DROP TABLE "pages_blocks_ielts_packages_packages" CASCADE;
+  DROP TABLE "pages_blocks_ielts_packages" CASCADE;
+  DROP TABLE "pages_blocks_ielts_roadmap_steps" CASCADE;
+  DROP TABLE "pages_blocks_ielts_roadmap" CASCADE;
   DROP TABLE "pages" CASCADE;
   DROP TABLE "pages_rels" CASCADE;
   DROP TABLE "_pages_v_version_hero_links" CASCADE;
@@ -4006,11 +4192,21 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "_pages_v_blocks_media_block" CASCADE;
   DROP TABLE "_pages_v_blocks_archive" CASCADE;
   DROP TABLE "_pages_v_blocks_form_block" CASCADE;
+  DROP TABLE "_pages_v_blocks_appointment_block_left_content_paragraphs" CASCADE;
+  DROP TABLE "_pages_v_blocks_appointment_block_right_schedule_slots" CASCADE;
+  DROP TABLE "_pages_v_blocks_appointment_block_right_universities" CASCADE;
+  DROP TABLE "_pages_v_blocks_appointment_block" CASCADE;
+  DROP TABLE "_pages_v_blocks_admission_block_statistics" CASCADE;
+  DROP TABLE "_pages_v_blocks_admission_block_courses" CASCADE;
+  DROP TABLE "_pages_v_blocks_admission_block" CASCADE;
   DROP TABLE "_pages_v_blocks_testimonials_block_testimonials" CASCADE;
   DROP TABLE "_pages_v_blocks_testimonials_block" CASCADE;
   DROP TABLE "_pages_v_blocks_counseling_block_cards_countries" CASCADE;
   DROP TABLE "_pages_v_blocks_counseling_block_cards" CASCADE;
   DROP TABLE "_pages_v_blocks_counseling_block" CASCADE;
+  DROP TABLE "_pages_v_blocks_call_to_action_block_offices_phone_numbers" CASCADE;
+  DROP TABLE "_pages_v_blocks_call_to_action_block_offices" CASCADE;
+  DROP TABLE "_pages_v_blocks_call_to_action_block" CASCADE;
   DROP TABLE "_pages_v_blocks_universities_block_stats" CASCADE;
   DROP TABLE "_pages_v_blocks_universities_block_universities_images" CASCADE;
   DROP TABLE "_pages_v_blocks_universities_block" CASCADE;
@@ -4029,37 +4225,29 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "_pages_v_blocks_service_block" CASCADE;
   DROP TABLE "_pages_v_blocks_faq_block_faqs" CASCADE;
   DROP TABLE "_pages_v_blocks_faq_block" CASCADE;
-  DROP TABLE "_pages_v_blocks_future_block_offices_phone_numbers" CASCADE;
-  DROP TABLE "_pages_v_blocks_future_block_offices" CASCADE;
-  DROP TABLE "_pages_v_blocks_future_block_heading_styles" CASCADE;
-  DROP TABLE "_pages_v_blocks_future_block_connect_styles" CASCADE;
-  DROP TABLE "_pages_v_blocks_future_block_office_styles" CASCADE;
-  DROP TABLE "_pages_v_blocks_future_block" CASCADE;
-  DROP TABLE "_pages_v_blocks_adminssion_block_year_styles" CASCADE;
-  DROP TABLE "_pages_v_blocks_adminssion_block_current_styles" CASCADE;
-  DROP TABLE "_pages_v_blocks_adminssion_block_statistics" CASCADE;
-  DROP TABLE "_pages_v_blocks_adminssion_block_courses" CASCADE;
-  DROP TABLE "_pages_v_blocks_adminssion_block_text_styles" CASCADE;
-  DROP TABLE "_pages_v_blocks_adminssion_block" CASCADE;
   DROP TABLE "_pages_v_blocks_career_block_statistics" CASCADE;
   DROP TABLE "_pages_v_blocks_career_block_b_text" CASCADE;
-  DROP TABLE "_pages_v_blocks_career_block_head_styles" CASCADE;
-  DROP TABLE "_pages_v_blocks_career_block_sub_styles" CASCADE;
-  DROP TABLE "_pages_v_blocks_career_block_stat_styles" CASCADE;
-  DROP TABLE "_pages_v_blocks_career_block_styles" CASCADE;
   DROP TABLE "_pages_v_blocks_career_block" CASCADE;
   DROP TABLE "_pages_v_blocks_whyus_media_block" CASCADE;
-  DROP TABLE "_pages_v_blocks_connect_block_heading_styles" CASCADE;
-  DROP TABLE "_pages_v_blocks_connect_block_connect_styles" CASCADE;
   DROP TABLE "_pages_v_blocks_connect_block" CASCADE;
-  DROP TABLE "_pages_v_blocks_call_action_block_offices_phone_numbers" CASCADE;
-  DROP TABLE "_pages_v_blocks_call_action_block_offices" CASCADE;
-  DROP TABLE "_pages_v_blocks_call_action_block_office_style" CASCADE;
-  DROP TABLE "_pages_v_blocks_call_action_block" CASCADE;
-  DROP TABLE "_pages_v_blocks_appointment_block_left_content_paragraphs" CASCADE;
-  DROP TABLE "_pages_v_blocks_appointment_block_right_schedule_slots" CASCADE;
-  DROP TABLE "_pages_v_blocks_appointment_block_right_universities" CASCADE;
-  DROP TABLE "_pages_v_blocks_appointment_block" CASCADE;
+  DROP TABLE "_pages_v_blocks_study_in_course" CASCADE;
+  DROP TABLE "_pages_v_blocks_study_in_checklist_check_items" CASCADE;
+  DROP TABLE "_pages_v_blocks_study_in_checklist" CASCADE;
+  DROP TABLE "_pages_v_blocks_benefits_in_study" CASCADE;
+  DROP TABLE "_pages_v_blocks_study_in_notes" CASCADE;
+  DROP TABLE "_pages_v_blocks_study_in_application_right_content_services" CASCADE;
+  DROP TABLE "_pages_v_blocks_study_in_application" CASCADE;
+  DROP TABLE "_pages_v_blocks_ielts_enroll" CASCADE;
+  DROP TABLE "_pages_v_blocks_ielts_prep_icon_cards" CASCADE;
+  DROP TABLE "_pages_v_blocks_ielts_prep" CASCADE;
+  DROP TABLE "_pages_v_blocks_ielts_features_features_list" CASCADE;
+  DROP TABLE "_pages_v_blocks_ielts_features" CASCADE;
+  DROP TABLE "_pages_v_blocks_ielts_packages_packages_details" CASCADE;
+  DROP TABLE "_pages_v_blocks_ielts_packages_packages_includes" CASCADE;
+  DROP TABLE "_pages_v_blocks_ielts_packages_packages" CASCADE;
+  DROP TABLE "_pages_v_blocks_ielts_packages" CASCADE;
+  DROP TABLE "_pages_v_blocks_ielts_roadmap_steps" CASCADE;
+  DROP TABLE "_pages_v_blocks_ielts_roadmap" CASCADE;
   DROP TABLE "_pages_v" CASCADE;
   DROP TABLE "_pages_v_rels" CASCADE;
   DROP TABLE "posts_populated_authors" CASCADE;
@@ -4098,7 +4286,9 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "payload_preferences" CASCADE;
   DROP TABLE "payload_preferences_rels" CASCADE;
   DROP TABLE "payload_migrations" CASCADE;
+  DROP TABLE "header_nav_items_sub_menu" CASCADE;
   DROP TABLE "header_nav_items" CASCADE;
+  DROP TABLE "header_buttons_links" CASCADE;
   DROP TABLE "header" CASCADE;
   DROP TABLE "header_rels" CASCADE;
   DROP TABLE "footer_services" CASCADE;
@@ -4116,30 +4306,9 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_pages_blocks_archive_populate_by";
   DROP TYPE "public"."enum_pages_blocks_archive_relation_to";
   DROP TYPE "public"."enum_pages_blocks_study_abroad_block_cards_image_position";
-  DROP TYPE "public"."enum_pages_blocks_study_abroad_block_title_font";
-  DROP TYPE "public"."enum_pages_blocks_service_block_main_heading_styles_family";
-  DROP TYPE "public"."enum_pages_blocks_service_block_description_style_family";
-  DROP TYPE "public"."enum_pages_blocks_service_block_button_style_family";
-  DROP TYPE "public"."enum_pages_blocks_service_block_service_styles_family";
-  DROP TYPE "public"."enum_pages_blocks_faq_block_styles_title_styles_font_weight";
-  DROP TYPE "public"."enum_pages_blocks_faq_block_styles_title_styles_text_align";
-  DROP TYPE "public"."enum_pages_blocks_faq_block_styles_ques_styles_font_weight";
-  DROP TYPE "public"."enum_pages_blocks_future_block_heading_styles_family";
-  DROP TYPE "public"."enum_pages_blocks_future_block_connect_styles_family";
-  DROP TYPE "public"."enum_pages_blocks_future_block_office_styles_family";
-  DROP TYPE "public"."enum_pages_blocks_adminssion_block_year_styles_family";
-  DROP TYPE "public"."enum_pages_blocks_adminssion_block_current_styles_family";
-  DROP TYPE "public"."enum_pages_blocks_adminssion_block_text_styles_family";
-  DROP TYPE "public"."enum_pages_blocks_career_block_head_styles_family";
-  DROP TYPE "public"."enum_pages_blocks_career_block_sub_styles_family";
-  DROP TYPE "public"."enum_pages_blocks_career_block_stat_styles_family";
-  DROP TYPE "public"."enum_pages_blocks_career_block_styles_family";
-  DROP TYPE "public"."enum_pages_blocks_connect_block_heading_styles_family";
-  DROP TYPE "public"."enum_pages_blocks_connect_block_connect_styles_family";
-  DROP TYPE "public"."enum_pages_blocks_call_action_block_office_style_family";
+  DROP TYPE "public"."enum_pages_blocks_study_abroad_block_background_color";
+  DROP TYPE "public"."enum_pages_blocks_ielts_packages_packages_package_color";
   DROP TYPE "public"."enum_pages_hero_type";
-  DROP TYPE "public"."enum_pages_hero_heading_font_family";
-  DROP TYPE "public"."enum_pages_hero_description_font_family";
   DROP TYPE "public"."enum_pages_status";
   DROP TYPE "public"."enum__pages_v_version_hero_links_link_type";
   DROP TYPE "public"."enum__pages_v_version_hero_links_link_appearance";
@@ -4149,30 +4318,9 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum__pages_v_blocks_archive_populate_by";
   DROP TYPE "public"."enum__pages_v_blocks_archive_relation_to";
   DROP TYPE "public"."enum__pages_v_blocks_study_abroad_block_cards_image_position";
-  DROP TYPE "public"."enum__pages_v_blocks_study_abroad_block_title_font";
-  DROP TYPE "public"."enum__pages_v_blocks_service_block_main_heading_styles_family";
-  DROP TYPE "public"."enum__pages_v_blocks_service_block_description_style_family";
-  DROP TYPE "public"."enum__pages_v_blocks_service_block_button_style_family";
-  DROP TYPE "public"."enum__pages_v_blocks_service_block_service_styles_family";
-  DROP TYPE "public"."enum__pages_v_blocks_faq_block_styles_title_styles_font_weight";
-  DROP TYPE "public"."enum__pages_v_blocks_faq_block_styles_title_styles_text_align";
-  DROP TYPE "public"."enum__pages_v_blocks_faq_block_styles_ques_styles_font_weight";
-  DROP TYPE "public"."enum__pages_v_blocks_future_block_heading_styles_family";
-  DROP TYPE "public"."enum__pages_v_blocks_future_block_connect_styles_family";
-  DROP TYPE "public"."enum__pages_v_blocks_future_block_office_styles_family";
-  DROP TYPE "public"."enum__pages_v_blocks_adminssion_block_year_styles_family";
-  DROP TYPE "public"."enum__pages_v_blocks_adminssion_block_current_styles_family";
-  DROP TYPE "public"."enum__pages_v_blocks_adminssion_block_text_styles_family";
-  DROP TYPE "public"."enum__pages_v_blocks_career_block_head_styles_family";
-  DROP TYPE "public"."enum__pages_v_blocks_career_block_sub_styles_family";
-  DROP TYPE "public"."enum__pages_v_blocks_career_block_stat_styles_family";
-  DROP TYPE "public"."enum__pages_v_blocks_career_block_styles_family";
-  DROP TYPE "public"."enum__pages_v_blocks_connect_block_heading_styles_family";
-  DROP TYPE "public"."enum__pages_v_blocks_connect_block_connect_styles_family";
-  DROP TYPE "public"."enum__pages_v_blocks_call_action_block_office_style_family";
+  DROP TYPE "public"."enum__pages_v_blocks_study_abroad_block_background_color";
+  DROP TYPE "public"."enum__pages_v_blocks_ielts_packages_packages_package_color";
   DROP TYPE "public"."enum__pages_v_version_hero_type";
-  DROP TYPE "public"."enum__pages_v_version_hero_heading_font_family";
-  DROP TYPE "public"."enum__pages_v_version_hero_description_font_family";
   DROP TYPE "public"."enum__pages_v_version_status";
   DROP TYPE "public"."enum_posts_status";
   DROP TYPE "public"."enum__posts_v_version_status";
@@ -4181,7 +4329,10 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_payload_jobs_log_task_slug";
   DROP TYPE "public"."enum_payload_jobs_log_state";
   DROP TYPE "public"."enum_payload_jobs_task_slug";
+  DROP TYPE "public"."enum_header_nav_items_sub_menu_link_type";
   DROP TYPE "public"."enum_header_nav_items_link_type";
+  DROP TYPE "public"."enum_header_buttons_links_link_type";
+  DROP TYPE "public"."enum_header_buttons_links_link_appearance";
   DROP TYPE "public"."enum_footer_services_link_type";
   DROP TYPE "public"."enum_footer_about_link_type";
   DROP TYPE "public"."enum_footer_help_link_type";
