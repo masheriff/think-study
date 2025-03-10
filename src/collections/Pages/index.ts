@@ -30,7 +30,7 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { ConnectBlock } from '@/blocks/ConnectBlock/config'
-import { WhyusMediaBlock } from '@/blocks/WhyusMedia/conig'
+import { WhyusMediaBlock } from '@/blocks/WhyusMedia/config'
 import { hero } from '@/heros/config'
 
 
