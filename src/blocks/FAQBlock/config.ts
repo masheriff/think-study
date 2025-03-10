@@ -18,6 +18,8 @@ const faqItemFields: Field[] = [
 export const FAQBlock: Block = {
     slug: 'faqBlock',
     interfaceName: 'FAQBlock',
+    imageURL: '/assets/blocks/FAQBlock.png',
+    imageAltText: 'FAQBlock Image',
     labels: {
         singular: 'FAQ Block',
         plural: 'FAQ Blocks',
@@ -40,66 +42,6 @@ export const FAQBlock: Block = {
             admin: {
                 description: 'Add FAQ items with questions and answers',
             },
-        },
-        {
-            name: 'styles',
-            type: 'group',
-            fields: [
-                {
-                    name: 'titleStyles',
-                    type: 'group',
-                    fields: [
-                        {
-                            name: 'fontSize',
-                            type: 'text',
-                            defaultValue: '48px',
-                            label: 'Font Size',
-                        },
-                        {
-                            name: 'fontWeight',
-                            type: 'select',
-                            options: [
-                                { label: 'Normal', value: 'normal' },
-                                { label: 'Medium', value: 'medium' },
-                                { label: 'Bold', value: 'bold' },
-                            ],
-                            defaultValue: 'bold',
-                        },
-                        {
-                            name: 'textAlign',
-                            type: 'select',
-                            options: [
-                                { label: 'Left', value: 'left' },
-                                { label: 'Center', value: 'center' },
-                                { label: 'Right', value: 'right' },
-                            ],
-                            defaultValue: 'center',
-                        },
-                    ],
-                },
-                {
-                    name: 'quesStyles',
-                    type: 'group',
-                    fields: [
-                        {
-                            name: 'fontSize',
-                            type: 'text',
-                            defaultValue: '18px',
-                            label: 'Font Size',
-                        },
-                        {
-                            name: 'fontWeight',
-                            type: 'select',
-                            options: [
-                                { label: 'Normal', value: 'normal' },
-                                { label: 'Medium', value: 'medium' },
-                                { label: 'Bold', value: 'bold' },
-                            ],
-                            defaultValue: 'medium',
-                        },
-                    ],
-                },
-            ],
         },
     ],
 };

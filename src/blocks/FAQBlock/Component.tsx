@@ -1,10 +1,9 @@
 'use client'
 
 import React, { useState } from 'react'
-import { cn } from '@/utilities/ui'
 import type { FAQBlock as FAQBlockType } from '@/payload-types'
 import { Plus, Minus } from 'lucide-react'
-import 'aos/dist/aos.css';
+// import 'aos/dist/aos.css';
 // import Aos from 'aos';
 
 type Props = FAQBlockType & {
@@ -18,30 +17,19 @@ type FAQItem = {
 }
 
 export const FAQBlock: React.FC<Props> = (props) => {
-    const { className, title, faqs, styles } = props
+    const { title, faqs } = props
     const [openIndex, setOpenIndex] = useState<number | null>(null)
 
     const toggleFAQ = (index: number) => {
         setOpenIndex(openIndex === index ? null : index)
     }
 
-    console.log(faqs, "faqs")
-
-
     return (
-        <section className={cn(' max-w-6xl py-12 px-4 md:px-6 mx-auto', className)}>
-            <h2
-                className="text-center mb-12"
-                style={{
-                    fontSize: styles?.titleStyles?.fontSize || '48px',
-                    fontWeight: styles?.titleStyles?.fontWeight || 'bold',
-                    textAlign: styles?.titleStyles?.textAlign || 'center',
-                }}
-            >
-                {title}
-            </h2>
+        <section className="container">
+            <h2 className="text-center text-5xl mb-12"> {title} </h2>
 
-            <div className="space-y-4 scroll-smooth snap-start scroll-ml-6 overflow-y-scroll h-[400px]">
+            <div className={`space-y-4 snap-start scroll-ml-6 h-[400px] ${faqs?.length > 5 ? "overflow-y-scroll scroll-smooth" : "overflow-visible"
+                }`}>
                 {faqs?.map((faq: FAQItem, index: number) => (
                     <div
                         key={faq.id || index}

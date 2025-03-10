@@ -1,31 +1,11 @@
-import { Block, Field } from 'payload';
+import { Block } from 'payload';
 
-const textStyleFields: Field[] = [
-    {
-        name: 'family',
-        type: 'select',
-        options: [
-            { label: 'Inter', value: 'Inter' },
-            { label: 'Roboto', value: 'Roboto' },
-            { label: 'Poppins', value: 'Poppins' },
-        ],
-        defaultValue: 'Inter',
-    },
-    {
-        name: 'size',
-        type: 'text',
-        defaultValue: '1rem',
-    },
-    {
-        name: 'color',
-        type: 'text',
-        defaultValue: '#000000',
-    },
-];
 
 export const ConnectBlock: Block = {
     slug: 'connectBlock',
     interfaceName: 'ConnectBlock',
+    imageURL: '/assets/blocks/ConnectBlock.png',
+    imageAltText: 'ConnectBlock Image',
     labels: {
         singular: 'Connect Block',
         plural: 'Connect Blocks',
@@ -49,18 +29,5 @@ export const ConnectBlock: Block = {
             required: true,
             defaultValue: 'Schedule Counseling',
         },
-        {
-            name: 'headingStyles',
-            type: 'array',
-            label: 'Heading Styles',
-            fields: [...textStyleFields],
-        },
-        {
-            name: 'connectStyles',
-            type: 'array',
-            label: 'Connect Text Styles',
-            fields: [...textStyleFields],
-        },
-
     ],
 };

@@ -1,30 +1,11 @@
-import type { Block, Field } from "payload"
+import type { Block } from "payload"
 
-const textStyleFields: Field[] = [
-    {
-        name: 'font',
-        type: 'select',
-        options: [
-            { label: 'Inter', value: 'Inter' },
-            { label: 'Roboto', value: 'Roboto' },
-            { label: 'Open Sans', value: 'Open Sans' },
-            { label: 'Montserrat', value: 'Montserrat' },
-        ],
-        defaultValue: 'Inter',
-    },
-    {
-        name: 'size',
-        type: 'text',
-        defaultValue: '1rem',
-        admin: {
-            description: 'Enter value with unit (e.g., 2rem, 24px)',
-        },
-    },
-]
 
 export const StudyAbroadBlock: Block = {
     slug: "studyAbroadBlock",
     interfaceName: "StudyAbroadBlock",
+    imageURL: '/assets/blocks/StudyAbroadBlock.png',
+    imageAltText: 'StudyAbroadBlock Image',
     labels: {
         singular: "Study Abroad Block",
         plural: "Study Abroad Blocks",
@@ -54,7 +35,6 @@ export const StudyAbroadBlock: Block = {
                     type: "text",
                     required: true,
                 },
-                ...textStyleFields,
             ],
         },
         {
@@ -105,5 +85,18 @@ export const StudyAbroadBlock: Block = {
                 },
             ],
         },
+        {
+            name: 'backgroundColor',
+            type: 'select',
+            label: 'Background Color',
+            options: [
+                { label: 'Blue', value: 'blue' },
+                { label: 'White', value: 'white' }
+            ],
+            required: true,
+            admin: {
+                description: 'Choose the background here'
+            }
+        }
     ],
 }

@@ -1,36 +1,11 @@
-import { Block, Field } from 'payload';
+import { Block } from 'payload';
 
-const headingStyleFields: Field[] = [
-    {
-        name: 'family',
-        type: 'select',
-        options: [
-            { label: 'Inter', value: 'Inter' },
-            { label: 'Roboto', value: 'Roboto' },
-            { label: 'Open Sans', value: 'Open Sans' },
-            { label: 'Montserrat', value: 'Montserrat' },
-        ],
-        defaultValue: 'Inter',
-    },
-    {
-        name: 'size',
-        type: 'text',
-        // defaultValue: '1rem',
-    },
-    {
-        name: 'color',
-        type: 'text',
-        // defaultValue: '#FF0000',
-    },
-    {
-        name: 'backgroundColor',
-        type: 'text',
-    }
-];
 
 export const ServiceBlock: Block = {
     slug: 'serviceBlock',
     interfaceName: 'ServiceBlock',
+    imageURL: '/assets/blocks/ServiceBlock.png',
+    imageAltText: 'ServiceBlock Image',
     labels: {
         singular: 'Service Block',
         plural: 'Service Blocks',
@@ -49,11 +24,6 @@ export const ServiceBlock: Block = {
             defaultValue: "Here's What We Do & Why We're the Right Choice for You",
         },
         {
-            name: 'mainHeadingStyles',
-            type: 'group',
-            fields: [...headingStyleFields],
-        },
-        {
             name: 'description',
             type: 'textarea',
             required: true,
@@ -66,20 +36,9 @@ export const ServiceBlock: Block = {
             defaultValue: 'At Think Study, we provide end-to-end guidance, helping students navigate everything from choosing the right course to securing admissions with confidence.',
         },
         {
-            name: 'descriptionStyle',
-            type: 'group',
-            fields: [...headingStyleFields],
-        },
-
-        {
             name: 'buttonText',
             type: 'text',
             required: true,
-        },
-        {
-            name: 'buttonStyle',
-            type: 'group',
-            fields: [...headingStyleFields],
         },
         {
             name: 'services',
@@ -118,19 +77,6 @@ export const ServiceBlock: Block = {
                     description: 'We guide students through scholarships, education loans, and everything they need to settle smoothly in their new country.',
                 },
             ],
-        },
-        {
-            name: 'serviceStyles',
-            type: 'group',
-            fields: [...headingStyleFields],
-        },
-        {
-            name: 'backgroundColor',
-            type: 'text',
-            defaultValue: '#D9F1FD',
-            admin: {
-                description: 'Background color for the service block',
-            },
         },
     ],
 };

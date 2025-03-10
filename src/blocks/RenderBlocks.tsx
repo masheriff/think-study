@@ -12,20 +12,28 @@ import GetStartedBlock from './GetStartedBlock/Component'
 import MapBlock from './MapBlock/Component'
 import { WorldStudentBlock } from './WorldStudentBlock/Component'
 import FAQBlock from './FAQBlock/Component'
-import FutureBlock from './FutureBlock/Component'
-import AdminssionBlock from './AdmissionBlock/Component'
 import { CareerBlock } from './CareerBlock/Component'
 import ConnectBlock from './ConnectBlock/Component'
 import WhyusMediaBlock from './WhyusMedia/Component'
 import ServiceBlock from './ServiceBlock/Component'
-import CallActionBlock from './CallActionBlock/Component'
+import { StudyInCourse } from './StudyInCourse/Component'
+import StudyInChecklist from './StudyInCheckList/Component'
+import { BenefitsInStudy } from './StudyInBenefits/Comonent'
+import CallToActionBlock from './CallToActionBlock/Component'
+import { StudyInNotes } from './StudyInNotes/Component'
+import { StudyInApplication } from './StudyInApplication/Component'
+import AdmissionBlock from './AdmissionBlock/Component'
+import { IELTSEnroll } from './IELTSEnroll/Component'
+import { IELTSPrep } from './IELTSPrep/Component'
+import { IELTSFeatures } from './IELTSFeatures/Component'
+import { IELTSPackages } from './IELTSPackages/Component'
+import { IELTSRoadmap } from './IELTSRoadmap/Component'
 import AppointmentBlock from './AppointmentBlock/Component'
-
-
 
 type BlockComponentsType = {
   formBlock: typeof FormBlock
   mediaBlock: typeof MediaBlock
+  appointmentBlock: typeof AppointmentBlock
   testimonialsBlock: typeof TestimonialsBlock
   counselingBlock: typeof CounselingBlock
   universitiesBlock: typeof UniversitiesBlock
@@ -36,14 +44,21 @@ type BlockComponentsType = {
   worldStudentBlock: typeof WorldStudentBlock
   serviceBlock: typeof ServiceBlock
   faqBlock: typeof FAQBlock
-  futureBlock: typeof FutureBlock
-  adminssionBlock: typeof AdminssionBlock
+  admissionBlock: typeof AdmissionBlock
   connectBlock: typeof ConnectBlock
   whyusMediaBlock: typeof WhyusMediaBlock
-  appointmentBlock: typeof AppointmentBlock
   careerBlock: typeof CareerBlock
-  callActionBlock: typeof CallActionBlock
-
+  callToActionBlock: typeof CallToActionBlock
+  studyInCourse: typeof StudyInCourse
+  studyInChecklist: typeof StudyInChecklist
+  benefitsInStudy: typeof BenefitsInStudy
+  studyInNotes: typeof StudyInNotes
+  studyInApplication: typeof StudyInApplication
+  ieltsEnroll: typeof IELTSEnroll
+  ieltsPrep: typeof IELTSPrep
+  ieltsFeatures: typeof IELTSFeatures
+  ieltsPackages: typeof IELTSPackages
+  ieltsRoadmap: typeof IELTSRoadmap
 }
 
 const blockComponents: BlockComponentsType = {
@@ -59,14 +74,22 @@ const blockComponents: BlockComponentsType = {
   worldStudentBlock: WorldStudentBlock,
   serviceBlock: ServiceBlock,
   faqBlock: FAQBlock,
-  futureBlock: FutureBlock,
-  adminssionBlock: AdminssionBlock,
+  admissionBlock: AdmissionBlock,
+  appointmentBlock: AppointmentBlock,
   careerBlock: CareerBlock,
   connectBlock: ConnectBlock,
   whyusMediaBlock: WhyusMediaBlock,
-  appointmentBlock: AppointmentBlock,
-  callActionBlock: CallActionBlock,
-
+  callToActionBlock: CallToActionBlock,
+  studyInCourse: StudyInCourse,
+  studyInChecklist: StudyInChecklist,
+  benefitsInStudy: BenefitsInStudy,
+  studyInNotes: StudyInNotes,
+  studyInApplication: StudyInApplication,
+  ieltsEnroll: IELTSEnroll,
+  ieltsPrep: IELTSPrep,
+  ieltsFeatures: IELTSFeatures,
+  ieltsPackages: IELTSPackages,
+  ieltsRoadmap: IELTSRoadmap,
 }
 
 export const RenderBlocks: React.FC<{
@@ -84,7 +107,7 @@ export const RenderBlocks: React.FC<{
         if (blockType && blockType in blockComponents) {
           const Block = blockComponents[blockType as keyof BlockComponentsType]
           return (
-            <div className="my-20" key={index}>
+            <div className="my-28" key={index}>
               <Block {...(block as any)} disableInnerContainer />
             </div>
           )

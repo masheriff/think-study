@@ -33,8 +33,8 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
         '#FF5733', // Orange-red
         '#33FF57', // Green
         '#3357FF', // Blue
-        '#F033FF', // Purple
-        '#FF33F0', // Pink
+        '#F033FF', // Pink
+        '#640D5F', // Violet
     ];
 
     // Predefined positions for the markers
@@ -92,7 +92,7 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
             </div>
             <div
                 ref={containerRef}
-                className="w-full mt-6 overflow-hidden relative h-[700px]"
+                className="w-full overflow-hidden relative h-[500px] mx-auto"
             >
                 {backgroundImage && typeof backgroundImage === 'object' && 'url' in backgroundImage && (
                     <Image
@@ -106,7 +106,7 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
 
                 {/* SVG for the connecting lines with gradients */}
                 <svg
-                    className="absolute top-0 left-0 w-full h-full"
+                    className="absolute top-[65px] left-[-50px] w-full h-full"
                     style={{ pointerEvents: 'none', zIndex: 5 }}
                 >
                     <defs>
@@ -136,14 +136,14 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
                 </svg>
 
                 {/* Central point */}
-                <div
-                    className="absolute bg-blue-600 rounded-full w-4 h-4"
+                {/* <div
+                    className="absolute bg-blue-600 rounded-full w-3 h-3"
                     style={{
-                        right: `calc(30% - 8px)`,
-                        top: `calc(45% - 8px)`,
+                        right: `calc(32.2% - 8px)`,
+                        top: `calc(54% - 8px)`,
                         zIndex: 20
                     }}
-                />
+                /> */}
 
                 {items?.map((item, index) => {
                     const pos = positions[index % positions.length];

@@ -3,6 +3,8 @@ import { Block } from 'payload'
 export const AppointmentBlock: Block = {
     slug: 'appointmentBlock',
     interfaceName: 'AppointmentBlock',
+    imageURL: '/assets/blocks/Appointment.png',
+    imageAltText: 'Appointment Block Image',
     fields: [
         {
             name: 'leftContent',
@@ -23,7 +25,6 @@ export const AppointmentBlock: Block = {
                     type: 'text',
                     required: true,
                 },
-                // New field added below highlightText and above paragraphs:
                 {
                     name: 'extraText',
                     type: 'text',
@@ -59,7 +60,6 @@ export const AppointmentBlock: Block = {
             ],
         },
         {
-            // Renamed "rightContent" to "right" for shorter generated identifiers.
             name: 'right',
             type: 'group',
             fields: [
@@ -68,17 +68,29 @@ export const AppointmentBlock: Block = {
                     type: 'group',
                     fields: [
                         {
-                            name: 'date',
+                            name: 'fromDate',
                             type: 'date',
                             required: true,
+                            admin: {
+                                description: 'Start date of the appointment range'
+                            }
+                        },
+                        {
+                            name: 'toDate',
+                            type: 'date',
+                            required: false,
+                            admin: {
+                                description: 'End date of the appointment range (optional)'
+                            }
                         },
                         {
                             name: 'day',
                             type: 'text',
-                            required: true,
+                            admin: {
+                                description: 'Enter only for single date.'
+                            }
                         },
                         {
-                            // Renamed "timeSlots" to "slots" to reduce identifier length.
                             name: 'slots',
                             type: 'array',
                             fields: [
@@ -90,6 +102,15 @@ export const AppointmentBlock: Block = {
                             ],
                         },
                     ],
+                },
+                {
+                    name: 'uniHeading',
+                    type: 'text',
+                    required: true,
+                    defaultValue: 'Participating Universities',
+                    admin: {
+                        description: 'Heading for universities section'
+                    }
                 },
                 {
                     name: 'universities',

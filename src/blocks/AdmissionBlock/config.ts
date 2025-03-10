@@ -1,55 +1,13 @@
-import { Block, Field } from 'payload';
+import { Block } from 'payload';
 
-const textStyleFields: Field[] = [
-    {
-        name: 'Family',
-        type: 'select',
-        options: [
-            { label: 'Inter', value: 'Inter' },
-            { label: 'Roboto', value: 'Roboto' },
-            { label: 'Open Sans', value: 'Open Sans' },
-            { label: 'Montserrat', value: 'Montserrat' },
-            { label: 'Delius', value: 'Delius' },
-            { label: 'Lato', value: 'Lato' },
-            { label: 'Poppins', value: 'Poppins' },
-        ],
-        defaultValue: 'Inter',
-        admin: {
-            description: 'Select the font family',
-        },
-        // Custom enum name to prevent exceeding length limit
-        // name: 'fontFamilyEnum',
-    },
-    {
-        name: 'Size',
-        type: 'text',
-        defaultValue: '1rem',
-        admin: {
-            description: 'Enter value with unit (e.g., 2rem, 24px)',
-        },
-        // Custom name for font size field
-        // name: 'fontSizeField',
-    },
-    {
-        name: 'Color',
-        type: 'text',
-        defaultValue: '#000000',
-        admin: {
-            description: 'Hex color code (e.g., #FFFFFF)',
-        },
-        // Custom name for text color field
-        // name: 'textColorField',
-    },
-];
-
-
-
-export const AdminssionBlock: Block = {
-    slug: 'adminssionBlock',
-    interfaceName: 'AdminssionBlock',
+export const AdmissionBlock: Block = {
+    slug: 'admissionBlock',
+    interfaceName: 'AdmissionBlock',
+    imageURL: '/assets/blocks/AdmissionBlock.png',
+    imageAltText: 'AdmissionBlock Image',
     labels: {
-        singular: 'Adminssion Block',
-        plural: 'Adminssion Blocks',
+        singular: 'Admission Block',
+        plural: 'Admission Blocks',
     },
     fields: [
 
@@ -60,12 +18,6 @@ export const AdminssionBlock: Block = {
             label: 'Year',
             defaultValue: '1995',
 
-        },
-        {
-            name: 'yearStyles',
-            type: 'array',
-            label: 'Year Styles',
-            fields: [...textStyleFields],
         },
         {
             name: 'day',
@@ -82,13 +34,6 @@ export const AdminssionBlock: Block = {
             defaultValue: 'Leaders in domestic + global admissions',
         },
         {
-            name: 'currentStyles',
-            type: 'array',
-            label: 'Current Description  Styles',
-            fields: [...textStyleFields],
-        },
-
-        {
             name: 'currentYear',
             type: 'text',
             required: true,
@@ -101,7 +46,7 @@ export const AdminssionBlock: Block = {
             type: 'text',
             required: true,
             label: 'Ambitions',
-            defaultValue: 'We understand your ambitions like they’re our own',
+            defaultValue: 'We understand your ambitions like they’re our own.',
         },
         {
             name: 'description',
@@ -115,7 +60,7 @@ export const AdminssionBlock: Block = {
             type: 'text',
             required: true,
             label: 'Success Rate',
-            defaultValue: '98% Success Rate in International Admissions!',
+            defaultValue: 'Unlock Your Global Future – 98% Success Rate in International Admissions!',
         },
         {
             name: 'statistics',
@@ -158,12 +103,6 @@ export const AdminssionBlock: Block = {
             admin: {
                 description: 'Add courses that will be displayed',
             },
-        },
-        {
-            name: 'textStyles',
-            type: 'array',
-            label: 'Text Styles',
-            fields: [...textStyleFields],
         },
     ],
 };

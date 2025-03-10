@@ -99,19 +99,9 @@ export interface Page {
        * Enter the text inside "|" symbols to highlight text in red. Example: "Regular text |highlighted text| regular text"
        */
       content?: string | null;
-      fontFamily?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-      /**
-       * Enter value with unit (e.g., 2rem, 24px)
-       */
-      fontSize?: string | null;
     };
     description?: {
       content?: string | null;
-      fontFamily?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-      /**
-       * Enter value with unit (e.g., 2rem, 24px)
-       */
-      fontSize?: string | null;
     };
     richText?: {
       root: {
@@ -159,8 +149,11 @@ export interface Page {
     | MediaBlock
     | ArchiveBlock
     | FormBlock
+    | AppointmentBlock
+    | AdmissionBlock
     | TestimonialsBlock
     | CounselingBlock
+    | CallToActionBlock
     | UniversitiesBlock
     | StudyAbroadBlock
     | IELTSBlock
@@ -169,13 +162,25 @@ export interface Page {
     | WorldStudentBlock
     | ServiceBlock
     | FAQBlock
-    | FutureBlock
-    | AdminssionBlock
     | CareerBlock
     | WhyusMediaBlock
     | ConnectBlock
-    | CallActionBlock
-    | AppointmentBlock
+    | StudyInCourse
+    | StudyInChecklist
+    | {
+        backgroundImage: number | Media;
+        benefitsDescription: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'benefitsInStudy';
+      }
+    | StudyInNotes
+    | StudyInApplication
+    | IELTSEnroll
+    | IELTSPrep
+    | IELTSFeatures
+    | IELTSPackages
+    | IELTSRoadmap
   )[];
   meta?: {
     title?: string | null;
@@ -665,6 +670,96 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AppointmentBlock".
+ */
+export interface AppointmentBlock {
+  leftContent: {
+    title: string;
+    subTitle: string;
+    highlightText: string;
+    extraText: string;
+    paragraphs?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    button: {
+      text: string;
+      url: string;
+    };
+  };
+  right: {
+    schedule: {
+      /**
+       * Start date of the appointment range
+       */
+      fromDate: string;
+      /**
+       * End date of the appointment range (optional)
+       */
+      toDate?: string | null;
+      /**
+       * Enter only for single date.
+       */
+      day?: string | null;
+      slots?:
+        | {
+            time: string;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    /**
+     * Heading for universities section
+     */
+    uniHeading: string;
+    universities?:
+      | {
+          img: number | Media;
+          alt?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  bottomText: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'appointmentBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AdmissionBlock".
+ */
+export interface AdmissionBlock {
+  year: string;
+  day: string;
+  currentDescription: string;
+  currentYear: string;
+  ambitions: string;
+  description: string;
+  successRate: string;
+  /**
+   * Add statistics that will be displayed
+   */
+  statistics: {
+    value: string;
+    label: string;
+    id?: string | null;
+  }[];
+  /**
+   * Add courses that will be displayed
+   */
+  courses: {
+    name: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'admissionBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TestimonialsBlock".
  */
 export interface TestimonialsBlock {
@@ -717,6 +812,26 @@ export interface CounselingBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CallToActionBlock".
+ */
+export interface CallToActionBlock {
+  callText: string;
+  studentImage: number | Media;
+  logoImage: number | Media;
+  offices: {
+    name: string;
+    phoneNumbers: {
+      number: string;
+      id?: string | null;
+    }[];
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'callToActionBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "UniversitiesBlock".
  */
 export interface UniversitiesBlock {
@@ -750,11 +865,6 @@ export interface StudyAbroadBlock {
   description: string;
   title: {
     content: string;
-    font?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-    /**
-     * Enter value with unit (e.g., 2rem, 24px)
-     */
-    size?: string | null;
   };
   titleDescription: string;
   cards?:
@@ -768,6 +878,10 @@ export interface StudyAbroadBlock {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Choose the background here
+   */
+  backgroundColor: 'blue' | 'white';
   id?: string | null;
   blockName?: string | null;
   blockType: 'studyAbroadBlock';
@@ -895,42 +1009,14 @@ export interface WorldStudentBlock {
 export interface ServiceBlock {
   backgroundimage?: (number | null) | Media;
   mainHeading: string;
-  mainHeadingStyles?: {
-    family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-    size?: string | null;
-    color?: string | null;
-    backgroundColor?: string | null;
-  };
   description: string;
   subDescription: string;
-  descriptionStyle?: {
-    family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-    size?: string | null;
-    color?: string | null;
-    backgroundColor?: string | null;
-  };
   buttonText: string;
-  buttonStyle?: {
-    family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-    size?: string | null;
-    color?: string | null;
-    backgroundColor?: string | null;
-  };
   services: {
     title: string;
     description: string;
     id?: string | null;
   }[];
-  serviceStyles?: {
-    family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat') | null;
-    size?: string | null;
-    color?: string | null;
-    backgroundColor?: string | null;
-  };
-  /**
-   * Background color for the service block
-   */
-  backgroundColor?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'serviceBlock';
@@ -949,149 +1035,9 @@ export interface FAQBlock {
     answer: string;
     id?: string | null;
   }[];
-  styles?: {
-    titleStyles?: {
-      fontSize?: string | null;
-      fontWeight?: ('normal' | 'medium' | 'bold') | null;
-      textAlign?: ('left' | 'center' | 'right') | null;
-    };
-    quesStyles?: {
-      fontSize?: string | null;
-      fontWeight?: ('normal' | 'medium' | 'bold') | null;
-    };
-  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'faqBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FutureBlock".
- */
-export interface FutureBlock {
-  mainHeading: string;
-  connectText: string;
-  buttonText: string;
-  callText: string;
-  studentImage: number | Media;
-  logoImage: number | Media;
-  offices: {
-    name: string;
-    phoneNumbers: {
-      number: string;
-      id?: string | null;
-    }[];
-    id?: string | null;
-  }[];
-  headingStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  connectStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  officeStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'futureBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AdminssionBlock".
- */
-export interface AdminssionBlock {
-  year: string;
-  yearStyles?:
-    | {
-        /**
-         * Select the font family
-         */
-        Family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat' | 'Delius' | 'Lato' | 'Poppins') | null;
-        /**
-         * Enter value with unit (e.g., 2rem, 24px)
-         */
-        Size?: string | null;
-        /**
-         * Hex color code (e.g., #FFFFFF)
-         */
-        Color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  day: string;
-  currentDescription: string;
-  currentStyles?:
-    | {
-        /**
-         * Select the font family
-         */
-        Family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat' | 'Delius' | 'Lato' | 'Poppins') | null;
-        /**
-         * Enter value with unit (e.g., 2rem, 24px)
-         */
-        Size?: string | null;
-        /**
-         * Hex color code (e.g., #FFFFFF)
-         */
-        Color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  currentYear: string;
-  ambitions: string;
-  description: string;
-  successRate: string;
-  /**
-   * Add statistics that will be displayed
-   */
-  statistics: {
-    value: string;
-    label: string;
-    id?: string | null;
-  }[];
-  /**
-   * Add courses that will be displayed
-   */
-  courses: {
-    name: string;
-    id?: string | null;
-  }[];
-  textStyles?:
-    | {
-        /**
-         * Select the font family
-         */
-        Family?: ('Inter' | 'Roboto' | 'Open Sans' | 'Montserrat' | 'Delius' | 'Lato' | 'Poppins') | null;
-        /**
-         * Enter value with unit (e.g., 2rem, 24px)
-         */
-        Size?: string | null;
-        /**
-         * Hex color code (e.g., #FFFFFF)
-         */
-        Color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'adminssionBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1111,38 +1057,6 @@ export interface CareerBlock {
   bText?:
     | {
         text: string;
-        id?: string | null;
-      }[]
-    | null;
-  headStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  subStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  statStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  Styles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -1168,98 +1082,240 @@ export interface ConnectBlock {
   mainHeading: string;
   connectText: string;
   buttonText: string;
-  headingStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  connectStyles?:
-    | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'connectBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallActionBlock".
+ * via the `definition` "StudyInCourse".
  */
-export interface CallActionBlock {
-  callText: string;
-  studentImage: number | Media;
-  logoImage: number | Media;
-  offices: {
-    name: string;
-    phoneNumbers: {
-      number: string;
-      id?: string | null;
-    }[];
-    id?: string | null;
-  }[];
-  officeStyle?:
+export interface StudyInCourse {
+  title: string;
+  country: string;
+  image: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studyInCourse';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInChecklist".
+ */
+export interface StudyInChecklist {
+  title: string;
+  subtitle: string;
+  checkItems?:
     | {
-        family?: ('Inter' | 'Roboto' | 'Poppins') | null;
-        size?: string | null;
-        color?: string | null;
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  image: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studyInChecklist';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInNotes".
+ */
+export interface StudyInNotes {
+  title: string;
+  subtitle: string;
+  intakeheader: {
+    Intake: string;
+    application: string;
+    Classesstart: string;
+  };
+  inTaketableHeader: {
+    FallIntake: string;
+    springintake: string;
+    summerintake: string;
+  };
+  intakeTable: {
+    fallIntake: {
+      applicationDeadline: string;
+      classesStart: string;
+    };
+    springIntake: {
+      applicationDeadline: string;
+      classesStart: string;
+    };
+    summerIntake: {
+      applicationDeadline: string;
+      classesStart: string;
+    };
+  };
+  righttableheader: {
+    livingexpenses: string;
+    'average ': string;
+    'dollar ': string;
+  };
+  livingTable: {
+    Stay: string;
+    'foodbudget ': string;
+    'Localtransport ': string;
+    'phonebills ': string;
+    movingaround: string;
+  };
+  expensesTable: {
+    stay: {
+      monthlyAverage: string;
+    };
+    foodBudget: {
+      monthlyAverage: string;
+    };
+    localTransport: {
+      monthlyAverage: string;
+    };
+    phoneBills: {
+      monthlyAverage: string;
+    };
+    movingAround: {
+      monthlyAverage: string;
+    };
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studyInNotes';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInApplication".
+ */
+export interface StudyInApplication {
+  mainTitle: string;
+  subTitle: string;
+  leftContent: {
+    headline: string;
+    highlight: string;
+    subheadline: string;
+  };
+  rightContent?: {
+    services?:
+      | {
+          serviceText: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studyInApplication';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSEnroll".
+ */
+export interface IELTSEnroll {
+  titlePrefix: string;
+  titleEmphasis: string;
+  titleSuffix: string;
+  buttonText: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ieltsEnroll';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSPrep".
+ */
+export interface IELTSPrep {
+  normalHeading: string;
+  highlightedHeading: string;
+  /**
+   * Enter the text inside "|" symbols to highlight text in black color. Example: "Regular text |highlighted text| regular text"
+   */
+  normalDescription: string;
+  /**
+   * Enter the text inside "|" symbols to highlight text in black color. Example: "Regular text |highlighted text| regular text"
+   */
+  contentCard: string;
+  iconCards?:
+    | {
+        icon: number | Media;
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundImage: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ieltsPrep';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSFeatures".
+ */
+export interface IELTSFeatures {
+  Heading: string;
+  featuresList?:
+    | {
+        featureText: string;
+        id?: string | null;
+      }[]
+    | null;
+  studentImage: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ieltsFeatures';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSPackages".
+ */
+export interface IELTSPackages {
+  mainHeading: string;
+  higlightedHeading: string;
+  description: string;
+  currencyLabel: string;
+  enrollButtonText: string;
+  packages?:
+    | {
+        optionLabel: string;
+        packageTitle: string;
+        details?:
+          | {
+              label: string;
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        includesHeading: string;
+        includes?:
+          | {
+              includeItem: string;
+              id?: string | null;
+            }[]
+          | null;
+        price: number;
+        packageColor: 'green' | 'yellow';
         id?: string | null;
       }[]
     | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'callActionBlock';
+  blockType: 'ieltsPackages';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AppointmentBlock".
+ * via the `definition` "IELTSRoadmap".
  */
-export interface AppointmentBlock {
-  leftContent: {
-    title: string;
-    subTitle: string;
-    highlightText: string;
-    extraText: string;
-    paragraphs?:
-      | {
-          text: string;
-          id?: string | null;
-        }[]
-      | null;
-    button: {
-      text: string;
-      url: string;
-    };
-  };
-  right: {
-    schedule: {
-      date: string;
-      day: string;
-      slots?:
-        | {
-            time: string;
-            id?: string | null;
-          }[]
-        | null;
-    };
-    universities?:
-      | {
-          img: number | Media;
-          alt?: string | null;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  bottomText: string;
+export interface IELTSRoadmap {
+  title: string;
+  subtitle?: string | null;
+  steps?:
+    | {
+        stepNumber: number;
+        icon: number | Media;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'appointmentBlock';
+  blockType: 'ieltsRoadmap';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1529,15 +1585,11 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               content?: T;
-              fontFamily?: T;
-              fontSize?: T;
             };
         description?:
           | T
           | {
               content?: T;
-              fontFamily?: T;
-              fontSize?: T;
             };
         richText?: T;
         links?:
@@ -1564,8 +1616,11 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        appointmentBlock?: T | AppointmentBlockSelect<T>;
+        admissionBlock?: T | AdmissionBlockSelect<T>;
         testimonialsBlock?: T | TestimonialsBlockSelect<T>;
         counselingBlock?: T | CounselingBlockSelect<T>;
+        callToActionBlock?: T | CallToActionBlockSelect<T>;
         universitiesBlock?: T | UniversitiesBlockSelect<T>;
         studyAbroadBlock?: T | StudyAbroadBlockSelect<T>;
         ieltsBlock?: T | IELTSBlockSelect<T>;
@@ -1574,13 +1629,26 @@ export interface PagesSelect<T extends boolean = true> {
         worldStudentBlock?: T | WorldStudentBlockSelect<T>;
         serviceBlock?: T | ServiceBlockSelect<T>;
         faqBlock?: T | FAQBlockSelect<T>;
-        futureBlock?: T | FutureBlockSelect<T>;
-        adminssionBlock?: T | AdminssionBlockSelect<T>;
         careerBlock?: T | CareerBlockSelect<T>;
         whyusMediaBlock?: T | WhyusMediaBlockSelect<T>;
         connectBlock?: T | ConnectBlockSelect<T>;
-        callActionBlock?: T | CallActionBlockSelect<T>;
-        appointmentBlock?: T | AppointmentBlockSelect<T>;
+        studyInCourse?: T | StudyInCourseSelect<T>;
+        studyInChecklist?: T | StudyInChecklistSelect<T>;
+        benefitsInStudy?:
+          | T
+          | {
+              backgroundImage?: T;
+              benefitsDescription?: T;
+              id?: T;
+              blockName?: T;
+            };
+        studyInNotes?: T | StudyInNotesSelect<T>;
+        studyInApplication?: T | StudyInApplicationSelect<T>;
+        ieltsEnroll?: T | IELTSEnrollSelect<T>;
+        ieltsPrep?: T | IELTSPrepSelect<T>;
+        ieltsFeatures?: T | IELTSFeaturesSelect<T>;
+        ieltsPackages?: T | IELTSPackagesSelect<T>;
+        ieltsRoadmap?: T | IELTSRoadmapSelect<T>;
       };
   meta?:
     | T
@@ -1658,6 +1726,88 @@ export interface FormBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AppointmentBlock_select".
+ */
+export interface AppointmentBlockSelect<T extends boolean = true> {
+  leftContent?:
+    | T
+    | {
+        title?: T;
+        subTitle?: T;
+        highlightText?: T;
+        extraText?: T;
+        paragraphs?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        button?:
+          | T
+          | {
+              text?: T;
+              url?: T;
+            };
+      };
+  right?:
+    | T
+    | {
+        schedule?:
+          | T
+          | {
+              fromDate?: T;
+              toDate?: T;
+              day?: T;
+              slots?:
+                | T
+                | {
+                    time?: T;
+                    id?: T;
+                  };
+            };
+        uniHeading?: T;
+        universities?:
+          | T
+          | {
+              img?: T;
+              alt?: T;
+              id?: T;
+            };
+      };
+  bottomText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AdmissionBlock_select".
+ */
+export interface AdmissionBlockSelect<T extends boolean = true> {
+  year?: T;
+  day?: T;
+  currentDescription?: T;
+  currentYear?: T;
+  ambitions?: T;
+  description?: T;
+  successRate?: T;
+  statistics?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  courses?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TestimonialsBlock_select".
  */
 export interface TestimonialsBlockSelect<T extends boolean = true> {
@@ -1710,6 +1860,29 @@ export interface CounselingBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CallToActionBlock_select".
+ */
+export interface CallToActionBlockSelect<T extends boolean = true> {
+  callText?: T;
+  studentImage?: T;
+  logoImage?: T;
+  offices?:
+    | T
+    | {
+        name?: T;
+        phoneNumbers?:
+          | T
+          | {
+              number?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "UniversitiesBlock_select".
  */
 export interface UniversitiesBlockSelect<T extends boolean = true> {
@@ -1744,8 +1917,6 @@ export interface StudyAbroadBlockSelect<T extends boolean = true> {
     | T
     | {
         content?: T;
-        font?: T;
-        size?: T;
       };
   titleDescription?: T;
   cards?:
@@ -1759,6 +1930,7 @@ export interface StudyAbroadBlockSelect<T extends boolean = true> {
         imagePosition?: T;
         id?: T;
       };
+  backgroundColor?: T;
   id?: T;
   blockName?: T;
 }
@@ -1865,33 +2037,9 @@ export interface WorldStudentBlockSelect<T extends boolean = true> {
 export interface ServiceBlockSelect<T extends boolean = true> {
   backgroundimage?: T;
   mainHeading?: T;
-  mainHeadingStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        backgroundColor?: T;
-      };
   description?: T;
   subDescription?: T;
-  descriptionStyle?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        backgroundColor?: T;
-      };
   buttonText?: T;
-  buttonStyle?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        backgroundColor?: T;
-      };
   services?:
     | T
     | {
@@ -1899,15 +2047,6 @@ export interface ServiceBlockSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
-  serviceStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        backgroundColor?: T;
-      };
-  backgroundColor?: T;
   id?: T;
   blockName?: T;
 }
@@ -1922,125 +2061,6 @@ export interface FAQBlockSelect<T extends boolean = true> {
     | {
         question?: T;
         answer?: T;
-        id?: T;
-      };
-  styles?:
-    | T
-    | {
-        titleStyles?:
-          | T
-          | {
-              fontSize?: T;
-              fontWeight?: T;
-              textAlign?: T;
-            };
-        quesStyles?:
-          | T
-          | {
-              fontSize?: T;
-              fontWeight?: T;
-            };
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FutureBlock_select".
- */
-export interface FutureBlockSelect<T extends boolean = true> {
-  mainHeading?: T;
-  connectText?: T;
-  buttonText?: T;
-  callText?: T;
-  studentImage?: T;
-  logoImage?: T;
-  offices?:
-    | T
-    | {
-        name?: T;
-        phoneNumbers?:
-          | T
-          | {
-              number?: T;
-              id?: T;
-            };
-        id?: T;
-      };
-  headingStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  connectStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  officeStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AdminssionBlock_select".
- */
-export interface AdminssionBlockSelect<T extends boolean = true> {
-  year?: T;
-  yearStyles?:
-    | T
-    | {
-        Family?: T;
-        Size?: T;
-        Color?: T;
-        id?: T;
-      };
-  day?: T;
-  currentDescription?: T;
-  currentStyles?:
-    | T
-    | {
-        Family?: T;
-        Size?: T;
-        Color?: T;
-        id?: T;
-      };
-  currentYear?: T;
-  ambitions?: T;
-  description?: T;
-  successRate?: T;
-  statistics?:
-    | T
-    | {
-        value?: T;
-        label?: T;
-        id?: T;
-      };
-  courses?:
-    | T
-    | {
-        name?: T;
-        id?: T;
-      };
-  textStyles?:
-    | T
-    | {
-        Family?: T;
-        Size?: T;
-        Color?: T;
         id?: T;
       };
   id?: T;
@@ -2069,38 +2089,6 @@ export interface CareerBlockSelect<T extends boolean = true> {
         text?: T;
         id?: T;
       };
-  headStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  subStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  statStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  Styles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
   id?: T;
   blockName?: T;
 }
@@ -2121,105 +2109,254 @@ export interface ConnectBlockSelect<T extends boolean = true> {
   mainHeading?: T;
   connectText?: T;
   buttonText?: T;
-  headingStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
-  connectStyles?:
-    | T
-    | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
-      };
   id?: T;
   blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallActionBlock_select".
+ * via the `definition` "StudyInCourse_select".
  */
-export interface CallActionBlockSelect<T extends boolean = true> {
-  callText?: T;
-  studentImage?: T;
-  logoImage?: T;
-  offices?:
+export interface StudyInCourseSelect<T extends boolean = true> {
+  title?: T;
+  country?: T;
+  image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInChecklist_select".
+ */
+export interface StudyInChecklistSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  checkItems?:
     | T
     | {
-        name?: T;
-        phoneNumbers?:
+        text?: T;
+        id?: T;
+      };
+  image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInNotes_select".
+ */
+export interface StudyInNotesSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  intakeheader?:
+    | T
+    | {
+        Intake?: T;
+        application?: T;
+        Classesstart?: T;
+      };
+  inTaketableHeader?:
+    | T
+    | {
+        FallIntake?: T;
+        springintake?: T;
+        summerintake?: T;
+      };
+  intakeTable?:
+    | T
+    | {
+        fallIntake?:
           | T
           | {
-              number?: T;
-              id?: T;
+              applicationDeadline?: T;
+              classesStart?: T;
             };
-        id?: T;
+        springIntake?:
+          | T
+          | {
+              applicationDeadline?: T;
+              classesStart?: T;
+            };
+        summerIntake?:
+          | T
+          | {
+              applicationDeadline?: T;
+              classesStart?: T;
+            };
       };
-  officeStyle?:
+  righttableheader?:
     | T
     | {
-        family?: T;
-        size?: T;
-        color?: T;
-        id?: T;
+        livingexpenses?: T;
+        'average '?: T;
+        'dollar '?: T;
+      };
+  livingTable?:
+    | T
+    | {
+        Stay?: T;
+        'foodbudget '?: T;
+        'Localtransport '?: T;
+        'phonebills '?: T;
+        movingaround?: T;
+      };
+  expensesTable?:
+    | T
+    | {
+        stay?:
+          | T
+          | {
+              monthlyAverage?: T;
+            };
+        foodBudget?:
+          | T
+          | {
+              monthlyAverage?: T;
+            };
+        localTransport?:
+          | T
+          | {
+              monthlyAverage?: T;
+            };
+        phoneBills?:
+          | T
+          | {
+              monthlyAverage?: T;
+            };
+        movingAround?:
+          | T
+          | {
+              monthlyAverage?: T;
+            };
       };
   id?: T;
   blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AppointmentBlock_select".
+ * via the `definition` "StudyInApplication_select".
  */
-export interface AppointmentBlockSelect<T extends boolean = true> {
+export interface StudyInApplicationSelect<T extends boolean = true> {
+  mainTitle?: T;
+  subTitle?: T;
   leftContent?:
     | T
     | {
-        title?: T;
-        subTitle?: T;
-        highlightText?: T;
-        extraText?: T;
-        paragraphs?:
-          | T
-          | {
-              text?: T;
-              id?: T;
-            };
-        button?:
-          | T
-          | {
-              text?: T;
-              url?: T;
-            };
+        headline?: T;
+        highlight?: T;
+        subheadline?: T;
       };
-  right?:
+  rightContent?:
     | T
     | {
-        schedule?:
+        services?:
           | T
           | {
-              date?: T;
-              day?: T;
-              slots?:
-                | T
-                | {
-                    time?: T;
-                    id?: T;
-                  };
-            };
-        universities?:
-          | T
-          | {
-              img?: T;
-              alt?: T;
+              serviceText?: T;
               id?: T;
             };
       };
-  bottomText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSEnroll_select".
+ */
+export interface IELTSEnrollSelect<T extends boolean = true> {
+  titlePrefix?: T;
+  titleEmphasis?: T;
+  titleSuffix?: T;
+  buttonText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSPrep_select".
+ */
+export interface IELTSPrepSelect<T extends boolean = true> {
+  normalHeading?: T;
+  highlightedHeading?: T;
+  normalDescription?: T;
+  contentCard?: T;
+  iconCards?:
+    | T
+    | {
+        icon?: T;
+        text?: T;
+        id?: T;
+      };
+  backgroundImage?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSFeatures_select".
+ */
+export interface IELTSFeaturesSelect<T extends boolean = true> {
+  Heading?: T;
+  featuresList?:
+    | T
+    | {
+        featureText?: T;
+        id?: T;
+      };
+  studentImage?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSPackages_select".
+ */
+export interface IELTSPackagesSelect<T extends boolean = true> {
+  mainHeading?: T;
+  higlightedHeading?: T;
+  description?: T;
+  currencyLabel?: T;
+  enrollButtonText?: T;
+  packages?:
+    | T
+    | {
+        optionLabel?: T;
+        packageTitle?: T;
+        details?:
+          | T
+          | {
+              label?: T;
+              text?: T;
+              id?: T;
+            };
+        includesHeading?: T;
+        includes?:
+          | T
+          | {
+              includeItem?: T;
+              id?: T;
+            };
+        price?: T;
+        packageColor?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IELTSRoadmap_select".
+ */
+export interface IELTSRoadmapSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  steps?:
+    | T
+    | {
+        stepNumber?: T;
+        icon?: T;
+        description?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -2659,9 +2796,55 @@ export interface Header {
           url?: string | null;
           label: string;
         };
+        subMenu?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: number | Post;
+                    } | null);
+                url?: string | null;
+                label: string;
+              };
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
+  buttons?: {
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+            /**
+             * Choose how the link should be rendered.
+             */
+            appearance?: ('default' | 'outline') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -2793,7 +2976,40 @@ export interface HeaderSelect<T extends boolean = true> {
               url?: T;
               label?: T;
             };
+        subMenu?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              id?: T;
+            };
         id?: T;
+      };
+  buttons?:
+    | T
+    | {
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;

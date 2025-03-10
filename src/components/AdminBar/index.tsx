@@ -46,6 +46,8 @@ export const AdminBar: React.FC<{
     setShow(Boolean(user?.id))
   }, [])
 
+  // console.log(adminBarProps, "adminBarProps")
+
   return (
     <div
       className={cn(baseClass, 'py-2 bg-black text-white', {

@@ -3,6 +3,8 @@ import type { Block } from 'payload'
 export const WorldStudentBlock: Block = {
     slug: 'worldStudentBlock',
     interfaceName: 'WorldStudentBlock',
+    imageURL: '/assets/blocks/WorldStudentBlock.png',
+    imageAltText: 'WorldStudentBlock Image',
     fields: [
         {
             name: 'backgroundImage',

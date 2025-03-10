@@ -12,19 +12,16 @@ import { StudyAbroadBlock } from '@/blocks/StudyAbroadBlock/config'
 import { IELTSBlock } from '@/blocks/IELTSBlock/config'
 import { GetStartedBlock } from '@/blocks/GetStartedBlock/config'
 import { MapBlock } from '@/blocks/MapBlock/config'
-
 import { ServiceBlock } from '@/blocks/ServiceBlock/config'
 import { FAQBlock } from '@/blocks/FAQBlock/config'
-import { FutureBlock } from '@/blocks/FutureBlock/config'
-import { AdminssionBlock } from '@/blocks/AdmissionBlock/config'
+import { AdmissionBlock } from '@/blocks/AdmissionBlock/config'
 import { CareerBlock } from '@/blocks/CareerBlock/config'
 import { WorldStudentBlock } from '@/blocks/WorldStudentBlock/config'
-
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
-
+import { CallToActionBlock } from '@/blocks/CallToActionBlock/config'
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -35,10 +32,21 @@ import {
 import { ConnectBlock } from '@/blocks/ConnectBlock/config'
 import { WhyusMediaBlock } from '@/blocks/WhyusMedia/conig'
 import { hero } from '@/heros/config'
-import { CallActionBlock } from '@/blocks/CallActionBlock/config'
+
+
+// Study In Page
+import { StudyInCourse } from '@/blocks/StudyInCourse/config'
+import { StudyInChecklist } from '@/blocks/StudyInCheckList/config'
+import { BenefitsInStudy } from '@/blocks/StudyInBenefits/config'
+import { StudyInNotes } from '@/blocks/StudyInNotes/config'
+import { StudyInApplication } from '@/blocks/StudyInApplication/config'
+//Ace IELTS page
+import { IELTSEnroll } from '@/blocks/IELTSEnroll/config'
+import { IELTSPrep } from '@/blocks/IELTSPrep/config'
+import { IELTSFeatures } from '@/blocks/IELTSFeatures/config'
+import { IELTSPackages } from '@/blocks/IELTSPackages/config'
+import { IELTSRoadmap } from '@/blocks/IELTSRoadmap/config'
 import { AppointmentBlock } from '@/blocks/AppointmentBlock/config'
-
-
 
 
 export const Pages: CollectionConfig<'pages'> = {
@@ -95,8 +103,10 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Content, MediaBlock, Archive, FormBlock, TestimonialsBlock, CounselingBlock,
-                UniversitiesBlock, StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, FutureBlock, AdminssionBlock, CareerBlock, WhyusMediaBlock, ConnectBlock, CallActionBlock, AppointmentBlock],
+              blocks: [Content, MediaBlock, Archive, FormBlock, AppointmentBlock, AdmissionBlock, TestimonialsBlock, CounselingBlock, CallToActionBlock, UniversitiesBlock,
+                StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, CareerBlock, WhyusMediaBlock, ConnectBlock,
+                StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes, StudyInApplication, IELTSEnroll, IELTSPrep, IELTSFeatures,
+                IELTSPackages, IELTSRoadmap],
               required: true,
               admin: {
                 initCollapsed: true,
