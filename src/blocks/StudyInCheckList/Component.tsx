@@ -20,65 +20,53 @@ export const StudyInChecklist: React.FC<Props> = (props) => {
     } = props;
 
     return (
-        <section className={cn('container ', className)}>
-            <div className="flex bg-[#D9F1FD] sm:px-12 sm-py-6 p-4 rounded-3xl flex-col xl:flex-row items-center overflow-hidden">
-                {/* Left Text (80%) */}
-                <div className="xl:w-[85%] w-full p-6 py-2 ms-6 flex flex-col justify-start items-start md:items-start h-full">
-                    <div className='text-center sm:text-start'>
+        <section className={cn('container', className)}>
+            <div className="bg-[#D9F1FD] rounded-3xl flex flex-col md:flex-row min-h-[645px] p-4 sm:p-6 md:p-8 gap-8 overflow-hidden">
+                {/* Left Text Container */}
+                <div className="w-full md:w-4/6 flex flex-col items-start justify-center py-6 md:py-0">
+                    <div className='text-center sm:text-start w-full'>
                         <h2
-                            className="font-semibold font-roboto mb-0 text-black text-[20px]  md:text-[32px] lg:text-[50px]  xl:text-[40px]  3xl:text-[50px]"
+                            className="font-semibold font-roboto mb-0 text-black text-[20px] md:text-[32px] lg:text-[40px] xl:text-[45px] 3xl:text-[50px]"
                         >
                             {title}
                         </h2>
 
-                        <h3 className="font-bold mb-4 sm:mb-[10px]  text-[30px] font-mynerve md:text-[55px] lg:text-[43px] xl:[57px] 3xl:text-[68px] sm:leading-none leading-tight text-[#FF0000]">
+                        <h3 className="font-bold mb-4 sm:mb-[10px] text-[30px] font-mynerve md:text-[45px] lg:text-[43px] xl:text-[57px] 3xl:text-[68px] sm:leading-none leading-tight text-[#FF0000]">
                             {subtitle}
                         </h3>
                     </div>
-                    <div>
-                        <div className="sm:hidden">
-                            <ol className="sm:block list-decimal pl-5 space-y-1">
-                                {checkItems?.map((item, index) => (
-                                    <li
-                                        key={index}
-                                        className="text-base font-roboto sm:text-[18px] pb-2 text-[#000000]"
-                                    >
-                                        {item.text}
-                                    </li>
-                                ))}
-                            </ol>
-
-                        </div>
-
-                        <ul className="hidden sm:block w-full sm:ms-[10px] list-disc pl-5 space-y-1">
+                    <div className="w-full">
+                        <ul className="sm:block w-full sm:ms-[10px] list-disc pl-5 space-y-1">
                             {checkItems?.map((item, index) => (
                                 <li
                                     key={index}
-                                    className="font-normal leading-tight pb-[3px] font-roboto md:text-[18px] lg:text-[17px] text-[#000000]"
+                                    className="font-normal leading-tight pb-[3px] font-roboto text-[16px] md:text-[18px] lg:text-[17px] text-[#000000]"
                                 >
                                     {item.text}
                                 </li>
                             ))}
                         </ul>
-
                     </div>
                 </div>
 
-                {/* Right Image (40%) */}
-                <div className="relative w-full xl:w-[45%] lg:w-[40%] md:w-[40%] sm:w-[40%] h-full ">
-                    <div className="absolute z-0 top-[27px] sm:ms-[67px] ms-[6px] left-[-10px] bottom-0 sm:w-[95%] w-[101%] h-[90%] rounded-3xl bg-[#C1F177] ">
-                    </div>
 
+
+
+                {/* Right Image Container */}
+                <div className="w-full md:w-2/6 bg-[#C1F177] rounded-3xl relative h-[500px] md:h-auto mt-4 md:mt-0 overflow-hidden">
                     {typeof image === 'object' && image !== null && 'url' in image ? (
                         <Image
                             src={image.url || ''}
                             alt={image.alt || 'Study in course image'}
-                            width={image.width || 836}
-                            height={image.height || 836}
-                            className="z-10 relative sm:left-[51px] left-[-3px]"
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                            priority={true}
                         />
                     ) : (
-                        <div>Image not found</div>
+                        <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-600">
+                            Image not found
+                        </div>
                     )}
                 </div>
             </div>

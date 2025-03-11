@@ -27,7 +27,7 @@ export const BenefitsInStudy: React.FC<BenefitsInStudyType> = (props) => {
     return (
         <section className={cn("container", className)}>
 
-            <div className="rounded-3xl mx-auto bg-[#D9F1FD] sm:p-6 p-4 border border-dashed border-gray-300">
+            <div className="rounded-3xl mx-auto bg-[#D9F1FD] sm:p-6 p-4">
                 <div className="flex justify-center">
                     {backgroundImage?.url && (
                         <Image
