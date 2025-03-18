@@ -50,5 +50,28 @@ export const MapBlock: Block = {
                 description: 'Add office locations that will be displayed on the map',
             },
         },
+        {
+            name: 'branchOffices',
+            type: 'array',
+            label: 'Branch Offices',
+            required: false,
+            fields: [
+                {
+                    name: 'name',
+                    type: 'text',
+                    required: true,
+                    label: 'Branch Office Name',
+                },
+                {
+                    name: 'address',
+                    type: 'textarea',
+                    required: true,
+                    label: 'Branch Office Address',
+                },
+            ],
+            admin: {
+                description: 'Add Branch Office locations',
+            },
+        },
     ],
 };

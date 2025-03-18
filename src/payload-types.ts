@@ -964,6 +964,16 @@ export interface MapBlock {
     mapIframe: string;
     id?: string | null;
   }[];
+  /**
+   * Add Branch Office locations
+   */
+  branchOffices?:
+    | {
+        name: string;
+        address: string;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'mapBlock';
@@ -2026,6 +2036,13 @@ export interface MapBlockSelect<T extends boolean = true> {
         name?: T;
         address?: T;
         mapIframe?: T;
+        id?: T;
+      };
+  branchOffices?:
+    | T
+    | {
+        name?: T;
+        address?: T;
         id?: T;
       };
   id?: T;

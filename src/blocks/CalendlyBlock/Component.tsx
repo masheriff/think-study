@@ -32,7 +32,7 @@ export const CalendlyBlock: React.FC<Props> = (props) => {
     }
 
     return (
-        <section className={`w-full mt-[-120px] ${className || ''}`}>
+        <section className={`w-full -mt-[60px] md:-mt-[120px] ${className || ''}`}>
             <div className="w-full mx-auto">
                 {calendlyURL ? (
                     <InlineWidget
