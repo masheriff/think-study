@@ -43,5 +43,11 @@ export const FAQBlock: Block = {
                 description: 'Add FAQ items with questions and answers',
             },
         },
+        {
+            name: 'bottomImage',
+            type: 'upload',
+            relationTo: 'media',
+            required: true,
+        },
     ],
 };

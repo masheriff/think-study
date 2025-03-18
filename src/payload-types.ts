@@ -1046,6 +1046,7 @@ export interface FAQBlock {
     answer: string;
     id?: string | null;
   }[];
+  bottomImage: number | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'faqBlock';
@@ -2103,6 +2104,7 @@ export interface FAQBlockSelect<T extends boolean = true> {
         answer?: T;
         id?: T;
       };
+  bottomImage?: T;
   id?: T;
   blockName?: T;
 }
