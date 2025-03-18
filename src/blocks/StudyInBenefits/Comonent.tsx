@@ -26,26 +26,21 @@ export const BenefitsInStudy: React.FC<BenefitsInStudyType> = (props) => {
 
     return (
         <section className={cn("container", className)}>
-
-            <div className="rounded-3xl mx-auto bg-[#D9F1FD] sm:p-6 p-4">
-                <div className="flex justify-center">
+            <div className="rounded-3xl mx-auto bg-[#D9F1FD] sm:p-6 p-4 flex flex-col-reverse md:flex-col space-y-">
+                <div className='relative h-[500px] flex'>
                     {backgroundImage?.url && (
                         <Image
                             src={backgroundImage.url}
                             alt={backgroundImage.alt || 'Study benefits background'}
-                            width={backgroundImage.width}
-                            height={backgroundImage.height}
-                            className="rounded-3xl w-full sm:max-h-[400px]object-cover"
+                            fill
+                            className="rounded-3xl object-cover"
                             priority
                         />
                     )}
                 </div>
-                <div className="text-center mt-[32px] px-16">
-                    <p className="sm:text-[21px] text-[14px] font-roboto font-normal leading-7 text-justify">
-                        {benefitsDescription}
-                    </p>
-                </div>
-
+                <p className="text-xl text-center mb-4 md:mb-0">
+                    {benefitsDescription}
+                </p>
             </div>
 
         </section>

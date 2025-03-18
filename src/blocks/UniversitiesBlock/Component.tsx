@@ -66,22 +66,22 @@ export const UniversitiesBlock: React.FC<Props> = (props) => {
 
     return (
         <section className={cn("my-8", className)}>
-            <div className="container md:p-0 p-10">
-                <div className="text-left md:w-3/4 w-full">
-                    <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-3">{mainHeading}</h2>
-                    <h2 className="text-xl md:text-2xl text-gray-700 mb-3">
+            <div className="container md:p-0 p-8">
+                <div className="w-full md:w-9/12 ld:w-3/5">
+                    <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4 text-center md:text-left">{mainHeading}</h2>
+                    <h3 className="text-xl md:text-2xl text-gray-700 mb-4  text-center md:text-left">
                         {subHeading}
-                    </h2>
-                    <p className='text-gray-600 md:text-lg mb-3'>{description}</p>
+                    </h3>
+                    <p className='text-gray-600 md:text-lg mb-7 text-center md:text-left'>{description} </p>
                     {/* Statistics */}
                     {stats && stats.length > 0 && (
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 ">
                             {stats.map((stat, index) => (
-                                <div key={index} className="flex space-x-4">
-                                    <div className="text-sm md:text-sm font-bold text-gray-900">
+                                <div key={index} className="flex space-x-1 md:space-x-2 items-center justify-center md:justify-start">
+                                    <div className="text-sm md:text-base font-bold text-gray-900">
                                         {stat.value}
                                     </div>
-                                    <div className="text-sm text-gray-600">
+                                    <div className="text-xs md:text-sm text-gray-600">
                                         {stat.label}
                                     </div>
                                 </div>

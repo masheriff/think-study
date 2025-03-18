@@ -36,8 +36,8 @@ export const IELTSBlock: React.FC<Props> = (props) => {
             {/* Header Section */}
             <div className="container px-6 md:px-12 mb-12">
                 <div className="max-w-5xl mx-auto text-center space-y-6">
-                    <h1 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-3">{title}</h1>
-                    <h2 className="text-3xl text-[#FF0000] font-mynerve italic font-bold">
+                    <h1 className="text-4xl md:text-5xl font-semibold text-gray-800 mb-3">{title}</h1>
+                    <h2 className="text-4xl md:text-5xl text-[#FF0000] font-mynerve italic font-bold">
                         {subtitle}
                     </h2>
                     <p className="text-base text-gray-700">
@@ -47,10 +47,10 @@ export const IELTSBlock: React.FC<Props> = (props) => {
             </div>
 
             {/* Main Content */}
-            <div className="container bg-[#D3F584] rounded-3xl overflow-hidden p-12 w-full">
-                <div className="grid md:grid-cols-2 gap-12">
+            <div className="mx-4 md:container md:mx-auto p-6 md:p-12 rounded-3xl bg-[#D3F584]">
+                <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12">
                     {/* Left Column */}
-                    <div className="space-y-8 flex flex-col justify-center">
+                    <div className="space-y-8 flex flex-col justify-center order-2 lg:order-none">
                         {/* IELTS Logo and Hybrid Learning */}
                         <div className="flex items-center gap-6">
                             <div className="flex items-center">
@@ -116,7 +116,7 @@ export const IELTSBlock: React.FC<Props> = (props) => {
 
                     {/* Right Column - Image */}
                     {image && typeof image !== 'number' && 'url' in image && (
-                        <div className="relative h-full min-h-[500px] w-full rounded-3xl overflow-hidden shadow-lg">
+                        <div className="relative h-full min-h-[500px] w-full rounded-3xl overflow-hidden shadow-lg order-1 lg:order-none">
                             <Image
                                 src={image.url || ''}
                                 alt="IELTS Training"

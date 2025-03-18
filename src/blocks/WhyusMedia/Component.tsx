@@ -21,15 +21,18 @@ export const WhyusMediaBlock: React.FC<Props> = ({ media, className }) => {
     }
 
     return (
-        <div className={`container ${className}`}>
-            <Image
-                src={media.url}
-                alt={media.alt || 'Media image'}
-                width={media.width || 800}
-                height={media.height || 600}
-                className='rounded-2xl'
+        <div className={`mx-4 md:container md:mx-auto ${className}`}>
+            <div className='h-[700px] md:h-[500px] relative'>
+                <Image
+                    src={media.url}
+                    alt={media.alt || 'Media image'}
+                    fill
+                    className='rounded-3xl'
 
-            />
+                />
+
+            </div>
+
         </div>
     );
 };

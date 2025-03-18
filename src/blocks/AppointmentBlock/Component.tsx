@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import type { AppointmentBlock as AppointmentBlockType } from '@/payload-types'
 import { cn } from '@/utilities/ui'
 import Image from 'next/image'
@@ -23,9 +23,18 @@ const AppointmentBlock: React.FC<Props> = (props) => {
         return { day, month, year, date }
     }
 
-    // Get fromDate and toDate if they exist
-    const fromDateFormatted = right?.schedule?.fromDate ? formatDate(right.schedule.fromDate) : { day: '', month: '', year: '', date: null }
-    const toDateFormatted = right?.schedule?.toDate ? formatDate(right.schedule.toDate) : null
+    // Memoize fromDate and toDate to prevent recalculations
+    const fromDateFormatted = useMemo(() => {
+        return right?.schedule?.fromDate
+            ? formatDate(right.schedule.fromDate)
+            : { day: '', month: '', year: '', date: null };
+    }, [right?.schedule?.fromDate]);
+
+    const toDateFormatted = useMemo(() => {
+        return right?.schedule?.toDate
+            ? formatDate(right.schedule.toDate)
+            : null;
+    }, [right?.schedule?.toDate]);
 
     // Validate dates
     useEffect(() => {
@@ -36,11 +45,23 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                 setDateError(null)
             }
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [right?.schedule?.fromDate, right?.schedule?.toDate])
+    }, [fromDateFormatted.date, toDateFormatted?.date])
 
-    // Function to format date range display
-    const getDateRangeDisplay = () => {
+    // Memoize date range display to avoid unnecessary calculations
+    const dateInfo = useMemo(() => {
+        if (!right?.schedule) {
+            return {
+                hasBothDates: false,
+                fromDay: '',
+                fromMonth: '',
+                fromYear: '',
+                toDay: '',
+                toMonth: '',
+                toYear: '',
+                dateDisplay: ''
+            }
+        }
+
         if (!toDateFormatted) {
             // If no toDate, show just the fromDate
             return {
@@ -66,35 +87,25 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                 dateDisplay: '' // Not used when we have both dates
             }
         }
-    }
-
-    const dateInfo = right?.schedule ? getDateRangeDisplay() : {
-        hasBothDates: false,
-        fromDay: '',
-        fromMonth: '',
-        fromYear: '',
-        toDay: '',
-        toMonth: '',
-        toYear: '',
-        dateDisplay: ''
-    }
+    }, [right?.schedule, fromDateFormatted, toDateFormatted])
 
     // Determine if day should be shown (only when there's no toDate)
     const shouldShowDay = right?.schedule?.fromDate && !right?.schedule?.toDate
 
     return (
-        <section className={cn("my-8", className)}>
-            <div className="container bg-[#D9F1FD] p-16 rounded-2xl">
-                <div className="flex md:flex-row flex-col align-items-center justify-between space-x-20">
-                    <div className="flex flex-col w-1/2 space-y-6">
+        <section className={cn("mx-6", className)}>
+            <div className="container bg-[#D9F1FD] p-6 lg:p-16 rounded-2xl relative">
+                <div className="flex flex-col-reverse lg:flex-row items-stretch lg:justify-between lg:space-x-8 xl:space-x-20 space-y-8 lg:space-y-0">
+                    {/* Left content - on bottom for mobile/tablet */}
+                    <div className="flex flex-col w-full lg:w-1/2 space-y-4 lg:space-y-6 mt-8 lg:mt-0 h-full justify-center">
                         <h6 className="text-xl font-medium text-black/65">{leftContent?.title}</h6>
-                        <h2 className="text-4xl font-semibold text-gray-700">{leftContent?.subTitle}</h2>
-                        <p className="text-3xl text-[#FF0000] font-mynerve italic mb-4 font-semibold">{leftContent?.highlightText}</p>
+                        <h2 className="text-3xl lg:text-4xl font-semibold text-gray-700">{leftContent?.subTitle}</h2>
+                        <p className="text-3xl lg:text-4xl text-[#FF0000] font-mynerve italic mb-2 lg:mb-4 font-semibold">{leftContent?.highlightText}</p>
                         <p className="text-base text-black/65">{leftContent?.extraText}</p>
                         <div>
                             {leftContent?.paragraphs?.map((para, index) => (
-                                <p key={index} className="text-black/65 text-base flex items-center leading-relaxed" >
-                                    <span className="w-6 h-6 flex items-center justify-center">
+                                <p key={index} className="text-black/65 text-base flex items-start my-2 leading-relaxed" >
+                                    <span className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
                                         <CheckBox />
                                     </span>
                                     <span className='ml-2'>{para.text}</span>
@@ -111,10 +122,12 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                             )}
                         </div>
                     </div>
-                    <div className="flex flex-col w-1/2 h-full my-auto">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
+
+                    {/* Right content - on top for mobile/tablet */}
+                    <div className="flex flex-col w-full lg:w-1/2 flex-1 items-center justify-center">
+                        <div className="grid grid-cols-2 gap-4 lg:gap-6 w-full">
                             {right?.schedule && (
-                                <div className="bg-[#C1F177] rounded-2xl p-6 shadow-lg flex flex-col justify-between aspect-square">
+                                <div className="bg-[#C1F177] rounded-2xl p-4 lg:p-6 shadow-lg flex flex-col justify-between aspect-square">
                                     {dateError && (
                                         <div className="text-red-600 text-sm font-medium mb-2 text-center">
                                             {dateError}
@@ -123,23 +136,23 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                                     {!dateInfo.hasBothDates ? (
                                         // Single date display
                                         <div className="text-center">
-                                            <div className="text-[7rem] leading-[1] font-semibold">{dateInfo.fromDay}</div>
+                                            <div className="text-8xl lg:text-8xl leading-[1] font-semibold">{dateInfo.fromDay}</div>
                                             <div className="text-lg font-medium">{dateInfo.dateDisplay}</div>
                                         </div>
                                     ) : (
                                         // Date range display
                                         <div className="text-center">
-                                            <div className="flex justify-between items-center ">
+                                            <div className="flex justify-between items-center">
                                                 <div className="w-5/12 text-center">
-                                                    <div className="text-7xl font-semibold">{dateInfo.fromDay}</div>
-                                                    <div className="text-lg font-medium">{dateInfo.fromMonth}</div>
-                                                    <div className="text-lg font-medium">{dateInfo.fromYear}</div>
+                                                    <div className="text-6xl lg:text-8xl font-semibold">{dateInfo.fromDay}</div>
+                                                    <div className="text-sm lg:text-lg font-medium">{dateInfo.fromMonth}</div>
+                                                    <div className="text-sm lg:text-lg font-medium">{dateInfo.fromYear}</div>
                                                 </div>
                                                 <div className="w-2/12 text-center font-bold">—</div>
                                                 <div className="w-5/12 text-center">
-                                                    <div className="text-7xl font-semibold">{dateInfo.toDay}</div>
-                                                    <div className="text-lg font-medium">{dateInfo.toMonth}</div>
-                                                    <div className="text-lg font-medium">{dateInfo.toYear}</div>
+                                                    <div className="text-6xl lg:text-8xl font-semibold">{dateInfo.toDay}</div>
+                                                    <div className="text-sm lg:text-lg font-medium">{dateInfo.toMonth}</div>
+                                                    <div className="text-sm lg:text-lg font-medium">{dateInfo.toYear}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -183,7 +196,7 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                                                     <Image
                                                         src={uni.img.url || ""}
                                                         alt={uni.alt || ""}
-                                                        width={150}
+                                                        width={120}
                                                         height={50}
                                                         className="object-contain"
                                                     />
@@ -196,7 +209,15 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="text-right text-sm text-gray-600">{bottomText}</div>
+                {/* Bottom text - block in mobile/tablet, absolute in desktop */}
+                {bottomText && (
+                    <div className={cn(
+                        "text-sm text-gray-600",
+                        "block lg:absolute lg:bottom-4 lg:right-16 mt-4 lg:mt-0 text-right"
+                    )}>
+                        {bottomText}
+                    </div>
+                )}
             </div>
         </section>
     )

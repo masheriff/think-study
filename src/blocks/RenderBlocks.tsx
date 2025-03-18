@@ -29,6 +29,7 @@ import { IELTSFeatures } from './IELTSFeatures/Component'
 import { IELTSPackages } from './IELTSPackages/Component'
 import { IELTSRoadmap } from './IELTSRoadmap/Component'
 import AppointmentBlock from './AppointmentBlock/Component'
+import CalendlyBlock from './CalendlyBlock/Component'
 
 type BlockComponentsType = {
   formBlock: typeof FormBlock
@@ -59,6 +60,8 @@ type BlockComponentsType = {
   ieltsFeatures: typeof IELTSFeatures
   ieltsPackages: typeof IELTSPackages
   ieltsRoadmap: typeof IELTSRoadmap
+  calendlyBlock: typeof CalendlyBlock
+
 }
 
 const blockComponents: BlockComponentsType = {
@@ -90,6 +93,7 @@ const blockComponents: BlockComponentsType = {
   ieltsFeatures: IELTSFeatures,
   ieltsPackages: IELTSPackages,
   ieltsRoadmap: IELTSRoadmap,
+  calendlyBlock: CalendlyBlock,
 }
 
 export const RenderBlocks: React.FC<{
@@ -107,7 +111,7 @@ export const RenderBlocks: React.FC<{
         if (blockType && blockType in blockComponents) {
           const Block = blockComponents[blockType as keyof BlockComponentsType]
           return (
-            <div className="my-28" key={index}>
+            <div className="my-20 md:my-28" key={index}>
               <Block {...(block as any)} disableInnerContainer />
             </div>
           )

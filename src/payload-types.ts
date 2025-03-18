@@ -181,6 +181,7 @@ export interface Page {
     | IELTSFeatures
     | IELTSPackages
     | IELTSRoadmap
+    | CalendlyBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1319,6 +1320,27 @@ export interface IELTSRoadmap {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CalendlyBlock".
+ */
+export interface CalendlyBlock {
+  /**
+   * Enter your Calendly event URL here
+   */
+  calendlyURL: string;
+  /**
+   * Primary color for the Calendly widget (HEX code)
+   */
+  primaryColor?: string | null;
+  /**
+   * Text color for the Calendly widget (HEX code)
+   */
+  textColor?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'calendlyBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1649,6 +1671,7 @@ export interface PagesSelect<T extends boolean = true> {
         ieltsFeatures?: T | IELTSFeaturesSelect<T>;
         ieltsPackages?: T | IELTSPackagesSelect<T>;
         ieltsRoadmap?: T | IELTSRoadmapSelect<T>;
+        calendlyBlock?: T | CalendlyBlockSelect<T>;
       };
   meta?:
     | T
@@ -2357,6 +2380,17 @@ export interface IELTSRoadmapSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CalendlyBlock_select".
+ */
+export interface CalendlyBlockSelect<T extends boolean = true> {
+  calendlyURL?: T;
+  primaryColor?: T;
+  textColor?: T;
   id?: T;
   blockName?: T;
 }

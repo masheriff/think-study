@@ -45,9 +45,9 @@ export const FAQBlock: React.FC<Props> = (props) => {
                         >
                             <span>{faq.question}</span>
                             {openIndex === index ? (
-                                <Minus className="flex-shrink-0 h-5 w-5 text-gray-500" />
+                                <Minus className="flex-shrink-0 h-5 w-5 font-bold text-gray-500" />
                             ) : (
-                                <Plus className="flex-shrink-0 h-5 w-5 text-gray-500" />
+                                <Plus className="flex-shrink-0 h-5 w-5  font-bold text-gray-500" />
                             )}
                         </button>
 
