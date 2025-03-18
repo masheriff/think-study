@@ -125,9 +125,9 @@ const AppointmentBlock: React.FC<Props> = (props) => {
 
                     {/* Right content - on top for mobile/tablet */}
                     <div className="flex flex-col w-full lg:w-1/2 flex-1 items-center justify-center">
-                        <div className="grid grid-cols-2 gap-4 lg:gap-6 w-full">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 w-full">
                             {right?.schedule && (
-                                <div className="bg-[#C1F177] rounded-2xl p-4 lg:p-6 shadow-lg flex flex-col justify-between aspect-square">
+                                <div className="bg-[#C1F177] rounded-2xl p-4 lg:p-6 shadow-lg flex flex-col justify-between md:aspect-square">
                                     {dateError && (
                                         <div className="text-red-600 text-sm font-medium mb-2 text-center">
                                             {dateError}
@@ -185,7 +185,7 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                                 </div>
                             )}
                             {right?.universities && (
-                                <div className="bg-white rounded-2xl p-4 shadow-lg flex flex-col aspect-square">
+                                <div className="bg-white rounded-2xl p-4 shadow-lg flex flex-col md:aspect-square">
                                     <h3 className="text-md text-center font-bold mb-2">
                                         {right.uniHeading || 'Participating Universities'}
                                     </h3>
