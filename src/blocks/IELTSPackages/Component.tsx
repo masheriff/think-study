@@ -27,10 +27,12 @@ export const IELTSPackages: React.FC<Props> = ({
         <div className="container">
             <section className={cn('rounded-3xl py-2 px-2 md:px-4 bg-[#D9F1FD]', className)}>
                 <div className="max-w-6xl mx-auto py-8 md:py-10">
-                    {/* Heading Section */}
+                    {/* Heading Section - Modified for separate lines on mobile/tablet */}
                     <div className="text-center mb-12 md:mb-14">
                         <h2 className="text-3xl md:text-5xl font-bold leading-tight mb-4">
-                            {mainHeading} <span className="text-[#FF0000] font-mynerve italic">{higlightedHeading}</span>
+                            {mainHeading}
+                            <br className="md:hidden" /> {/* Line break on mobile only */}
+                            <span className="text-[#FF0000] font-mynerve italic">{higlightedHeading}</span>
                         </h2>
                         <p><TextHighlightBold text={description} /></p>
                     </div>
@@ -40,7 +42,7 @@ export const IELTSPackages: React.FC<Props> = ({
                         {packages?.map((pkg, index) => (
                             <div
                                 key={index}
-                                className={`${colorMap[pkg.packageColor]} rounded-3xl p-6`}
+                                className={`${colorMap[pkg.packageColor]} rounded-3xl p-6 flex flex-col`}
                             >
                                 <div className='p-2 rounded-2xl bg-[#D9F1FD] mb-6'>
                                     <p className="text-3xl font-bold font-mynerve italic text-center mb-2 text-[#FF0000]">
@@ -49,7 +51,7 @@ export const IELTSPackages: React.FC<Props> = ({
                                     <h3 className="text-2xl font-bold mb-4 text-center">{pkg.packageTitle}</h3>
                                 </div>
 
-                                <div className="space-y-3 mb-6">
+                                <div className="space-y-3 mb-6 flex-grow">
                                     {pkg.details?.map((detail, idx) => (
                                         <p key={idx} className="text-lg">
                                             <strong>{detail.label}:</strong> {detail.text}
@@ -69,7 +71,7 @@ export const IELTSPackages: React.FC<Props> = ({
                                     </div>
                                 </div>
 
-                                <div className="text-center">
+                                <div className="text-center mt-auto">
                                     <p className="text-3xl font-bold mb-4">
                                         {currencyLabel} {pkg.price.toLocaleString()}/-
                                     </p>
