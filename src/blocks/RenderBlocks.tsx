@@ -3,6 +3,7 @@ import React, { Fragment } from 'react'
 import type { Page } from '@/payload-types'
 import { FormBlock } from './Form/Component'
 import { MediaBlock } from './MediaBlock/Component'
+import { ContentBlock } from './Content/Component'
 import TestimonialsBlock from './TestimonialsBlock/Component'
 import CounselingBlock from './CounselingBlock/Component'
 import UniversitiesBlock from './UniversitiesBlock/Component'
@@ -35,6 +36,7 @@ import UniversitySliderBlock from './UniversitySliderBlock/Component'
 type BlockComponentsType = {
   formBlock: typeof FormBlock
   mediaBlock: typeof MediaBlock
+  content: typeof ContentBlock
   appointmentBlock: typeof AppointmentBlock
   testimonialsBlock: typeof TestimonialsBlock
   counselingBlock: typeof CounselingBlock
@@ -69,6 +71,7 @@ type BlockComponentsType = {
 const blockComponents: BlockComponentsType = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
+  content: ContentBlock,
   testimonialsBlock: TestimonialsBlock,
   counselingBlock: CounselingBlock,
   universitiesBlock: UniversitiesBlock,
