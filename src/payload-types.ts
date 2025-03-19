@@ -182,6 +182,7 @@ export interface Page {
     | IELTSPackages
     | IELTSRoadmap
     | CalendlyBlock
+    | UniversitySliderBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1352,6 +1353,23 @@ export interface CalendlyBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "UniversitySliderBlock".
+ */
+export interface UniversitySliderBlock {
+  slides?:
+    | {
+        backgroundImage: number | Media;
+        universityImage: number | Media;
+        title: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'universitySliderBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1683,6 +1701,7 @@ export interface PagesSelect<T extends boolean = true> {
         ieltsPackages?: T | IELTSPackagesSelect<T>;
         ieltsRoadmap?: T | IELTSRoadmapSelect<T>;
         calendlyBlock?: T | CalendlyBlockSelect<T>;
+        universitySliderBlock?: T | UniversitySliderBlockSelect<T>;
       };
   meta?:
     | T
@@ -2410,6 +2429,22 @@ export interface CalendlyBlockSelect<T extends boolean = true> {
   calendlyURL?: T;
   primaryColor?: T;
   textColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "UniversitySliderBlock_select".
+ */
+export interface UniversitySliderBlockSelect<T extends boolean = true> {
+  slides?:
+    | T
+    | {
+        backgroundImage?: T;
+        universityImage?: T;
+        title?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

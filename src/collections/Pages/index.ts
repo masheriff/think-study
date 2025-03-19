@@ -48,6 +48,7 @@ import { IELTSPackages } from '@/blocks/IELTSPackages/config'
 import { IELTSRoadmap } from '@/blocks/IELTSRoadmap/config'
 import { AppointmentBlock } from '@/blocks/AppointmentBlock/config'
 import { CalendlyBlock } from '@/blocks/CalendlyBlock/config'
+import { UniversitySliderBlock } from '@/blocks/UniversitySliderBlock/config'
 
 
 export const Pages: CollectionConfig<'pages'> = {
@@ -107,7 +108,7 @@ export const Pages: CollectionConfig<'pages'> = {
               blocks: [Content, MediaBlock, Archive, FormBlock, AppointmentBlock, AdmissionBlock, TestimonialsBlock, CounselingBlock, CallToActionBlock, UniversitiesBlock,
                 StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, CareerBlock, WhyusMediaBlock, ConnectBlock,
                 StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes, StudyInApplication, IELTSEnroll, IELTSPrep, IELTSFeatures,
-                IELTSPackages, IELTSRoadmap, CalendlyBlock],
+                IELTSPackages, IELTSRoadmap, CalendlyBlock, UniversitySliderBlock],
               required: true,
               admin: {
                 initCollapsed: true,
