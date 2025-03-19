@@ -27,7 +27,7 @@ export const UniversitySliderBlock: React.FC<Props> = ({ slides, className }) =>
     const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 
     return (
-        <section className={cn("mx-4 md:container relative", className)}>
+        <section className={cn("mx-4 md:container md:px-0 relative", className)}>
             <div className="overflow-hidden" ref={emblaRef}>
                 <div className="flex">
                     {slides?.map((slide, index) => (
