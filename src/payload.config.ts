@@ -36,6 +36,8 @@ export default buildConfig({
     },
     user: Users.slug,
     livePreview: {
+      url: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
+      collections: ['pages', 'posts'],
       breakpoints: [
         {
           label: 'Mobile',
