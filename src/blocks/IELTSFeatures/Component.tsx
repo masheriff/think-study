@@ -16,7 +16,7 @@ export const IELTSFeatures: React.FC<Props> = ({
     className,
 }) => {
     return (
-        <div className="container px-4 md:px-6 lg:px-8 py-8 md:py-12">
+        <div className="container px-4 md:px-6 lg:px-8">
             <section className={cn('bg-[#D9F1FD] rounded-3xl py-8 md:py-12 px-4 sm:px-6 md:px-8 lg:px-12', className)}>
                 <div className="w-full max-w-6xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
