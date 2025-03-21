@@ -74,6 +74,7 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
                                                 width={35}
                                                 height={35}
                                                 priority={false}
+                                                loading="lazy"
                                             />
                                         </div>
                                         <div className="mt-4 bg-white rounded-xl p-3 shadow-sm">
@@ -92,7 +93,7 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
                                                         alt="University logo"
                                                         width={80}
                                                         height={50}
-                                                        className="object-contain w-36 md:w-24"
+                                                        className="h-12 md:h-10 w-auto"
                                                         loading="lazy"
                                                     />
                                                 )}

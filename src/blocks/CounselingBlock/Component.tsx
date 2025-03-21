@@ -75,7 +75,7 @@ export const CounselingBlock: React.FC<Props> = (props) => {
                             {cards?.map((card, index) => (
                                 <div
                                     key={index}
-                                    className="flex-[0_0_100%] sm:flex-[0_0_80%] md:flex-[0_0_48%] lg:flex-[0_0_32%] mx-4 embla__slide"
+                                    className="flex-[0_0_100%] sm:flex-[0_0_80%] md:flex-[0_0_48%] lg:flex-[0_0_32%] m-4 embla__slide"
                                 >
                                     <div className="bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 h-auto sm:h-56 md:h-60 relative">
                                         {card.icon && typeof card.icon !== 'number' && (
