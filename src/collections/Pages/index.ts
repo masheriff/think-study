@@ -80,16 +80,28 @@ export const Pages: CollectionConfig<'pages'> = {
       },
     },
     preview: (data, { req }) => {
-      const path = generatePreviewPath({
+      // Get the original preview path
+      const originalPath = generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
         collection: 'pages',
         req,
       });
 
-      // Add the SERVER_URL prefix
-      const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || '';
-      const baseUrl = serverUrl.endsWith('/') ? serverUrl.slice(0, -1) : serverUrl;
-      const pathWithoutLeadingSlash = path.startsWith('/') ? path.substring(1) : path;
+      // Extract just the pathname and query parameters, removing any existing domain
+      let cleanPath = originalPath;
+      if (originalPath.includes('://')) {
+        // If it has a protocol, extract just the path portion
+        const url = new URL(originalPath);
+        cleanPath = url.pathname + url.search;
+      }
+
+      // Use the public-facing domain from environment variable or config
+      // You can set this in your .env file
+      const publicDomain = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+
+      // Ensure clean joining of URL parts
+      const baseUrl = publicDomain.endsWith('/') ? publicDomain.slice(0, -1) : publicDomain;
+      const pathWithoutLeadingSlash = cleanPath.startsWith('/') ? cleanPath.substring(1) : cleanPath;
 
       return `${baseUrl}/${pathWithoutLeadingSlash}`;
     },
