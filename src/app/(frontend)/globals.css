@@ -9,8 +9,8 @@
   h4,
   h5,
   h6 {
-    font-size: auto;
-    font-weight: auto;
+    font-size: unset;
+    font-weight: unset;
   }
 
   :root {
@@ -26,8 +26,8 @@
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 250 30% 50%;  /* Muted purple */
+    --secondary-foreground: 0 0% 100%; /* White */
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -47,11 +47,6 @@
     --success: 196 52% 74%;
     --warning: 34 89% 85%;
     --error: 10 100% 86%;
-
-    --font-inter: 'Inter', sans-serif;
-    --font-roboto: 'Roboto', sans-serif;
-    --font-open-sans: 'Open Sans', sans-serif;
-    --font-montserrat: 'Montserrat', sans-serif;
   }
 
   [data-theme='dark'] {
@@ -86,11 +81,6 @@
     --success: 196 100% 14%;
     --warning: 34 51% 25%;
     --error: 10 39% 43%;
-
-    --font-inter: 'Inter', sans-serif;
-    --font-roboto: 'Roboto', sans-serif;
-    --font-open-sans: 'Open Sans', sans-serif;
-    --font-montserrat: 'Montserrat', sans-serif;
   }
 }
 
@@ -112,6 +102,7 @@ html[data-theme='light'] {
   opacity: initial;
 }
 
+
 @keyframes draw {
   from {
     stroke-dashoffset: 1000;
@@ -125,4 +116,96 @@ html[data-theme='light'] {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
   animation: draw 2s ease forwards;
+}
+
+/* Add this to your global CSS file */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Add this to your global CSS file */
+
+.marquee-container {
+  --scroll-speed: 40s;
+  position: relative;
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  animation: marqueeVertical var(--scroll-speed) linear infinite;
+}
+
+.marquee-content,
+.marquee-clone {
+  width: 100%;
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+/* Responsive grid adjustments */
+@media (min-width: 640px) {
+  .marquee-content,
+  .marquee-clone {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .marquee-content,
+  .marquee-clone {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+@keyframes marqueeVertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+/* Pause animation on hover */
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+/* Fallback for non-JS browsers */
+.no-js .marquee-container {
+  height: auto;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.no-js .marquee-track {
+  position: static;
+  animation: none;
 }

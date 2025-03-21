@@ -1,0 +1,261 @@
+name: Payload CMS Deployment
+
+on:
+  push:
+    branches: ["main", "staging"]
+  pull_request:
+    branches: ["main", "staging"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup environment variables for staging
+        if: github.ref == 'refs/heads/staging'
+        run: |
+          echo "ENV_PREFIX=STAGING" >> $GITHUB_ENV
+          echo "DEPLOY_PATH=${{ secrets.STAGING_DEPLOY_PATH }}" >> $GITHUB_ENV
+          echo "APP_NAME=${{ secrets.STAGING_APP_NAME }}" >> $GITHUB_ENV
+          echo "PORT=${{ secrets.STAGING_PORT }}" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_ENVIRONMENT=staging" >> $GITHUB_ENV
+
+      - name: Setup environment variables for production
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "ENV_PREFIX=PROD" >> $GITHUB_ENV
+          echo "DEPLOY_PATH=${{ secrets.PROD_DEPLOY_PATH }}" >> $GITHUB_ENV
+          echo "APP_NAME=${{ secrets.PROD_APP_NAME }}" >> $GITHUB_ENV
+          echo "PORT=${{ secrets.PROD_PORT }}" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_ENVIRONMENT=production" >> $GITHUB_ENV
+
+      - name: Create environment file
+        run: |
+          echo "DATABASE_URI=${{ secrets[format('{0}_DATABASE_URI', env.ENV_PREFIX)] }}" > .env
+          echo "PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}" >> .env
+          echo "NEXT_PUBLIC_SERVER_URL=${{ secrets[format('{0}_NEXT_PUBLIC_SERVER_URL', env.ENV_PREFIX)] }}" >> .env
+          echo "NEXT_PUBLIC_ENVIRONMENT=${{ env.NEXT_PUBLIC_ENVIRONMENT }}" >> .env
+          echo "PORT=${{ env.PORT }}" >> .env
+          echo "APP_NAME=${{ env.APP_NAME }}" >> .env
+
+      - name: Deploy via rsync
+        uses: burnett01/rsync-deployments@5.2
+        with:
+          switches: -avzr --delete --exclude='node_modules' --exclude='package.json.old' --exclude='.next' --exclude='public/media'
+          path: ./
+          remote_host: ${{ secrets.SERVER_HOST }}
+          remote_user: ${{ secrets.SERVER_USER }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          remote_path: ${{ env.DEPLOY_PATH }}
+
+      - name: Execute remote SSH commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            # Load nvm and environment
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+            
+            source ~/.profile
+            source ~/.bashrc
+            
+            cd ${{ env.DEPLOY_PATH }}
+            
+            # Package installation with error handling
+            echo "Installing dependencies..."
+            if ! npm ci; then
+              echo "❌ npm ci failed"
+              # Fall back to npm install if npm ci fails
+              if ! npm install; then
+                echo "❌ npm install failed"
+                exit 1
+              fi
+            fi
+            
+            # Secure environment file
+            chmod 600 .env
+            
+            # Database backup before migrations
+            echo "Creating database backup before migration..."
+            BACKUP_DIR=~/db_backups/$(date +"%Y%m%d_%H%M%S")
+            mkdir -p $BACKUP_DIR
+            
+            # Use the explicitly defined DB credentials from secrets
+            DB_NAME=${{ secrets[format('{0}_DB_NAME', env.ENV_PREFIX)] }}
+            DB_USER=${{ secrets[format('{0}_DB_USER', env.ENV_PREFIX)] }}
+            
+            export PGPASSWORD="${{ secrets[format('{0}_DB_PASSWORD', env.ENV_PREFIX)] }}"
+            pg_dump -h localhost -U $DB_USER -d $DB_NAME > $BACKUP_DIR/pre_migration_backup.sql
+            
+            echo "✅ Database backup created at $BACKUP_DIR/pre_migration_backup.sql"
+            
+            # Check for migration status
+            echo "Checking migration status..."
+            npm run migrate:status
+            
+            # Run database migrations with error handling
+            echo "Running database migrations..."
+            if ! npm run migrate; then
+              echo "❌ Database migration failed"
+              echo "Attempting rollback using backup..."
+              psql -h localhost -U $DB_USER -d $DB_NAME -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
+              psql -h localhost -U $DB_USER -d $DB_NAME < $BACKUP_DIR/pre_migration_backup.sql
+              exit 1
+            fi
+            
+            # Clear cache
+            rm -rf .next
+            
+            # Set optimal memory for 2GB server
+            export NODE_OPTIONS="--max-old-space-size=1536"
+            
+            echo "Starting build..."
+            if ! NEXT_TELEMETRY_DISABLED=1 npm run build; then
+              echo "❌ Build failed"
+              exit 1
+            fi
+            
+            # Start the application with PM2
+            echo "Starting application with PM2..."
+            # Check if the app is already running in PM2
+            if pm2 list | grep -q "${{ env.APP_NAME }}"; then
+              echo "Stopping existing PM2 process..."
+              pm2 stop "${{ env.APP_NAME }}" || true
+              pm2 delete "${{ env.APP_NAME }}" || true
+            fi
+            
+            # Start the app with PM2
+            if ! NODE_ENV=production PORT=${{ env.PORT }} pm2 start npm --name "${{ env.APP_NAME }}" -- start; then
+              echo "❌ PM2 start failed"
+              exit 1
+            fi
+            
+            # Save PM2 configuration
+            if ! pm2 save; then
+              echo "❌ PM2 save failed, but app is running"
+              # Continue anyway as this is non-critical
+            fi
+            
+            echo "✅ Deployment completed successfully!"
+            
+            # Document migration in changelog
+            echo "$(date): Deployed from ${{ github.ref }} with migrations" >> ~/deployment_changelog.txt
+
+  # Sync database and media files from staging to production when deploying to main
+  sync-to-production:
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Execute remote SSH commands to sync databases and media
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            # Load environment variables and profiles
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+            
+            source ~/.profile
+            source ~/.bashrc
+            
+            # Create directory for database operations
+            mkdir -p ~/db_sync
+            
+            # Step 1: Create a database dump from staging
+            echo "Creating staging database dump..."
+            export PGPASSWORD=${{ secrets.STAGING_DB_PASSWORD }}
+            pg_dump -h localhost \
+                   -U ${{ secrets.STAGING_DB_USER }} \
+                   -d ${{ secrets.STAGING_DB_NAME }} > ~/db_sync/staging_dump.sql
+            
+            # Check if dump was created successfully
+            if [ ! -s ~/db_sync/staging_dump.sql ]; then
+              echo "❌ Failed to create database dump from staging"
+              exit 1
+            fi
+            
+            echo "✅ Staging database dump created successfully"
+            
+            # Step 2: Backup production database before overwriting (safety measure)
+            echo "Backing up production database..."
+            export PGPASSWORD=${{ secrets.PROD_DB_PASSWORD }}
+            BACKUP_TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+            BACKUP_DIR=~/db_backups/$BACKUP_TIMESTAMP
+            mkdir -p $BACKUP_DIR
+            
+            pg_dump -h localhost \
+                   -U ${{ secrets.PROD_DB_USER }} \
+                   -d ${{ secrets.PROD_DB_NAME }} > $BACKUP_DIR/prod_backup_before_sync.sql
+            
+            echo "✅ Production database backup created at $BACKUP_DIR/prod_backup_before_sync.sql"
+            
+            # Step 3: Drop existing schema and restore from staging dump
+            echo "Restoring staging database to production..."
+            psql -h localhost \
+                -U ${{ secrets.PROD_DB_USER }} \
+                -d ${{ secrets.PROD_DB_NAME }} \
+                -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
+            
+            psql -h localhost \
+                -U ${{ secrets.PROD_DB_USER }} \
+                -d ${{ secrets.PROD_DB_NAME }} < ~/db_sync/staging_dump.sql
+            
+            echo "✅ Database restored successfully from staging to production"
+            
+            # Step 4: Backup production media files before syncing
+            echo "Backing up production media files..."
+            MEDIA_BACKUP_DIR=~/media_backups/$BACKUP_TIMESTAMP
+            mkdir -p $MEDIA_BACKUP_DIR
+            
+            if [ -d "${{ secrets.PROD_DEPLOY_PATH }}/public/media/" ]; then
+              cp -r ${{ secrets.PROD_DEPLOY_PATH }}/public/media/ $MEDIA_BACKUP_DIR/
+              echo "✅ Production media backup created at $MEDIA_BACKUP_DIR"
+            else
+              echo "⚠️ No media folder found in production to backup"
+              mkdir -p ${{ secrets.PROD_DEPLOY_PATH }}/public/media/
+            fi
+            
+            # Step 5: Sync media files from staging to production
+            echo "Syncing media files from staging to production..."
+            rsync -avz --delete ${{ secrets.STAGING_DEPLOY_PATH }}/public/media/ ${{ secrets.PROD_DEPLOY_PATH }}/public/media/
+            
+            echo "✅ Media files synced from staging to production"
+            
+            # Step 6: Clean up temporary files but keep the backups
+            rm ~/db_sync/staging_dump.sql
+            
+            # Keep only the 5 most recent media backups to save space
+            if [ -d ~/media_backups ]; then
+              ls -t ~/media_backups | tail -n +6 | xargs -I {} rm -rf ~/media_backups/{}
+              echo "Cleaned up older media backups, keeping the 5 most recent ones"
+            fi
+            
+            # Keep only the 10 most recent database backups
+            if [ -d ~/db_backups ]; then
+              ls -t ~/db_backups | tail -n +11 | xargs -I {} rm -rf ~/db_backups/{}
+              echo "Cleaned up older database backups, keeping the 10 most recent ones"
+            fi
+            
+            # Step 7: Restart the PM2 process for production to ensure it uses the new data
+            echo "Restarting production application..."
+            pm2 restart ${{ secrets.PROD_APP_NAME }}
+            
+            echo "✅ Production database and media files updated successfully from staging"
+            
+            # Document sync in changelog
+            echo "$(date): Synced database and media from staging to production" >> ~/deployment_changelog.txt

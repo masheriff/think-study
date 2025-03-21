@@ -3,9 +3,7 @@ import type { StaticImageData } from 'next/image'
 import { cn } from '@/utilities/ui'
 import React from 'react'
 import RichText from '@/components/RichText'
-
 import type { MediaBlock as MediaBlockProps } from '@/payload-types'
-
 import { Media } from '../../components/Media'
 
 type Props = MediaBlockProps & {
@@ -41,10 +39,11 @@ export const MediaBlock: React.FC<Props> = (props) => {
         },
         className,
       )}
+
     >
       {(media || staticImage) && (
         <Media
-          imgClassName={cn('rounded-[0.8rem]', imgClassName)}
+          imgClassName={cn('rounded-[0.8rem] ', imgClassName)}
           resource={media}
           src={staticImage}
         />

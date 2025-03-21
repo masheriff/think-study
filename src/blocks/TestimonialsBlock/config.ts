@@ -3,6 +3,8 @@ import { Block } from 'payload'
 export const TestimonialsBlock: Block = {
     slug: 'testimonialsBlock',
     interfaceName: 'TestimonialsBlock',
+    imageURL: '/assets/blocks/TestimonialBlock.png',
+    imageAltText: 'TestimonialBlock Image',
     fields: [
         {
             name: 'heading',

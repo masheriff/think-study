@@ -1,4 +1,5 @@
 'use client'
+
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import React, { useEffect } from 'react'
 import type { Page } from '@/payload-types'
@@ -9,23 +10,17 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ heading, description, l
   const { setHeaderTheme } = useHeaderTheme()
 
   useEffect(() => {
-    setHeaderTheme('dark')
+    setHeaderTheme('light')
   }, [setHeaderTheme])
 
   return (
-    <div className="relative">
-      <div className="container mb-8 z-10 relative flex items-center justify-center">
-        <div className="max-w-[50rem] md:text-center">
+    <div className="relative w-full">
+      <div className="container mx-auto px-4 sm:px-6 z-10 relative flex items-center justify-center pt-10 pb-0 sm:pt-16 md:pt-20 overflow-hidden">
+        <div className="w-full max-w-3xl text-center">
           {/* Heading */}
           {heading && (
-            <div
-              className="mb-6"
-              style={{
-                fontFamily: heading.fontFamily ? `var(--font-${heading.fontFamily.toLowerCase().replace(' ', '-')})` : undefined,
-                fontSize: heading.fontSize || undefined,
-              }}
-            >
-              <h1 className="text-4xl font-semibold p-4">
+            <div className="mb-6 sm:mb-8 md:mb-10">
+              <h1 className="text-3xl sm:text-4xl font-semibold px-2 sm:px-4 leading-normal sm:leading-normal">
                 <TextHighlighter text={heading.content || ''} />
               </h1>
             </div>
@@ -33,23 +28,17 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ heading, description, l
 
           {/* Description */}
           {description && (
-            <div
-              className="mb-8"
-              style={{
-                fontFamily: description.fontFamily ? `var(--font-${description.fontFamily.toLowerCase().replace(' ', '-')})` : undefined,
-                fontSize: description.fontSize || undefined,
-              }}
-            >
-              <p className="text-lg">{description.content}</p>
+            <div className="mb-8 sm:mb-10 md:mb-12 px-2">
+              <p className="text-base sm:text-lg">{description.content}</p>
             </div>
           )}
 
           {/* Links (Buttons) */}
           {Array.isArray(links) && links.length > 0 && (
-            <ul className="flex md:justify-center gap-4">
+            <ul className="flex flex-wrap justify-center gap-3 sm:gap-4">
               {links.map(({ link }, i) => (
                 <li key={i}>
-                  <CMSLink {...link} className="rounded-3xl" />
+                  <CMSLink {...link} className="rounded-3xl text-sm sm:text-base inline-block" />
                 </li>
               ))}
             </ul>
