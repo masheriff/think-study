@@ -79,12 +79,20 @@ export const Pages: CollectionConfig<'pages'> = {
         return path
       },
     },
-    preview: (data, { req }) =>
-      generatePreviewPath({
+    preview: (data, { req }) => {
+      const path = generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
         collection: 'pages',
         req,
-      }),
+      });
+
+      // Add the SERVER_URL prefix
+      const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || '';
+      const baseUrl = serverUrl.endsWith('/') ? serverUrl.slice(0, -1) : serverUrl;
+      const pathWithoutLeadingSlash = path.startsWith('/') ? path.substring(1) : path;
+
+      return `${baseUrl}/${pathWithoutLeadingSlash}`;
+    },
     useAsTitle: 'title',
   },
   fields: [
