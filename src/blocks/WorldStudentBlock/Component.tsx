@@ -252,7 +252,7 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
                                         alt={item.title || ''}
                                         height={50}
                                         width={50}
-                                        className='w-8 h-8 md:w-[50px] md:h-[50px] mr-2'
+                                        className='w-8 h-8 rounded-full md:w-[50px] md:h-[50px] mr-2'
                                     />
                                 )}
                                 <div>
