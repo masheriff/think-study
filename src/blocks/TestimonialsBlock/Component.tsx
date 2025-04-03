@@ -17,7 +17,7 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
     const [emblaRef] = useEmblaCarousel({
         align: "start",
         skipSnaps: false,
-        dragFree: false,
+        dragFree: true,
         containScroll: "keepSnaps",
         slidesToScroll: 1,
         breakpoints: {
@@ -48,7 +48,7 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
                                     className='flex flex-col flex-[0_0_100%] md:flex-[0_0_calc(50%-12px)] lg:flex-[0_0_calc(25%-18px)] rounded-3xl overflow-hidden'
                                 >
                                     {typeof testimonial.image !== 'number' && testimonial.image && (
-                                        <div className="w-full h-64 md:h-64 h-80 overflow-hidden">
+                                        <div className="w-full md:h-64 h-80 overflow-hidden">
                                             <Image
                                                 src={testimonial.image.url || ''}
                                                 alt={testimonial.name || 'Testimonial image'}
