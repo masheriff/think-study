@@ -57,7 +57,7 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
 
                                             <Image
                                                 className="absolute -top-4 -left-5 md:-left-3 md:-top-3 w-16 h-16 sm:w-12 sm:h-12 md:w-9 md:h-9"
-                                                src="/media/icons/quote.png"
+                                                src="/assets/icons/quote.png"
                                                 alt="Quote"
                                                 width={32}
                                                 height={32}
@@ -69,7 +69,7 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
                                             </p>
                                             <Image
                                                 className="absolute -right-4 -bottom-4 md:-right-3 md:-bottom-2 w-16 h-16 sm:w-12 sm:h-12 md:w-9 md:h-9"
-                                                src="/media/icons/double-quotes.png"
+                                                src="/assets/icons/double-quotes.png"
                                                 alt="Quote"
                                                 width={35}
                                                 height={35}
