@@ -2946,9 +2946,26 @@ export interface Header {
  */
 export interface Footer {
   id: number;
-  description?: string | null;
-  copyright: string;
-  services?:
+  callToAction: {
+    title: string;
+    description: string;
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: number | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+    };
+  };
+  navigationLinks?:
     | {
         link: {
           type?: ('reference' | 'custom') | null;
@@ -2968,7 +2985,7 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
-  about?:
+  legalLinks?:
     | {
         link: {
           type?: ('reference' | 'custom') | null;
@@ -2988,46 +3005,22 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
-  help?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  legal?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
-        id?: string | null;
-      }[]
-    | null;
+  contactInfo?: {
+    phoneNumbers?:
+      | {
+          number: string;
+          label?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    emails?:
+      | {
+          email: string;
+          label?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
   social?:
     | {
         link: {
@@ -3048,6 +3041,34 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  copyrightSection?: {
+    /**
+     * Use {year} as a placeholder for the current year
+     */
+    copyrightText?: string | null;
+    showPoweredBy?: boolean | null;
+    poweredByText?: {
+      text?: string | null;
+      /**
+       * Link for the powered by text
+       */
+      link: {
+        type?: ('reference' | 'custom') | null;
+        newTab?: boolean | null;
+        reference?:
+          | ({
+              relationTo: 'pages';
+              value: number | Page;
+            } | null)
+          | ({
+              relationTo: 'posts';
+              value: number | Post;
+            } | null);
+        url?: string | null;
+        label: string;
+      };
+    };
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -3112,9 +3133,22 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  description?: T;
-  copyright?: T;
-  services?:
+  callToAction?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+      };
+  navigationLinks?:
     | T
     | {
         link?:
@@ -3128,7 +3162,7 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
-  about?:
+  legalLinks?:
     | T
     | {
         link?:
@@ -3142,33 +3176,23 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
-  help?:
+  contactInfo?:
     | T
     | {
-        link?:
+        phoneNumbers?:
           | T
           | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
+              number?: T;
               label?: T;
+              id?: T;
             };
-        id?: T;
-      };
-  legal?:
-    | T
-    | {
-        link?:
+        emails?:
           | T
           | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
+              email?: T;
               label?: T;
+              id?: T;
             };
-        id?: T;
       };
   social?:
     | T
@@ -3183,6 +3207,26 @@ export interface FooterSelect<T extends boolean = true> {
               label?: T;
             };
         id?: T;
+      };
+  copyrightSection?:
+    | T
+    | {
+        copyrightText?: T;
+        showPoweredBy?: T;
+        poweredByText?:
+          | T
+          | {
+              text?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+            };
       };
   updatedAt?: T;
   createdAt?: T;

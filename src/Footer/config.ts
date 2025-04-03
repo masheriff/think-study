@@ -9,58 +9,168 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
-      name: 'description',
-      type: 'textarea',
-      required: false,
+      name: 'callToAction',
+      type: 'group',
+      label: 'Call-to-Action Box',
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              required: true,
+              defaultValue: 'Currently studying?',
+              admin: {
+                width: '50%',
+              }
+            },
+            {
+              name: 'description',
+              type: 'text',
+              required: true,
+              defaultValue: 'Become a mentor and help students.',
+              admin: {
+                width: '50%',
+              }
+            },
+            link({
+              appearances: false,
+            })
+          ]
+        },
+
+      ],
     },
     {
-      name: 'copyright',
-      type: 'text',
-      required: true,
-      defaultValue: '© 2024 Your Company Name. All rights reserved.',
-    },
-    {
-      name: 'services',
+      name: 'navigationLinks',
       type: 'array',
-      label: 'Services Column',
+      label: 'Navigation Links',
       fields: [link({ appearances: false })],
-      maxRows: 6,
+      maxRows: 10,
       admin: { initCollapsed: true },
     },
     {
-      name: 'about',
-      type: 'array',
-      label: 'About Column',
-      fields: [link({ appearances: false })],
-      maxRows: 6,
-      admin: { initCollapsed: true },
-    },
-    {
-      name: 'help',
-      type: 'array',
-      label: 'Help Column',
-      fields: [link({ appearances: false })],
-      maxRows: 6,
-      admin: { initCollapsed: true },
-    },
-    {
-      name: 'legal',
+      name: 'legalLinks',
       type: 'array',
       label: 'Legal Links',
       fields: [link({ appearances: false })],
-      maxRows: 2,
+      maxRows: 3,
+      admin: { initCollapsed: true },
+    },
+    {
+      name: 'contactInfo',
+      type: 'group',
+      label: 'Contact Information',
+      fields: [
+        {
+          name: 'phoneNumbers',
+          type: 'array',
+          label: 'Phone Numbers',
+          fields: [
+            {
+              name: 'number',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'label',
+              type: 'text',
+              required: false,
+            }
+          ],
+          admin: { initCollapsed: true },
+          defaultValue: [
+            {
+              number: '+91 90251 86185',
+              label: 'Main Office'
+            }
+          ],
+        },
+        {
+          name: 'emails',
+          type: 'array',
+          label: 'Email Addresses',
+          fields: [
+            {
+              name: 'email',
+              type: 'email',
+              required: true,
+            },
+            {
+              name: 'label',
+              type: 'text',
+              required: false,
+            }
+          ],
+          admin: { initCollapsed: true },
+          defaultValue: [
+            {
+              email: 'contactus@think.study',
+              label: 'General Inquiries'
+            },
+            {
+              email: 'chennaioffice@think.study',
+              label: 'Chennai Office'
+            }
+          ],
+        },
+      ],
     },
     {
       name: 'social',
       type: 'array',
       label: 'Social Media',
-      fields: [link({
-        appearances: false,
-        overrides: {
-          label: false,
-        }
-      })],
+      fields: [
+        link({
+          appearances: false,
+        }),
+      ],
+      maxRows: 4,
     },
+    {
+      name: 'copyrightSection',
+      type: 'group',
+      label: 'Copyright Section',
+      fields: [
+        {
+          name: 'copyrightText',
+          type: 'text',
+          defaultValue: '© {year} Think Study. All rights reserved.',
+          admin: {
+            description: 'Use {year} as a placeholder for the current year',
+          },
+        },
+        {
+          name: 'showPoweredBy',
+          type: 'checkbox',
+          label: 'Show "Powered by" text',
+          defaultValue: true,
+        },
+        {
+          name: 'poweredByText',
+          type: 'group',
+          admin: {
+            condition: (_, siblingData) => siblingData?.showPoweredBy === true,
+          },
+          fields: [
+            {
+              name: 'text',
+              type: 'text',
+              defaultValue: 'Powered by:',
+            },
+            link({
+              appearances: false,
+              overrides: {
+                admin: {
+                  description: 'Link for the powered by text',
+                },
+              },
+            })
+          ],
+        }
+      ],
+    }
   ],
   hooks: {
     afterChange: [revalidateFooter],
