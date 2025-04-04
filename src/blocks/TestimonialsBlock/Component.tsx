@@ -13,17 +13,21 @@ type Props = TestimonialsBlockType & {
 export const TestimonialsBlock: React.FC<Props> = (props) => {
     const { className, heading, description, testimonials } = props;
 
-    // Updated carousel configuration
+    // Updated carousel configuration for 4-2-1 items display
     const [emblaRef] = useEmblaCarousel({
-        align: "center",
+        align: "start",
         skipSnaps: false,
-        dragFree: false,
+        dragFree: true,
         containScroll: "keepSnaps",
         slidesToScroll: 1,
         breakpoints: {
-            "(min-width: 768px)": { // Tablet and above
-                align: "center",
-                slidesToScroll: 1
+            "(min-width: 1024px)": { // Desktop
+                slidesToScroll: 1,
+                align: "start",
+            },
+            "(min-width: 768px) and (max-width: 1023px)": { // Tablet
+                slidesToScroll: 1,
+                align: "start",
             }
         }
     });
@@ -33,15 +37,18 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
             <div className="container md:p-0 p-6">
                 <div className="text-left mb-6">
                     <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-3 text-center md:text-left">{heading}</h2>
-                    <p className='text-gray-600 md:text-lg  text-center md:text-left'>{description}</p>
+                    <p className='text-gray-600 md:text-lg text-center md:text-left'>{description}</p>
                 </div>
                 <div className="overflow-hidden" ref={emblaRef}>
-                    <div className="flex gap-8 my-10">
+                    <div className="flex gap-6 my-10">
                         {testimonials && testimonials.length > 0 ? (
                             testimonials.map((testimonial, index) => (
-                                <div key={index} className='flex flex-col md:flex-row gap-4 md:flex-[0_0_100%] lg:flex-[0_0_calc(50%-21.333px)] flex-[0_0_100%]'>
+                                <div
+                                    key={index}
+                                    className='flex flex-col flex-[0_0_100%] md:flex-[0_0_calc(50%-12px)] lg:flex-[0_0_calc(25%-18px)] rounded-3xl overflow-hidden'
+                                >
                                     {typeof testimonial.image !== 'number' && testimonial.image && (
-                                        <div className="w-full md:w-1/2 h-96 lg:h-auto flex flex-col rounded-3xl overflow-hidden shadow-lg">
+                                        <div className="w-full md:h-64 h-80 overflow-hidden">
                                             <Image
                                                 src={testimonial.image.url || ''}
                                                 alt={testimonial.name || 'Testimonial image'}
@@ -52,24 +59,25 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
                                             />
                                         </div>
                                     )}
-                                    <div className="w-full md:w-1/2 bg-[#C1F177] p-6 flex flex-col justify-between rounded-3xl overflow-hidden shadow-lg">
+                                    <div
+                                        className={`w-full p-6 flex flex-col justify-between rounded-3xl -mt-5 min-h-[300px] ${index % 2 === 0 ? 'bg-[#C1F177]' : 'bg-[#D9F1FD]'}`}
+                                    >
                                         <div className="relative">
-
                                             <Image
-                                                className="absolute -top-4 -left-5 md:-left-3 md:-top-3 w-16 h-16 sm:w-12 sm:h-12 md:w-9 md:h-9"
-                                                src="/media/icons/quote.png"
+                                                className="absolute -top-4 -left-3 w-9 h-9"
+                                                src="/assets/icons/quote.png"
                                                 alt="Quote"
                                                 width={32}
                                                 height={32}
                                                 priority={false}
                                             />
 
-                                            <p className="text-base md:text-xs text-gray-700 leading-relaxed my-8 md:my-6 text-justify">
-                                                {testimonial.review}
+                                            <p className="text-base md:text-sm text-gray-700 leading-relaxed my-6 text-justify min-h-[120px]">
+                                                {testimonial.review || ''}
                                             </p>
                                             <Image
-                                                className="absolute -right-4 -bottom-4 md:-right-3 md:-bottom-2 w-16 h-16 sm:w-12 sm:h-12 md:w-9 md:h-9"
-                                                src="/media/icons/double-quotes.png"
+                                                className="absolute -right-3 -bottom-2 w-9 h-9"
+                                                src="/assets/icons/double-quotes.png"
                                                 alt="Quote"
                                                 width={35}
                                                 height={35}
@@ -93,7 +101,7 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
                                                         alt="University logo"
                                                         width={80}
                                                         height={50}
-                                                        className="h-12 md:h-10 w-auto"
+                                                        className="object-contain h-10 w-auto"
                                                         loading="lazy"
                                                     />
                                                 )}
