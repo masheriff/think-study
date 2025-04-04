@@ -157,7 +157,7 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
     return (
         <section className="block my-[-2rem] overflow-visible">
             <hr className='w-1/2 mx-auto' />
-            <div className="max-w-3xl mx-4 md:mx-auto my-10">
+            <div className="max-w-3xl mx-4 md:mx-auto mt-10">
                 <RichText className="text-center" data={title} />
             </div>
             <div

@@ -3,6 +3,7 @@ import React, { Fragment } from 'react'
 import type { Page } from '@/payload-types'
 import { FormBlock } from './Form/Component'
 import { MediaBlock } from './MediaBlock/Component'
+import { ContentBlock } from './Content/Component'
 import TestimonialsBlock from './TestimonialsBlock/Component'
 import CounselingBlock from './CounselingBlock/Component'
 import UniversitiesBlock from './UniversitiesBlock/Component'
@@ -18,7 +19,7 @@ import WhyusMediaBlock from './WhyusMedia/Component'
 import ServiceBlock from './ServiceBlock/Component'
 import { StudyInCourse } from './StudyInCourse/Component'
 import StudyInChecklist from './StudyInCheckList/Component'
-import { BenefitsInStudy } from './StudyInBenefits/Comonent'
+import { BenefitsInStudy } from './StudyInBenefits/Component'
 import CallToActionBlock from './CallToActionBlock/Component'
 import { StudyInNotes } from './StudyInNotes/Component'
 import { StudyInApplication } from './StudyInApplication/Component'
@@ -30,10 +31,12 @@ import { IELTSPackages } from './IELTSPackages/Component'
 import { IELTSRoadmap } from './IELTSRoadmap/Component'
 import AppointmentBlock from './AppointmentBlock/Component'
 import CalendlyBlock from './CalendlyBlock/Component'
+import UniversitySliderBlock from './UniversitySliderBlock/Component'
 
 type BlockComponentsType = {
   formBlock: typeof FormBlock
   mediaBlock: typeof MediaBlock
+  content: typeof ContentBlock
   appointmentBlock: typeof AppointmentBlock
   testimonialsBlock: typeof TestimonialsBlock
   counselingBlock: typeof CounselingBlock
@@ -61,12 +64,14 @@ type BlockComponentsType = {
   ieltsPackages: typeof IELTSPackages
   ieltsRoadmap: typeof IELTSRoadmap
   calendlyBlock: typeof CalendlyBlock
+  universitySliderBlock: typeof UniversitySliderBlock
 
 }
 
 const blockComponents: BlockComponentsType = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
+  content: ContentBlock,
   testimonialsBlock: TestimonialsBlock,
   counselingBlock: CounselingBlock,
   universitiesBlock: UniversitiesBlock,
@@ -94,6 +99,7 @@ const blockComponents: BlockComponentsType = {
   ieltsPackages: IELTSPackages,
   ieltsRoadmap: IELTSRoadmap,
   calendlyBlock: CalendlyBlock,
+  universitySliderBlock: UniversitySliderBlock
 }
 
 export const RenderBlocks: React.FC<{

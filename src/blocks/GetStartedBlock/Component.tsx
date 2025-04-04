@@ -29,7 +29,7 @@ export const GetStartedBlock: React.FC<Props> = (props) => {
                     )}
 
                     {title && (
-                        <h2 className="text-3xl w-full md:w-1/4 md:text-4xl font-medium text-gray-900 mb-6">
+                        <h2 className="text-3xl w-full md:text-4xl font-medium text-gray-900 mb-6">
                             {title}
                         </h2>
                     )}

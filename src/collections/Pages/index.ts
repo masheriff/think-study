@@ -48,6 +48,7 @@ import { IELTSPackages } from '@/blocks/IELTSPackages/config'
 import { IELTSRoadmap } from '@/blocks/IELTSRoadmap/config'
 import { AppointmentBlock } from '@/blocks/AppointmentBlock/config'
 import { CalendlyBlock } from '@/blocks/CalendlyBlock/config'
+import { UniversitySliderBlock } from '@/blocks/UniversitySliderBlock/config'
 
 
 export const Pages: CollectionConfig<'pages'> = {
@@ -78,12 +79,32 @@ export const Pages: CollectionConfig<'pages'> = {
         return path
       },
     },
-    preview: (data, { req }) =>
-      generatePreviewPath({
+    preview: (data, { req }) => {
+      // Get the original preview path
+      const originalPath = generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
         collection: 'pages',
         req,
-      }),
+      });
+
+      // Extract just the pathname and query parameters, removing any existing domain
+      let cleanPath = originalPath;
+      if (originalPath.includes('://')) {
+        // If it has a protocol, extract just the path portion
+        const url = new URL(originalPath);
+        cleanPath = url.pathname + url.search;
+      }
+
+      // Use the public-facing domain from environment variable or config
+      // You can set this in your .env file
+      const publicDomain = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+
+      // Ensure clean joining of URL parts
+      const baseUrl = publicDomain.endsWith('/') ? publicDomain.slice(0, -1) : publicDomain;
+      const pathWithoutLeadingSlash = cleanPath.startsWith('/') ? cleanPath.substring(1) : cleanPath;
+
+      return `${baseUrl}/${pathWithoutLeadingSlash}`;
+    },
     useAsTitle: 'title',
   },
   fields: [
@@ -107,7 +128,7 @@ export const Pages: CollectionConfig<'pages'> = {
               blocks: [Content, MediaBlock, Archive, FormBlock, AppointmentBlock, AdmissionBlock, TestimonialsBlock, CounselingBlock, CallToActionBlock, UniversitiesBlock,
                 StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, CareerBlock, WhyusMediaBlock, ConnectBlock,
                 StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes, StudyInApplication, IELTSEnroll, IELTSPrep, IELTSFeatures,
-                IELTSPackages, IELTSRoadmap, CalendlyBlock],
+                IELTSPackages, IELTSRoadmap, CalendlyBlock, UniversitySliderBlock],
               required: true,
               admin: {
                 initCollapsed: true,

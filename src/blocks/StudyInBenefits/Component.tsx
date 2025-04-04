@@ -38,7 +38,7 @@ export const BenefitsInStudy: React.FC<BenefitsInStudyType> = (props) => {
                         />
                     )}
                 </div>
-                <p className="text-xl text-center mb-4 md:mb-0">
+                <p className="text-xl text-center m-4 md:mb-0">
                     {benefitsDescription}
                 </p>
             </div>

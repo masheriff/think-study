@@ -238,6 +238,7 @@ export interface Page {
     | IELTSPackages
     | IELTSRoadmap
     | CalendlyBlock
+    | UniversitySliderBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1021,6 +1022,16 @@ export interface MapBlock {
     mapIframe: string;
     id?: string | null;
   }[];
+  /**
+   * Add Branch Office locations
+   */
+  branchOffices?:
+    | {
+        name: string;
+        address: string;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'mapBlock';
@@ -1093,6 +1104,7 @@ export interface FAQBlock {
     answer: string;
     id?: string | null;
   }[];
+  bottomImage: number | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'faqBlock';
@@ -1395,6 +1407,23 @@ export interface CalendlyBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'calendlyBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "UniversitySliderBlock".
+ */
+export interface UniversitySliderBlock {
+  slides?:
+    | {
+        backgroundImage: number | Media;
+        universityImage: number | Media;
+        title: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'universitySliderBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1729,6 +1758,7 @@ export interface PagesSelect<T extends boolean = true> {
         ieltsPackages?: T | IELTSPackagesSelect<T>;
         ieltsRoadmap?: T | IELTSRoadmapSelect<T>;
         calendlyBlock?: T | CalendlyBlockSelect<T>;
+        universitySliderBlock?: T | UniversitySliderBlockSelect<T>;
       };
   meta?:
     | T
@@ -2085,6 +2115,13 @@ export interface MapBlockSelect<T extends boolean = true> {
         mapIframe?: T;
         id?: T;
       };
+  branchOffices?:
+    | T
+    | {
+        name?: T;
+        address?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -2143,6 +2180,7 @@ export interface FAQBlockSelect<T extends boolean = true> {
         answer?: T;
         id?: T;
       };
+  bottomImage?: T;
   id?: T;
   blockName?: T;
 }
@@ -2448,6 +2486,22 @@ export interface CalendlyBlockSelect<T extends boolean = true> {
   calendlyURL?: T;
   primaryColor?: T;
   textColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "UniversitySliderBlock_select".
+ */
+export interface UniversitySliderBlockSelect<T extends boolean = true> {
+  slides?:
+    | T
+    | {
+        backgroundImage?: T;
+        universityImage?: T;
+        title?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

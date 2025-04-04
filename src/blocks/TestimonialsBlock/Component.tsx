@@ -82,6 +82,7 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
                                                 width={35}
                                                 height={35}
                                                 priority={false}
+                                                loading="lazy"
                                             />
                                         </div>
                                         <div className="mt-4 bg-white rounded-xl p-3 shadow-sm">
