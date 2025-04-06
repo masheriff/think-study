@@ -72,6 +72,7 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
+    popups: Popup;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -88,6 +89,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    popups: PopupsSelect<false> | PopupsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -177,7 +179,7 @@ export interface Page {
     links?:
       | {
           link: {
-            type?: ('reference' | 'custom') | null;
+            type?: ('reference' | 'custom' | 'popup') | null;
             newTab?: boolean | null;
             reference?:
               | ({
@@ -189,6 +191,7 @@ export interface Page {
                   value: number | Post;
                 } | null);
             url?: string | null;
+            popup?: (number | null) | Popup;
             label: string;
             /**
              * Choose how the link should be rendered.
@@ -436,70 +439,24 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContentBlock".
+ * via the `definition` "popups".
  */
-export interface ContentBlock {
-  columns?:
-    | {
-        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        enableLink?: boolean | null;
-        link?: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'content';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MediaBlock".
- */
-export interface MediaBlock {
-  media: number | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'mediaBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ArchiveBlock".
- */
-export interface ArchiveBlock {
-  introContent?: {
+export interface Popup {
+  id: number;
+  title: string;
+  /**
+   * Controls whether this popup is active and can be displayed on the site
+   */
+  active?: boolean | null;
+  publishedAt?: string | null;
+  /**
+   * Add media to the top of your popup
+   */
+  media?: (number | null) | Media;
+  /**
+   * Content for your popup
+   */
+  content?: {
     root: {
       type: string;
       children: {
@@ -514,45 +471,47 @@ export interface ArchiveBlock {
     };
     [k: string]: unknown;
   } | null;
-  populateBy?: ('collection' | 'selection') | null;
-  relationTo?: 'posts' | null;
-  categories?: (number | Category)[] | null;
-  limit?: number | null;
-  selectedDocs?:
-    | {
-        relationTo: 'posts';
-        value: number | Post;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'archive';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FormBlock".
- */
-export interface FormBlock {
-  form: number | Form;
-  enableIntro?: boolean | null;
-  introContent?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'formBlock';
+  /**
+   * Include a form in this popup
+   */
+  includeForm?: boolean | null;
+  /**
+   * Select a form to include in this popup
+   */
+  form?: (number | null) | Form;
+  trigger: 'pageLoad' | 'exitIntent' | 'buttonClick' | 'timeDelay';
+  /**
+   * Delay in seconds before showing the popup (1-300 seconds)
+   */
+  delay?: number | null;
+  /**
+   * Controls how often the popup appears to users. For button-triggered popups, this limits how often the button will actually display the popup when clicked.
+   */
+  frequency?: ('everyVisit' | 'oncePerSession' | 'once24Hours' | 'once7Days' | 'onceEver') | null;
+  /**
+   * Select which pages this popup should appear on. Leave empty to show on all pages.
+   */
+  displayOnPages?: (number | Page)[] | null;
+  /**
+   * Select which pages this popup should NOT appear on
+   */
+  excludeOnPages?: (number | Page)[] | null;
+  appearance?: {
+    width?: ('small' | 'medium' | 'large' | 'fullScreen') | null;
+    position?: ('center' | 'top' | 'bottom') | null;
+    showCloseButton?: boolean | null;
+    closeOnBackgroundClick?: boolean | null;
+    animation?: ('fade' | 'slideUp' | 'slideDown' | 'zoomIn') | null;
+    /**
+     * Choose the background color for this popup
+     */
+    backgroundColor?: ('green' | 'blue' | 'white') | null;
+  };
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -727,6 +686,127 @@ export interface Form {
     | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentBlock".
+ */
+export interface ContentBlock {
+  columns?:
+    | {
+        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        enableLink?: boolean | null;
+        link?: {
+          type?: ('reference' | 'custom' | 'popup') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          popup?: (number | null) | Popup;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'content';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaBlock".
+ */
+export interface MediaBlock {
+  media: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'mediaBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArchiveBlock".
+ */
+export interface ArchiveBlock {
+  introContent?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  populateBy?: ('collection' | 'selection') | null;
+  relationTo?: 'posts' | null;
+  categories?: (number | Category)[] | null;
+  limit?: number | null;
+  selectedDocs?:
+    | {
+        relationTo: 'posts';
+        value: number | Post;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'archive';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FormBlock".
+ */
+export interface FormBlock {
+  form: number | Form;
+  enableIntro?: boolean | null;
+  introContent?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'formBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1634,6 +1714,10 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
+        relationTo: 'popups';
+        value: number | Popup;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -1726,6 +1810,7 @@ export interface PagesSelect<T extends boolean = true> {
                     newTab?: T;
                     reference?: T;
                     url?: T;
+                    popup?: T;
                     label?: T;
                     appearance?: T;
                   };
@@ -1809,6 +1894,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
               newTab?: T;
               reference?: T;
               url?: T;
+              popup?: T;
               label?: T;
               appearance?: T;
             };
@@ -2695,6 +2781,39 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "popups_select".
+ */
+export interface PopupsSelect<T extends boolean = true> {
+  title?: T;
+  active?: T;
+  publishedAt?: T;
+  media?: T;
+  content?: T;
+  includeForm?: T;
+  form?: T;
+  trigger?: T;
+  delay?: T;
+  frequency?: T;
+  displayOnPages?: T;
+  excludeOnPages?: T;
+  appearance?:
+    | T
+    | {
+        width?: T;
+        position?: T;
+        showCloseButton?: T;
+        closeOnBackgroundClick?: T;
+        animation?: T;
+        backgroundColor?: T;
+      };
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects_select".
  */
 export interface RedirectsSelect<T extends boolean = true> {
@@ -2956,7 +3075,7 @@ export interface Header {
   navItems?:
     | {
         link: {
-          type?: ('reference' | 'custom') | null;
+          type?: ('reference' | 'custom' | 'popup') | null;
           newTab?: boolean | null;
           reference?:
             | ({
@@ -2968,12 +3087,13 @@ export interface Header {
                 value: number | Post;
               } | null);
           url?: string | null;
+          popup?: (number | null) | Popup;
           label: string;
         };
         subMenu?:
           | {
               link: {
-                type?: ('reference' | 'custom') | null;
+                type?: ('reference' | 'custom' | 'popup') | null;
                 newTab?: boolean | null;
                 reference?:
                   | ({
@@ -2985,6 +3105,7 @@ export interface Header {
                       value: number | Post;
                     } | null);
                 url?: string | null;
+                popup?: (number | null) | Popup;
                 label: string;
               };
               id?: string | null;
@@ -2997,7 +3118,7 @@ export interface Header {
     links?:
       | {
           link: {
-            type?: ('reference' | 'custom') | null;
+            type?: ('reference' | 'custom' | 'popup') | null;
             newTab?: boolean | null;
             reference?:
               | ({
@@ -3009,6 +3130,7 @@ export interface Header {
                   value: number | Post;
                 } | null);
             url?: string | null;
+            popup?: (number | null) | Popup;
             label: string;
             /**
              * Choose how the link should be rendered.
@@ -3046,7 +3168,7 @@ export interface Footer {
     title: string;
     description: string;
     link: {
-      type?: ('reference' | 'custom') | null;
+      type?: ('reference' | 'custom' | 'popup') | null;
       newTab?: boolean | null;
       reference?:
         | ({
@@ -3058,13 +3180,14 @@ export interface Footer {
             value: number | Post;
           } | null);
       url?: string | null;
+      popup?: (number | null) | Popup;
       label: string;
     };
   };
   navigationLinks?:
     | {
         link: {
-          type?: ('reference' | 'custom') | null;
+          type?: ('reference' | 'custom' | 'popup') | null;
           newTab?: boolean | null;
           reference?:
             | ({
@@ -3076,6 +3199,7 @@ export interface Footer {
                 value: number | Post;
               } | null);
           url?: string | null;
+          popup?: (number | null) | Popup;
           label: string;
         };
         id?: string | null;
@@ -3084,7 +3208,7 @@ export interface Footer {
   legalLinks?:
     | {
         link: {
-          type?: ('reference' | 'custom') | null;
+          type?: ('reference' | 'custom' | 'popup') | null;
           newTab?: boolean | null;
           reference?:
             | ({
@@ -3096,6 +3220,7 @@ export interface Footer {
                 value: number | Post;
               } | null);
           url?: string | null;
+          popup?: (number | null) | Popup;
           label: string;
         };
         id?: string | null;
@@ -3120,7 +3245,7 @@ export interface Footer {
   social?:
     | {
         link: {
-          type?: ('reference' | 'custom') | null;
+          type?: ('reference' | 'custom' | 'popup') | null;
           newTab?: boolean | null;
           reference?:
             | ({
@@ -3132,6 +3257,7 @@ export interface Footer {
                 value: number | Post;
               } | null);
           url?: string | null;
+          popup?: (number | null) | Popup;
           label: string;
         };
         id?: string | null;
@@ -3149,7 +3275,7 @@ export interface Footer {
        * Link for the powered by text
        */
       link: {
-        type?: ('reference' | 'custom') | null;
+        type?: ('reference' | 'custom' | 'popup') | null;
         newTab?: boolean | null;
         reference?:
           | ({
@@ -3161,6 +3287,7 @@ export interface Footer {
               value: number | Post;
             } | null);
         url?: string | null;
+        popup?: (number | null) | Popup;
         label: string;
       };
     };
@@ -3183,6 +3310,7 @@ export interface HeaderSelect<T extends boolean = true> {
               newTab?: T;
               reference?: T;
               url?: T;
+              popup?: T;
               label?: T;
             };
         subMenu?:
@@ -3195,6 +3323,7 @@ export interface HeaderSelect<T extends boolean = true> {
                     newTab?: T;
                     reference?: T;
                     url?: T;
+                    popup?: T;
                     label?: T;
                   };
               id?: T;
@@ -3214,6 +3343,7 @@ export interface HeaderSelect<T extends boolean = true> {
                     newTab?: T;
                     reference?: T;
                     url?: T;
+                    popup?: T;
                     label?: T;
                     appearance?: T;
                   };
@@ -3248,6 +3378,7 @@ export interface FooterSelect<T extends boolean = true> {
               newTab?: T;
               reference?: T;
               url?: T;
+              popup?: T;
               label?: T;
             };
       };
@@ -3261,6 +3392,7 @@ export interface FooterSelect<T extends boolean = true> {
               newTab?: T;
               reference?: T;
               url?: T;
+              popup?: T;
               label?: T;
             };
         id?: T;
@@ -3275,6 +3407,7 @@ export interface FooterSelect<T extends boolean = true> {
               newTab?: T;
               reference?: T;
               url?: T;
+              popup?: T;
               label?: T;
             };
         id?: T;
@@ -3307,6 +3440,7 @@ export interface FooterSelect<T extends boolean = true> {
               newTab?: T;
               reference?: T;
               url?: T;
+              popup?: T;
               label?: T;
             };
         id?: T;
@@ -3327,6 +3461,7 @@ export interface FooterSelect<T extends boolean = true> {
                     newTab?: T;
                     reference?: T;
                     url?: T;
+                    popup?: T;
                     label?: T;
                   };
             };
@@ -3351,6 +3486,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'posts';
           value: number | Post;
+        } | null)
+      | ({
+          relationTo: 'popups';
+          value: number | Popup;
         } | null);
     global?: string | null;
     user?: (number | null) | User;

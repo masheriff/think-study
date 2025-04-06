@@ -11,6 +11,7 @@ import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical
 import { buildInitialFormState } from './buildInitialFormState'
 import { fields } from './fields'
 import { getClientSideURL } from '@/utilities/getURL'
+import { CornerDownLeft } from 'lucide-react'
 
 export type Value = unknown
 
@@ -33,6 +34,7 @@ export type FormBlockType = {
 export const FormBlock: React.FC<
   {
     id?: string
+    className?: string
   } & FormBlockType
 > = (props) => {
   const {
@@ -40,6 +42,7 @@ export const FormBlock: React.FC<
     form: formFromProps,
     form: { id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel } = {},
     introContent,
+    className
   } = props
 
   const formMethods = useForm({
@@ -125,7 +128,7 @@ export const FormBlock: React.FC<
   )
 
   return (
-    <div className="container lg:max-w-[48rem]">
+    <div className={className || 'container lg:max-w-[48rem]'}>
       {enableIntro && introContent && !hasSubmitted && (
         <RichText className="mb-8 lg:mb-12" data={introContent} enableGutter={false} />
       )}
@@ -146,7 +149,7 @@ export const FormBlock: React.FC<
                     const Field: React.FC<any> = fields?.[field.blockType as keyof typeof fields]
                     if (Field) {
                       return (
-                        <div className="mb-6 last:mb-0" key={index}>
+                        <div className="mb-2 last:mb-0" key={index}>
                           <Field
                             form={formFromProps}
                             {...field}
@@ -163,7 +166,7 @@ export const FormBlock: React.FC<
               </div>
               <div className="flex justify-center w-full absolute -bottom-5 left-0">
                 <Button form={formID} type="submit" variant="theme">
-                  {submitButtonLabel}
+                  {submitButtonLabel} <CornerDownLeft className="ml-2" size={16} />
                 </Button>
               </div>
 
