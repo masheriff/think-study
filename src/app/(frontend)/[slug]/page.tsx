@@ -86,7 +86,7 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { hero, layout } = page
 
   return (
-    <article className="pt-20 md:pt-2 pb-2 ">
+    <article className="pt-20 pb-2">
       <PageClient nonButtonPopups={nonButtonPopups.docs} />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
