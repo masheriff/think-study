@@ -25,6 +25,7 @@ import { draftMode } from 'next/headers';
 import './globals.css';
 import { getServerSideURL } from '@/utilities/getURL';
 import ScrollToTop from '@/components/ui/scrolltotop';
+import { WhatsappButtonWrapper } from '@/components/ui/whatsappbuttonwrapper';
 
 export const inter = Inter({ subsets: ['latin'] });
 export const roboto = Roboto({
@@ -104,6 +105,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           {children}
           <Footer />
         </Providers>
+        <WhatsappButtonWrapper />
         <ScrollToTop />
       </body>
     </html>
