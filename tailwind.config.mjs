@@ -38,8 +38,13 @@ const config = {
         'bounce-reverse': 'bounce-reverse 2s infinite',
         'slide-up': 'slideUp 1s ease-out',
         'infinite-slide-up': 'infiniteSlideUp 45s linear infinite',
+        'subtle-pulse': 'subtle-pulse 2s ease-in-out',
       },
       keyframes: {
+        'subtle-pulse': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.08)', boxShadow: '0 0 10px rgba(74, 222, 128, 0.6)' },
+        },
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
