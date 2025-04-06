@@ -3028,6 +3028,20 @@ export interface Header {
  */
 export interface Footer {
   id: number;
+  whatsappButton: {
+    /**
+     * Enable to show the WhatsApp button on the website.
+     */
+    showButton?: boolean | null;
+    /**
+     * Enter the phone number in international format (e.g., 919025186185).
+     */
+    phoneNumber: number;
+    /**
+     * Enter the default message to be sent when the button is clicked.
+     */
+    message: string;
+  };
   callToAction: {
     title: string;
     description: string;
@@ -3215,6 +3229,13 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
+  whatsappButton?:
+    | T
+    | {
+        showButton?: T;
+        phoneNumber?: T;
+        message?: T;
+      };
   callToAction?:
     | T
     | {

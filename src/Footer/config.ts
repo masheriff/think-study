@@ -9,6 +9,52 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
+      name: 'whatsappButton',
+      type: 'group',
+      label: 'WhatsApp Button',
+      fields: [
+        {
+          name: 'showButton',
+          type: 'checkbox',
+          label: 'Show WhatsApp Button',
+          defaultValue: true,
+          admin: {
+            description: 'Enable to show the WhatsApp button on the website.',
+          },
+        },
+        {
+          type: 'row',
+          admin: {
+            condition: (_, siblingData) => siblingData?.showButton === true,
+          },
+          fields: [
+            {
+              name: 'phoneNumber',
+              type: 'number',
+              label: 'WhatsApp Phone Number',
+              required: true,
+              admin: {
+                width: '50%',
+                description: 'Enter the phone number in international format (e.g., 919025186185).',
+              },
+              defaultValue: 919025186185,
+            },
+            {
+              name: 'message',
+              type: 'text',
+              label: 'WhatsApp Message',
+              required: true,
+              admin: {
+                width: '50%',
+                description: 'Enter the default message to be sent when the button is clicked.',
+              },
+              defaultValue: 'Hello, I have a question regarding your services.',
+            },
+          ]
+        },
+      ]
+    },
+    {
       name: 'callToAction',
       type: 'group',
       label: 'Call-to-Action Box',
