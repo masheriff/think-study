@@ -7,6 +7,7 @@ import type { CounselingBlock as CounselingBlockType, Media } from '@/payload-ty
 import useEmblaCarousel from 'embla-carousel-react'
 import { EmblaOptionsType } from 'embla-carousel'
 import { DotButton, useDotButton } from '@/components/ui/EmblaCarouselDotButton'
+import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
 
 type Props = CounselingBlockType & {
     className?: string
@@ -36,7 +37,8 @@ export const CounselingBlock: React.FC<Props> = (props) => {
     }
 
     // Initialize Embla carousel
-    const [emblaRef, emblaApi] = useEmblaCarousel(options)
+    const [emblaRef, emblaApi] = useEmblaCarousel(options,
+        [WheelGesturesPlugin({ forceWheelAxis: 'y' })])
 
     // Use custom hook for dot navigation
     const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi)

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { cn } from '@/utilities/ui';
 import type { TestimonialsBlock as TestimonialsBlockType } from '@/payload-types';
 import useEmblaCarousel from "embla-carousel-react";
+import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
 
 type Props = TestimonialsBlockType & {
     className?: string
@@ -13,24 +14,27 @@ type Props = TestimonialsBlockType & {
 export const TestimonialsBlock: React.FC<Props> = (props) => {
     const { className, heading, description, testimonials } = props;
 
-    // Updated carousel configuration for 4-2-1 items display
-    const [emblaRef] = useEmblaCarousel({
-        align: "start",
-        skipSnaps: false,
-        dragFree: true,
-        containScroll: "keepSnaps",
-        slidesToScroll: 1,
-        breakpoints: {
-            "(min-width: 1024px)": { // Desktop
-                slidesToScroll: 1,
-                align: "start",
-            },
-            "(min-width: 768px) and (max-width: 1023px)": { // Tablet
-                slidesToScroll: 1,
-                align: "start",
+    // Updated carousel configuration with WheelGesturesPlugin
+    const [emblaRef] = useEmblaCarousel(
+        {
+            align: "start",
+            skipSnaps: false,
+            dragFree: true,
+            containScroll: "keepSnaps",
+            slidesToScroll: 1,
+            breakpoints: {
+                "(min-width: 1024px)": { // Desktop
+                    slidesToScroll: 1,
+                    align: "start",
+                },
+                "(min-width: 768px) and (max-width: 1023px)": { // Tablet
+                    slidesToScroll: 1,
+                    align: "start",
+                }
             }
-        }
-    });
+        },
+        [WheelGesturesPlugin({ forceWheelAxis: 'y' })]
+    );
 
     return (
         <section className={cn("my-8", className)}>

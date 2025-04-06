@@ -14,18 +14,50 @@ interface HeaderClientProps {
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   const pathname = usePathname()
-  useEffect(() => {
-    // Close mobile menu when pathname changes
-    setIsOpen(false)
-  }, [pathname])
 
   const [isOpen, setIsOpen] = useState(false)
 
+  // Handle body scroll lock when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      // Lock scrolling
+      document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.width = '100%'
+      document.body.style.top = `-${window.scrollY}px`
+    } else {
+      // Unlock scrolling
+      const scrollY = document.body.style.top
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+      document.body.style.top = ''
+
+      // Restore scroll position
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0', 10) * -1)
+      }
+    }
+
+    // Cleanup function to ensure we don't leave body with modified styles
+    return () => {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+      document.body.style.top = ''
+    }
+  }, [isOpen])
+
+  // Close mobile menu when pathname changes
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
+
   return (
-    <header className="relative z-20 bg-white">
+    <header className="fixed w-full shadow-md z-20 bg-white">
       <div className="container py-4 flex justify-between items-center">
         <Link href="/" className="flex-shrink-0">
-          <Logo priority />
+          <Logo className='h-[40px]' priority />
         </Link>
         <div className="hidden lg:flex items-center space-x-8">
           <HeaderNav data={data} />

@@ -32,6 +32,7 @@ import { IELTSRoadmap } from './IELTSRoadmap/Component'
 import AppointmentBlock from './AppointmentBlock/Component'
 import CalendlyBlock from './CalendlyBlock/Component'
 import UniversitySliderBlock from './UniversitySliderBlock/Component'
+import { ContactUsBlock } from './ContactUsBlock/component'
 
 type BlockComponentsType = {
   formBlock: typeof FormBlock
@@ -65,6 +66,7 @@ type BlockComponentsType = {
   ieltsRoadmap: typeof IELTSRoadmap
   calendlyBlock: typeof CalendlyBlock
   universitySliderBlock: typeof UniversitySliderBlock
+  contactUsBlock: typeof ContactUsBlock
 
 }
 
@@ -99,7 +101,8 @@ const blockComponents: BlockComponentsType = {
   ieltsPackages: IELTSPackages,
   ieltsRoadmap: IELTSRoadmap,
   calendlyBlock: CalendlyBlock,
-  universitySliderBlock: UniversitySliderBlock
+  universitySliderBlock: UniversitySliderBlock,
+  contactUsBlock: ContactUsBlock
 }
 
 export const RenderBlocks: React.FC<{

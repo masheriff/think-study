@@ -3,8 +3,6 @@ name: Payload CMS Deployment
 on:
   push:
     branches: ["main", "staging"]
-  pull_request:
-    branches: ["main", "staging"]
 
 jobs:
   deploy:
@@ -41,6 +39,13 @@ jobs:
           echo "NEXT_PUBLIC_ENVIRONMENT=${{ env.NEXT_PUBLIC_ENVIRONMENT }}" >> .env
           echo "PORT=${{ env.PORT }}" >> .env
           echo "APP_NAME=${{ env.APP_NAME }}" >> .env
+          echo "SMTP_HOST=${{ secrets.SMTP_HOST }}" >> .env
+          echo "SMTP_PORT=${{ secrets.SMTP_PORT }}" >> .env
+          echo "SMTP_USER=${{ secrets.SMTP_USER }}" >> .env
+          echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}" >> .env
+          echo "SMTP_FROM_EMAIL=${{ secrets.SMTP_FROM_EMAIL }}" >> .env
+          echo "SMTP_FROM_NAME=${{ secrets.SMTP_FROM_NAME }}" >> .env
+          echo "SMTP_SECURE=${{ secrets.SMTP_SECURE }}" >> .env
 
       - name: Deploy via rsync
         uses: burnett01/rsync-deployments@5.2

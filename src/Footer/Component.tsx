@@ -44,7 +44,7 @@ export async function Footer() {
         {/* Main Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
           {/* Column 1: Call to Action Box */}
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-3">
             <div className="bg-[#C1F177] text-black p-8 rounded-3xl flex flex-col items-center text-center">
               <h3 className="text-xl font-medium mb-2">{footerData?.callToAction?.title}</h3>
               <p className="mb-6">{footerData?.callToAction?.description}</p>
@@ -62,7 +62,7 @@ export async function Footer() {
             {/* Navigation Links */}
             <div className="mb-6">
               {footerData?.navigationLinks?.map(({ link }, i) => (
-                <div key={i} className="mb-3">
+                <div key={i}>
                   <CMSLink {...link} className="text-base lg:text-lg hover:text-[#F7674F] transition-colors" />
                 </div>
               ))}
@@ -71,7 +71,7 @@ export async function Footer() {
             {/* Legal Links - with small spacing between nav and legal */}
             <div className="mt-2">
               {footerData?.legalLinks?.map(({ link }, i) => (
-                <div key={i} className="mb-3">
+                <div key={i}>
                   <CMSLink {...link} className="text-base lg:text-lg hover:text-[#F7674F] transition-colors" />
                 </div>
               ))}
@@ -102,7 +102,7 @@ export async function Footer() {
           </div>
 
           {/* Column 4: Social Media Icons in Vertical Layout (desktop) and Horizontal (mobile) */}
-          <div className="flex flex-col lg:col-span-1">
+          <div className="flex flex-col lg:col-span-2">
 
 
             {/* Social Media Icons */}
@@ -114,7 +114,7 @@ export async function Footer() {
                     key={i}
                     {...link}
                     label={""}
-                    className="text-white hover:text-[#F7674F] transition-colors"
+                    className="text-white hover:text-[#F7674F] transition-colors flex justify-end"
                   >
                     {socialType && SocialIcons[socialType]}
                   </CMSLink>
