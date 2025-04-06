@@ -239,6 +239,7 @@ export interface Page {
     | IELTSRoadmap
     | CalendlyBlock
     | UniversitySliderBlock
+    | ContactUsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1427,6 +1428,21 @@ export interface UniversitySliderBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactUsBlock".
+ */
+export interface ContactUsBlock {
+  heading: string;
+  description: string;
+  /**
+   * Select a form to include in this block
+   */
+  form: number | Form;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactUsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1759,6 +1775,7 @@ export interface PagesSelect<T extends boolean = true> {
         ieltsRoadmap?: T | IELTSRoadmapSelect<T>;
         calendlyBlock?: T | CalendlyBlockSelect<T>;
         universitySliderBlock?: T | UniversitySliderBlockSelect<T>;
+        contactUsBlock?: T | ContactUsBlockSelect<T>;
       };
   meta?:
     | T
@@ -2502,6 +2519,17 @@ export interface UniversitySliderBlockSelect<T extends boolean = true> {
         title?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactUsBlock_select".
+ */
+export interface ContactUsBlockSelect<T extends boolean = true> {
+  heading?: T;
+  description?: T;
+  form?: T;
   id?: T;
   blockName?: T;
 }

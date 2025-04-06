@@ -22,7 +22,8 @@
     "migrate:status": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:status",
     "migrate:fresh": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:fresh",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
-    "syncstagingtolocal": "tsx syncstagingtolocal.ts"
+    "sync:stagingdbtolocal": "tsx database-sync.js",
+    "sync:stagingmediatolocal": "tsx folder-sync.js"
   },
   "dependencies": {
     "@payloadcms/admin-bar": "latest",
@@ -48,6 +49,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.7",
     "embla-carousel-react": "^8.5.2",
+    "embla-carousel-wheel-gestures": "^8.0.2",
     "file-type": "20.4.1",
     "geist": "^1.3.0",
     "graphql": "^16.8.2",
