@@ -51,6 +51,34 @@ export default async function Page({ params: paramsPromise }: Args) {
     slug,
   })
 
+  // Fetch non-button popups server-side
+  const payload = await getPayload({ config: configPromise })
+  const nonButtonPopups = await payload.find({
+    collection: 'popups',
+    draft,
+    overrideAccess: draft,
+    where: {
+      and: [
+        {
+          active: {
+            equals: true,
+          },
+        },
+        {
+          publishedAt: {
+            exists: true,
+          },
+        },
+        {
+          trigger: {
+            not_equals: 'buttonClick',
+          },
+        },
+      ],
+    },
+    depth: 2,
+  })
+
   if (!page) {
     return <PayloadRedirects url={url} />
   }
@@ -58,8 +86,8 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { hero, layout } = page
 
   return (
-    <article className="pt-20 pb-2 ">
-      <PageClient />
+    <article className="pt-20 md:pt-2 pb-2 ">
+      <PageClient nonButtonPopups={nonButtonPopups.docs} />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
 
