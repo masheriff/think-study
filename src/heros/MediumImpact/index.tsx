@@ -4,6 +4,7 @@ import type { Page } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
+import { transformLinkProps } from "@/utilities/transformLinkProps"
 
 export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richText }) => {
     return (
@@ -16,7 +17,7 @@ export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richTex
                         {links.map(({ link }, i) => {
                             return (
                                 <li key={i}>
-                                    <CMSLink {...link} />
+                                    <CMSLink {...transformLinkProps(link)} />
                                 </li>
                             )
                         })}

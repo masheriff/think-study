@@ -7,7 +7,7 @@ import type { Header } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { Logo } from '@/components/Logo/Logo'
 import { Menu, X } from 'lucide-react'
-
+import { transformLinkProps } from "@/utilities/transformLinkProps"
 interface HeaderClientProps {
   data: Header
 }
@@ -65,7 +65,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
             data.buttons.links.map(({ link }, idx) => (
               <CMSLink
                 key={idx}
-                {...link}
+                {...transformLinkProps(link)}
                 className="bg-[#6B5BA9] hover:bg-[#574A8C] text-white px-4 py-2 rounded-3xl transition-colors"
               />
             ))}
@@ -85,7 +85,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
                 data.buttons.links.map(({ link }, idx) => (
                   <CMSLink
                     key={idx}
-                    {...link}
+                    {...transformLinkProps(link)}
                     className="w-2/3 bg-[#6B5BA9] hover:bg-[#574A8C] text-white mx-auto px-4 py-2 rounded-3xl transition-colors block text-center mt-4"
                   />
                 ))}
