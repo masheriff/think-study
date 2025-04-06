@@ -16,7 +16,7 @@ export const Logo = (props: Props) => {
       width={193}
       height={34}
       priority={priority}
-      className={clsx('max-w-[9.375rem] w-full h-[34px]', className)}
+      className={clsx('w-full', className)}
       src="/think-study-logo-header.svg"
     />
   )

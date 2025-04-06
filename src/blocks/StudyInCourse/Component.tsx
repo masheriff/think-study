@@ -34,7 +34,7 @@ export const StudyInCourse: React.FC<Props> = (props) => {
                         </h2>
                         <p
                             id="study-country"
-                            className="text-[50px] md:text-[80px] lg:text-[156px] text-[#000000] font-montserrat font-bold leading-none truncate"
+                            className="text-[50px] md:text-[80px] lg:text-[130px] text-[#000000] font-montserrat font-bold leading-none"
                         >
                             {country}
                         </p>

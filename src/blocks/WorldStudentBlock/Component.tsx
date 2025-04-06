@@ -236,14 +236,14 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
                         return (
                             <div
                                 key={index}
-                                className="marker-item absolute bg-white p-1 md:p-2 flex flex-row items-center justify-between rounded-full shadow-lg text-xs md:text-sm lg:text-base"
+                                className="marker-item absolute bg-white p-1 md:p-2 flex flex-row items-center justify-between rounded-full shadow-lg text-xs md:text-sm lg:text-base max-w-1"
                                 style={{
                                     zIndex: 10,
                                     left: item.left || pos.left,
                                     right: item.right || 'auto',
                                     top: item.top || pos.top,
                                     bottom: item.bottom || 'auto',
-                                    maxWidth: '90%'
+                                    maxWidth: '200px'
                                 }}
                             >
                                 {typeof item.image === 'object' && item.image !== null && 'url' in item.image && (
@@ -252,7 +252,7 @@ export const WorldStudentBlock: React.FC<Props> = (props) => {
                                         alt={item.title || ''}
                                         height={50}
                                         width={50}
-                                        className='w-8 h-8 rounded-full md:w-[50px] md:h-[50px] mr-2'
+                                        className='w-8 h-8 rounded-full md:w-[40px] md:h-[40px] mr-2'
                                     />
                                 )}
                                 <div>

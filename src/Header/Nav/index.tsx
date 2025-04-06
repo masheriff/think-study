@@ -4,12 +4,14 @@ import React, { useState, useEffect, useRef } from 'react'
 import type { Header as HeaderType } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { ChevronDown } from 'lucide-react'
+import { usePathname } from 'next/navigation' // Import for path tracking
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = data?.navItems || []
   const [activeSubmenu, setActiveSubmenu] = useState<number | null>(null)
   const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop'>('desktop')
   const navRef = useRef<HTMLDivElement>(null)
+  const pathname = usePathname() // Get current path for active state
 
   // Handle clicks outside nav to close submenus
   useEffect(() => {
@@ -41,6 +43,11 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
     return () => window.removeEventListener('resize', checkScreenSize)
   }, [])
 
+  // Reset active submenu when path changes
+  useEffect(() => {
+    setActiveSubmenu(null)
+  }, [pathname])
+
   // Toggle submenu on mobile/tablet
   const toggleSubmenu = (index: number) => {
     if (screenSize !== 'desktop') {
@@ -48,21 +55,60 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
     }
   }
 
+  // Check if link is active
+  const isLinkActive = (link: any) => {
+    if (!link) return false
+
+    // Get the actual URL from the link object based on its type
+    let href = ''
+    if (link.type === 'custom' && link.url) {
+      href = link.url
+    } else if (link.type === 'reference' && link.reference) {
+      // For reference links, we need to use the slug
+      // This assumes pages and posts have slugs
+      if (link.reference.value && typeof link.reference.value !== 'number') {
+        href = `/${link.reference.value.slug || ''}`
+      }
+    }
+
+    if (!href) return false
+
+    // Clean up URLs for comparison
+    const currentPath = pathname.replace(/\/$/, '')
+    const linkPath = href.replace(/^https?:\/\/[^\/]+/, '').replace(/\/$/, '')
+
+    // Check for exact match or if the current path starts with the link path
+    return currentPath === linkPath ||
+      (linkPath !== '/' && currentPath.startsWith(linkPath))
+  }
+
   return (
     <nav ref={navRef} className="flex flex-col gap-3 md:gap-6 lg:gap-8 lg:flex-row">
       {navItems.map((item, i) => {
         const hasSubMenu = item.subMenu && item.subMenu.length > 0
-        const isActive = activeSubmenu === i
+        const isSubMenuOpen = activeSubmenu === i
+
+        // Check if this item or any of its subitems are active
+        const isCurrentItemActive = isLinkActive(item.link)
+        const isAnySubItemActive = hasSubMenu && item.subMenu?.some(
+          subItem => isLinkActive(subItem.link)
+        )
+
+        // Item is active if it's the current path or one of its subitems is
+        const isActive = isCurrentItemActive || isAnySubItemActive
 
         return (
           <div key={i} className={`
-            relative 
+            relative w-full
             ${hasSubMenu ? (screenSize === 'desktop' ? 'group' : '') : ''}
+            ${(screenSize === 'mobile' || screenSize === 'tablet') ? 'border-b border-gray-100 pb-2 mb-2' : ''}
           `}>
             <div
               className={`
-                flex items-center justify-center cursor-pointer
-                ${hasSubMenu && isActive ? 'text-[#F7674F]' : ''}
+                flex items-center cursor-pointer
+                ${(screenSize === 'mobile' || screenSize === 'tablet') ? 'justify-between' : 'justify-center'}
+                ${isActive ? 'text-[#F7674F]' : ''}
+                ${hasSubMenu && isSubMenuOpen ? 'text-[#F7674F]' : ''}
               `}
               onClick={() => hasSubMenu && toggleSubmenu(i)}
             >
@@ -70,55 +116,94 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                 {...item.link}
                 appearance="link"
                 className={`
-                  text-sm md:text-base px-2 py-1 md:px-4 md:py-2
+                  text-sm md:text-base px-2 py-2 md:px-4 md:py-2
                   transition-colors duration-200 
                   hover:text-[#F7674F]
+                  ${isActive ? 'text-[#F7674F] font-medium' : ''}
+                  ${(screenSize === 'mobile' || screenSize === 'tablet') ? 'text-base' : ''}
                 `}
               />
               {hasSubMenu && (
                 <ChevronDown
                   className={`
                     ml-1 w-4 h-4 transition-transform duration-200
-                    ${isActive ? 'transform rotate-180 text-[#F7674F]' : ''}
+                    ${isSubMenuOpen ? 'transform rotate-180 text-[#F7674F]' : ''}
+                    ${isActive && !isSubMenuOpen ? 'text-[#F7674F]' : ''}
                   `}
                 />
               )}
             </div>
-            {hasSubMenu && (
+
+            {/* Desktop dropdown menu */}
+            {hasSubMenu && screenSize === 'desktop' && (
               <ul
                 className={`
                   absolute bg-white shadow-md py-2 z-10
                   border border-gray-100 rounded-md
                   transition-all duration-200 ease-in-out
-                  
-                  ${screenSize === 'mobile'
-                    ? 'left-0 right-0 w-64 max-w-full'
-                    : screenSize === 'tablet'
-                      ? 'left-1/2 -translate-x-1/2 min-w-[200px]'
-                      : 'left-0 min-w-[220px]'
-                  }
-                  
-                  ${screenSize === 'desktop'
-                    ? 'hidden group-hover:block opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 top-[calc(100%_+_0.15rem)]'
-                    : isActive
-                      ? 'block opacity-100 top-full mt-1'
-                      : 'hidden opacity-0'
-                  }
+                  left-0 min-w-[220px]
+                  hidden group-hover:block opacity-0 group-hover:opacity-100 
+                  translate-y-1 group-hover:translate-y-0 top-[calc(100%_+_0.15rem)]
                 `}
               >
-                {item.subMenu?.map((subItem, j) => (
-                  <li
-                    key={j}
-                    className="px-4 py-2 hover:bg-gray-50 transition-colors duration-150"
-                  >
-                    <CMSLink
-                      {...subItem.link}
-                      appearance="link"
-                      className="text-sm block w-full transition-colors duration-150 hover:text-[#F7674F]"
-                    />
-                  </li>
-                ))}
+                {item.subMenu?.map((subItem, j) => {
+                  const isSubItemActive = isLinkActive(subItem.link)
+
+                  return (
+                    <li
+                      key={j}
+                      className={`
+                        px-4 py-2 hover:bg-gray-50 transition-colors duration-150
+                        ${isSubItemActive ? 'bg-gray-50' : ''}
+                      `}
+                    >
+                      <CMSLink
+                        {...subItem.link}
+                        appearance="link"
+                        className={`
+                          text-sm block w-full transition-colors duration-150 hover:text-[#F7674F]
+                          ${isSubItemActive ? 'text-[#F7674F] font-medium' : ''}
+                        `}
+                      />
+                    </li>
+                  )
+                })}
               </ul>
+            )}
+
+            {/* Mobile/Tablet accordion submenu */}
+            {hasSubMenu && (screenSize === 'mobile' || screenSize === 'tablet') && (
+              <div
+                className={`
+                  w-full mt-2 transition-all duration-300 ease-in-out overflow-hidden
+                  ${isSubMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
+                `}
+              >
+                <ul className="bg-gray-50 rounded-md py-1">
+                  {item.subMenu?.map((subItem, j) => {
+                    const isSubItemActive = isLinkActive(subItem.link)
+
+                    return (
+                      <li
+                        key={j}
+                        className={`
+                          px-4 py-2 hover:bg-gray-100 transition-colors duration-150
+                          ${isSubItemActive ? 'bg-gray-100' : ''}
+                        `}
+                      >
+                        <CMSLink
+                          {...subItem.link}
+                          appearance="link"
+                          className={`
+                            text-sm block w-full transition-colors duration-150 hover:text-[#F7674F]
+                            ${isSubItemActive ? 'text-[#F7674F] font-medium' : ''}
+                          `}
+                        />
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
             )}
           </div>
         )
