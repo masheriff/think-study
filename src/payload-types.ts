@@ -937,6 +937,22 @@ export interface CounselingBlock {
         courseName: string;
         cardImage: number | Media;
         icon: number | Media;
+        link: {
+          type?: ('reference' | 'custom' | 'popup') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          popup?: (number | null) | Popup;
+          label: string;
+        };
         countries?:
           | {
               name: string;
@@ -2060,6 +2076,16 @@ export interface CounselingBlockSelect<T extends boolean = true> {
         courseName?: T;
         cardImage?: T;
         icon?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              popup?: T;
+              label?: T;
+            };
         countries?:
           | T
           | {

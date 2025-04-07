@@ -1,4 +1,5 @@
 import { Block } from 'payload'
+import { link } from '@/fields/link'
 
 export const CounselingBlock: Block = {
     slug: 'counselingBlock',
@@ -64,6 +65,9 @@ export const CounselingBlock: Block = {
                     relationTo: 'media',
                     required: true,
                 },
+                link({
+                    appearances: false,
+                }),
                 {
                     name: 'countries',
                     type: 'array',
