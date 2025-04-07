@@ -35,13 +35,13 @@ export const CallToActionBlock: React.FC<Props> = (props) => {
                             <div className="flex items-center gap-4">
                                 <div>
                                     {office.phoneNumbers.map((phone, idx) => (
-                                        <div key={idx} className="text-3xl font-medium">
+                                        <div key={idx} className="text-xl md:text-3xl font-medium">
                                             {phone.number}
                                         </div>
                                     ))}
                                 </div>
-                                <div className="text-7xl ms-2">&#125;</div>
-                                <div className="text-3xl text-[#FF0000]">{office.name}</div>
+                                <div className="text-5xl md:text-7xl ms-2">&#125;</div>
+                                <div className="text-xl md:text-3xl text-[#FF0000]">{office.name}</div>
                             </div>
                         </div>
                     ))}

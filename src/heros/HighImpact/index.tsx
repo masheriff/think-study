@@ -5,6 +5,7 @@ import React, { useEffect } from 'react'
 import type { Page } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import TextHighlighter from '@/components/ui/texthighlighter'
+import { transformLinkProps } from "@/utilities/transformLinkProps"
 
 export const HighImpactHero: React.FC<Page['hero']> = ({ heading, description, links }) => {
   const { setHeaderTheme } = useHeaderTheme()
@@ -38,7 +39,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ heading, description, l
             <ul className="flex flex-wrap justify-center gap-3 sm:gap-4">
               {links.map(({ link }, i) => (
                 <li key={i}>
-                  <CMSLink {...link} className="rounded-3xl text-sm sm:text-base inline-block" />
+                  <CMSLink {...transformLinkProps(link)} className="rounded-3xl text-sm sm:text-base inline-block" />
                 </li>
               ))}
             </ul>

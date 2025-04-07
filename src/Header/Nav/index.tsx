@@ -5,6 +5,7 @@ import type { Header as HeaderType } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { ChevronDown } from 'lucide-react'
 import { usePathname } from 'next/navigation' // Import for path tracking
+import { transformLinkProps } from "@/utilities/transformLinkProps"
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = data?.navItems || []
@@ -113,7 +114,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
               onClick={() => hasSubMenu && toggleSubmenu(i)}
             >
               <CMSLink
-                {...item.link}
+                {...transformLinkProps(item.link)}
                 appearance="link"
                 className={`
                   text-sm md:text-base px-2 py-2 md:px-4 md:py-2
@@ -158,7 +159,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                       `}
                     >
                       <CMSLink
-                        {...subItem.link}
+                        {...transformLinkProps(subItem.link)}
                         appearance="link"
                         className={`
                           text-sm block w-full transition-colors duration-150 hover:text-[#F7674F]
@@ -192,7 +193,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                         `}
                       >
                         <CMSLink
-                          {...subItem.link}
+                          {...transformLinkProps(subItem.link)}
                           appearance="link"
                           className={`
                             text-sm block w-full transition-colors duration-150 hover:text-[#F7674F]

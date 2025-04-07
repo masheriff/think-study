@@ -8,6 +8,9 @@ import useEmblaCarousel from 'embla-carousel-react'
 import { EmblaOptionsType } from 'embla-carousel'
 import { DotButton, useDotButton } from '@/components/ui/EmblaCarouselDotButton'
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
+import { transformLinkProps } from '@/utilities/transformLinkProps'
+import { CMSLink } from '@/components/Link'
+import ClickableCarouselItem from '@/components/ClickableCarouselItem'
 
 type Props = CounselingBlockType & {
     className?: string
@@ -79,40 +82,44 @@ export const CounselingBlock: React.FC<Props> = (props) => {
                                     key={index}
                                     className="flex-[0_0_100%] sm:flex-[0_0_80%] md:flex-[0_0_48%] lg:flex-[0_0_32%] m-4 embla__slide"
                                 >
-                                    <div className="bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 h-auto sm:h-56 md:h-60 relative">
-                                        {card.icon && typeof card.icon !== 'number' && (
-                                            <div className="absolute top-[10px] right-[-6px] transform -translate-x-1/2 p-1 rounded-full bg-lime-400 w-10 h-10">
-                                                <Image
-                                                    src={card.icon.url || ''}
-                                                    alt="Icon"
-                                                    width={40}
-                                                    height={40}
-                                                    className="p-1"
-                                                />
+
+                                    <ClickableCarouselItem link={transformLinkProps(card.link)} className="h-full">
+                                        <div className="bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 h-auto sm:h-56 md:h-60 relative">
+                                            {card.icon && typeof card.icon !== 'number' && (
+                                                <div className="absolute top-[10px] right-[-6px] transform -translate-x-1/2 p-1 rounded-full bg-lime-400 w-10 h-10">
+                                                    <Image
+                                                        src={card.icon.url || ''}
+                                                        alt="Icon"
+                                                        width={40}
+                                                        height={40}
+                                                        className="p-1"
+                                                    />
+                                                </div>
+                                            )}
+                                            <div className="flex flex-col items-center justify-center mt-10">
+                                                <h3 className="text-base font-light mb-2">{card.title}</h3>
+                                                <p className="text-black-600 font-semibold mb-2">{card.courseName}</p>
+                                                <div className='flex flex-col sm:flex-row justify-center items-center gap-2 p-2 rounded-2xl border border-gray-500'>
+                                                    {card.countries?.map((country, index) => (
+                                                        <p key={index} className="text-black/80 text-sm text-center">
+                                                            {country.name}
+                                                        </p>
+                                                    ))}
+                                                </div>
                                             </div>
-                                        )}
-                                        <div className="flex flex-col items-center justify-center mt-10">
-                                            <h3 className="text-base font-light mb-2">{card.title}</h3>
-                                            <p className="text-black-600 font-semibold mb-2">{card.courseName}</p>
-                                            <div className='flex flex-col sm:flex-row justify-center items-center gap-2 p-2 rounded-2xl border border-gray-500'>
-                                                {card.countries?.map((country, index) => (
-                                                    <p key={index} className="text-black/80 text-sm text-center">
-                                                        {country.name}
-                                                    </p>
-                                                ))}
-                                            </div>
+                                            {card.cardImage && typeof card.cardImage !== 'number' && (
+
+                                                <div className="absolute bottom-[-10px] right-[1px] w-24 h-24 md:w-28 md:h-28 mb-6">
+                                                    <Image
+                                                        src={card.cardImage.url || ''}
+                                                        alt="Card Image"
+                                                        fill
+                                                        className="object-cover rounded-lg"
+                                                    />
+                                                </div>
+                                            )}
                                         </div>
-                                        {card.cardImage && typeof card.cardImage !== 'number' && (
-                                            <div className="absolute bottom-[-10px] right-[1px] w-24 h-24 md:w-28 md:h-28 mb-6">
-                                                <Image
-                                                    src={card.cardImage.url || ''}
-                                                    alt="Card Image"
-                                                    fill
-                                                    className="object-cover rounded-lg"
-                                                />
-                                            </div>
-                                        )}
-                                    </div>
+                                    </ClickableCarouselItem>
                                 </div>
                             ))}
                         </div>

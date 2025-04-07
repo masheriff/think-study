@@ -2,6 +2,7 @@ import { getCachedGlobal } from "@/utilities/getGlobals"
 import type { ReactElement } from "react"
 import type { Footer } from "@/payload-types"
 import { CMSLink } from "@/components/Link"
+import { transformLinkProps } from "@/utilities/transformLinkProps"
 
 // Define valid social media types
 type SocialIconType = "facebook" | "twitter" | "instagram" | "linkedin" | "x"
@@ -50,7 +51,7 @@ export async function Footer() {
               <p className="mb-6">{footerData?.callToAction?.description}</p>
               {footerData?.callToAction?.link && (
                 <CMSLink
-                  {...footerData.callToAction.link}
+                  {...transformLinkProps(footerData.callToAction.link)}
                   className="bg-[#6D5CAB] hover:bg-[#5A4A9B] text-white px-8 py-3 rounded-full transition-colors font-medium"
                 />
               )}
@@ -63,7 +64,7 @@ export async function Footer() {
             <div className="mb-6">
               {footerData?.navigationLinks?.map(({ link }, i) => (
                 <div key={i}>
-                  <CMSLink {...link} className="text-base lg:text-lg hover:text-[#F7674F] transition-colors" />
+                  <CMSLink {...transformLinkProps(link)} className="text-base lg:text-lg hover:text-[#F7674F] transition-colors" />
                 </div>
               ))}
             </div>
@@ -72,7 +73,7 @@ export async function Footer() {
             <div className="mt-2">
               {footerData?.legalLinks?.map(({ link }, i) => (
                 <div key={i}>
-                  <CMSLink {...link} className="text-base lg:text-lg hover:text-[#F7674F] transition-colors" />
+                  <CMSLink {...transformLinkProps(link)} className="text-base lg:text-lg hover:text-[#F7674F] transition-colors" />
                 </div>
               ))}
             </div>
@@ -80,8 +81,6 @@ export async function Footer() {
 
           {/* Column 3: Contact Information */}
           <div className="flex flex-col space-y-4 lg:col-span-3">
-
-
             {/* Phone Numbers */}
             {footerData?.contactInfo?.phoneNumbers?.map((item, i) => (
               <div key={i} className="mb-2">
@@ -103,8 +102,6 @@ export async function Footer() {
 
           {/* Column 4: Social Media Icons in Vertical Layout (desktop) and Horizontal (mobile) */}
           <div className="flex flex-col lg:col-span-2">
-
-
             {/* Social Media Icons */}
             <div className="flex flex-row md:flex-col space-x-6 md:space-x-0 md:space-y-6">
               {footerData?.social?.map(({ link }, i) => {
@@ -112,7 +109,7 @@ export async function Footer() {
                 return (
                   <CMSLink
                     key={i}
-                    {...link}
+                    {...transformLinkProps(link)}
                     label={""}
                     className="text-white hover:text-[#F7674F] transition-colors flex justify-end"
                   >
@@ -133,7 +130,7 @@ export async function Footer() {
                 | {footerData.copyrightSection.poweredByText.text}
                 {footerData.copyrightSection.poweredByText.link && (
                   <CMSLink
-                    {...footerData.copyrightSection.poweredByText.link}
+                    {...transformLinkProps(footerData.copyrightSection.poweredByText.link)}
                     className="ml-1 text-[#F7674F] hover:underline"
                   />
                 )}

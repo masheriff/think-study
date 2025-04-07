@@ -49,6 +49,10 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
                 label: 'Custom URL',
                 value: 'custom',
               },
+              {
+                label: 'Popup',
+                value: 'popup',
+              },
             ],
           },
           {
@@ -85,6 +89,16 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
         condition: (_, siblingData) => siblingData?.type === 'custom',
       },
       label: 'Custom URL',
+      required: true,
+    },
+    {
+      name: 'popup',
+      type: 'relationship',
+      admin: {
+        condition: (_, siblingData) => siblingData?.type === 'popup',
+      },
+      label: 'Popup to trigger',
+      relationTo: 'popups',
       required: true,
     },
   ]

@@ -3,9 +3,9 @@ import { cn } from '@/utilities/ui'
 import Link from 'next/link'
 import React from 'react'
 
-import type { Page, Post } from '@/payload-types'
+import type { Page, Post, Popup } from '@/payload-types'
 
-type CMSLinkType = {
+export type CMSLinkType = {
   appearance?: 'inline' | ButtonProps['variant']
   children?: React.ReactNode
   className?: string
@@ -15,8 +15,13 @@ type CMSLinkType = {
     relationTo: 'pages' | 'posts'
     value: Page | Post | string | number
   } | null
+  popup?: {
+    id: string | number
+    relationTo: 'popups'
+    value: Popup | string | number
+  } | null
   size?: ButtonProps['size'] | null
-  type?: 'custom' | 'reference' | null
+  type?: 'custom' | 'reference' | 'popup' | null
   url?: string | null
 }
 
@@ -31,13 +36,56 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     reference,
     size: sizeFromProps,
     url,
+    popup,
   } = props
+
+  // Handle popup type
+  if (type === 'popup' && popup) {
+    console.log('Rendering popup button for:', popup)
+    const popupId = popup.id.toString()
+    const size = appearance === 'link' ? 'clear' : sizeFromProps
+
+    // Function to trigger popup
+    const handlePopupClick = (e: React.MouseEvent) => {
+      e.preventDefault()
+      if (typeof window !== 'undefined' && (window as any).triggerPopup) {
+        ; (window as any).triggerPopup(popupId)
+      }
+    }
+
+    // For inline appearance, use Button with appropriate styling
+    if (appearance === 'inline') {
+      return (
+        <Button
+          type="button"
+          onClick={handlePopupClick}
+          variant="link"
+          size="clear"
+          className={cn(className)}
+        >
+          {label || children}
+        </Button>
+      )
+    }
+
+    // For button appearances, use the Button component directly
+    return (
+      <Button
+        type="button"
+        onClick={handlePopupClick}
+        variant={appearance}
+        size={size}
+        className={className}
+      >
+        {label || children}
+      </Button>
+    )
+  }
 
   const href =
     type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
-      ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${
-          reference.value.slug
-        }`
+      ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${reference.value.slug
+      }`
       : url
 
   if (!href) return null
