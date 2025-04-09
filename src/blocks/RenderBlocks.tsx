@@ -11,7 +11,7 @@ import { StudyAbroadBlock } from './StudyAbroadBlock/Component'
 import IELTSBlock from './IELTSBlock/Component'
 import GetStartedBlock from './GetStartedBlock/Component'
 import MapBlock from './MapBlock/Component'
-import { WorldStudentBlock } from './WorldStudentBlock/Component'
+import WorldItemsBlock from './WorldItemsBlock/Component'
 import FAQBlock from './FAQBlock/Component'
 import { CareerBlock } from './CareerBlock/Component'
 import ConnectBlock from './ConnectBlock/Component'
@@ -46,7 +46,7 @@ type BlockComponentsType = {
   ieltsBlock: typeof IELTSBlock
   getStartedBlock: typeof GetStartedBlock
   mapBlock: typeof MapBlock
-  worldStudentBlock: typeof WorldStudentBlock
+  worldItemsBlock: typeof WorldItemsBlock
   serviceBlock: typeof ServiceBlock
   faqBlock: typeof FAQBlock
   admissionBlock: typeof AdmissionBlock
@@ -81,7 +81,7 @@ const blockComponents: BlockComponentsType = {
   ieltsBlock: IELTSBlock,
   getStartedBlock: GetStartedBlock,
   mapBlock: MapBlock,
-  worldStudentBlock: WorldStudentBlock,
+  worldItemsBlock: WorldItemsBlock,
   serviceBlock: ServiceBlock,
   faqBlock: FAQBlock,
   admissionBlock: AdmissionBlock,
