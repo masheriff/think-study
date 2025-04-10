@@ -41,7 +41,6 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
 
   // Handle popup type
   if (type === 'popup' && popup) {
-    console.log('Rendering popup button for:', popup)
     const popupId = popup.id.toString()
     const size = appearance === 'link' ? 'clear' : sizeFromProps
 
