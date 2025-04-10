@@ -1188,7 +1188,7 @@ export interface WorldItemsBlock {
   }[];
   id?: string | null;
   blockName?: string | null;
-  blockType: 'WorldItemsBlock';
+  blockType: 'worldItemsBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1873,7 +1873,7 @@ export interface PagesSelect<T extends boolean = true> {
         ieltsBlock?: T | IELTSBlockSelect<T>;
         getStartedBlock?: T | GetStartedBlockSelect<T>;
         mapBlock?: T | MapBlockSelect<T>;
-        WorldItemsBlock?: T | WorldItemsBlockSelect<T>;
+        worldItemsBlock?: T | WorldItemsBlockSelect<T>;
         serviceBlock?: T | ServiceBlockSelect<T>;
         faqBlock?: T | FAQBlockSelect<T>;
         careerBlock?: T | CareerBlockSelect<T>;

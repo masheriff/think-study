@@ -17,6 +17,7 @@ export const WorldItemsBlock: React.FC<Props> = (props) => {
         centerPoint
     } = props;
 
+
     const containerRef = useRef<HTMLDivElement>(null);
     const [itemPositions, setItemPositions] = useState<Array<{ x: number, y: number }>>([]);
     const [centerPosition, setCenterPosition] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
@@ -88,7 +89,7 @@ export const WorldItemsBlock: React.FC<Props> = (props) => {
             </div>
             <div
                 ref={containerRef}
-                className="container relative mx-auto px-4 py-8 sm:py-0 h-[300px] md:h-[550px] lg:h-[600px] overflow-hidden"
+                className="container relative mx-auto my-0 md:my-16 px-4 py-8 sm:py-0 h-[300px] md:h-[550px] lg:h-[600px] overflow-hidden"
                 style={{ position: 'relative' }}
             >
                 <div className="relative w-full h-full">
