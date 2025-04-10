@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
 import type { StudyAbroadBlock as StudyAbroadBlockType } from '@/payload-types';
 import { Media } from '@/payload-types';
 import { cn } from '@/utilities/ui';
