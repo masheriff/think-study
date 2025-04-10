@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { IELTSBlock as IELTSBlockType } from '@/payload-types';
 import TextHighlighter from '@/components/ui/texthighlighter';
+import { transformLinkProps } from '@/utilities/transformLinkProps';
+import { CMSLink } from '@/components/Link';
 
 type Props = IELTSBlockType & {
     className?: string;
@@ -21,7 +23,7 @@ export const IELTSBlock: React.FC<Props> = (props) => {
         learningType,
         studyModes,
         features,
-        ctaButton,
+        link,
         image,
         ieltsText,
         ieltsImage,
@@ -105,11 +107,12 @@ export const IELTSBlock: React.FC<Props> = (props) => {
                         )}
 
                         {/* CTA Button */}
-                        {ctaButton && (
+                        {link && (
                             <div>
-                                <Button className="bg-[#6B5BA9] hover:bg-[#574A8C] hover:text-white text-white px-6 py-3 rounded-3xl transition-colors">
-                                    <a href={ctaButton.href}>{ctaButton.text}</a>
-                                </Button>
+                                <CMSLink
+                                    {...transformLinkProps(link)}
+                                    appearance="themeRound"
+                                />
                             </div>
                         )}
                     </div>

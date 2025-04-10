@@ -108,7 +108,6 @@ const blockComponents: BlockComponentsType = {
 export const RenderBlocks: React.FC<{
   blocks: Page['layout']
 }> = ({ blocks }) => {
-  console.log('blocks', blocks);
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
 
   if (!hasBlocks) return null
