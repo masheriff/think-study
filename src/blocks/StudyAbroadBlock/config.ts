@@ -1,4 +1,5 @@
 import type { Block } from "payload"
+import { link } from '@/fields/link'
 
 
 export const StudyAbroadBlock: Block = {
@@ -56,17 +57,10 @@ export const StudyAbroadBlock: Block = {
                     type: "text",
                     required: true,
                 },
-                {
-                    name: "buttonText",
-                    type: "text",
-                    required: true,
-                    defaultValue: "Get Course List",
-                },
-                {
-                    name: "buttonLink",
-                    type: "text",
-                    required: true,
-                },
+                link({
+                    appearances: false,
+                }),
+
                 {
                     name: "image",
                     type: "upload",

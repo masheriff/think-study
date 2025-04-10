@@ -1051,8 +1051,22 @@ export interface StudyAbroadBlock {
     | {
         courseDescription: string;
         description: string;
-        buttonText: string;
-        buttonLink: string;
+        link: {
+          type?: ('reference' | 'custom' | 'popup') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          popup?: (number | null) | Popup;
+          label: string;
+        };
         image: number | Media;
         imagePosition: 'left' | 'right';
         id?: string | null;
@@ -2192,8 +2206,16 @@ export interface StudyAbroadBlockSelect<T extends boolean = true> {
     | {
         courseDescription?: T;
         description?: T;
-        buttonText?: T;
-        buttonLink?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              popup?: T;
+              label?: T;
+            };
         image?: T;
         imagePosition?: T;
         id?: T;
