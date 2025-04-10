@@ -2,7 +2,6 @@
 import React from 'react'
 import { cn } from '@/utilities/ui'
 import Image from 'next/image'
-import Link from 'next/link'
 import type { CounselingBlock as CounselingBlockType, Media } from '@/payload-types'
 import useEmblaCarousel from 'embla-carousel-react'
 import { EmblaOptionsType } from 'embla-carousel'
@@ -17,7 +16,7 @@ type Props = CounselingBlockType & {
 }
 
 export const CounselingBlock: React.FC<Props> = (props) => {
-    const { className, heading, description, button, backgroundImage, cards } = props
+    const { className, heading, description, link, backgroundImage, cards } = props
 
     // Configure Embla Carousel options based on the example
     const options: EmblaOptionsType = {
@@ -52,15 +51,11 @@ export const CounselingBlock: React.FC<Props> = (props) => {
                 <div className="text-left md:w-3/4 w-full">
                     <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-5 text-center md:text-left">{heading}</h2>
                     <p className='text-gray-600 md:text-lg mb-5 text-center md:text-left'>{description}</p>
-                    {button && (
-                        <div className="flex flex-col items-center md:items-start">
-                            <Link
-                                href={button.url}
-                                className="inline-block bg-[#6B5BA9] hover:bg-[#574A8C] hover:text-white text-white px-4 py-2 rounded-3xl transition-colors mb-3"
-                            >
-                                {button.text}
-                            </Link>
-                        </div>
+                    {link && (
+                        <CMSLink
+                            {...transformLinkProps(link)}
+                            appearance="themeRound"
+                        />
                     )}
                 </div>
                 <div className="relative w-full h-[600px] md:h-[450px] lg:h-[500px] mt-10">
