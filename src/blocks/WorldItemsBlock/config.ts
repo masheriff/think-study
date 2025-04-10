@@ -1,7 +1,7 @@
 import type { Block } from 'payload'
 
 export const WorldItemsBlock: Block = {
-    slug: 'WorldItemsBlock',
+    slug: 'worldItemsBlock',
     interfaceName: 'WorldItemsBlock',
     imageURL: '/assets/blocks/WorldItemsBlock.png',
     imageAltText: 'WorldItemsBlock Image',

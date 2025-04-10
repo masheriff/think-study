@@ -11,7 +11,6 @@ import { StudyAbroadBlock } from './StudyAbroadBlock/Component'
 import IELTSBlock from './IELTSBlock/Component'
 import GetStartedBlock from './GetStartedBlock/Component'
 import MapBlock from './MapBlock/Component'
-import WorldItemsBlock from './WorldItemsBlock/Component'
 import FAQBlock from './FAQBlock/Component'
 import { CareerBlock } from './CareerBlock/Component'
 import ConnectBlock from './ConnectBlock/Component'
@@ -33,6 +32,7 @@ import AppointmentBlock from './AppointmentBlock/Component'
 import CalendlyBlock from './CalendlyBlock/Component'
 import UniversitySliderBlock from './UniversitySliderBlock/Component'
 import { ContactUsBlock } from './ContactUsBlock/component'
+import WorldItemsBlock from './WorldItemsBlock/Component'
 
 type BlockComponentsType = {
   formBlock: typeof FormBlock
@@ -108,6 +108,7 @@ const blockComponents: BlockComponentsType = {
 export const RenderBlocks: React.FC<{
   blocks: Page['layout']
 }> = ({ blocks }) => {
+  console.log('blocks', blocks);
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
 
   if (!hasBlocks) return null
