@@ -1320,7 +1320,22 @@ export interface WhyusMediaBlock {
 export interface ConnectBlock {
   mainHeading: string;
   connectText: string;
-  buttonText: string;
+  link: {
+    type?: ('reference' | 'custom' | 'popup') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    popup?: (number | null) | Popup;
+    label: string;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'connectBlock';
@@ -1426,7 +1441,22 @@ export interface IELTSEnroll {
   titlePrefix: string;
   titleEmphasis: string;
   titleSuffix: string;
-  buttonText: string;
+  link: {
+    type?: ('reference' | 'custom' | 'popup') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    popup?: (number | null) | Popup;
+    label: string;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'ieltsEnroll';
@@ -2428,7 +2458,16 @@ export interface WhyusMediaBlockSelect<T extends boolean = true> {
 export interface ConnectBlockSelect<T extends boolean = true> {
   mainHeading?: T;
   connectText?: T;
-  buttonText?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        popup?: T;
+        label?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -2526,7 +2565,16 @@ export interface IELTSEnrollSelect<T extends boolean = true> {
   titlePrefix?: T;
   titleEmphasis?: T;
   titleSuffix?: T;
-  buttonText?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        popup?: T;
+        label?: T;
+      };
   id?: T;
   blockName?: T;
 }

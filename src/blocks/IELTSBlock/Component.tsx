@@ -4,7 +4,6 @@ import React from 'react';
 import Image from 'next/image';
 import { cn } from '@/utilities/ui';
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import type { IELTSBlock as IELTSBlockType } from '@/payload-types';
 import TextHighlighter from '@/components/ui/texthighlighter';
 import { transformLinkProps } from '@/utilities/transformLinkProps';
