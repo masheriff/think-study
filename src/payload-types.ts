@@ -233,8 +233,8 @@ export interface Page {
         blockName?: string | null;
         blockType: 'benefitsInStudy';
       }
-    | StudyInNotes
     | StudyInApplication
+    | StudyInInsights
     | IELTSEnroll
     | IELTSPrep
     | IELTSFeatures
@@ -1307,70 +1307,6 @@ export interface StudyInChecklist {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "StudyInNotes".
- */
-export interface StudyInNotes {
-  title: string;
-  subtitle: string;
-  intakeheader: {
-    Intake: string;
-    application: string;
-    Classesstart: string;
-  };
-  inTaketableHeader: {
-    FallIntake: string;
-    springintake: string;
-    summerintake: string;
-  };
-  intakeTable: {
-    fallIntake: {
-      applicationDeadline: string;
-      classesStart: string;
-    };
-    springIntake: {
-      applicationDeadline: string;
-      classesStart: string;
-    };
-    summerIntake: {
-      applicationDeadline: string;
-      classesStart: string;
-    };
-  };
-  righttableheader: {
-    livingexpenses: string;
-    'average ': string;
-    'dollar ': string;
-  };
-  livingTable: {
-    Stay: string;
-    'foodbudget ': string;
-    'Localtransport ': string;
-    'phonebills ': string;
-    movingaround: string;
-  };
-  expensesTable: {
-    stay: {
-      monthlyAverage: string;
-    };
-    foodBudget: {
-      monthlyAverage: string;
-    };
-    localTransport: {
-      monthlyAverage: string;
-    };
-    phoneBills: {
-      monthlyAverage: string;
-    };
-    movingAround: {
-      monthlyAverage: string;
-    };
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'studyInNotes';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "StudyInApplication".
  */
 export interface StudyInApplication {
@@ -1392,6 +1328,45 @@ export interface StudyInApplication {
   id?: string | null;
   blockName?: string | null;
   blockType: 'studyInApplication';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInInsights".
+ */
+export interface StudyInInsights {
+  /**
+   * Main heading and subheading for the study abroad information section
+   */
+  contentHeader: {
+    title: string;
+    subtitle: string;
+  };
+  /**
+   * Add academic intake periods and their schedules
+   */
+  intakeRows?:
+    | {
+        isHeader?: boolean | null;
+        intakeName: string;
+        applicationDeadline: string;
+        classesStart: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Add expense categories and their average costs
+   */
+  expenseRows?:
+    | {
+        isHeader?: boolean | null;
+        category: string;
+        monthlyAverage: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studyInInsights';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1889,8 +1864,8 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        studyInNotes?: T | StudyInNotesSelect<T>;
         studyInApplication?: T | StudyInApplicationSelect<T>;
+        studyInInsights?: T | StudyInInsightsSelect<T>;
         ieltsEnroll?: T | IELTSEnrollSelect<T>;
         ieltsPrep?: T | IELTSPrepSelect<T>;
         ieltsFeatures?: T | IELTSFeaturesSelect<T>;
@@ -2417,97 +2392,6 @@ export interface StudyInChecklistSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "StudyInNotes_select".
- */
-export interface StudyInNotesSelect<T extends boolean = true> {
-  title?: T;
-  subtitle?: T;
-  intakeheader?:
-    | T
-    | {
-        Intake?: T;
-        application?: T;
-        Classesstart?: T;
-      };
-  inTaketableHeader?:
-    | T
-    | {
-        FallIntake?: T;
-        springintake?: T;
-        summerintake?: T;
-      };
-  intakeTable?:
-    | T
-    | {
-        fallIntake?:
-          | T
-          | {
-              applicationDeadline?: T;
-              classesStart?: T;
-            };
-        springIntake?:
-          | T
-          | {
-              applicationDeadline?: T;
-              classesStart?: T;
-            };
-        summerIntake?:
-          | T
-          | {
-              applicationDeadline?: T;
-              classesStart?: T;
-            };
-      };
-  righttableheader?:
-    | T
-    | {
-        livingexpenses?: T;
-        'average '?: T;
-        'dollar '?: T;
-      };
-  livingTable?:
-    | T
-    | {
-        Stay?: T;
-        'foodbudget '?: T;
-        'Localtransport '?: T;
-        'phonebills '?: T;
-        movingaround?: T;
-      };
-  expensesTable?:
-    | T
-    | {
-        stay?:
-          | T
-          | {
-              monthlyAverage?: T;
-            };
-        foodBudget?:
-          | T
-          | {
-              monthlyAverage?: T;
-            };
-        localTransport?:
-          | T
-          | {
-              monthlyAverage?: T;
-            };
-        phoneBills?:
-          | T
-          | {
-              monthlyAverage?: T;
-            };
-        movingAround?:
-          | T
-          | {
-              monthlyAverage?: T;
-            };
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "StudyInApplication_select".
  */
 export interface StudyInApplicationSelect<T extends boolean = true> {
@@ -2529,6 +2413,37 @@ export interface StudyInApplicationSelect<T extends boolean = true> {
               serviceText?: T;
               id?: T;
             };
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInInsights_select".
+ */
+export interface StudyInInsightsSelect<T extends boolean = true> {
+  contentHeader?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+      };
+  intakeRows?:
+    | T
+    | {
+        isHeader?: T;
+        intakeName?: T;
+        applicationDeadline?: T;
+        classesStart?: T;
+        id?: T;
+      };
+  expenseRows?:
+    | T
+    | {
+        isHeader?: T;
+        category?: T;
+        monthlyAverage?: T;
+        id?: T;
       };
   id?: T;
   blockName?: T;

@@ -19,8 +19,8 @@ import ServiceBlock from './ServiceBlock/Component'
 import { StudyInCourse } from './StudyInCourse/Component'
 import StudyInChecklist from './StudyInCheckList/Component'
 import { BenefitsInStudy } from './StudyInBenefits/Component'
+import { StudyInInsights } from './StudyInInsights/Component'
 import CallToActionBlock from './CallToActionBlock/Component'
-import { StudyInNotes } from './StudyInNotes/Component'
 import { StudyInApplication } from './StudyInApplication/Component'
 import AdmissionBlock from './AdmissionBlock/Component'
 import { IELTSEnroll } from './IELTSEnroll/Component'
@@ -57,7 +57,7 @@ type BlockComponentsType = {
   studyInCourse: typeof StudyInCourse
   studyInChecklist: typeof StudyInChecklist
   benefitsInStudy: typeof BenefitsInStudy
-  studyInNotes: typeof StudyInNotes
+  studyInInsights: typeof StudyInInsights
   studyInApplication: typeof StudyInApplication
   ieltsEnroll: typeof IELTSEnroll
   ieltsPrep: typeof IELTSPrep
@@ -93,7 +93,7 @@ const blockComponents: BlockComponentsType = {
   studyInCourse: StudyInCourse,
   studyInChecklist: StudyInChecklist,
   benefitsInStudy: BenefitsInStudy,
-  studyInNotes: StudyInNotes,
+  studyInInsights: StudyInInsights,
   studyInApplication: StudyInApplication,
   ieltsEnroll: IELTSEnroll,
   ieltsPrep: IELTSPrep,
