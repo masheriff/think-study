@@ -12,7 +12,6 @@ import { buildInitialFormState } from './buildInitialFormState'
 import { fields } from './fields'
 import { getClientSideURL } from '@/utilities/getURL'
 import { CornerDownLeft } from 'lucide-react'
-import { mapToTeleCRMFormat } from '@/utilities/teleCRMHelper'
 
 export type Value = unknown
 
@@ -78,7 +77,6 @@ export const FormBlock: React.FC<
         }, 1000)
 
         try {
-          // Submit to Payload CMS form submission endpoint
           const req = await fetch(`${getClientSideURL()}/api/form-submissions`, {
             body: JSON.stringify({
               form: formID,
@@ -92,8 +90,9 @@ export const FormBlock: React.FC<
 
           const res = await req.json()
 
+          clearTimeout(loadingTimerID)
+
           if (req.status >= 400) {
-            clearTimeout(loadingTimerID)
             setIsLoading(false)
 
             setError({
@@ -104,44 +103,18 @@ export const FormBlock: React.FC<
             return
           }
 
-          // If Payload submission is successful, submit to teleCRM API
-          try {
-            // Use the helper function to format the data for teleCRM
-            const teleCRMData = mapToTeleCRMFormat(data)
-
-            // Submit to teleCRM API through our secure middleware
-            const teleCRMReq = await fetch(`${getClientSideURL()}/api/telecrm-submit`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(teleCRMData)
-            })
-
-            if (!teleCRMReq.ok) {
-              // Log the error but don't show to user since the primary submission was successful
-              console.error('Failed to submit to teleCRM:', await teleCRMReq.text())
-            } else {
-              console.log('Successfully submitted to teleCRM')
-            }
-          } catch (teleCRMError) {
-            // Log the error but don't show to user since the primary submission was successful
-            console.error('Error submitting to teleCRM:', teleCRMError)
-          }
-
-          // Continue with successful submission flow
-          clearTimeout(loadingTimerID)
           setIsLoading(false)
           setHasSubmitted(true)
 
           if (confirmationType === 'redirect' && redirect) {
             const { url } = redirect
+
             const redirectUrl = url
+
             if (redirectUrl) router.push(redirectUrl)
           }
         } catch (err) {
           console.warn(err)
-          clearTimeout(loadingTimerID)
           setIsLoading(false)
           setError({
             message: 'Something went wrong.',

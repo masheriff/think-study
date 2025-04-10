@@ -218,7 +218,7 @@ export interface Page {
     | IELTSBlock
     | GetStartedBlock
     | MapBlock
-    | WorldItemsBlock
+    | WorldStudentBlock
     | ServiceBlock
     | FAQBlock
     | CareerBlock
@@ -1135,9 +1135,9 @@ export interface MapBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "WorldItemsBlock".
+ * via the `definition` "WorldStudentBlock".
  */
-export interface WorldItemsBlock {
+export interface WorldStudentBlock {
   backgroundImage: number | Media;
   title: {
     root: {
@@ -1154,41 +1154,19 @@ export interface WorldItemsBlock {
     };
     [k: string]: unknown;
   };
-  centerPoint: {
-    /**
-     * Horizontal position of center point in percentage (0% = left, 100% = right)
-     */
-    xPosition: number;
-    /**
-     * Vertical position of center point in percentage (0% = top, 100% = bottom)
-     */
-    yPosition: number;
-  };
   items: {
     image: number | Media;
     title: string;
     'z-index': number;
-    /**
-     * Vertical alignment of this marker
-     */
-    vAlign: 'top' | 'bottom';
-    /**
-     * Position from top or bottom in percentage (based on vertical alignment)
-     */
-    vPos: number;
-    /**
-     * Horizontal alignment of this marker
-     */
-    hAlign: 'left' | 'right';
-    /**
-     * Position from left or right in percentage (based on horizontal alignment)
-     */
-    hPos: number;
+    top?: number | null;
+    bottom?: number | null;
+    right?: number | null;
+    left?: number | null;
     id?: string | null;
   }[];
   id?: string | null;
   blockName?: string | null;
-  blockType: 'worldItemsBlock';
+  blockType: 'worldStudentBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1873,7 +1851,7 @@ export interface PagesSelect<T extends boolean = true> {
         ieltsBlock?: T | IELTSBlockSelect<T>;
         getStartedBlock?: T | GetStartedBlockSelect<T>;
         mapBlock?: T | MapBlockSelect<T>;
-        worldItemsBlock?: T | WorldItemsBlockSelect<T>;
+        worldStudentBlock?: T | WorldStudentBlockSelect<T>;
         serviceBlock?: T | ServiceBlockSelect<T>;
         faqBlock?: T | FAQBlockSelect<T>;
         careerBlock?: T | CareerBlockSelect<T>;
@@ -2278,27 +2256,21 @@ export interface MapBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "WorldItemsBlock_select".
+ * via the `definition` "WorldStudentBlock_select".
  */
-export interface WorldItemsBlockSelect<T extends boolean = true> {
+export interface WorldStudentBlockSelect<T extends boolean = true> {
   backgroundImage?: T;
   title?: T;
-  centerPoint?:
-    | T
-    | {
-        xPosition?: T;
-        yPosition?: T;
-      };
   items?:
     | T
     | {
         image?: T;
         title?: T;
         'z-index'?: T;
-        vAlign?: T;
-        vPos?: T;
-        hAlign?: T;
-        hPos?: T;
+        top?: T;
+        bottom?: T;
+        right?: T;
+        left?: T;
         id?: T;
       };
   id?: T;

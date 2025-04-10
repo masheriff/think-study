@@ -1,5 +1,5 @@
 {
-  "id": "6373e86c-a2f5-4f24-9df4-05a2932310b3",
+  "id": "78362a0e-20b2-4b74-9698-793121e6fdce",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -4213,8 +4213,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.pages_blocks_world_items_block_items": {
-      "name": "pages_blocks_world_items_block_items",
+    "public.pages_blocks_world_student_block_items": {
+      "name": "pages_blocks_world_student_block_items",
       "schema": "",
       "columns": {
         "_order": {
@@ -4254,40 +4254,34 @@
           "notNull": false,
           "default": 10
         },
-        "v_align": {
-          "name": "v_align",
-          "type": "enum_pages_blocks_world_items_block_items_v_align",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'top'"
-        },
-        "v_pos": {
-          "name": "v_pos",
+        "top": {
+          "name": "top",
           "type": "numeric",
           "primaryKey": false,
-          "notNull": false,
-          "default": 50
+          "notNull": false
         },
-        "h_align": {
-          "name": "h_align",
-          "type": "enum_pages_blocks_world_items_block_items_h_align",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'left'"
-        },
-        "h_pos": {
-          "name": "h_pos",
+        "bottom": {
+          "name": "bottom",
           "type": "numeric",
           "primaryKey": false,
-          "notNull": false,
-          "default": 50
+          "notNull": false
+        },
+        "right": {
+          "name": "right",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "left": {
+          "name": "left",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {
-        "pages_blocks_world_items_block_items_order_idx": {
-          "name": "pages_blocks_world_items_block_items_order_idx",
+        "pages_blocks_world_student_block_items_order_idx": {
+          "name": "pages_blocks_world_student_block_items_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -4301,8 +4295,8 @@
           "method": "btree",
           "with": {}
         },
-        "pages_blocks_world_items_block_items_parent_id_idx": {
-          "name": "pages_blocks_world_items_block_items_parent_id_idx",
+        "pages_blocks_world_student_block_items_parent_id_idx": {
+          "name": "pages_blocks_world_student_block_items_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -4316,8 +4310,8 @@
           "method": "btree",
           "with": {}
         },
-        "pages_blocks_world_items_block_items_image_idx": {
-          "name": "pages_blocks_world_items_block_items_image_idx",
+        "pages_blocks_world_student_block_items_image_idx": {
+          "name": "pages_blocks_world_student_block_items_image_idx",
           "columns": [
             {
               "expression": "image_id",
@@ -4333,9 +4327,9 @@
         }
       },
       "foreignKeys": {
-        "pages_blocks_world_items_block_items_image_id_media_id_fk": {
-          "name": "pages_blocks_world_items_block_items_image_id_media_id_fk",
-          "tableFrom": "pages_blocks_world_items_block_items",
+        "pages_blocks_world_student_block_items_image_id_media_id_fk": {
+          "name": "pages_blocks_world_student_block_items_image_id_media_id_fk",
+          "tableFrom": "pages_blocks_world_student_block_items",
           "tableTo": "media",
           "columnsFrom": [
             "image_id"
@@ -4346,10 +4340,10 @@
           "onDelete": "set null",
           "onUpdate": "no action"
         },
-        "pages_blocks_world_items_block_items_parent_id_fk": {
-          "name": "pages_blocks_world_items_block_items_parent_id_fk",
-          "tableFrom": "pages_blocks_world_items_block_items",
-          "tableTo": "pages_blocks_world_items_block",
+        "pages_blocks_world_student_block_items_parent_id_fk": {
+          "name": "pages_blocks_world_student_block_items_parent_id_fk",
+          "tableFrom": "pages_blocks_world_student_block_items",
+          "tableTo": "pages_blocks_world_student_block",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -4366,8 +4360,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.pages_blocks_world_items_block": {
-      "name": "pages_blocks_world_items_block",
+    "public.pages_blocks_world_student_block": {
+      "name": "pages_blocks_world_student_block",
       "schema": "",
       "columns": {
         "_order": {
@@ -4406,20 +4400,6 @@
           "primaryKey": false,
           "notNull": false
         },
-        "center_point_x_position": {
-          "name": "center_point_x_position",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false,
-          "default": 67
-        },
-        "center_point_y_position": {
-          "name": "center_point_y_position",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false,
-          "default": 45
-        },
         "block_name": {
           "name": "block_name",
           "type": "varchar",
@@ -4428,8 +4408,8 @@
         }
       },
       "indexes": {
-        "pages_blocks_world_items_block_order_idx": {
-          "name": "pages_blocks_world_items_block_order_idx",
+        "pages_blocks_world_student_block_order_idx": {
+          "name": "pages_blocks_world_student_block_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -4443,8 +4423,8 @@
           "method": "btree",
           "with": {}
         },
-        "pages_blocks_world_items_block_parent_id_idx": {
-          "name": "pages_blocks_world_items_block_parent_id_idx",
+        "pages_blocks_world_student_block_parent_id_idx": {
+          "name": "pages_blocks_world_student_block_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -4458,8 +4438,8 @@
           "method": "btree",
           "with": {}
         },
-        "pages_blocks_world_items_block_path_idx": {
-          "name": "pages_blocks_world_items_block_path_idx",
+        "pages_blocks_world_student_block_path_idx": {
+          "name": "pages_blocks_world_student_block_path_idx",
           "columns": [
             {
               "expression": "_path",
@@ -4473,8 +4453,8 @@
           "method": "btree",
           "with": {}
         },
-        "pages_blocks_world_items_block_background_image_idx": {
-          "name": "pages_blocks_world_items_block_background_image_idx",
+        "pages_blocks_world_student_block_background_image_idx": {
+          "name": "pages_blocks_world_student_block_background_image_idx",
           "columns": [
             {
               "expression": "background_image_id",
@@ -4490,9 +4470,9 @@
         }
       },
       "foreignKeys": {
-        "pages_blocks_world_items_block_background_image_id_media_id_fk": {
-          "name": "pages_blocks_world_items_block_background_image_id_media_id_fk",
-          "tableFrom": "pages_blocks_world_items_block",
+        "pages_blocks_world_student_block_background_image_id_media_id_fk": {
+          "name": "pages_blocks_world_student_block_background_image_id_media_id_fk",
+          "tableFrom": "pages_blocks_world_student_block",
           "tableTo": "media",
           "columnsFrom": [
             "background_image_id"
@@ -4503,9 +4483,9 @@
           "onDelete": "set null",
           "onUpdate": "no action"
         },
-        "pages_blocks_world_items_block_parent_id_fk": {
-          "name": "pages_blocks_world_items_block_parent_id_fk",
-          "tableFrom": "pages_blocks_world_items_block",
+        "pages_blocks_world_student_block_parent_id_fk": {
+          "name": "pages_blocks_world_student_block_parent_id_fk",
+          "tableFrom": "pages_blocks_world_student_block",
           "tableTo": "pages",
           "columnsFrom": [
             "_parent_id"
@@ -13299,8 +13279,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public._pages_v_blocks_world_items_block_items": {
-      "name": "_pages_v_blocks_world_items_block_items",
+    "public._pages_v_blocks_world_student_block_items": {
+      "name": "_pages_v_blocks_world_student_block_items",
       "schema": "",
       "columns": {
         "_order": {
@@ -13340,35 +13320,29 @@
           "notNull": false,
           "default": 10
         },
-        "v_align": {
-          "name": "v_align",
-          "type": "enum__pages_v_blocks_world_items_block_items_v_align",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'top'"
-        },
-        "v_pos": {
-          "name": "v_pos",
+        "top": {
+          "name": "top",
           "type": "numeric",
           "primaryKey": false,
-          "notNull": false,
-          "default": 50
+          "notNull": false
         },
-        "h_align": {
-          "name": "h_align",
-          "type": "enum__pages_v_blocks_world_items_block_items_h_align",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'left'"
-        },
-        "h_pos": {
-          "name": "h_pos",
+        "bottom": {
+          "name": "bottom",
           "type": "numeric",
           "primaryKey": false,
-          "notNull": false,
-          "default": 50
+          "notNull": false
+        },
+        "right": {
+          "name": "right",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "left": {
+          "name": "left",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
         },
         "_uuid": {
           "name": "_uuid",
@@ -13378,8 +13352,8 @@
         }
       },
       "indexes": {
-        "_pages_v_blocks_world_items_block_items_order_idx": {
-          "name": "_pages_v_blocks_world_items_block_items_order_idx",
+        "_pages_v_blocks_world_student_block_items_order_idx": {
+          "name": "_pages_v_blocks_world_student_block_items_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -13393,8 +13367,8 @@
           "method": "btree",
           "with": {}
         },
-        "_pages_v_blocks_world_items_block_items_parent_id_idx": {
-          "name": "_pages_v_blocks_world_items_block_items_parent_id_idx",
+        "_pages_v_blocks_world_student_block_items_parent_id_idx": {
+          "name": "_pages_v_blocks_world_student_block_items_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -13408,8 +13382,8 @@
           "method": "btree",
           "with": {}
         },
-        "_pages_v_blocks_world_items_block_items_image_idx": {
-          "name": "_pages_v_blocks_world_items_block_items_image_idx",
+        "_pages_v_blocks_world_student_block_items_image_idx": {
+          "name": "_pages_v_blocks_world_student_block_items_image_idx",
           "columns": [
             {
               "expression": "image_id",
@@ -13425,9 +13399,9 @@
         }
       },
       "foreignKeys": {
-        "_pages_v_blocks_world_items_block_items_image_id_media_id_fk": {
-          "name": "_pages_v_blocks_world_items_block_items_image_id_media_id_fk",
-          "tableFrom": "_pages_v_blocks_world_items_block_items",
+        "_pages_v_blocks_world_student_block_items_image_id_media_id_fk": {
+          "name": "_pages_v_blocks_world_student_block_items_image_id_media_id_fk",
+          "tableFrom": "_pages_v_blocks_world_student_block_items",
           "tableTo": "media",
           "columnsFrom": [
             "image_id"
@@ -13438,10 +13412,10 @@
           "onDelete": "set null",
           "onUpdate": "no action"
         },
-        "_pages_v_blocks_world_items_block_items_parent_id_fk": {
-          "name": "_pages_v_blocks_world_items_block_items_parent_id_fk",
-          "tableFrom": "_pages_v_blocks_world_items_block_items",
-          "tableTo": "_pages_v_blocks_world_items_block",
+        "_pages_v_blocks_world_student_block_items_parent_id_fk": {
+          "name": "_pages_v_blocks_world_student_block_items_parent_id_fk",
+          "tableFrom": "_pages_v_blocks_world_student_block_items",
+          "tableTo": "_pages_v_blocks_world_student_block",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -13458,8 +13432,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public._pages_v_blocks_world_items_block": {
-      "name": "_pages_v_blocks_world_items_block",
+    "public._pages_v_blocks_world_student_block": {
+      "name": "_pages_v_blocks_world_student_block",
       "schema": "",
       "columns": {
         "_order": {
@@ -13498,20 +13472,6 @@
           "primaryKey": false,
           "notNull": false
         },
-        "center_point_x_position": {
-          "name": "center_point_x_position",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false,
-          "default": 67
-        },
-        "center_point_y_position": {
-          "name": "center_point_y_position",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false,
-          "default": 45
-        },
         "_uuid": {
           "name": "_uuid",
           "type": "varchar",
@@ -13526,8 +13486,8 @@
         }
       },
       "indexes": {
-        "_pages_v_blocks_world_items_block_order_idx": {
-          "name": "_pages_v_blocks_world_items_block_order_idx",
+        "_pages_v_blocks_world_student_block_order_idx": {
+          "name": "_pages_v_blocks_world_student_block_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -13541,8 +13501,8 @@
           "method": "btree",
           "with": {}
         },
-        "_pages_v_blocks_world_items_block_parent_id_idx": {
-          "name": "_pages_v_blocks_world_items_block_parent_id_idx",
+        "_pages_v_blocks_world_student_block_parent_id_idx": {
+          "name": "_pages_v_blocks_world_student_block_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -13556,8 +13516,8 @@
           "method": "btree",
           "with": {}
         },
-        "_pages_v_blocks_world_items_block_path_idx": {
-          "name": "_pages_v_blocks_world_items_block_path_idx",
+        "_pages_v_blocks_world_student_block_path_idx": {
+          "name": "_pages_v_blocks_world_student_block_path_idx",
           "columns": [
             {
               "expression": "_path",
@@ -13571,8 +13531,8 @@
           "method": "btree",
           "with": {}
         },
-        "_pages_v_blocks_world_items_block_background_image_idx": {
-          "name": "_pages_v_blocks_world_items_block_background_image_idx",
+        "_pages_v_blocks_world_student_block_background_image_idx": {
+          "name": "_pages_v_blocks_world_student_block_background_image_idx",
           "columns": [
             {
               "expression": "background_image_id",
@@ -13588,9 +13548,9 @@
         }
       },
       "foreignKeys": {
-        "_pages_v_blocks_world_items_block_background_image_id_media_id_fk": {
-          "name": "_pages_v_blocks_world_items_block_background_image_id_media_id_fk",
-          "tableFrom": "_pages_v_blocks_world_items_block",
+        "_pages_v_blocks_world_student_block_background_image_id_media_id_fk": {
+          "name": "_pages_v_blocks_world_student_block_background_image_id_media_id_fk",
+          "tableFrom": "_pages_v_blocks_world_student_block",
           "tableTo": "media",
           "columnsFrom": [
             "background_image_id"
@@ -13601,9 +13561,9 @@
           "onDelete": "set null",
           "onUpdate": "no action"
         },
-        "_pages_v_blocks_world_items_block_parent_id_fk": {
-          "name": "_pages_v_blocks_world_items_block_parent_id_fk",
-          "tableFrom": "_pages_v_blocks_world_items_block",
+        "_pages_v_blocks_world_student_block_parent_id_fk": {
+          "name": "_pages_v_blocks_world_student_block_parent_id_fk",
+          "tableFrom": "_pages_v_blocks_world_student_block",
           "tableTo": "_pages_v",
           "columnsFrom": [
             "_parent_id"
@@ -26379,22 +26339,6 @@
         "white"
       ]
     },
-    "public.enum_pages_blocks_world_items_block_items_v_align": {
-      "name": "enum_pages_blocks_world_items_block_items_v_align",
-      "schema": "public",
-      "values": [
-        "top",
-        "bottom"
-      ]
-    },
-    "public.enum_pages_blocks_world_items_block_items_h_align": {
-      "name": "enum_pages_blocks_world_items_block_items_h_align",
-      "schema": "public",
-      "values": [
-        "left",
-        "right"
-      ]
-    },
     "public.enum_pages_blocks_ielts_packages_packages_package_color": {
       "name": "enum_pages_blocks_ielts_packages_packages_package_color",
       "schema": "public",
@@ -26503,22 +26447,6 @@
       "values": [
         "blue",
         "white"
-      ]
-    },
-    "public.enum__pages_v_blocks_world_items_block_items_v_align": {
-      "name": "enum__pages_v_blocks_world_items_block_items_v_align",
-      "schema": "public",
-      "values": [
-        "top",
-        "bottom"
-      ]
-    },
-    "public.enum__pages_v_blocks_world_items_block_items_h_align": {
-      "name": "enum__pages_v_blocks_world_items_block_items_h_align",
-      "schema": "public",
-      "values": [
-        "left",
-        "right"
       ]
     },
     "public.enum__pages_v_blocks_ielts_packages_packages_package_color": {
