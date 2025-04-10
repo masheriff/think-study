@@ -938,9 +938,21 @@ export interface TestimonialsBlock {
 export interface CounselingBlock {
   heading: string;
   description: string;
-  button: {
-    text: string;
-    url: string;
+  link: {
+    type?: ('reference' | 'custom' | 'popup') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    popup?: (number | null) | Popup;
+    label: string;
   };
   backgroundImage: number | Media;
   cards?:
@@ -2075,11 +2087,15 @@ export interface TestimonialsBlockSelect<T extends boolean = true> {
 export interface CounselingBlockSelect<T extends boolean = true> {
   heading?: T;
   description?: T;
-  button?:
+  link?:
     | T
     | {
-        text?: T;
+        type?: T;
+        newTab?: T;
+        reference?: T;
         url?: T;
+        popup?: T;
+        label?: T;
       };
   backgroundImage?: T;
   cards?:
