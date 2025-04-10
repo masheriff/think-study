@@ -1,5 +1,5 @@
 import { Block } from 'payload';
-
+import { link } from '@/fields/link'
 export const IELTSPackages: Block = {
     slug: 'ieltsPackages',
     interfaceName: 'IELTSPackages',
@@ -34,13 +34,6 @@ export const IELTSPackages: Block = {
             label: 'Currency Label',
             required: true,
             defaultValue: 'INR',
-        },
-        {
-            name: 'enrollButtonText',
-            type: 'text',
-            label: 'Enroll Button Text',
-            required: true,
-            defaultValue: 'Enroll Now',
         },
         {
             name: 'packages',
@@ -106,6 +99,9 @@ export const IELTSPackages: Block = {
                     label: 'Price',
                     required: true,
                 },
+                link({
+                    appearances: false,
+                }),
                 {
                     name: 'packageColor',
                     type: 'select',
