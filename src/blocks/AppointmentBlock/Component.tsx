@@ -4,7 +4,8 @@ import type { AppointmentBlock as AppointmentBlockType } from '@/payload-types'
 import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import { CheckBox } from '@/components/thinkstudy-svg'
-import { Button } from '@/components/ui/button'
+import { CMSLink } from '@/components/Link'
+import { transformLinkProps } from "@/utilities/transformLinkProps"
 
 type Props = AppointmentBlockType & {
     className?: string
@@ -113,13 +114,13 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                             ))}
                         </div>
                         <div className="block">
-                            {leftContent?.button && (
-                                <Button
-                                    className="bg-[#6B5BA9] hover:bg-[#574A8C] hover:text-white text-white px-4 py-2 rounded-3xl transition-colors mb-3"
-                                >
-                                    <a href={leftContent.button.url}>{leftContent.button.text}</a>
-                                </Button>
+                            {leftContent?.link && (
+                                <CMSLink
+                                    {...transformLinkProps(leftContent?.link)}
+                                    appearance="themeRound"
+                                />
                             )}
+
                         </div>
                     </div>
 

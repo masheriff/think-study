@@ -25,7 +25,8 @@ const buttonVariants = cva(
         link: 'text-primary items-start justify-start underline-offset-4 hover:underline',
         outline: 'border border-border bg-background hover:bg-card hover:text-accent-foreground',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-        theme: 'bg-[#6B5BA9] hover:bg-[#574A8C] text-white transition-colors rounded-xl'
+        theme: 'bg-[#6B5BA9] hover:bg-[#574A8C] text-white transition-colors rounded-xl',
+        themeRound: 'bg-[#6B5BA9] hover:bg-[#574A8C] text-white transition-colors rounded-full',
       },
     },
   },
