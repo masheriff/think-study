@@ -1,5 +1,5 @@
 import { Block } from 'payload';
-
+import { link } from '@/fields/link'
 
 export const ConnectBlock: Block = {
     slug: 'connectBlock',
@@ -23,11 +23,8 @@ export const ConnectBlock: Block = {
             required: true,
             defaultValue: 'connect with our team today!',
         },
-        {
-            name: 'buttonText',
-            type: 'text',
-            required: true,
-            defaultValue: 'Schedule Counseling',
-        },
+        link({
+            appearances: false,
+        }),
     ],
 };

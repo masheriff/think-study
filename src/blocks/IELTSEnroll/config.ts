@@ -1,5 +1,5 @@
 import { Block } from 'payload';
-
+import { link } from '@/fields/link'
 export const IELTSEnroll: Block = {
     slug: 'ieltsEnroll',
     interfaceName: 'IELTSEnroll',
@@ -31,12 +31,8 @@ export const IELTSEnroll: Block = {
             defaultValue: 'with Confidence',
             required: true,
         },
-        {
-            name: 'buttonText',
-            type: 'text',
-            label: 'Button Text',
-            defaultValue: 'Enroll Now!',
-            required: true,
-        },
+        link({
+            appearances: false,
+        }),
     ],
 };

@@ -4,7 +4,8 @@ import React from 'react';
 import type { IELTSEnroll as IELTSEnrollType } from '@/payload-types';
 import { cn } from '@/utilities/ui';
 import Image from 'next/image';
-
+import { transformLinkProps } from '@/utilities/transformLinkProps';
+import { CMSLink } from '@/components/Link';
 type Props = IELTSEnrollType & {
     className?: string;
 };
@@ -13,7 +14,7 @@ export const IELTSEnroll: React.FC<Props> = ({
     titlePrefix,
     titleEmphasis,
     titleSuffix,
-    buttonText,
+    link,
     className,
 }) => {
     return (
@@ -48,11 +49,10 @@ export const IELTSEnroll: React.FC<Props> = ({
 
 
                     {/* Enroll Button */}
-                    <button
-                        className="px-12 py-2 rounded-full bg-[#C1F177] text-black hover:bg-[#b9f165] transition-colors mt-4"
-                    >
-                        {buttonText}
-                    </button>
+                    <CMSLink
+                        {...transformLinkProps(link)}
+                        appearance="themeRound"
+                    />
                 </div>
             </div>
         </section>
