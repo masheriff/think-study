@@ -1514,7 +1514,6 @@ export interface IELTSPackages {
   higlightedHeading: string;
   description: string;
   currencyLabel: string;
-  enrollButtonText: string;
   packages?:
     | {
         optionLabel: string;
@@ -1534,6 +1533,22 @@ export interface IELTSPackages {
             }[]
           | null;
         price: number;
+        link: {
+          type?: ('reference' | 'custom' | 'popup') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          popup?: (number | null) | Popup;
+          label: string;
+        };
         packageColor: 'green' | 'yellow';
         id?: string | null;
       }[]
@@ -2623,7 +2638,6 @@ export interface IELTSPackagesSelect<T extends boolean = true> {
   higlightedHeading?: T;
   description?: T;
   currencyLabel?: T;
-  enrollButtonText?: T;
   packages?:
     | T
     | {
@@ -2644,6 +2658,16 @@ export interface IELTSPackagesSelect<T extends boolean = true> {
               id?: T;
             };
         price?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              popup?: T;
+              label?: T;
+            };
         packageColor?: T;
         id?: T;
       };

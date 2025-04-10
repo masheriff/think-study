@@ -4,7 +4,8 @@ import { CheckBox } from '@/components/thinkstudy-svg';
 import TextHighlightBold from '@/components/ui/texthighlightbold';
 import type { IELTSPackages as IELTSPackagesType } from '@/payload-types';
 import { cn } from '@/utilities/ui';
-
+import { transformLinkProps } from '@/utilities/transformLinkProps';
+import { CMSLink } from '@/components/Link';
 type Props = IELTSPackagesType & {
     className?: string;
 };
@@ -14,7 +15,6 @@ export const IELTSPackages: React.FC<Props> = ({
     higlightedHeading,
     description,
     currencyLabel,
-    enrollButtonText,
     packages,
     className,
 }) => {
@@ -75,9 +75,10 @@ export const IELTSPackages: React.FC<Props> = ({
                                     <p className="text-3xl font-bold mb-4">
                                         {currencyLabel} {pkg.price.toLocaleString()}/-
                                     </p>
-                                    <button className="bg-[#6B5BA9] hover:bg-[#574A8C] text-white px-8 py-2 rounded-full transition-colors">
-                                        {enrollButtonText}
-                                    </button>
+                                    <CMSLink
+                                        {...transformLinkProps(pkg.link)}
+                                        appearance="themeRound"
+                                    />
                                 </div>
                             </div>
                         ))}
