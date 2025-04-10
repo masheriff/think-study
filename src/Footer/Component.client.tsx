@@ -56,7 +56,7 @@ export const FooterClient: React.FC<FooterClientProps> = ({ data }) => {
                             {data?.callToAction?.link && (
                                 <CMSLink
                                     {...transformLinkProps(data.callToAction.link)}
-                                    className="bg-[#6D5CAB] hover:bg-[#5A4A9B] text-white px-8 py-3 rounded-full transition-colors font-medium"
+                                    appearance="themeRound"
                                 />
                             )}
                         </div>

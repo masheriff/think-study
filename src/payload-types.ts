@@ -824,9 +824,21 @@ export interface AppointmentBlock {
           id?: string | null;
         }[]
       | null;
-    button: {
-      text: string;
-      url: string;
+    link: {
+      type?: ('reference' | 'custom' | 'popup') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: number | Post;
+          } | null);
+      url?: string | null;
+      popup?: (number | null) | Popup;
+      label: string;
     };
   };
   right: {
@@ -1968,11 +1980,15 @@ export interface AppointmentBlockSelect<T extends boolean = true> {
               text?: T;
               id?: T;
             };
-        button?:
+        link?:
           | T
           | {
-              text?: T;
+              type?: T;
+              newTab?: T;
+              reference?: T;
               url?: T;
+              popup?: T;
+              label?: T;
             };
       };
   right?:
