@@ -23,8 +23,8 @@ export const StudyInInsights: React.FC<Props> = ({
     const expenseDataRows = expenseRows?.filter(row => !row.isHeader) || [];
 
     return (
-        <section className={cn("mx-6", className)}>
-            <div className="container bg-[#D9F1FD] p-6 lg:p-16 rounded-3xl" aria-labelledby="study-notes-title">
+        <section className={cn("container", className)}>
+            <div className="bg-[#D9F1FD] p-6 lg:p-16 rounded-3xl" aria-labelledby="study-notes-title">
                 <div className="flex flex-col items-center justify-between md:flex-row  gap-4 md:gap-8 overflow-hidden">
                     {/* Left Section: Title + Intake Table */}
                     <div className="w-full md:w-full lg:w-1/2 xl:w-7/12 flex flex-col items-start justify-center py-4 md:py-0">
