@@ -813,6 +813,10 @@ export interface FormBlock {
  * via the `definition` "AppointmentBlock".
  */
 export interface AppointmentBlock {
+  /**
+   * Toggle to show/hide the block without deleting it
+   */
+  visibility?: boolean | null;
   leftContent: {
     title: string;
     subTitle: string;
@@ -2050,6 +2054,7 @@ export interface FormBlockSelect<T extends boolean = true> {
  * via the `definition` "AppointmentBlock_select".
  */
 export interface AppointmentBlockSelect<T extends boolean = true> {
+  visibility?: T;
   leftContent?:
     | T
     | {

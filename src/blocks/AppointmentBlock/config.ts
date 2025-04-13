@@ -8,6 +8,16 @@ export const AppointmentBlock: Block = {
     imageAltText: 'Appointment Block Image',
     fields: [
         {
+            name: 'visibility',
+            type: 'checkbox',
+            label: 'Visibility',
+            admin: {
+                description: 'Toggle to show/hide the block without deleting it',
+                width: '100%',
+            },
+            defaultValue: true,
+        },
+        {
             name: 'leftContent',
             type: 'group',
             fields: [

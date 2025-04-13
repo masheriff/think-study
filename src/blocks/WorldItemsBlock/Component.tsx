@@ -17,8 +17,8 @@ export const WorldItemsBlock: React.FC<Props> = (props) => {
         centerPoint
     } = props;
 
-
     const containerRef = useRef<HTMLDivElement>(null);
+    const [isMobile, setIsMobile] = useState(false);
     const [itemPositions, setItemPositions] = useState<Array<{ x: number, y: number }>>([]);
     const [centerPosition, setCenterPosition] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
 
@@ -44,9 +44,13 @@ export const WorldItemsBlock: React.FC<Props> = (props) => {
         '#1D8489', // Teal blue
     ];
 
-    // Calculate positions based on current container dimensions
+    // Check if we're on mobile and calculate positions
     useEffect(() => {
-        const handleResize = () => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768); // md breakpoint in Tailwind
+        };
+
+        const calculatePositions = () => {
             if (!containerRef.current) return;
 
             const containerRect = containerRef.current.getBoundingClientRect();
@@ -73,17 +77,95 @@ export const WorldItemsBlock: React.FC<Props> = (props) => {
             setItemPositions(newPositions);
         };
 
-        // Initialize on mount and update on resize
-        handleResize();
+        const handleResize = () => {
+            checkMobile();
+            // Only calculate positions for desktop view
+            if (!isMobile) {
+                setTimeout(calculatePositions, 0);
+            }
+        };
+
+        // Initialize on mount
+        checkMobile();
+
+        // Add delay to ensure DOM is ready
+        setTimeout(() => {
+            if (!isMobile) {
+                calculatePositions();
+            }
+        }, 100);
+
         window.addEventListener('resize', handleResize);
 
         // Cleanup listener on unmount
         return () => window.removeEventListener('resize', handleResize);
-    }, [centerPoint, items]);
+    }, [isMobile, centerPoint, items]);
 
+    // Mobile layout with world map background and flexible item layout
+    if (isMobile) {
+        return (
+            <section className="block my-4 overflow-hidden">
+                <hr className="w-1/2 mx-auto" />
+                <div className="max-w-3xl mx-4 md:mx-auto mt-10">
+                    <RichText className="text-center" data={title} />
+                </div>
+
+                {/* Mobile container with map background */}
+                <div className="relative px-4 py-8 overflow-hidden">
+                    {/* Background map */}
+                    <div className="relative w-full h-[300px] mb-6">
+                        {backgroundImage && typeof backgroundImage === 'object' && 'url' in backgroundImage ? (
+                            <Image
+                                src={backgroundImage.url || ''}
+                                alt="World Map"
+                                fill
+                                style={{
+                                    objectFit: 'contain',
+                                    objectPosition: 'center'
+                                }}
+                                className="opacity-70"
+                            />
+                        ) : (
+                            <div className="w-full h-full bg-blue-50"></div>
+                        )}
+
+                        {/* Overlay with flexible layout of items */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-full max-w-md flex flex-wrap justify-center gap-2 p-4">
+                                {items?.map((item, index) => (
+                                    <div
+                                        key={item.id || index}
+                                        className="bg-white p-2 rounded-full shadow-md flex items-center justify-center whitespace-nowrap"
+                                        style={{
+                                            zIndex: item['z-index'] || 10
+                                        }}
+                                    >
+                                        {typeof item.image === 'object' && item.image !== null && 'url' in item.image && (
+                                            <Image
+                                                src={item.image.url || ''}
+                                                alt={item.title || ''}
+                                                height={20}
+                                                width={20}
+                                                className="w-8 h-8 rounded-full mr-2"
+                                            />
+                                        )}
+                                        <div className="text-sm font-medium">
+                                            {item.title}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    // Desktop layout
     return (
         <section className="block my-[-2rem] overflow-visible">
-            <hr className='w-1/2 mx-auto' />
+            <hr className="w-1/2 mx-auto" />
             <div className="max-w-3xl mx-4 md:mx-auto mt-10">
                 <RichText className="text-center" data={title} />
             </div>
@@ -93,7 +175,7 @@ export const WorldItemsBlock: React.FC<Props> = (props) => {
                 style={{ position: 'relative' }}
             >
                 <div className="relative w-full h-full">
-                    {/* Background image for all devices */}
+                    {/* Background image for desktop */}
                     {backgroundImage && typeof backgroundImage === 'object' && 'url' in backgroundImage && (
                         <div className="w-full h-full">
                             <Image
@@ -167,7 +249,7 @@ export const WorldItemsBlock: React.FC<Props> = (props) => {
 
                         return (
                             <div
-                                key={index}
+                                key={item.id || index}
                                 className="marker-item absolute bg-white p-1 md:p-2 flex flex-row items-center rounded-full shadow-lg text-xs md:text-sm lg:text-base"
                                 style={style}
                             >
