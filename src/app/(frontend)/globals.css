@@ -209,3 +209,8 @@ html[data-theme='light'] {
   position: static;
   animation: none;
 }
+@property --border-angle {
+  inherits: false;
+  initial-value: 0deg;
+  syntax: '<angle>';
+}

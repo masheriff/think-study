@@ -39,8 +39,12 @@ const config = {
         'slide-up': 'slideUp 1s ease-out',
         'infinite-slide-up': 'infiniteSlideUp 45s linear infinite',
         'subtle-pulse': 'subtle-pulse 2s ease-in-out',
+        border: 'border 4s linear infinite',
       },
       keyframes: {
+        border: {
+          to: { '--border-angle': '360deg' },
+        },
         'subtle-pulse': {
           '0%, 100%': { transform: 'scale(1)' },
           '50%': { transform: 'scale(1.08)', boxShadow: '0 0 10px rgba(74, 222, 128, 0.6)' },

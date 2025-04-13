@@ -52,7 +52,7 @@ export const WorldItemsBlock: Block = {
             type: 'array',
             required: true,
             minRows: 1,
-            maxRows: 6,
+            maxRows: 30,
             fields: [
                 {
                     name: 'image',
