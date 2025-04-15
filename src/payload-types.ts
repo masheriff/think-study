@@ -71,6 +71,7 @@ export interface Config {
     posts: Post;
     media: Media;
     categories: Category;
+    countries: Country;
     users: User;
     popups: Popup;
     redirects: Redirect;
@@ -88,6 +89,7 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    countries: CountriesSelect<false> | CountriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     popups: PopupsSelect<false> | PopupsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
@@ -1208,41 +1210,59 @@ export interface WorldItemsBlock {
     };
     [k: string]: unknown;
   };
-  centerPoint: {
-    /**
-     * Horizontal position of center point in percentage (0% = left, 100% = right)
-     */
-    xPosition: number;
-    /**
-     * Vertical position of center point in percentage (0% = top, 100% = bottom)
-     */
-    yPosition: number;
-  };
   items: {
     image: number | Media;
     title: string;
-    'z-index': number;
+    description: string;
+    'z-index'?: number | null;
     /**
      * Vertical alignment of this marker
      */
     vAlign: 'top' | 'bottom';
     /**
-     * Position from top or bottom in percentage (based on vertical alignment)
-     */
-    vPos: number;
-    /**
      * Horizontal alignment of this marker
      */
     hAlign: 'left' | 'right';
     /**
+     * Position from top or bottom in percentage (based on vertical alignment)
+     */
+    vPos: number;
+    /**
      * Position from left or right in percentage (based on horizontal alignment)
      */
     hPos: number;
+    stack?:
+      | {
+          stackImage?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
     id?: string | null;
   }[];
+  /**
+   * Select which countries are to be displayed in the carousel below the world map
+   */
+  countryCarousel?: (number | Country)[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'worldItemsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "countries".
+ */
+export interface Country {
+  id: number;
+  /**
+   * Name of the country
+   */
+  name: string;
+  /**
+   * ISO 3166-1 alpha-2 code | https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements
+   */
+  code: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1822,6 +1842,10 @@ export interface PayloadLockedDocument {
         value: number | Category;
       } | null)
     | ({
+        relationTo: 'countries';
+        value: number | Country;
+      } | null)
+    | ({
         relationTo: 'users';
         value: number | User;
       } | null)
@@ -2378,24 +2402,26 @@ export interface MapBlockSelect<T extends boolean = true> {
 export interface WorldItemsBlockSelect<T extends boolean = true> {
   backgroundImage?: T;
   title?: T;
-  centerPoint?:
-    | T
-    | {
-        xPosition?: T;
-        yPosition?: T;
-      };
   items?:
     | T
     | {
         image?: T;
         title?: T;
+        description?: T;
         'z-index'?: T;
         vAlign?: T;
-        vPos?: T;
         hAlign?: T;
+        vPos?: T;
         hPos?: T;
+        stack?:
+          | T
+          | {
+              stackImage?: T;
+              id?: T;
+            };
         id?: T;
       };
+  countryCarousel?: T;
   id?: T;
   blockName?: T;
 }
@@ -2876,6 +2902,16 @@ export interface CategoriesSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "countries_select".
+ */
+export interface CountriesSelect<T extends boolean = true> {
+  name?: T;
+  code?: T;
   updatedAt?: T;
   createdAt?: T;
 }

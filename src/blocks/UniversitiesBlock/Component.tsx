@@ -131,7 +131,7 @@ export const UniversitiesBlock: React.FC<Props> = (props) => {
                         <div className="w-full absolute bottom-0 h-20 bg-gradient-to-b from-transparent to-white z-10"></div>
                     </div>
                 )}
-                <hr className="mt-32 w-96 mx-auto" />
+                <hr className="mt-32 w-1/3 mx-auto" />
             </div>
         </section>
     );
