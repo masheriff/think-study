@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { cn } from '@/utilities/ui';
 import type { TestimonialsBlock as TestimonialsBlockType } from '@/payload-types';
@@ -14,6 +14,15 @@ type Props = TestimonialsBlockType & {
 
 export const TestimonialsBlock: React.FC<Props> = (props) => {
     const { className, heading, description, testimonials } = props;
+    const [maxHeight, setMaxHeight] = useState<number>(300);
+    const contentRefs = useRef<Array<React.RefObject<HTMLDivElement>>>([]);
+
+    // Initialize refs for each testimonial
+    if (testimonials && contentRefs.current.length !== testimonials.length) {
+        contentRefs.current = Array(testimonials.length)
+            .fill(null)
+            .map((_, i) => (contentRefs.current[i] || React.createRef<HTMLDivElement>())) as React.RefObject<HTMLDivElement>[];
+    }
 
     // Updated carousel configuration with WheelGesturesPlugin
     const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -39,6 +48,40 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
 
     // Use custom hook for dot navigation
     const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
+
+    // Calculate and set the maximum height
+    useEffect(() => {
+        if (!testimonials || testimonials.length === 0) return;
+
+        // Function to calculate the maximum height
+        const calculateMaxHeight = () => {
+            let highest = 300; // Default minimum height
+
+            contentRefs.current.forEach(ref => {
+                if (ref.current) {
+                    const height = ref.current.scrollHeight;
+                    highest = Math.max(highest, height);
+                }
+            });
+
+            setMaxHeight(highest);
+        };
+
+        // Calculate after embla is initialized and content is loaded
+        if (emblaApi) {
+            // Small delay to ensure content is fully rendered
+            setTimeout(calculateMaxHeight, 100);
+
+            // Recalculate when window is resized
+            window.addEventListener('resize', calculateMaxHeight);
+
+            return () => {
+                emblaApi.off('select', calculateMaxHeight);
+                window.removeEventListener('resize', calculateMaxHeight);
+            };
+        }
+    }, [emblaApi, testimonials]);
+    const bufferHeight = maxHeight + 40;
 
     return (
         <section className={cn("my-8", className)}>
@@ -69,7 +112,9 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
                                             </div>
                                         )}
                                         <div
-                                            className={`w-full p-6 flex flex-col justify-between rounded-3xl -mt-5 min-h-[300px] ${index % 2 === 0 ? 'bg-[#C1F177]' : 'bg-[#D9F1FD]'}`}
+                                            ref={contentRefs.current[index]}
+                                            className={`w-full p-6 flex flex-col justify-between rounded-3xl -mt-5 ${index % 2 === 0 ? 'bg-[#C1F177]' : 'bg-[#D9F1FD]'}`}
+                                            style={{ height: `${bufferHeight}px` }}
                                         >
                                             <div className="relative">
                                                 <Image
@@ -81,7 +126,7 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
                                                     priority={false}
                                                 />
 
-                                                <p className="text-base md:text-sm text-gray-700 leading-relaxed my-6 text-justify min-h-[120px]">
+                                                <p className="text-base md:text-sm text-gray-700 leading-relaxed my-6 text-justify">
                                                     {testimonial.review || ''}
                                                 </p>
                                                 <Image
@@ -94,7 +139,7 @@ export const TestimonialsBlock: React.FC<Props> = (props) => {
                                                     loading="lazy"
                                                 />
                                             </div>
-                                            <div className="mt-4 bg-white rounded-xl p-3 shadow-sm">
+                                            <div className="mt-4 bg-white rounded-xl p-3 shadow-sm testimonial-info-card">
                                                 <div className="flex justify-between items-center">
                                                     <div>
                                                         <h3 className="text-lg md:text-sm font-medium text-[#FF0000]">

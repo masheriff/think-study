@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import type { WorldItemsBlock as WorldItemsBlockType } from '@/payload-types';
 import { RichText } from '@payloadcms/richtext-lexical/react';
+import Marquee from "react-fast-marquee";
 
 type Props = WorldItemsBlockType & {
     className?: string;
@@ -14,261 +15,146 @@ export const WorldItemsBlock: React.FC<Props> = (props) => {
         backgroundImage,
         title,
         items,
-        centerPoint
+        countryCarousel
     } = props;
 
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [isMobile, setIsMobile] = useState(false);
-    const [itemPositions, setItemPositions] = useState<Array<{ x: number, y: number }>>([]);
-    const [centerPosition, setCenterPosition] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
-
-    // Create curved path between two points with controlled curvature
-    const createCurvedPath = (startX: number, startY: number, endX: number, endY: number) => {
-        const midX = (startX + endX) / 2;
-        const distance = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
-        const curveHeight = distance * 0.4;
-
-        // Force control point to be above both points for consistent curve style
-        const controlY = Math.min(startY, endY) - curveHeight;
-
-        return `M ${startX} ${startY} Q ${midX} ${controlY} ${endX} ${endY}`;
-    };
-
-    // Line colors for the curved connections
-    const lineColors = [
-        '#F033FF', // Pink
-        '#3357FF', // Blue
-        '#FF5733', // Orange-red
-        '#33FF57', // Green
-        '#640D5F', // Violet
-        '#1D8489', // Teal blue
-    ];
-
-    // Check if we're on mobile and calculate positions
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth < 768); // md breakpoint in Tailwind
-        };
-
-        const calculatePositions = () => {
-            if (!containerRef.current) return;
-
-            const containerRect = containerRef.current.getBoundingClientRect();
-
-            // Set center point based on CMS data (or defaults if not provided)
-            const xPercent = centerPoint?.xPosition ?? 67;
-            const yPercent = centerPoint?.yPosition ?? 45;
-
-            setCenterPosition({
-                x: containerRect.width * (xPercent / 100),
-                y: containerRect.height * (yPercent / 100)
-            });
-
-            // Calculate marker positions
-            const markers = containerRef.current.querySelectorAll('.marker-item');
-            const newPositions = Array.from(markers).map(marker => {
-                const rect = marker.getBoundingClientRect();
-                return {
-                    x: rect.left - containerRect.left + rect.width / 2,
-                    y: rect.top - containerRect.top
-                };
-            });
-
-            setItemPositions(newPositions);
-        };
-
-        const handleResize = () => {
-            checkMobile();
-            // Only calculate positions for desktop view
-            if (!isMobile) {
-                setTimeout(calculatePositions, 0);
-            }
-        };
-
-        // Initialize on mount
-        checkMobile();
-
-        // Add delay to ensure DOM is ready
-        setTimeout(() => {
-            if (!isMobile) {
-                calculatePositions();
-            }
-        }, 100);
-
-        window.addEventListener('resize', handleResize);
-
-        // Cleanup listener on unmount
-        return () => window.removeEventListener('resize', handleResize);
-    }, [isMobile, centerPoint, items]);
-
-    // Mobile layout with world map background and flexible item layout
-    if (isMobile) {
-        return (
-            <section className="block my-4 overflow-hidden">
-                <hr className="w-1/2 mx-auto" />
-                <div className="max-w-3xl mx-4 md:mx-auto mt-10">
-                    <RichText className="text-center" data={title} />
-                </div>
-
-                {/* Mobile container with map background */}
-                <div className="relative px-4 py-8 overflow-hidden">
-                    {/* Background map */}
-                    <div className="relative w-full h-[300px] mb-6">
-                        {backgroundImage && typeof backgroundImage === 'object' && 'url' in backgroundImage ? (
-                            <Image
-                                src={backgroundImage.url || ''}
-                                alt="World Map"
-                                fill
-                                style={{
-                                    objectFit: 'contain',
-                                    objectPosition: 'center'
-                                }}
-                                className="opacity-70"
-                            />
-                        ) : (
-                            <div className="w-full h-full bg-blue-50"></div>
-                        )}
-
-                        {/* Overlay with flexible layout of items */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-full max-w-md flex flex-wrap justify-center gap-2 p-4">
-                                {items?.map((item, index) => (
-                                    <div
-                                        key={item.id || index}
-                                        className="bg-white p-2 rounded-full shadow-md flex items-center justify-center whitespace-nowrap"
-                                        style={{
-                                            zIndex: item['z-index'] || 10
-                                        }}
-                                    >
-                                        {typeof item.image === 'object' && item.image !== null && 'url' in item.image && (
-                                            <Image
-                                                src={item.image.url || ''}
-                                                alt={item.title || ''}
-                                                height={20}
-                                                width={20}
-                                                className="w-8 h-8 rounded-full mr-2"
-                                            />
-                                        )}
-                                        <div className="text-sm font-medium">
-                                            {item.title}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        );
-    }
-
-    // Desktop layout
     return (
         <section className="block my-[-2rem] overflow-visible">
-            <hr className="w-1/2 mx-auto" />
-            <div className="max-w-3xl mx-4 md:mx-auto mt-10">
+            <hr className="w-1/3 mx-auto" />
+            <div className="max-w-3xl mx-4 md:mx-auto my-10">
                 <RichText className="text-center" data={title} />
             </div>
-            <div
-                ref={containerRef}
-                className="container relative mx-auto my-0 md:my-16 px-4 py-8 sm:py-0 h-[300px] md:h-[550px] lg:h-[600px] overflow-hidden"
-                style={{ position: 'relative' }}
-            >
-                <div className="relative w-full h-full">
-                    {/* Background image for desktop */}
-                    {backgroundImage && typeof backgroundImage === 'object' && 'url' in backgroundImage && (
-                        <div className="w-full h-full">
-                            <Image
-                                src={backgroundImage.url || ''}
-                                alt="World Map Background"
-                                fill
-                                style={{
-                                    objectFit: 'contain',
-                                    objectPosition: 'center'
-                                }}
-                            />
-                        </div>
-                    )}
+            <div className="container p-0 relative h-[300px] md:h-[450px] lg:h-[600px]">
+                {/* Background image for desktop */}
+                {backgroundImage && typeof backgroundImage === 'object' && 'url' in backgroundImage && (
+                    <div className="w-full h-full relative">
+                        <Image
+                            src={backgroundImage.url || ''}
+                            alt="World Map Background"
+                            fill
+                            style={{
+                                objectFit: 'contain',
+                                objectPosition: 'center'
+                            }}
+                        />
+                    </div>
+                )}
+                {/* Marker items */}
+                {items?.map((item, index) => {
+                    // Extract alignment and position values
+                    const vAlign = item.vAlign || 'top';
+                    const hAlign = item.hAlign || 'left';
+                    const vPos = `${item.vPos || 50}%`;
+                    const hPos = `${item.hPos || 50}%`;
 
-                    {/* SVG for connection lines */}
-                    <svg
-                        className="absolute top-0 left-0 w-full h-full"
-                        style={{
-                            pointerEvents: 'none',
-                            zIndex: 5,
-                            overflow: 'visible'
-                        }}
-                    >
-                        <defs>
-                            {itemPositions.map((pos, idx) => (
-                                <linearGradient
-                                    key={`gradient-${idx}`}
-                                    id={`lineGradient-${idx}`}
-                                    gradientUnits="userSpaceOnUse"
-                                    x1={pos.x} y1={pos.y}
-                                    x2={centerPosition.x} y2={centerPosition.y}
-                                >
-                                    <stop offset="0%" stopColor={lineColors[idx % lineColors.length]} stopOpacity="0.6" />
-                                    <stop offset="100%" stopColor={lineColors[idx % lineColors.length]} stopOpacity="1" />
-                                </linearGradient>
-                            ))}
-                        </defs>
+                    // Style object with dynamic positioning
+                    const style: React.CSSProperties = {
+                        zIndex: item['z-index'] || 10,
+                        maxWidth: 'max-content', // Fix for the maxWidth issue
+                    };
 
-                        {itemPositions.map((pos, idx) => (
-                            <path
-                                key={`path-${idx}`}
-                                d={createCurvedPath(pos.x, pos.y, centerPosition.x, centerPosition.y)}
-                                stroke={`url(#lineGradient-${idx})`}
-                                strokeWidth="2"
-                                fill="none"
-                            />
-                        ))}
-                    </svg>
+                    // Apply positioning based on alignment
+                    style[vAlign] = vPos;
+                    style[hAlign] = hPos;
 
-                    {/* Marker items */}
-                    {items?.map((item, index) => {
-                        // Extract alignment and position values
-                        const vAlign = item.vAlign || 'top';
-                        const hAlign = item.hAlign || 'left';
-                        const vPos = `${item.vPos || 50}%`;
-                        const hPos = `${item.hPos || 50}%`;
+                    // Set the other dimensions to auto
+                    style[vAlign === 'top' ? 'bottom' : 'top'] = 'auto';
+                    style[hAlign === 'left' ? 'right' : 'left'] = 'auto';
 
-                        // Style object with dynamic positioning
-                        const style: React.CSSProperties = {
-                            zIndex: item['z-index'] || 10,
-                            maxWidth: 'max-content', // Fix for the maxWidth issue
-                        };
+                    // Check if stack exists and has items
+                    const hasStack = item.stack && item.stack.length > 0;
 
-                        // Apply positioning based on alignment
-                        style[vAlign] = vPos;
-                        style[hAlign] = hPos;
+                    return (
+                        <div key={item.id || index} style={style} className='absolute'>
+                            <div className="relative">
+                                {/* Only render stack if it exists */}
+                                {hasStack && item.stack?.map((stackItem, stackIndex) => {
+                                    const isEven = stackIndex % 2 === 0;
+                                    // Position stacks at top right instead of bottom right
+                                    const offsetY = -(stackIndex + 1) * 7;
+                                    const offsetX = -(stackIndex + 1) * 7;
 
-                        // Set the other dimensions to auto
-                        style[vAlign === 'top' ? 'bottom' : 'top'] = 'auto';
-                        style[hAlign === 'left' ? 'right' : 'left'] = 'auto';
+                                    return (
+                                        <div
+                                            key={`stack-${stackIndex}`}
+                                            className={`absolute flex flex-col ${isEven ? 'bg-[#D9F1FD]' : 'bg-[#C1F177]'} rounded-lg md:rounded-lg lg:rounded-xl w-12 md:w-16 lg:w-20 shadow-lg`}
+                                            style={{
+                                                top: offsetY,
+                                                right: offsetX,
+                                                zIndex: -(stackIndex + 1)
+                                            }}
+                                        >
+                                            {/* Main item style applied to stack */}
+                                            {typeof stackItem.stackImage === 'object' &&
+                                                stackItem.stackImage !== null &&
+                                                'url' in stackItem.stackImage && (
+                                                    <Image
+                                                        src={stackItem.stackImage.url || ''}
+                                                        alt=""
+                                                        height={50}
+                                                        width={50}
+                                                        className='w-12 h-10 md:w-16 md:h-12 lg:w-20 lg:h-16 rounded-lg md:rounded-lg lg:rounded-xl'
+                                                    />
+                                                )}
+                                            {/* Empty div to match the main item style/structure */}
+                                            <div className='p-1 rounded-xl'>
+                                                <div className='text-[10px] lg:text-[14px] font-medium line-clamp-1'>
+                                                    {item.title}
+                                                </div>
+                                                <div className='text-[6px] lg:text-[8px] line-clamp-3 md:line-clamp-3 lg:line-clamp-3'>
+                                                    {item.description}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
 
-                        return (
-                            <div
-                                key={item.id || index}
-                                className="marker-item absolute bg-white p-1 md:p-2 flex flex-row items-center rounded-full shadow-lg text-xs md:text-sm lg:text-base"
-                                style={style}
-                            >
-                                {typeof item.image === 'object' && item.image !== null && 'url' in item.image && (
-                                    <Image
-                                        src={item.image.url || ''}
-                                        alt={item.title || ''}
-                                        height={50}
-                                        width={50}
-                                        className='w-8 h-8 rounded-full md:w-[40px] md:h-[40px] mr-2'
-                                    />
-                                )}
-                                <div className="whitespace-nowrap">
-                                    {item.title}
+                                {/* Main content (top layer) */}
+                                <div className='relative z-10 flex flex-col bg-[#C1F177] rounded-lg md:rounded-lg lg:rounded-xl w-12 md:w-16 lg:w-20 shadow-lg'>
+                                    {typeof item.image === 'object' && item.image !== null && 'url' in item.image && (
+                                        <Image
+                                            src={item.image.url || ''}
+                                            alt={item.title || ''}
+                                            height={50}
+                                            width={50}
+                                            className='w-12 h-10 md:w-16 md:h-12 lg:w-20 lg:h-16 rounded-lg md:rounded-lg lg:rounded-xl'
+                                        />
+                                    )}
+                                    <div className='p-1 rounded-xl'>
+                                        <div className='text-[10px] lg:text-[14px] font-medium line-clamp-1'>
+                                            {item.title}
+                                        </div>
+                                        <div className='text-[6px] lg:text-[8px] line-clamp-3 md:line-clamp-3 lg:line-clamp-3'>
+                                            {item.description}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                    );
+                })}
+            </div>
+            <div className="container p-0 mt-8">
+                <Marquee pauseOnHover={true}>
+                    {countryCarousel?.map((item, index) => {
+                        return (
+                            typeof item === 'object' && 'code' in item && 'name' in item ? (
+                                <div key={item.code || index} className='flex flex-col items-center gap-2 mx-3 md:mx-8 font-mynerve text-xs md:text-sm'>
+                                    <Image
+                                        src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${item.code}.svg`}
+                                        alt={item.name || ''}
+                                        height={60}
+                                        width={60}
+                                        className='shadow-lg rounded-lg'
+                                    />
+                                    {item.name}
+                                </div>
+                            ) : (
+                                null
+                            )
                         );
                     })}
-                </div>
+                </Marquee>
             </div>
         </section>
     );
