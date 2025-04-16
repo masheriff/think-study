@@ -77,7 +77,7 @@ export const UniversitiesBlock: React.FC<Props> = (props) => {
                     {stats && stats.length > 0 && (
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 ">
                             {stats.map((stat, index) => (
-                                <div key={index} className="flex space-x-1 md:space-x-2 items-center justify-center md:justify-start">
+                                <div key={index} className="flex space-x-1 md:space-x-2 items-center md:justify-start">
                                     <div className="text-sm md:text-base font-bold text-gray-900">
                                         {stat.value}
                                     </div>
