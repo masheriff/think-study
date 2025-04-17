@@ -17,22 +17,9 @@ export const CounselingBlock: Block = {
             type: 'text',
             required: true,
         },
-        {
-            name: 'button',
-            type: 'group',
-            fields: [
-                {
-                    name: 'text',
-                    type: 'text',
-                    required: true,
-                },
-                {
-                    name: 'url',
-                    type: 'text',
-                    required: true,
-                },
-            ],
-        },
+        link({
+            appearances: false,
+        }),
         {
             name: 'backgroundImage',
             type: 'upload',

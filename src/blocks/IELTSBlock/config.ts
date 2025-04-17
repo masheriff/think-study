@@ -1,4 +1,5 @@
 import { Block } from "payload";
+import { link } from '@/fields/link'
 
 export const IELTSBlock: Block = {
     slug: 'ieltsBlock',
@@ -99,27 +100,9 @@ export const IELTSBlock: Block = {
                 },
             ],
         },
-        {
-            name: 'ctaButton',
-            type: 'group',
-            label: 'Call to Action Button',
-            fields: [
-                {
-                    name: 'text',
-                    type: 'text',
-                    required: true,
-                    label: 'Button Text',
-                    defaultValue: 'Join The Classes',
-                },
-                {
-                    name: 'href',
-                    type: 'text',
-                    required: true,
-                    label: 'Button Link',
-                    defaultValue: '/join',
-                },
-            ],
-        },
+        link({
+            appearances: false,
+        }),
         {
             name: 'image',
             type: 'upload',

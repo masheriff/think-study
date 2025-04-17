@@ -11,7 +11,6 @@ import { StudyAbroadBlock } from './StudyAbroadBlock/Component'
 import IELTSBlock from './IELTSBlock/Component'
 import GetStartedBlock from './GetStartedBlock/Component'
 import MapBlock from './MapBlock/Component'
-import { WorldStudentBlock } from './WorldStudentBlock/Component'
 import FAQBlock from './FAQBlock/Component'
 import { CareerBlock } from './CareerBlock/Component'
 import ConnectBlock from './ConnectBlock/Component'
@@ -20,8 +19,8 @@ import ServiceBlock from './ServiceBlock/Component'
 import { StudyInCourse } from './StudyInCourse/Component'
 import StudyInChecklist from './StudyInCheckList/Component'
 import { BenefitsInStudy } from './StudyInBenefits/Component'
+import { StudyInInsights } from './StudyInInsights/Component'
 import CallToActionBlock from './CallToActionBlock/Component'
-import { StudyInNotes } from './StudyInNotes/Component'
 import { StudyInApplication } from './StudyInApplication/Component'
 import AdmissionBlock from './AdmissionBlock/Component'
 import { IELTSEnroll } from './IELTSEnroll/Component'
@@ -33,6 +32,7 @@ import AppointmentBlock from './AppointmentBlock/Component'
 import CalendlyBlock from './CalendlyBlock/Component'
 import UniversitySliderBlock from './UniversitySliderBlock/Component'
 import { ContactUsBlock } from './ContactUsBlock/component'
+import WorldItemsBlock from './WorldItemsBlock/Component'
 
 type BlockComponentsType = {
   formBlock: typeof FormBlock
@@ -46,7 +46,7 @@ type BlockComponentsType = {
   ieltsBlock: typeof IELTSBlock
   getStartedBlock: typeof GetStartedBlock
   mapBlock: typeof MapBlock
-  worldStudentBlock: typeof WorldStudentBlock
+  worldItemsBlock: typeof WorldItemsBlock
   serviceBlock: typeof ServiceBlock
   faqBlock: typeof FAQBlock
   admissionBlock: typeof AdmissionBlock
@@ -57,7 +57,7 @@ type BlockComponentsType = {
   studyInCourse: typeof StudyInCourse
   studyInChecklist: typeof StudyInChecklist
   benefitsInStudy: typeof BenefitsInStudy
-  studyInNotes: typeof StudyInNotes
+  studyInInsights: typeof StudyInInsights
   studyInApplication: typeof StudyInApplication
   ieltsEnroll: typeof IELTSEnroll
   ieltsPrep: typeof IELTSPrep
@@ -81,7 +81,7 @@ const blockComponents: BlockComponentsType = {
   ieltsBlock: IELTSBlock,
   getStartedBlock: GetStartedBlock,
   mapBlock: MapBlock,
-  worldStudentBlock: WorldStudentBlock,
+  worldItemsBlock: WorldItemsBlock,
   serviceBlock: ServiceBlock,
   faqBlock: FAQBlock,
   admissionBlock: AdmissionBlock,
@@ -93,7 +93,7 @@ const blockComponents: BlockComponentsType = {
   studyInCourse: StudyInCourse,
   studyInChecklist: StudyInChecklist,
   benefitsInStudy: BenefitsInStudy,
-  studyInNotes: StudyInNotes,
+  studyInInsights: StudyInInsights,
   studyInApplication: StudyInApplication,
   ieltsEnroll: IELTSEnroll,
   ieltsPrep: IELTSPrep,

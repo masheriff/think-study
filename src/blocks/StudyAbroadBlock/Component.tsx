@@ -2,11 +2,12 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
 import type { StudyAbroadBlock as StudyAbroadBlockType } from '@/payload-types';
 import { Media } from '@/payload-types';
 import { cn } from '@/utilities/ui';
 import TextHighlighter from '@/components/ui/texthighlighter';
+import { transformLinkProps } from '@/utilities/transformLinkProps';
+import { CMSLink } from '@/components/Link';
 
 type Props = StudyAbroadBlockType & {
     className?: string;
@@ -63,9 +64,10 @@ export const StudyAbroadBlock: React.FC<Props> = (props) => {
                                     <h2 className="text-3xl"><TextHighlighter text={card.courseDescription} /></h2>
                                     <p className="text-gray-600 text-base">{card.description}</p>
                                     <div className="hidden md:block">
-                                        <Button className="bg-[#6B5BA9] hover:bg-[#574A8C] hover:text-white text-white px-6 py-3 rounded-3xl transition-colors" asChild>
-                                            <a href={card.buttonLink}>{card.buttonText}</a>
-                                        </Button>
+                                        <CMSLink
+                                            {...transformLinkProps(card.link)}
+                                            appearance="themeRound"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -80,9 +82,10 @@ export const StudyAbroadBlock: React.FC<Props> = (props) => {
                                     className="rounded-3xl shadow-lg object-cover"
                                 />
                                 <div className="block absolute bottom-4 left-0 right-0 text-center md:hidden">
-                                    <Button className="bg-[#6B5BA9] hover:bg-[#574A8C] hover:text-white text-white px-6 py-3 rounded-3xl transition-colors" asChild>
-                                        <a href={card.buttonLink}>{card.buttonText}</a>
-                                    </Button>
+                                    <CMSLink
+                                        {...transformLinkProps(card.link)}
+                                        appearance="themeRound"
+                                    />
                                 </div>
                             </div>
                         </div>

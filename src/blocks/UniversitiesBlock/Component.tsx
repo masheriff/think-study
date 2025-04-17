@@ -77,7 +77,7 @@ export const UniversitiesBlock: React.FC<Props> = (props) => {
                     {stats && stats.length > 0 && (
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 ">
                             {stats.map((stat, index) => (
-                                <div key={index} className="flex space-x-1 md:space-x-2 items-center justify-center md:justify-start">
+                                <div key={index} className="flex space-x-1 md:space-x-2 items-center md:justify-start">
                                     <div className="text-sm md:text-base font-bold text-gray-900">
                                         {stat.value}
                                     </div>
@@ -131,7 +131,7 @@ export const UniversitiesBlock: React.FC<Props> = (props) => {
                         <div className="w-full absolute bottom-0 h-20 bg-gradient-to-b from-transparent to-white z-10"></div>
                     </div>
                 )}
-                <hr className="mt-32 w-96 mx-auto" />
+                <hr className="mt-32 w-1/3 mx-auto" />
             </div>
         </section>
     );

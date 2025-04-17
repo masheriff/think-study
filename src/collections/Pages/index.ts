@@ -12,11 +12,11 @@ import { StudyAbroadBlock } from '@/blocks/StudyAbroadBlock/config'
 import { IELTSBlock } from '@/blocks/IELTSBlock/config'
 import { GetStartedBlock } from '@/blocks/GetStartedBlock/config'
 import { MapBlock } from '@/blocks/MapBlock/config'
+import { WorldItemsBlock } from '@/blocks/WorldItemsBlock/config'
 import { ServiceBlock } from '@/blocks/ServiceBlock/config'
 import { FAQBlock } from '@/blocks/FAQBlock/config'
 import { AdmissionBlock } from '@/blocks/AdmissionBlock/config'
 import { CareerBlock } from '@/blocks/CareerBlock/config'
-import { WorldStudentBlock } from '@/blocks/WorldStudentBlock/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
@@ -38,8 +38,8 @@ import { hero } from '@/heros/config'
 import { StudyInCourse } from '@/blocks/StudyInCourse/config'
 import { StudyInChecklist } from '@/blocks/StudyInCheckList/config'
 import { BenefitsInStudy } from '@/blocks/StudyInBenefits/config'
-import { StudyInNotes } from '@/blocks/StudyInNotes/config'
 import { StudyInApplication } from '@/blocks/StudyInApplication/config'
+import { StudyInInsights } from '@/blocks/StudyInInsights/config'
 //Ace IELTS page
 import { IELTSEnroll } from '@/blocks/IELTSEnroll/config'
 import { IELTSPrep } from '@/blocks/IELTSPrep/config'
@@ -127,8 +127,8 @@ export const Pages: CollectionConfig<'pages'> = {
               name: 'layout',
               type: 'blocks',
               blocks: [Content, MediaBlock, Archive, FormBlock, AppointmentBlock, AdmissionBlock, TestimonialsBlock, CounselingBlock, CallToActionBlock, UniversitiesBlock,
-                StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldStudentBlock, ServiceBlock, FAQBlock, CareerBlock, WhyusMediaBlock, ConnectBlock,
-                StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInNotes, StudyInApplication, IELTSEnroll, IELTSPrep, IELTSFeatures,
+                StudyAbroadBlock, IELTSBlock, GetStartedBlock, MapBlock, WorldItemsBlock, ServiceBlock, FAQBlock, CareerBlock, WhyusMediaBlock, ConnectBlock,
+                StudyInCourse, StudyInChecklist, BenefitsInStudy, StudyInApplication, StudyInInsights, IELTSEnroll, IELTSPrep, IELTSFeatures,
                 IELTSPackages, IELTSRoadmap, CalendlyBlock, UniversitySliderBlock, ContactUsBlock],
               required: true,
               admin: {

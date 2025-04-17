@@ -4,15 +4,17 @@ import type { AppointmentBlock as AppointmentBlockType } from '@/payload-types'
 import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import { CheckBox } from '@/components/thinkstudy-svg'
-import { Button } from '@/components/ui/button'
+import { CMSLink } from '@/components/Link'
+import { transformLinkProps } from "@/utilities/transformLinkProps"
 
 type Props = AppointmentBlockType & {
     className?: string
 }
 
 const AppointmentBlock: React.FC<Props> = (props) => {
-    const { className, leftContent, right, bottomText } = props
+    const { className, leftContent, right, bottomText, visibility } = props
     const [dateError, setDateError] = useState<string | null>(null)
+
 
     // Format the schedule date
     const formatDate = (dateString: string) => {
@@ -92,10 +94,15 @@ const AppointmentBlock: React.FC<Props> = (props) => {
     // Determine if day should be shown (only when there's no toDate)
     const shouldShowDay = right?.schedule?.fromDate && !right?.schedule?.toDate
 
+    // If visibility is false, don't render the component
+    if (visibility === false) {
+        return null;
+    }
+
     return (
         <section className={cn("mx-6", className)}>
-            <div className="container bg-[#D9F1FD] p-6 lg:p-16 rounded-2xl relative">
-                <div className="flex flex-col-reverse lg:flex-row items-stretch lg:justify-between lg:space-x-8 xl:space-x-20 space-y-8 lg:space-y-0">
+            <div className="container relative p-6 lg:p-16 rounded-2xl border-4 border-transparent animate-border 
+                    [background:linear-gradient(45deg,#D9F1FD,#D9F1FD_50%,#D9F1FD)_padding-box,conic-gradient(from_var(--border-angle),#C1F177_0%,#C1F177_40%,#64B5F6_60%,#C1F177_80%,#C1F177_100%)_border-box]">                <div className="flex flex-col-reverse lg:flex-row items-stretch lg:justify-between lg:space-x-8 xl:space-x-20 space-y-8 lg:space-y-0">
                     {/* Left content - on bottom for mobile/tablet */}
                     <div className="flex flex-col w-full lg:w-1/2 space-y-4 lg:space-y-6 mt-8 lg:mt-0 h-full justify-center">
                         <h6 className="text-xl font-medium text-black/65">{leftContent?.title}</h6>
@@ -113,13 +120,13 @@ const AppointmentBlock: React.FC<Props> = (props) => {
                             ))}
                         </div>
                         <div className="block">
-                            {leftContent?.button && (
-                                <Button
-                                    className="bg-[#6B5BA9] hover:bg-[#574A8C] hover:text-white text-white px-4 py-2 rounded-3xl transition-colors mb-3"
-                                >
-                                    <a href={leftContent.button.url}>{leftContent.button.text}</a>
-                                </Button>
+                            {leftContent?.link && (
+                                <CMSLink
+                                    {...transformLinkProps(leftContent?.link)}
+                                    appearance="themeRound"
+                                />
                             )}
+
                         </div>
                     </div>
 

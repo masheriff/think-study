@@ -1,4 +1,5 @@
 import { Block } from 'payload'
+import { link } from '@/fields/link'
 
 export const AppointmentBlock: Block = {
     slug: 'appointmentBlock',
@@ -6,6 +7,16 @@ export const AppointmentBlock: Block = {
     imageURL: '/assets/blocks/Appointment.png',
     imageAltText: 'Appointment Block Image',
     fields: [
+        {
+            name: 'visibility',
+            type: 'checkbox',
+            label: 'Visibility',
+            admin: {
+                description: 'Toggle to show/hide the block without deleting it',
+                width: '100%',
+            },
+            defaultValue: true,
+        },
         {
             name: 'leftContent',
             type: 'group',
@@ -41,22 +52,9 @@ export const AppointmentBlock: Block = {
                         },
                     ],
                 },
-                {
-                    name: 'button',
-                    type: 'group',
-                    fields: [
-                        {
-                            name: 'text',
-                            type: 'text',
-                            required: true,
-                        },
-                        {
-                            name: 'url',
-                            type: 'text',
-                            required: true,
-                        },
-                    ],
-                },
+                link({
+                    appearances: false,
+                })
             ],
         },
         {

@@ -71,6 +71,7 @@ export interface Config {
     posts: Post;
     media: Media;
     categories: Category;
+    countries: Country;
     users: User;
     popups: Popup;
     redirects: Redirect;
@@ -88,6 +89,7 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    countries: CountriesSelect<false> | CountriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     popups: PopupsSelect<false> | PopupsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
@@ -218,7 +220,7 @@ export interface Page {
     | IELTSBlock
     | GetStartedBlock
     | MapBlock
-    | WorldStudentBlock
+    | WorldItemsBlock
     | ServiceBlock
     | FAQBlock
     | CareerBlock
@@ -233,8 +235,8 @@ export interface Page {
         blockName?: string | null;
         blockType: 'benefitsInStudy';
       }
-    | StudyInNotes
     | StudyInApplication
+    | StudyInInsights
     | IELTSEnroll
     | IELTSPrep
     | IELTSFeatures
@@ -813,6 +815,10 @@ export interface FormBlock {
  * via the `definition` "AppointmentBlock".
  */
 export interface AppointmentBlock {
+  /**
+   * Toggle to show/hide the block without deleting it
+   */
+  visibility?: boolean | null;
   leftContent: {
     title: string;
     subTitle: string;
@@ -824,9 +830,21 @@ export interface AppointmentBlock {
           id?: string | null;
         }[]
       | null;
-    button: {
-      text: string;
-      url: string;
+    link: {
+      type?: ('reference' | 'custom' | 'popup') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: number | Post;
+          } | null);
+      url?: string | null;
+      popup?: (number | null) | Popup;
+      label: string;
     };
   };
   right: {
@@ -926,9 +944,21 @@ export interface TestimonialsBlock {
 export interface CounselingBlock {
   heading: string;
   description: string;
-  button: {
-    text: string;
-    url: string;
+  link: {
+    type?: ('reference' | 'custom' | 'popup') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    popup?: (number | null) | Popup;
+    label: string;
   };
   backgroundImage: number | Media;
   cards?:
@@ -1027,8 +1057,22 @@ export interface StudyAbroadBlock {
     | {
         courseDescription: string;
         description: string;
-        buttonText: string;
-        buttonLink: string;
+        link: {
+          type?: ('reference' | 'custom' | 'popup') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          popup?: (number | null) | Popup;
+          label: string;
+        };
         image: number | Media;
         imagePosition: 'left' | 'right';
         id?: string | null;
@@ -1069,9 +1113,21 @@ export interface IELTSBlock {
         id?: string | null;
       }[]
     | null;
-  ctaButton: {
-    text: string;
-    href: string;
+  link: {
+    type?: ('reference' | 'custom' | 'popup') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    popup?: (number | null) | Popup;
+    label: string;
   };
   image: number | Media;
   id?: string | null;
@@ -1135,9 +1191,9 @@ export interface MapBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "WorldStudentBlock".
+ * via the `definition` "WorldItemsBlock".
  */
-export interface WorldStudentBlock {
+export interface WorldItemsBlock {
   backgroundImage: number | Media;
   title: {
     root: {
@@ -1157,16 +1213,56 @@ export interface WorldStudentBlock {
   items: {
     image: number | Media;
     title: string;
-    'z-index': number;
-    top?: number | null;
-    bottom?: number | null;
-    right?: number | null;
-    left?: number | null;
+    description: string;
+    'z-index'?: number | null;
+    /**
+     * Vertical alignment of this marker
+     */
+    vAlign: 'top' | 'bottom';
+    /**
+     * Horizontal alignment of this marker
+     */
+    hAlign: 'left' | 'right';
+    /**
+     * Position from top or bottom in percentage (based on vertical alignment)
+     */
+    vPos: number;
+    /**
+     * Position from left or right in percentage (based on horizontal alignment)
+     */
+    hPos: number;
+    stack?:
+      | {
+          stackImage?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
     id?: string | null;
   }[];
+  /**
+   * Select which countries are to be displayed in the carousel below the world map
+   */
+  countryCarousel?: (number | Country)[] | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'worldStudentBlock';
+  blockType: 'worldItemsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "countries".
+ */
+export interface Country {
+  id: number;
+  /**
+   * Name of the country
+   */
+  name: string;
+  /**
+   * ISO 3166-1 alpha-2 code | https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements
+   */
+  code: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1248,7 +1344,22 @@ export interface WhyusMediaBlock {
 export interface ConnectBlock {
   mainHeading: string;
   connectText: string;
-  buttonText: string;
+  link: {
+    type?: ('reference' | 'custom' | 'popup') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    popup?: (number | null) | Popup;
+    label: string;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'connectBlock';
@@ -1285,70 +1396,6 @@ export interface StudyInChecklist {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "StudyInNotes".
- */
-export interface StudyInNotes {
-  title: string;
-  subtitle: string;
-  intakeheader: {
-    Intake: string;
-    application: string;
-    Classesstart: string;
-  };
-  inTaketableHeader: {
-    FallIntake: string;
-    springintake: string;
-    summerintake: string;
-  };
-  intakeTable: {
-    fallIntake: {
-      applicationDeadline: string;
-      classesStart: string;
-    };
-    springIntake: {
-      applicationDeadline: string;
-      classesStart: string;
-    };
-    summerIntake: {
-      applicationDeadline: string;
-      classesStart: string;
-    };
-  };
-  righttableheader: {
-    livingexpenses: string;
-    'average ': string;
-    'dollar ': string;
-  };
-  livingTable: {
-    Stay: string;
-    'foodbudget ': string;
-    'Localtransport ': string;
-    'phonebills ': string;
-    movingaround: string;
-  };
-  expensesTable: {
-    stay: {
-      monthlyAverage: string;
-    };
-    foodBudget: {
-      monthlyAverage: string;
-    };
-    localTransport: {
-      monthlyAverage: string;
-    };
-    phoneBills: {
-      monthlyAverage: string;
-    };
-    movingAround: {
-      monthlyAverage: string;
-    };
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'studyInNotes';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "StudyInApplication".
  */
 export interface StudyInApplication {
@@ -1373,13 +1420,67 @@ export interface StudyInApplication {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInInsights".
+ */
+export interface StudyInInsights {
+  /**
+   * Main heading and subheading for the study abroad information section
+   */
+  contentHeader: {
+    title: string;
+    subtitle: string;
+  };
+  /**
+   * Add academic intake periods and their schedules
+   */
+  intakeRows?:
+    | {
+        isHeader?: boolean | null;
+        intakeName: string;
+        applicationDeadline: string;
+        classesStart: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Add expense categories and their average costs
+   */
+  expenseRows?:
+    | {
+        isHeader?: boolean | null;
+        category: string;
+        monthlyAverage: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studyInInsights';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "IELTSEnroll".
  */
 export interface IELTSEnroll {
   titlePrefix: string;
   titleEmphasis: string;
   titleSuffix: string;
-  buttonText: string;
+  link: {
+    type?: ('reference' | 'custom' | 'popup') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    popup?: (number | null) | Popup;
+    label: string;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'ieltsEnroll';
@@ -1437,7 +1538,6 @@ export interface IELTSPackages {
   higlightedHeading: string;
   description: string;
   currencyLabel: string;
-  enrollButtonText: string;
   packages?:
     | {
         optionLabel: string;
@@ -1457,6 +1557,22 @@ export interface IELTSPackages {
             }[]
           | null;
         price: number;
+        link: {
+          type?: ('reference' | 'custom' | 'popup') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          popup?: (number | null) | Popup;
+          label: string;
+        };
         packageColor: 'green' | 'yellow';
         id?: string | null;
       }[]
@@ -1726,6 +1842,10 @@ export interface PayloadLockedDocument {
         value: number | Category;
       } | null)
     | ({
+        relationTo: 'countries';
+        value: number | Country;
+      } | null)
+    | ({
         relationTo: 'users';
         value: number | User;
       } | null)
@@ -1851,7 +1971,7 @@ export interface PagesSelect<T extends boolean = true> {
         ieltsBlock?: T | IELTSBlockSelect<T>;
         getStartedBlock?: T | GetStartedBlockSelect<T>;
         mapBlock?: T | MapBlockSelect<T>;
-        worldStudentBlock?: T | WorldStudentBlockSelect<T>;
+        worldItemsBlock?: T | WorldItemsBlockSelect<T>;
         serviceBlock?: T | ServiceBlockSelect<T>;
         faqBlock?: T | FAQBlockSelect<T>;
         careerBlock?: T | CareerBlockSelect<T>;
@@ -1867,8 +1987,8 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        studyInNotes?: T | StudyInNotesSelect<T>;
         studyInApplication?: T | StudyInApplicationSelect<T>;
+        studyInInsights?: T | StudyInInsightsSelect<T>;
         ieltsEnroll?: T | IELTSEnrollSelect<T>;
         ieltsPrep?: T | IELTSPrepSelect<T>;
         ieltsFeatures?: T | IELTSFeaturesSelect<T>;
@@ -1958,6 +2078,7 @@ export interface FormBlockSelect<T extends boolean = true> {
  * via the `definition` "AppointmentBlock_select".
  */
 export interface AppointmentBlockSelect<T extends boolean = true> {
+  visibility?: T;
   leftContent?:
     | T
     | {
@@ -1971,11 +2092,15 @@ export interface AppointmentBlockSelect<T extends boolean = true> {
               text?: T;
               id?: T;
             };
-        button?:
+        link?:
           | T
           | {
-              text?: T;
+              type?: T;
+              newTab?: T;
+              reference?: T;
               url?: T;
+              popup?: T;
+              label?: T;
             };
       };
   right?:
@@ -2062,11 +2187,15 @@ export interface TestimonialsBlockSelect<T extends boolean = true> {
 export interface CounselingBlockSelect<T extends boolean = true> {
   heading?: T;
   description?: T;
-  button?:
+  link?:
     | T
     | {
-        text?: T;
+        type?: T;
+        newTab?: T;
+        reference?: T;
         url?: T;
+        popup?: T;
+        label?: T;
       };
   backgroundImage?: T;
   cards?:
@@ -2163,8 +2292,16 @@ export interface StudyAbroadBlockSelect<T extends boolean = true> {
     | {
         courseDescription?: T;
         description?: T;
-        buttonText?: T;
-        buttonLink?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              popup?: T;
+              label?: T;
+            };
         image?: T;
         imagePosition?: T;
         id?: T;
@@ -2202,11 +2339,15 @@ export interface IELTSBlockSelect<T extends boolean = true> {
         text?: T;
         id?: T;
       };
-  ctaButton?:
+  link?:
     | T
     | {
-        text?: T;
-        href?: T;
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        popup?: T;
+        label?: T;
       };
   image?: T;
   id?: T;
@@ -2256,9 +2397,9 @@ export interface MapBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "WorldStudentBlock_select".
+ * via the `definition` "WorldItemsBlock_select".
  */
-export interface WorldStudentBlockSelect<T extends boolean = true> {
+export interface WorldItemsBlockSelect<T extends boolean = true> {
   backgroundImage?: T;
   title?: T;
   items?:
@@ -2266,13 +2407,21 @@ export interface WorldStudentBlockSelect<T extends boolean = true> {
     | {
         image?: T;
         title?: T;
+        description?: T;
         'z-index'?: T;
-        top?: T;
-        bottom?: T;
-        right?: T;
-        left?: T;
+        vAlign?: T;
+        hAlign?: T;
+        vPos?: T;
+        hPos?: T;
+        stack?:
+          | T
+          | {
+              stackImage?: T;
+              id?: T;
+            };
         id?: T;
       };
+  countryCarousel?: T;
   id?: T;
   blockName?: T;
 }
@@ -2355,7 +2504,16 @@ export interface WhyusMediaBlockSelect<T extends boolean = true> {
 export interface ConnectBlockSelect<T extends boolean = true> {
   mainHeading?: T;
   connectText?: T;
-  buttonText?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        popup?: T;
+        label?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -2389,97 +2547,6 @@ export interface StudyInChecklistSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "StudyInNotes_select".
- */
-export interface StudyInNotesSelect<T extends boolean = true> {
-  title?: T;
-  subtitle?: T;
-  intakeheader?:
-    | T
-    | {
-        Intake?: T;
-        application?: T;
-        Classesstart?: T;
-      };
-  inTaketableHeader?:
-    | T
-    | {
-        FallIntake?: T;
-        springintake?: T;
-        summerintake?: T;
-      };
-  intakeTable?:
-    | T
-    | {
-        fallIntake?:
-          | T
-          | {
-              applicationDeadline?: T;
-              classesStart?: T;
-            };
-        springIntake?:
-          | T
-          | {
-              applicationDeadline?: T;
-              classesStart?: T;
-            };
-        summerIntake?:
-          | T
-          | {
-              applicationDeadline?: T;
-              classesStart?: T;
-            };
-      };
-  righttableheader?:
-    | T
-    | {
-        livingexpenses?: T;
-        'average '?: T;
-        'dollar '?: T;
-      };
-  livingTable?:
-    | T
-    | {
-        Stay?: T;
-        'foodbudget '?: T;
-        'Localtransport '?: T;
-        'phonebills '?: T;
-        movingaround?: T;
-      };
-  expensesTable?:
-    | T
-    | {
-        stay?:
-          | T
-          | {
-              monthlyAverage?: T;
-            };
-        foodBudget?:
-          | T
-          | {
-              monthlyAverage?: T;
-            };
-        localTransport?:
-          | T
-          | {
-              monthlyAverage?: T;
-            };
-        phoneBills?:
-          | T
-          | {
-              monthlyAverage?: T;
-            };
-        movingAround?:
-          | T
-          | {
-              monthlyAverage?: T;
-            };
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "StudyInApplication_select".
  */
 export interface StudyInApplicationSelect<T extends boolean = true> {
@@ -2507,13 +2574,53 @@ export interface StudyInApplicationSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudyInInsights_select".
+ */
+export interface StudyInInsightsSelect<T extends boolean = true> {
+  contentHeader?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+      };
+  intakeRows?:
+    | T
+    | {
+        isHeader?: T;
+        intakeName?: T;
+        applicationDeadline?: T;
+        classesStart?: T;
+        id?: T;
+      };
+  expenseRows?:
+    | T
+    | {
+        isHeader?: T;
+        category?: T;
+        monthlyAverage?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "IELTSEnroll_select".
  */
 export interface IELTSEnrollSelect<T extends boolean = true> {
   titlePrefix?: T;
   titleEmphasis?: T;
   titleSuffix?: T;
-  buttonText?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        popup?: T;
+        label?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -2562,7 +2669,6 @@ export interface IELTSPackagesSelect<T extends boolean = true> {
   higlightedHeading?: T;
   description?: T;
   currencyLabel?: T;
-  enrollButtonText?: T;
   packages?:
     | T
     | {
@@ -2583,6 +2689,16 @@ export interface IELTSPackagesSelect<T extends boolean = true> {
               id?: T;
             };
         price?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              popup?: T;
+              label?: T;
+            };
         packageColor?: T;
         id?: T;
       };
@@ -2786,6 +2902,16 @@ export interface CategoriesSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "countries_select".
+ */
+export interface CountriesSelect<T extends boolean = true> {
+  name?: T;
+  code?: T;
   updatedAt?: T;
   createdAt?: T;
 }

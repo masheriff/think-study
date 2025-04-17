@@ -146,16 +146,6 @@ export const PopupManager: React.FC<PopupManagerProps> = ({ nonButtonPopups = []
   // Handle popup triggers for non-button popups
   useEffect(() => {
 
-    console.log('NonButtonPopups:', nonButtonPopups)
-
-    nonButtonPopups.forEach(popup => {
-      console.log(
-        `Popup ${popup.id || 'unknown'}: trigger=${popup.trigger}, ` +
-        `shouldShowOnPage=${shouldShowOnPage(popup)}, ` +
-        `shouldShowBasedOnFrequency=${shouldShowBasedOnFrequency(popup)}`
-      )
-    })
-
     if (typeof window === 'undefined') return
     if (!nonButtonPopups.length) return
 
