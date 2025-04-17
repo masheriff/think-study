@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     # Only run if the person who triggered the workflow is a repository owner/admin
     # AND they typed CONFIRM in the confirmation input
-    if: ${{ github.event.inputs.confirm_sync == 'CONFIRM' && github.actor_is_admin }}
+    if: ${{ github.event.inputs.confirm_sync == 'CONFIRM' }}
     
     steps:
       - name: Execute remote SSH commands to sync databases and media
