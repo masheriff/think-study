@@ -55,7 +55,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
   return (
     <header className="fixed w-full shadow-md z-20 bg-white">
-      <div className="container py-4 flex justify-between items-center">
+      <div className="container h-16 flex justify-between items-center">
         <Link href="/" className="flex-shrink-0">
           <Logo className='h-[40px]' priority />
         </Link>

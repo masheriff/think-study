@@ -84,7 +84,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   }
 
   return (
-    <nav ref={navRef} className="flex flex-col gap-3 md:gap-6 lg:gap-8 lg:flex-row">
+    <nav ref={navRef} className="flex flex-col md:gap-6 lg:gap-8 lg:flex-row">
       {navItems.map((item, i) => {
         const hasSubMenu = item.subMenu && item.subMenu.length > 0
         const isSubMenuOpen = activeSubmenu === i
@@ -102,11 +102,11 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
           <div key={i} className={`
             relative w-full
             ${hasSubMenu ? (screenSize === 'desktop' ? 'group' : '') : ''}
-            ${(screenSize === 'mobile' || screenSize === 'tablet') ? 'border-b border-gray-100 pb-2 mb-2' : ''}
+            ${(screenSize === 'mobile' || screenSize === 'tablet') ? 'border-b border-gray-100' : ''}
           `}>
             <div
               className={`
-                flex items-center cursor-pointer
+                flex items-center cursor-pointer h-16
                 ${(screenSize === 'mobile' || screenSize === 'tablet') ? 'justify-between' : 'justify-center'}
                 ${isActive ? 'text-[#F7674F]' : ''}
                 ${hasSubMenu && isSubMenuOpen ? 'text-[#F7674F]' : ''}
@@ -139,12 +139,12 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
             {hasSubMenu && screenSize === 'desktop' && (
               <ul
                 className={`
-                  absolute bg-white shadow-md py-2 z-10
-                  border border-gray-100 rounded-md
+                  absolute bg-[#C1F177] shadow-md py-2 z-10
+                  rounded-2xl
                   transition-all duration-200 ease-in-out
                   left-0 min-w-[220px]
                   hidden group-hover:block opacity-0 group-hover:opacity-100 
-                  translate-y-1 group-hover:translate-y-0 top-[calc(100%_+_0.15rem)]
+                  translate-y-1 group-hover:translate-y-0 top-[95%]
                 `}
               >
                 {item.subMenu?.map((subItem, j) => {
@@ -153,17 +153,13 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                   return (
                     <li
                       key={j}
-                      className={`
-                        px-4 py-2 hover:bg-gray-50 transition-colors duration-150
-                        ${isSubItemActive ? 'bg-gray-50' : ''}
-                      `}
                     >
                       <CMSLink
                         {...transformLinkProps(subItem.link)}
                         appearance="link"
                         className={`
-                          text-sm block w-full transition-colors duration-150 hover:text-[#F7674F]
-                          ${isSubItemActive ? 'text-[#F7674F] font-medium' : ''}
+                          text-sm block w-full transition-colors duration-150 px-4 py-2
+                          ${isSubItemActive ? 'font-bold' : ''}
                         `}
                       />
                     </li>
@@ -176,28 +172,24 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
             {hasSubMenu && (screenSize === 'mobile' || screenSize === 'tablet') && (
               <div
                 className={`
-                  w-full mt-2 transition-all duration-300 ease-in-out overflow-hidden
+                  w-full transition-all duration-300 ease-in-out overflow-hidden
                   ${isSubMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
                 `}
               >
-                <ul className="bg-gray-50 rounded-md py-1">
+                <ul className="bg-[#C1F177] rounded-2xl">
                   {item.subMenu?.map((subItem, j) => {
                     const isSubItemActive = isLinkActive(subItem.link)
 
                     return (
                       <li
                         key={j}
-                        className={`
-                          px-4 py-2 hover:bg-gray-100 transition-colors duration-150
-                          ${isSubItemActive ? 'bg-gray-100' : ''}
-                        `}
                       >
                         <CMSLink
                           {...transformLinkProps(subItem.link)}
                           appearance="link"
                           className={`
-                            text-sm block w-full transition-colors duration-150 hover:text-[#F7674F]
-                            ${isSubItemActive ? 'text-[#F7674F] font-medium' : ''}
+                            text-sm flex px-4 items-center h-10 w-full  transition-colors duration-150
+                            ${isSubItemActive ? 'font-bold' : ''}
                           `}
                         />
                       </li>
